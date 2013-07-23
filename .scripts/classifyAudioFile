@@ -1,0 +1,70 @@
+#!/bin/bash
+# Required packages : eyeD3, flac
+
+if [[ ( ! $# = 2 ) && ( ! $# = 3 ) ]]; then
+    echo "usage : classifyAudioFile file destFolder"
+    exit 1
+fi 
+
+if [[ ! $2 =~ .*/$ ]]; then
+    dest="$2/"
+    echo "/ added to dest name : $dest"
+else
+    dest="$2"
+fi
+
+if [[ $(file --mime-type "$1" | sed "s/.*\///g") =~ .*flac ]]; then
+    #echo "flac file"
+    inputFileType="flac"
+    artist=$(metaflac --show-tag=artist "$1" | sed "s/.*=//" | sed "s/\//\&/g")
+    album=$(metaflac --show-tag=album "$1" | sed "s/.*=//" | sed "s/\//\&/g")
+    title=$(metaflac --show-tag=title "$1" | sed "s/.*=//")
+else
+    if [[ $(file --mime-type "$1" | sed "s/.*\///g") =~ .*mpeg ]]; then
+        #echo "mp3 file"
+        inputFileType="mp3"
+        artist=$(eyeD3 -v "$1" | grep -i "<lead" | sed -r 's/(<.*\): |>)//g' | sed "s/\//\&/g")
+        album=$(eyeD3 -v "$1" | grep -i "<album" | sed -r 's/(<.*\): |>)//g' | sed "s/\//\&/g")
+        title=$(eyeD3 -v "$1" | grep -i "<title" | sed -r 's/(<.*\): |>)//g')      
+    else
+        if [[ $(file --mime-type "$1" | sed "s/.*\///g") =~ .*octet-stream ]]; then
+            inputFileType="crappy mp3"
+            artist=$(eyeD3 -v "$1" | grep -i "<lead" | sed -r 's/(<.*\): |>)//g' | sed "s/\//\&/g")
+            album=$(eyeD3 -v "$1" | grep -i "<album" | sed -r 's/(<.*\): |>)//g' | sed "s/\//\&/g")
+            title=$(eyeD3 -v "$1" | grep -i "<title" | sed -r 's/(<.*\): |>)//g')      
+            if [[ "$artist" =~ ^$ || "$album" =~ ^$ ]]; then
+                echo "$0 : $inputFileType" >&2
+                file --mime-type "$1" >&2
+                exit 1
+            fi
+        else
+            inputFileType="Unknown type"
+            echo "$0 : $inputFileType" >&2
+            file --mime-type "$1" >&2
+            exit 1
+        fi
+    fi
+fi
+
+if [[ $(dirname "$1") -ef "$dest$artist/$album" ]]; then
+    echo "file $1 already correctly classified"
+else
+
+    if [[ ! -d "$dest$artist" ]]; then
+        echo "Creating artist folder name : $dest$artist"
+        mkdir "$dest$artist"
+    fi
+
+    if [[ ! -d "$dest$artist/$album" ]]; then
+        echo "Creating album folder name : $dest$artist/$album"
+        mkdir "$dest$artist/$album"
+    fi
+
+    if [[ $3 = "-m" ]]; then
+        echo "Moving file : artist=$artist, album=$album"
+        mv "$1" "$dest$artist/$album"
+    else
+        echo "Copying file : artist=$artist, album=$album"
+        cp "$1" "$dest$artist/$album"
+    fi
+fi

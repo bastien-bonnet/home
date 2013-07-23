@@ -1,0 +1,28 @@
+#!/bin/bash
+# Required packages : id3v2, flac, lame
+# Required scripts : classifyAudioFile
+
+# Checking args
+if [[ ! $# = 2 ]]; then
+    echo "usage : flactomp3 file.flac destFolder"
+    exit 1
+fi 
+
+# convertion options
+FLAC_OPTS="-scd" # --silent --stdout --decode
+LAME_OPTS="--vbr-new -V 4 -b 192 -B 256 --silent"
+
+# flac tags getting
+for tag in artist title album year tracknumber genre
+do
+    eval "$tag=\"$(metaflac --show-tag="$tag" "$1" | sed s/.*=//)\""
+done
+
+# encoding
+dest="$2$artist - $title.mp3"
+echo "  >>  Encoding '$1' to '$dest'..."
+flac $FLAC_OPTS "$1" | lame $LAME_OPTS - "$dest"
+
+# id3 tags setting
+#id3v2 -t "$title" -T "$tracknumber" -a "$artist" -A "$album" -g "$genre" -y "$date" "$dest"
+eyeD3 --title="$title" --artist="$artist" --album="$album" --track="$tracknumber" --genre="$genre" --year="$year" "$dest" 2>&1 1>/dev/null | grep -viE "(No ID3|Setting)"

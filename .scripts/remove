@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mv -b -t ~/.local/share/Trash/files/ "$@"

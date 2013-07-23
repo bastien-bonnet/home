@@ -1,0 +1,22 @@
+#! /bin/bash
+
+cd /boot
+
+# tail -n +x : output last lines starting with the x th
+ls -r | grep -E ^vmlinu[xz] | tail -n +3 |
+while read kernName
+do
+    rename -n 's/(^.*$)/OLD$1/' $kernName
+done
+
+echo "ok (y/n) ?"
+read ok
+if [[ $ok = y ]];then
+    ls -r | grep -E ^vmlinu[xz] | tail -n +3 |
+    while read kernName
+    do
+        rename 's/(^.*$)/OLD$1/' $kernName
+    done
+fi
+
+sudo update-grub2

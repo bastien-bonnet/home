@@ -1,0 +1,5 @@
+#!/bin/bash
+
+killall -e conky
+sleep 1 && feh --bg-fill $(find $(grep wallpaper= ~/.kde/share/config/plasma-desktop-appletsrc | tail -n 1 | cut -d '=' -f 2) -iname "*x*.png" | head -n 1)
+conky -p 5 -c ~/.conkyrc-$(hostname | cut -d '-' -f 2)

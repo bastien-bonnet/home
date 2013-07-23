@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for i in {0..255}; do 
+    color=$i
+    beginColor='\033[48;5;'$i'm'
+    endColor='\033[0m'
+    echo -ne "$beginColor $i $endColor"
+    [[ $(($i)) -gt $((14)) && $((($i-15)%6)) == 0 ]] && echo ""
+done

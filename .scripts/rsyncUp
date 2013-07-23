@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [[ $# != 3 ]]; then
+  echo "Usage: $(basename $0) username ip_address port"
+    exit 1
+fi
+
+B_DIR="$HOME/B"
+CURR_DIR="$HOME/current"
+BIB_DIR="$HOME/music"
+USERNAME=$1
+REMOTE_IP="$2"
+SSH_OPTS="ssh -p $3"
+RSYNC_OPTS="-vihurlt"
+
+echo "Directory to sync :"
+echo "1: $B_DIR"
+echo "2: $CURR_DIR"
+echo "3: $BIB_DIR"
+echo "4: Current - $(pwd)"
+echo "?"
+read dir
+
+function sync() {
+    rsync --dry-run $RSYNC_OPTS -e "$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/
+    echo "Ok for [remote] > [local]? (y/N)"
+    read transfer
+    [[ $transfer =~ y|Y ]] &&
+    rsync $RSYNC_OPTS -e "$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/ ||
+    echo "Transfer cancelled"
+
+}
+
+case $dir in
+    1 )
+        sync "$B_DIR";;
+    2 )
+        sync "$CURR_DIR";;
+    3 )
+        sync "$BIB_DIR";;
+    4 )
+      sync "$(pwd)";;
+esac

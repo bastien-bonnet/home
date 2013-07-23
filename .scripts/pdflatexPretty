@@ -1,0 +1,93 @@
+#!/bin/bash
+
+set -u
+set -o pipefail
+
+################################################
+# Compile LaTeX documents with nice error/warning/badbox display
+#
+
+fileColor='\033[2;38;5;253m'
+errorColor='\033[2;38;5;196m'
+warningColor='\033[2;38;5;214m'
+badboxColor='\033[2;38;5;146m'
+endColorSeq='\033[0m'
+
+if [[ -z "$1" ]]; then
+    echo "Usage : pdfLatexPretty file.tex"
+    exit 1
+fi
+if [[ ! -f "$1" ]]; then
+    echo "file '$1' does not exist"
+    exit 1
+fi
+
+baseName=$(echo "$1" | sed "s/.tex$//")
+logName=$baseName.log
+
+# Silent document compilation
+pdflatex -file-line-error -interaction nonstopmode "$1" > /dev/null
+compilationError=$?
+echo "compiled, parsing..."
+
+# Lines of files processed by pdflatex
+fileLines=$(grep -nE '\([^\(\)]+\.tex |\([^\(\)]+\.tex$' "$logName" | cut -f1 -d":") 
+# Number of files processed by pdflatex
+fileLinesLength=$(echo "$fileLines" | wc -l )
+
+# Counters
+errors=0
+warnings=0
+badboxes=0
+
+# Processing files
+for i in $(seq 1 $(($fileLinesLength)) ); do
+    # Errors/warnings/badboxes storage for 1 file
+    localErrors=""
+    localWarnings=""
+    localBadboxes=""
+
+    if [[ "$i" != "$fileLinesLength" ]]; then
+        start=$(echo -e "$fileLines" | sed -n "$i p")
+        end=$(echo -e "$fileLines" | sed -n "$((i+1)) p")
+    else
+        start=$(echo -e "$fileLines" | sed -n "$i p")
+        end=$(cat "$logName" | wc -l)
+    fi
+
+    # format processed files
+    processedFile=$(sed -nr $start'{ s/^.*\(([^\(\)]+\.tex).*$/In \1 :/; p }' "$logName")
+
+    # errors seeking
+    localErrors=$(sed -nr $start,$end'{ /:[0-9]+:|l\.[0-9]+/{ :Here; /\.$|l\.[0-9]+/p; /\.$|l\.[0-9]+/!{ N; b Here } } }' "$logName" )
+    # warnings seeking
+    localWarnings=$(sed -n $start,$end'{ /[Ww]arning:/{ :Here; /\.$\|\n\n/p; /\.$\|\n\n/!{ N; b Here } } }' "$logName" | sed '/^$/{N; d}')
+    # badboxes seeking
+    localBadboxes=$(sed -n $start,$end'{ /at line\|[Uu]nderfull\|[Oo]verfull/{ p } }' "$logName")
+
+    # Counters update
+    errors=$((errors+$(echo "$localErrors" | grep -cE ":[0-9]+:") ))
+    warnings=$((warnings+$(echo "$localWarnings" | grep -ci "warning:") ))
+    badboxes=$((badboxes+$(echo "$localBadboxes" | grep -cE "at line|[Uu]nderfull|[Oo]verfull") ))
+    
+    # If errors/warnings/badboxes
+    if [[ -n "$localErrors" || -n "$localWarnings" || -n "$localBadboxes" ]]; then
+        echo -ne "$fileColor" 
+        echo "$processedFile"
+        echo -ne "$errorColor" 
+        [[ -n "$localErrors" ]] && echo "$localErrors"
+        echo -ne "$warningColor"
+        [[ -n "$localWarnings" ]] && echo "$localWarnings"
+        echo -ne "$badboxColor"
+        [[ -n "$localBadboxes" ]] && echo "$localBadboxes"
+        echo -ne "$endColorSeq"
+        echo
+    fi
+done
+
+# Results display
+echo
+((errors != 0)) && echo -e "${errorColor}Error(s):$endColorSeq $errors"
+((warnings != 0)) && echo -e  "${warningColor}Warning(s):$endColorSeq $warnings"
+((badboxes != 0)) && echo -e "${badboxColor}Badbox(es):$endColorSeq $badboxes"
+[[ $compilationError == 0 ]] && (echo "COMPILATION SUCCESSFUL"; exit 0) || (echo "COMPILATION FAILED"; exit 1)
