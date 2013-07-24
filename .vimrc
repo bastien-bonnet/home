@@ -1,45 +1,76 @@
-set runtimepath+=/usr/share/vim/addons/
+""""""""""""""""""""""""""""""""""""
+" FILE TYPE ASSOCIATIONS
+
+" Indentation automatique selon le type de fichier
+filetype indent on
+" Chargement de plugins selon le type de fichier
+filetype plugin on
+
+
+
 
 set encoding=utf-8
 set fileencodings=utf-8
+
+" Ignore case when searching
+set ignorecase
+
+" Use X11 clipboard
 set clipboard=unnamedplus
 
+" Enables mouse (needs vim compiled with certain options)
 set mouse=a
+
+
+
+""""""""""""""""""""""""""""""""""""
+" APPEARANCE
+
 " set bg=dark
 colorscheme desert
-set number
+set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 set nuw=6
-set ignorecase
-" Interpret tab as an indent command instead of insert-a-tab command
-set softtabstop=2
-" Indentation width when tab key hit
-set shiftwidth=2
-" Number of spaces displayed for tab file-character
-set tabstop=4
-" Insert spaces when tab key is pressed
-set expandtab
-" Autoindent
-set autoindent
-" Do not cut words
-set linebreak
+
 " Show the cursor position all the time
 set ruler
 
-" Chargement de plugins selon le type de fichier
-filetype plugin on
-" Permet a vim-latex d'appeler correctement latex (win32 specific ?)
-set shellslash
-" Change la manière d'appeler grep pour toujours avoir le nom de fichier
-set grepprg=grep\ -nH\ $*
-" Indentation automatique selon le type de fichier
-filetype indent on
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-let g:Tex_CompileRule_pdf='pdflatex -interaction nonstopmode $*'
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_IgnoreLevel=0
+
+
+""""""""""""""""""""""""""""""""""""
+" INDENTATION
+
+set autoindent
+" Indentation with hard tabs, allowing each reader to view code with the amount of indentation they like
+set shiftwidth=2
+set tabstop=2
+" Show indentation marks
+set list listchars=tab:\ ❘,trail:·,extends:»,precedes:«,nbsp:×
+
+
+
+""""""""""""""""""""""""""""""""""""
+" SOFT LINES NAVIGATION
+
+" Break lines at word gaps
+set linebreak
+" Show soft line break mark
+let &showbreak = '↳'
+" Navigation between soft lines
+map <silent> <Up> gk
+imap <silent> <Up> <C-o>gk
+map <silent> <Down> gj
+imap <silent> <Down> <C-o>gj
+map <silent> <home> g<home>
+imap <silent> <home> <C-o>g<home>
+map <silent> <End> g<End>
+imap <silent> <End> <C-o>g<End>
+
+
+
+""""""""""""""""""""""""""""""""""""
+" TABS
 
 " to map :execute TabLeft()
 function TabLeft()
@@ -68,3 +99,23 @@ nmap <C-Right> :tabnext<cr>
 nmap <C-Left> :tabprevious<cr>
 nmap <C-S-Left> :execute TabLeft()<cr>
 nmap <C-S-Right> :execute TabRight()<cr>
+
+
+
+""""""""""""""""""""""""""""""""""""
+" CONFIG FOR LATEX PLUGIN
+
+" Chargement de plugins selon le type de fichier
+filetype plugin on
+" Permet a vim-latex d'appeler correctement latex (win32 specific ?)
+set shellslash
+" Change la manière d'appeler grep pour toujours avoir le nom de fichier
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+let g:Tex_CompileRule_pdf='pdflatex -interaction nonstopmode $*'
+let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_IgnoreLevel=0
