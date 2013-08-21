@@ -1,0 +1,12 @@
+[user]
+	name = bbonnet
+	email = none
+[push]
+	default = simple
+[color]
+	ui = auto
+[alias]
+	lg = log --graph --oneline --decorate
+	lga = log --graph --oneline --decorate --all
+	co = checkout
+	b = branch
