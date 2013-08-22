@@ -52,19 +52,21 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-	#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]\$ '
-    
-    function promptCommand {
-    EXITSTATUS="$?"
-    BLUE="\033[01;34m"
-    GREEN="\033[01;32m"
-    RED="\033[1;31m"
-    OFF="\033[00m"
-    PS1='${debian_chroot:+($debian_chroot)}\['$GREEN'\]\u@$(echo \h | cut -c -5)\['$OFF'\][\['$BLUE'\]\w\['$OFF'\]] $([[ $EXITSTATUS == 0 ]] && echo -e "\[$GREEN\]"$EXITSTATUS"\[$OFF\]" || echo -e "\[$RED\]"$EXITSTATUS"\[$OFF\]") \$ '
-    }
-    
-    PROMPT_COMMAND=promptCommand
+		function pCmd {
+			local exitStatus="$?"
+			local green="\[\033[01;32m\]"
+			local blue="\[\033[01;34m\]"
+			local red="\[\033[1;31m\]"
+			local off="\[\033[00m\]"
+			local chroot="${debian_chroot:+($debian_chroot)}"
+			local userAndHost="$green\u@\h$off"
+			local workingDir="$blue\w$off"
+			local exitStatusColored="$([[ $exitStatus == 0 ]] && echo -e $green$exitStatus$off || echo -e $red$exitStatus$off)"
+			local gitBranch="$(__git_ps1)"
+			PS1="$chroot$userAndHost[$workingDir]$gitBranch $exitStatusColored \$"
+		}
+
+		PROMPT_COMMAND=pCmd
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
