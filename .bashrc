@@ -59,7 +59,9 @@ if [ "$color_prompt" = yes ]; then
 			local red="\[\033[1;31m\]"
 			local off="\[\033[00m\]"
 			local chroot="${debian_chroot:+($debian_chroot)}"
-			local userAndHost="$green\u@\h$off"
+			if [ -n "$SSH_CLIENT" ]; then
+				local userAndHost="$green\u@\h$off"
+			fi
 			local workingDir="$blue\w$off"
 			local exitStatusColored="$([[ $exitStatus == 0 ]] && echo -e $green$exitStatus$off || echo -e $red$exitStatus$off)"
 			# If git is installed && current directory is inside a git repo
