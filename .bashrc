@@ -68,7 +68,7 @@ if [ "$color_prompt" = yes ]; then
 				local unStagedWork="$([[ $(git status | grep '# Changes not staged for commit:') != '' ]] && echo s)"
 				local unCommitedWork="$([[ $(git status | grep '# Changes to be committed:') != '' ]] && echo c)"
 				local unTrackedFiles="$([[ $(git status | grep '# Untracked files:') != '' ]] && echo t)"
-				local gitInfo="[$gitBranch | $unStagedWork $unCommitedWork $unTrackedFiles]"
+				local gitInfo="[$gitBranch|$unStagedWork$unCommitedWork$unTrackedFiles]"
 			fi
 			PS1="$chroot$userAndHost[$workingDir] $gitInfo $exitStatusColored \$"
 		}
