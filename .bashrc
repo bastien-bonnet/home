@@ -54,18 +54,25 @@ fi
 if [ "$color_prompt" = yes ]; then
 		function pCmd {
 			local exitStatus="$?"
-			local green="\[\033[01;32m\]"
-			local blue="\[\033[01;34m\]"
+			local green="\[\033[1;32m\]"
+			local blue="\[\033[1;34m\]"
 			local red="\[\033[1;31m\]"
 			local off="\[\033[00m\]"
 			local chroot="${debian_chroot:+($debian_chroot)}"
 			local userAndHost="$green\u@\h$off"
 			local workingDir="$blue\w$off"
 			local exitStatusColored="$([[ $exitStatus == 0 ]] && echo -e $green$exitStatus$off || echo -e $red$exitStatus$off)"
-			local gitBranch="$(__git_ps1)"
-			PS1="$chroot$userAndHost[$workingDir]$gitBranch $exitStatusColored \$"
+			# If git is installed && current directory is inside a git repo
+			if [[ $(which git) != "" && ("$(git rev-parse --is-inside-work-tree 2>&1)" == "true") ]]; then
+				local gitBranch="$(git branch --no-color | sed -n 's/* \(.*\)/\1/p')"
+				local unStagedWork="$([[ $(git status | grep '# Changes not staged for commit:') != '' ]] && echo s)"
+				local unCommitedWork="$([[ $(git status | grep '# Changes to be committed:') != '' ]] && echo c)"
+				local unTrackedFiles="$([[ $(git status | grep '# Untracked files:') != '' ]] && echo t)"
+				local gitInfo="[$gitBranch | $unStagedWork $unCommitedWork $unTrackedFiles]"
+			fi
+			PS1="$chroot$userAndHost[$workingDir] $gitInfo $exitStatusColored \$"
 		}
-
+		
 		PROMPT_COMMAND=pCmd
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
