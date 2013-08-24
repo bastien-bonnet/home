@@ -16,59 +16,59 @@ fi
 
 export TERM=xterm-color
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
+# Check if terminal has color support
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48 (ISO/IEC-6429). (Lack of such support is extremely rare, and such a case would tend to support setf rather than setaf.)
 	color_prompt=yes
-    else
+else
 	color_prompt=
-    fi
 fi
 
 if [ "$color_prompt" = yes ]; then
 		function pCmd {
 			local exitStatus="$?"
-			local green="\[\033[1;32m\]"
+			local red="\[\033[31m\]"
+			local green="\[\033[32m\]"
+			local yellow="\[\033[33m\]"
 			local blue="\[\033[1;34m\]"
-			local red="\[\033[1;31m\]"
+			local bg_red="\[\033[48;5;233m\]"
 			local off="\[\033[00m\]"
-			local chroot="${debian_chroot:+($debian_chroot)}"
+			local default_text="\[\033[39m\]\[\033[22m\]" # default text color, default text intensity
+			local chroot="${debian_chroot:+($debian_chroot):}"
 			if [ -n "$SSH_CLIENT" ]; then
-				local userAndHost="$green\u@\h$off"
+				local userAndHost="$green\u@\h$default_text:"
 			fi
-			local workingDir="$blue\w$off"
-			local exitStatusColored="$([[ $exitStatus == 0 ]] && echo -e $green$exitStatus$off || echo -e $red$exitStatus$off)"
+			local workingDir="$blue$(echo $PWD | sed 's,'$HOME',~,')$default_text"
+			local exitStatusColored="$([[ $exitStatus == 0 ]] && echo -e '' || echo -e $red)"
 			# If git is installed && current directory is inside a git repo
-			if [[ $(which git) != "" && ("$(git rev-parse --is-inside-work-tree 2>&1)" == "true") ]]; then
+			if [[ $(command -v git) != "" && ("$(git rev-parse --is-inside-work-tree 2>&1)" == "true") ]]; then
 				local gitBranch="$(git branch --no-color | sed -n 's/* \(.*\)/\1/p')"
-				local unStagedWork="$([[ $(git status | grep '# Changes not staged for commit:') != '' ]] && echo s)"
-				local unCommitedWork="$([[ $(git status | grep '# Changes to be committed:') != '' ]] && echo c)"
-				local unTrackedFiles="$([[ $(git status | grep '# Untracked files:') != '' ]] && echo t)"
-				local behind="$(git status | sed -n 's/# Your branch is behind.*\([0-9]\+\).*/↓\1/p')"
-				local ahead="$(git status | sed -n 's/# Your branch is ahead.*\([0-9]\+\).*/↑\1/p')"
-				local diverged="$(git status | sed -n 's/# and have \([0-9]\+\) and \([0-9]\+\) different commit.*/↓\2↑\1/p')"
-				local gitInfo="[$gitBranch$behind$ahead$diverged|$unStagedWork$unCommitedWork$unTrackedFiles]"
+				local gitStatus="$(git status)"
+
+				local unStagedWork="$([[ $(echo $gitStatus | grep '# Changes not staged for commit:') != '' ]] && echo '*')"
+				local unCommitedWork="$([[ $(echo $gitStatus | grep '# Changes to be committed:') != '' ]] && echo c)"
+				local unTrackedFiles="$([[ $(echo $gitStatus | grep '# Untracked files:') != '' ]] && echo …)"
+				local dirty="$red$unCommitedWork$unStagedWork$unTrackedFiles$default_text"
+
+				local behind="$(echo $gitStatus | sed -n 's/.*# Your branch is behind.*\([0-9]\+\).*/↓\1/p')"
+				local ahead="$(echo $gitStatus | sed -n 's/.*# Your branch is ahead.*\([0-9]\+\).*/↑\1/p')"
+				local diverged="$(echo $gitStatus | sed -n 's/.*# and have \([0-9]\+\) and \([0-9]\+\) different commit.*/↓\2↑\1/p')"
+				local branchState="$yellow$bg_red$behind$ahead$diverged$default_text"
+
+				local gitInfo=" [$gitBranch $branchState|$dirty]"
 			fi
-			PS1="$chroot$userAndHost[$workingDir] $gitInfo $exitStatusColored \$"
+			local prompt_1="$bg_red$chroot$userAndHost$workingDir$gitInfo"
+			local promptSize="$(echo -n $prompt_1 | sed -e 's/\\\[\\033\[[0-9;]*m\\\]//g' -e 's/\\[a-zA-Z]//g' | wc -m | tr -d ' ')"
+			local promptFill="$(for ((i=1;i<=$(($COLUMNS-$promptSize));++i)); do echo -n ' '; done)"
+			PS1="$prompt_1$promptFill$off
+$exitStatusColored\$$off "
 		}
 		
 		PROMPT_COMMAND=pCmd
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
-unset color_prompt force_color_prompt
+unset color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
