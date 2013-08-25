@@ -33,14 +33,16 @@ function gitInfo() {
 		local unStagedWork="$([[ $(echo $gitStatus | grep '# Changes not staged for commit:') != '' ]] && echo '*')"
 		local unCommitedWork="$([[ $(echo $gitStatus | grep '# Changes to be committed:') != '' ]] && echo c)"
 		local unTrackedFiles="$([[ $(echo $gitStatus | grep '# Untracked files:') != '' ]] && echo …)"
-		local dirty="$red$unCommitedWork$unStagedWork$unTrackedFiles$default_text"
+		local dirty="$unCommitedWork$unStagedWork$unTrackedFiles"
+		[[ -n $dirty ]] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
 
 		local behind="$(echo $gitStatus | sed -n 's/.*# Your branch is behind.*\([0-9]\+\).*/↓\1/p')"
 		local ahead="$(echo $gitStatus | sed -n 's/.*# Your branch is ahead.*\([0-9]\+\).*/↑\1/p')"
 		local diverged="$(echo $gitStatus | sed -n 's/.*# and have \([0-9]\+\) and \([0-9]\+\) different commit.*/↓\2↑\1/p')"
-		local branchState="$yellow$bg_red$behind$ahead$diverged$default_text"
+		local branchState="$yellow$bgColor$behind$ahead$diverged$default_text"
+		
 
-		local gitInfo=" [$gitBranch $branchState|$dirty]"
+		local gitInfo=" [$gitBranch $branchState|$dirtyColored]"
 		echo -n "$gitInfo"
 	fi
 }
@@ -49,26 +51,29 @@ function gitInfo() {
 if [ "$color_prompt" = yes ]; then
 		function pCmd {
 			local exitStatus="$?"
+
 			local red="\[\033[31m\]"
 			local green="\[\033[32m\]"
 			local yellow="\[\033[33m\]"
 			local blue="\[\033[1;34m\]"
-			local bg_red="\[\033[48;5;233m\]"
+			local bgColor="\[\033[48;5;233m\]"
 			local off="\[\033[00m\]"
 			local default_text="\[\033[39m\]\[\033[22m\]" # default text color, default text intensity
+
+			# If I am SSHing on one of my other machines, need to see it clearly
 			if [ -n "$SSH_CLIENT" ]; then
 				local userAndHost="$green$USER@$HOSTNAME$default_text:"
 			fi
 			local workingDir="$blue$(echo $PWD | sed 's,'$HOME',~,')$default_text"
 			local exitStatusColor="$([[ $exitStatus == 0 ]] && echo -e '' || echo -e $red)"
 			local gitInfo="$(gitInfo)"
-			local prompt_1="$bg_red$userAndHost$workingDir$gitInfo"
+			local prompt_1="$bgColor╭─ $userAndHost$workingDir$gitInfo"
 			local promptSize="$(echo -n $prompt_1 | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)"
 			local time="$(date +'%F %T')"
 			local timeSize="$(echo -n $time | wc -m)"
 			local promptFill="$(for ((i=1;i<=$(($COLUMNS-$promptSize-$timeSize));++i)); do echo -n ' '; done)"
 			PS1="$prompt_1$promptFill$time$off
-$exitStatusColor\$$off "
+╰─$exitStatusColor➤$off "
 		}
 		
 		PROMPT_COMMAND=pCmd
