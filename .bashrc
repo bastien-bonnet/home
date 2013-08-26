@@ -36,9 +36,19 @@ function gitInfo() {
 		local diverged="$(echo $gitStatus | sed -n 's/.*# and have \([0-9]\+\) and \([0-9]\+\) different commit.*/↓\2↑\1/p')"
 		local branchState="$yellow$bgColor$behind$ahead$diverged$default_text"
 		
-
-		local gitInfo=" [$gitBranch $branchState|$dirtyColored]"
+		local gitInfo=" [git: $gitBranch $branchState|$dirtyColored]"
 		echo -n "$gitInfo"
+	fi
+}
+
+function svnInfos() {
+	local svnStatus="$(svn status --xml 2>&1)"
+	if [ -z "$(echo $svnStatus | grep 'is not a working copy')" ]; then
+		[ -n "$(echo $svnStatus | grep 'item="modified"')" ] && local modifiedFiles="*"
+		[ -n "$(echo $svnStatus | grep 'item="unversioned"')" ] && local newFiles="…"
+		local dirty="$modifiedFiles$newFiles"
+		[ -n "$dirty" ] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
+		echo -n " [svn: $dirtyColored]"
 	fi
 }
 
@@ -62,7 +72,8 @@ if [ "$color_prompt" = yes ]; then
 			local workingDir="$blue$(echo $PWD | sed 's,'$HOME',~,')$default_text"
 			local exitStatusColor="$([[ $exitStatus == 0 ]] && echo -e '' || echo -e $red)"
 			local gitInfo="$(gitInfo)"
-			local prompt_1="$bgColor╭─ $userAndHost$workingDir$gitInfo"
+			local svnInfo="$(svnInfos)"
+			local prompt_1="$bgColor╭─ $userAndHost$workingDir$gitInfo$svnInfo"
 			local promptSize="$(echo -n $prompt_1 | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)"
 			local time="$(date +'%F %T')"
 			local timeSize="$(echo -n $time | wc -m)"
