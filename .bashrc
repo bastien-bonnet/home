@@ -51,7 +51,7 @@ if [ "$color_prompt" = yes ]; then
 			local green="\[\033[32m\]"
 			local yellow="\[\033[33m\]"
 			local blue="\[\033[1;34m\]"
-			local bgColor="\[\033[48;5;233m\]"
+			local bgColor="\[\033[48;5;234m\]"
 			local off="\[\033[00m\]"
 			local default_text="\[\033[39m\]\[\033[22m\]" # default text color, default text intensity
 
