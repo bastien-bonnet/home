@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [[ $# != 3 ]]; then
-  echo "Usage: $(basename $0) username ip_address port"
-    exit 1
+	echo "Usage: $(basename $0) username ip_address port"
+		exit 1
 fi
 
 B_DIR="$HOME/B"
@@ -22,22 +22,22 @@ echo "?"
 read dir
 
 function sync() {
-    rsync --dry-run $RSYNC_OPTS -e "$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/
-    echo "Ok for [remote] > [local]? (y/N)"
-    read transfer
-    [[ $transfer =~ y|Y ]] &&
-    rsync $RSYNC_OPTS -e "$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/ ||
-    echo "Transfer cancelled"
-
+		# dry run first
+		rsync --dry-run $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/
+		echo "Ok for [remote] > [local]? (y/N)"
+		read transfer
+		[[ $transfer =~ y|Y ]] &&
+		rsync $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/ ||
+		echo "Transfer cancelled"
 }
 
 case $dir in
-    1 )
-        sync "$B_DIR";;
-    2 )
-        sync "$CURR_DIR";;
-    3 )
-        sync "$BIB_DIR";;
-    4 )
-      sync "$(pwd)";;
+		1 )
+				sync "$B_DIR";;
+		2 )
+				sync "$CURR_DIR";;
+		3 )
+				sync "$BIB_DIR";;
+		4 )
+			sync "$(pwd)";;
 esac
