@@ -10,3 +10,5 @@
 	lga = log --graph --oneline --decorate --all
 	co = checkout
 	b = branch
+	ci = commit
+	st = status
