@@ -38,6 +38,7 @@ alias p="popd"
 
 # rsync alisases
 alias rslocal="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
+alias rslocalc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
 alias rsssh="rslocal -e 'ssh -p 1234'"
 
 # Stop Flash tracking everything
