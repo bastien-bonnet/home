@@ -42,13 +42,15 @@ function gitInfo() {
 }
 
 function svnInfos() {
-	local svnStatus="$(svn status --xml 2>&1)"
-	if [ -z "$(echo $svnStatus | grep 'is not a working copy')" ]; then
-		[ -n "$(echo $svnStatus | grep 'item="modified"')" ] && local modifiedFiles="*"
-		[ -n "$(echo $svnStatus | grep 'item="unversioned"')" ] && local newFiles="…"
-		local dirty="$modifiedFiles$newFiles"
-		[ -n "$dirty" ] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
-		echo -n " [svn: $dirtyColored]"
+	if [[ $(command -v svn != "") ]]; then
+		local svnStatus="$(svn status --xml 2>&1)"
+		if [ -z "$(echo $svnStatus | grep 'is not a working copy')" ]; then
+			[ -n "$(echo $svnStatus | grep 'item="modified"')" ] && local modifiedFiles="*"
+			[ -n "$(echo $svnStatus | grep 'item="unversioned"')" ] && local newFiles="…"
+			local dirty="$modifiedFiles$newFiles"
+			[ -n "$dirty" ] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
+			echo -n " [svn: $dirtyColored]"
+		fi
 	fi
 }
 
