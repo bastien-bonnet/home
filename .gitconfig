@@ -12,3 +12,4 @@
 	b = branch
 	ci = commit
 	st = status
+	lgd = log --graph --format='%C(yellow)%h%Creset %ar -%C(red)%d%Creset %s'
