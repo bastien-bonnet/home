@@ -9,7 +9,7 @@ HISTFILESIZE=2000
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-export TERM=xterm-color
+#export TERM=xterm-color
 
 # Check if terminal has color support
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -31,7 +31,8 @@ source ~/.bash_functions
 if [ "$color_prompt" = yes ]; then
 		function pCmd {
 			local exitStatus="$?"
-
+			
+			# Color definition override for prompt
 			local red="\[\033[31m\]"
 			local green="\[\033[32m\]"
 			local yellow="\[\033[33m\]"
@@ -45,14 +46,18 @@ if [ "$color_prompt" = yes ]; then
 				local userAndHost="$green$USER@$HOSTNAME$default_text:"
 			fi
 			local workingDir="$blue$(echo $PWD | sed 's,'$HOME',~,')$default_text"
-			local exitStatusColor="$([[ $exitStatus == 0 ]] && echo -e '' || echo -e $red)"
 			local gitInfo="$(gitInfo)"
 			local svnInfo="$(svnInfos)"
 			local prompt_1="$bgColor╭─ $userAndHost$workingDir$gitInfo$svnInfo"
-			local promptSize="$(echo -n $prompt_1 | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)"
 			local time="$(date +'%F %T')"
+
+			# Need to fill gap between prompt_1 and time with spaces
+			local promptSize="$(echo -n $prompt_1 | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)"
 			local timeSize="$(echo -n $time | wc -m)"
 			local promptFill="$(for ((i=1;i<=$(($COLUMNS-$promptSize-$timeSize));++i)); do echo -n ' '; done)"
+
+			local exitStatusColor="$([[ $exitStatus == 0 ]] && echo -e '' || echo -e $red)"
+
 			PS1="$prompt_1$promptFill$time$off
 ╰─$exitStatusColor➤$off "
 		}
