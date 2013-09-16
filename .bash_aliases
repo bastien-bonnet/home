@@ -24,11 +24,12 @@ export EDITOR=vim
 alias v="vim"
 alias e="$EDITOR"
 alias ee="sudo $EDITOR"
+alias erc="e ~/.bashrc; source ~/.bashrc; echo '.bashrc sourced'"
+alias ercm="e ~/.bashrc_machine_specific; source ~/.bashrc_machine_specific; echo '.bashrc_machine_specific sourced'"
 alias eba="e ~/.bash_aliases; source ~/.bash_aliases && echo 'aliases sourced'"
 alias eckd="e ~/.conkyrc-desktop"
 alias eckl="e ~/.conkyrc-laptop"
 alias eckn="e ~/.conkyrc-netbook"
-alias erc="e ~/.bashrc; source ~/.bashrc; echo '.bashrc sourced'"
 alias evrc="e ~/.vimrc"
 alias efst="ee /etc/fstab"
 
