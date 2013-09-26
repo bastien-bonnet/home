@@ -17,6 +17,7 @@ function gitInfo() {
 		local diverged="$(echo $gitStatus | sed -n 's/.*# and have \([0-9]\+\) and \([0-9]\+\) different commit.*/↓\2↑\1/p')"
 		local branchState="$yellow$bgColor$behind$ahead$diverged$default_text"
 		
+		[[ "$gitBranch" != master ]] && gitBranch="$yellow$gitBranch$default_text"
 		local gitInfo=" [git: $gitBranch $branchState|$dirtyColored]"
 		echo -n "$gitInfo"
 	fi
