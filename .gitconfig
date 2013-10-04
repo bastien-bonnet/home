@@ -15,3 +15,4 @@
 	lgr = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(red)%d%Creset %s'
 	lgd = log --graph --format='%C(yellow)%h%Creset %ad %C(blue)%an%Creset -%C(red)%d%Creset %s' --date=short
 	assume = !git ls-files -v | grep \"^[[:lower:]]\"
+	l = log --name-status
