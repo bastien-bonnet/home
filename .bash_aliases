@@ -53,6 +53,8 @@ alias flashStop="rm -rf ~/.adobe ~/.macromedia; ln -s /dev/null ~/.adobe; ln -s 
 
 alias r="~/.scripts/remove"
 alias et="~/.scripts/emptyTrash"
+alias gss="~/.scripts/statusGitSvn"
+alias gsu="~/.scripts/updateGitSvn"
 
 ######################
 # GUI PROGRAMS

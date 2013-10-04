@@ -1,0 +1,30 @@
+#!/bin/bash
+
+baseDir=$PWD
+updateAll=no
+
+for project in */; do
+	echo ""
+	if [[ $updateAll == "yes" ]]; then
+		update=y
+	else
+		echo -n "Update $project ? (Y/n/a)"
+		read update
+		[[ $update =~ a ]] && updateAll=yes
+	fi
+	if [[ $update =~ y|Y|^$ ]]; then
+		echo "updating $project…"
+		cd "$project"
+
+		if [[ $(command -v git) != "" && -d .git ]]; then
+			git checkout master
+			git svn rebase
+		else
+			echo "not a git directory"
+		fi
+
+		cd "$baseDir"
+	else
+		echo "skipping $project update"
+	fi
+done

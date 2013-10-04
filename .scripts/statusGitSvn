@@ -1,0 +1,22 @@
+#!/bin/bash
+
+baseDir=$PWD
+source ~/.bash_functions
+
+for project in */; do
+	echo -n "$project: "
+	cd "$project"
+	if [[ $(command -v git) != "" && -d .git ]]; then
+		if [[ ! "$(git branch -lvv)" =~ master.*\[git-svn ]]; then
+			git checkout master && git branch --set-upstream-to=git-svn
+		fi
+		if [ -n "$(command -v gitInfo)" ]; then
+			echo -e "$(gitInfo)"
+		else
+			echo "$(git status)"
+		fi
+	else
+		echo "not a git directory"
+	fi
+		cd $baseDir
+done
