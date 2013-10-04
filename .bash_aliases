@@ -33,7 +33,7 @@ alias eckl="e ~/.conkyrc-laptop"
 alias eckn="e ~/.conkyrc-netbook"
 alias evrc="e ~/.vimrc"
 alias etodo="e ~/todo.txt"
-alias todo="sort ~/todo.txt | grep -v ^x"
+alias todo='sort ~/todo.txt | grep -v ^x | grep -E "@waiting|$"'
 alias efst="ee /etc/fstab"
 
 # Navigation aliases
