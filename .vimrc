@@ -69,6 +69,7 @@ imap <silent> <End> <C-o>g<End>
 
 command Ol %s/\n//
 command Olx %s/\n// | s/>\s*</></g
+command Ub %s/\([[:alnum:]]\) \(:\|;\|!\|?\|»\)/\1 \2/gce | %s/\(«\) \([[:alnum:]]\)/\1 \2/gce
 
 """"""""""""""""""""""""""""""""""""
 " TABS
