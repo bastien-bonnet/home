@@ -16,3 +16,6 @@
 	lgd = log --graph --format='%C(yellow)%h%Creset %ad %C(blue)%an%Creset -%C(red)%d%Creset %s' --date=short
 	assume = !git ls-files -v | grep \"^[[:lower:]]\"
 	l = log --name-status
+	diffm = diff --unified=0 --ignore-space-at-eol --color-words=[^[:space:]]
+[core]
+	pager = less -r
