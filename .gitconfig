@@ -16,7 +16,9 @@
 	la = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(red)%d%Creset %s' --name-status --all
 	lgr = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(red)%d%Creset %s'
 	lgd = log --graph --format='%C(yellow)%h%Creset %ad %C(blue)%an%Creset -%C(red)%d%Creset %s' --date=short
-	assume = !git ls-files -v | grep \"^[[:lower:]]\"
+	sw = update-index --skip-worktree
+	nsw = update-index --no-skip-worktree
+	assume = !git ls-files -v | grep \"^h\\|^S\"
 	diffm = diff --unified=0 --ignore-space-at-eol --color-words=[^[:space:]]
 [core]
 	pager = less -r
