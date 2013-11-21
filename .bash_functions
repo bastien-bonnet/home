@@ -11,10 +11,14 @@ function gitInfo() {
 		local unTrackedFiles="$([[ $(echo $gitStatus | grep '# Untracked files:') != '' ]] && echo …)"
 		local dirty="$unCommitedWork$unStagedWork$unTrackedFiles"
 		[[ -n $dirty ]] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
-
-		local behind="$(echo $gitStatus | sed -n 's/.*# Your branch is behind.*\([0-9]\+\).*/↓\1/p')"
-		local ahead="$(echo $gitStatus | sed -n 's/.*# Your branch is ahead.*\([0-9]\+\).*/↑\1/p')"
-		local diverged="$(echo $gitStatus | sed -n 's/.*# and have \([0-9]\+\) and \([0-9]\+\) different commit.*/↓\2↑\1/p')"
+		
+		if [[ -d .git/svn ]]; then
+			local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑')"
+		else
+			local behind="$(echo $gitStatus | sed -n 's/.*# Your branch is behind.*\([0-9]\+\).*/↓\1/p')"
+			local ahead="$(echo $gitStatus | sed -n 's/.*# Your branch is ahead.*\([0-9]\+\).*/↑\1/p')"
+			local diverged="$(echo $gitStatus | sed -n 's/.*# and have \([0-9]\+\) and \([0-9]\+\) different commit.*/↓\2↑\1/p')"
+		fi
 		local branchState="$yellow$bgColor$behind$ahead$diverged$default_text"
 		
 		[[ "$gitBranch" != master ]] && gitBranch="$yellow$gitBranch$default_text"
