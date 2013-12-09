@@ -67,8 +67,11 @@ imap <silent> <home> <C-o>g<home>
 map <silent> <End> g<End>
 imap <silent> <End> <C-o>g<End>
 
+" Oneline a file
 command Ol %s/\n//
+" Oneline an xml file
 command Olx %s/\n// | s/>\s*</></g
+" Replace normal spaces with unbreakable spaces (french rules)
 command Ub %s/\([[:alnum:]]\) \(:\|;\|!\|?\|»\)/\1 \2/gce | %s/\(«\) \([[:alnum:]]\)/\1 \2/gce
 
 """"""""""""""""""""""""""""""""""""
