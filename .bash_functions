@@ -13,7 +13,11 @@ function gitInfo() {
 		[[ -n $dirty ]] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
 		
 		if [[ -d .git/svn ]]; then
-			local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑')"
+			if [[ -f .git/refs/remotes/git-svn ]]; then
+				local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑')"
+			else
+				local diverged="?"
+			fi
 		else
 			local behind="$(echo $gitStatus | sed -n 's/.*# Your branch is behind.*\([0-9]\+\).*/↓\1/p')"
 			local ahead="$(echo $gitStatus | sed -n 's/.*# Your branch is ahead.*\([0-9]\+\).*/↑\1/p')"
