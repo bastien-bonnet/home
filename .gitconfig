@@ -22,3 +22,5 @@
 	diffm = diff --unified=0 --ignore-space-at-eol --color-words=[^[:space:]]
 [core]
 	pager = less -r
+[difftool]
+	prompt = false
