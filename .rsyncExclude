@@ -1,0 +1,10 @@
+target/
+.~*
+.git
+.svn
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc

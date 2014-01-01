@@ -11,7 +11,7 @@ BIB_DIR="music"
 USERNAME=$1
 REMOTE_IP="$2"
 SSH_OPTS="ssh -p $3"
-RSYNC_OPTS="-vihurlt"
+RSYNC_OPTS="-vihurlt --exclude-from=.rsyncExclude"
 
 echo "Directory to sync :"
 echo "1: $B_DIR"
