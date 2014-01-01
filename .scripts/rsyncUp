@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $# != 3 ]]; then
+if [[ $# -lt 3 ]]; then
 	echo "Usage: $(basename $0) username ip_address port"
 		exit 1
 fi
@@ -8,10 +8,11 @@ fi
 B_DIR="B"
 CURR_DIR="current"
 BIB_DIR="music"
-USERNAME=$1
+USERNAME="$1"
 REMOTE_IP="$2"
 SSH_OPTS="ssh -p $3"
-RSYNC_OPTS="-vihurlt --exclude-from=.rsyncExclude"
+ADDITIONAL_RSYNC_OPTS="$4"
+RSYNC_OPTS="-vihurlt --exclude-from=.rsyncExclude $ADDITIONAL_RSYNC_OPTS"
 
 echo "Directory to sync :"
 echo "1: $B_DIR"
