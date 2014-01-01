@@ -5,9 +5,9 @@ if [[ $# != 3 ]]; then
 		exit 1
 fi
 
-B_DIR="$HOME/B"
-CURR_DIR="$HOME/current"
-BIB_DIR="$HOME/music"
+B_DIR="B"
+CURR_DIR="current"
+BIB_DIR="music"
 USERNAME=$1
 REMOTE_IP="$2"
 SSH_OPTS="ssh -p $3"
@@ -23,11 +23,11 @@ read dir
 
 function sync() {
 		# dry run first
-		rsync --dry-run $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/
+		rsync --dry-run $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"/home/$USERNAME/$1"/ "$HOME/$1"/
 		echo "Ok for [remote] > [local]? (y/N)"
 		read transfer
 		[[ $transfer =~ y|Y ]] &&
-		rsync $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$1"/ ||
+		rsync $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"/home/$USERNAME/$1"/ "$HOME/$1"/ ||
 		echo "Transfer cancelled"
 }
 
