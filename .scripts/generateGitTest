@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TEST_DIR="gitTest"
+USER1_MACHINE="$TEST_DIR/user1"
+USER2_MACHINE="$TEST_DIR/user2"
+CENTRAL_MACHINE="$TEST_DIR/central"
+PROJECT_NAME="project"
+
+# Clean
+rm -rf $TEST_DIR
+
+# Make all directories
+mkdir -p $CENTRAL_MACHINE $USER1_MACHINE $USER2_MACHINE
+git init --bare $TEST_DIR/"$PROJECT_NAME".git
+git clone $TEST_DIR/$PROJECT_NAME $USER1_MACHINE/$PROJECT_NAME
+git clone $TEST_DIR/$PROJECT_NAME $USER2_MACHINE/$PROJECT_NAME
+
+# Initial commit
+SAMPLE_TEXT_FILE=a.txt
+touch $USER1_MACHINE/$PROJECT_NAME/$SAMPLE_TEXT_FILE
+cd $USER1_MACHINE/$PROJECT_NAME && git add $SAMPLE_TEXT_FILE && git commit -am 'Initial commit'
