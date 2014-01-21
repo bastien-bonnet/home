@@ -6,16 +6,16 @@
 [color]
 	ui = auto
 [alias]
-	lg = log --graph --oneline --decorate
-	lga = log --graph --oneline --decorate --all
 	co = checkout
 	b = branch
 	ci = commit
 	st = status
-	l = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(red)%d%Creset %s' --name-status
-	la = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(red)%d%Creset %s' --name-status --all
-	lgr = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(red)%d%Creset %s'
-	lgd = log --graph --format='%C(yellow)%h%Creset %ad %C(blue)%an%Creset -%C(red)%d%Creset %s' --date=short
+	lg = log --graph --oneline --decorate
+	lga = log --graph --oneline --decorate --all
+	l = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(auto)%d%Creset %s' --name-status
+	la = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(auto)%d%Creset %s' --name-status --all
+	lgr = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(auto)%d%Creset %s'
+	lgd = log --graph --format='%C(yellow)%h%Creset %ad %C(blue)%an%Creset -%C(auto)%d%Creset %s' --date=short
 	sw = update-index --skip-worktree
 	nsw = update-index --no-skip-worktree
 	assume = !git ls-files -v | grep \"^h\\|^S\"
