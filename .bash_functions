@@ -13,8 +13,10 @@ function gitInfo() {
 		[[ -n $dirty ]] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
 		
 		if [[ -d .git/svn ]]; then
-			if [[ -f .git/refs/remotes/git-svn ]]; then
-				local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑')"
+			if [[ -f .git/refs/remotes/git-svn && -f .git/refs/heads/master ]]; then
+				local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑(git-svn)')"
+			elif [[ -f .git/refs/remotes/trunk && -f .git/refs/heads/master ]]; then
+				local diverged="$([[ $(git diff master trunk) != '' ]] && echo '↓↑(trunk)')"
 			else
 				local diverged="?"
 			fi
