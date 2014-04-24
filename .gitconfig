@@ -10,12 +10,11 @@
 	b = branch
 	ci = commit
 	st = status
-	lg = log --graph --oneline --decorate
-	lga = log --graph --oneline --decorate --all
-	l = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(auto)%d%Creset %s' --name-status
-	la = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(auto)%d%Creset %s' --name-status --all
-	lgr = log --graph --format='%C(yellow)%h%Creset %ar %C(blue)%an%Creset -%C(auto)%d%Creset %s'
-	lgd = log --graph --format='%C(yellow)%h%Creset %ad %C(blue)%an%Creset -%C(auto)%d%Creset %s' --date=short
+	lg = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s'
+	lga = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s'
+	lgd = log --graph --format='%C(yellow)%h%Creset %cd %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --date=short
+	l = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status
+	la = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status --all
 	sw = update-index --skip-worktree
 	nsw = update-index --no-skip-worktree
 	assume = !git ls-files -v | grep \"^h\\|^S\"
