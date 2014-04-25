@@ -11,7 +11,7 @@
 	ci = commit
 	st = status
 	lg = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s'
-	lga = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s --all'
+	lga = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --all
 	lgd = log --graph --format='%C(yellow)%h%Creset %cd %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --date=short
 	l = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status
 	la = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status --all
