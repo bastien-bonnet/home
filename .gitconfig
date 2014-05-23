@@ -18,7 +18,7 @@
 	sw = update-index --skip-worktree
 	nsw = update-index --no-skip-worktree
 	assume = !git ls-files -v | grep \"^h\\|^S\"
-	diffm = diff --unified=0 --ignore-space-at-eol --color-words=[^[:space:]]
+	diffm = diff --unified=0 --ignore-space-at-eol --color-words="[^[:space:],\\'\\\"\\<\\>]+|[[:space:],\\'\\\"\\<\\>]+"
 [core]
 	pager = less -r
 [difftool]
