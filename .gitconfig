@@ -30,10 +30,13 @@
 	lgd = log --graph --format='%C(yellow)%h%Creset %cd %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --date=short
 
 	##### END LOGS ############################
+
+	# minimal word diff
+	diffm = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
+
 	sw = update-index --skip-worktree
 	nsw = update-index --no-skip-worktree
 	assume = !git ls-files -v | grep \"^h\\|^S\"
-	diffm = diff --unified=0 --ignore-space-at-eol --color-words="[^[:space:],\\'\\\"\\<\\>]+|[[:space:],\\'\\\"\\<\\>]+"
 [core]
 	pager = less -r
 [difftool]
