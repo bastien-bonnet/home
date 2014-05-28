@@ -41,3 +41,5 @@
 	pager = less -r
 [difftool]
 	prompt = false
+[diff]
+	tool = meld
