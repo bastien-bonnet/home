@@ -101,6 +101,7 @@ shopt -s autocd
 shopt -s histappend
 
 export PATH=$PATH:~/software:~/software/sbt/bin
+export TEXMFHOME="$HOME/.texmf"
 
 # Colored man
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
