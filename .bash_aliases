@@ -9,7 +9,10 @@ alias lla="ls -Al"
 alias wl="wc -l"
 alias rm="rm -i"
 alias pl="ps -eo user,pid,pcpu,pmem,start,etime,comm,args"
-alias pg="pl | grep -i"
+grepWithFirstLine () {
+	sed -n -e '1p' -e '1d' -e "/$1/Ip"
+}
+alias pg="pl | grepWithFirstLine"
 alias ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 
 alias jv="wget -qO - http://www.jeuxvideo.com/tests.htm | iconv -f latin1 | grep -iE \"<li>.*[0-9]{2}/[0-9]{2} -\" | sed \"s/<[^>]*>//g\" |tac"
