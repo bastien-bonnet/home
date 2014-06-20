@@ -41,6 +41,9 @@ set ruler
 " highlight search
 set hlsearch
 
+" Use visual bell instead of beeping when doing something wrong
+set visualbell
+
 
 
 """"""""""""""""""""""""""""""""""""
