@@ -38,6 +38,9 @@ set nuw=6
 " Show the cursor position all the time
 set ruler
 
+" highlight search
+set hlsearch
+
 
 
 """"""""""""""""""""""""""""""""""""
