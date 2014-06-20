@@ -12,8 +12,10 @@ filetype plugin on
 set encoding=utf-8
 set fileencodings=utf-8
 
-" Ignore case when searching
+" Ignore case when searching…
 set ignorecase
+" … except when using capital letters
+set smartcase
 
 " Use X11 clipboard
 set clipboard=unnamedplus
