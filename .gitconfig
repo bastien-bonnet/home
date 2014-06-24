@@ -38,7 +38,7 @@
 	nsw = update-index --no-skip-worktree
 	assume = !git ls-files -v | grep \"^h\\|^S\"
 [core]
-	pager = less -r
+	#pager = less -r
 [difftool]
 	prompt = false
 [diff]
