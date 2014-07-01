@@ -13,6 +13,9 @@ grepWithFirstLine () {
 	sed -n -e '1p' -e '1d' -e "/$1/Ip"
 }
 alias pg="pl | grepWithFirstLine"
+
+alias lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -MR '
+
 alias ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 
 alias jv="wget -qO - http://www.jeuxvideo.com/tests.htm | iconv -f latin1 | grep -iE \"<li>.*[0-9]{2}/[0-9]{2} -\" | sed \"s/<[^>]*>//g\" |tac"
