@@ -77,6 +77,8 @@ imap <silent> <End> <C-o>g<End>
 
 " Oneline a file
 command Ol %s/\n//
+" Indent a oneline XML file
+map <F5> :set ft=xml<cr>:%s/></>\r</g<cr>gg=G
 " Oneline an xml file
 command Olx %s/\n// | s/>\s*</></g
 " Replace normal spaces with unbreakable spaces (french rules)
@@ -112,8 +114,6 @@ nmap <C-Right> :tabnext<cr>
 nmap <C-Left> :tabprevious<cr>
 nmap <C-S-Left> :execute TabLeft()<cr>
 nmap <C-S-Right> :execute TabRight()<cr>
-
-
 
 """"""""""""""""""""""""""""""""""""
 " CONFIG FOR LATEX PLUGIN
