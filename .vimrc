@@ -1,8 +1,8 @@
 """"""""""""""""""""""""""""""""""""
-" FILE TYPE ASSOCIATIONS
+" FILE TYPE ASSOCIATIONS
 
 " Indentation automatique selon le type de fichier
-filetype indent on
+"filetype indent on
 " Chargement de plugins selon le type de fichier
 filetype plugin on
 
@@ -59,7 +59,7 @@ set list listchars=tab:\ ❘,trail:·,extends:»,precedes:«,nbsp:×
 
 
 """"""""""""""""""""""""""""""""""""
-" SOFT LINES NAVIGATION
+" SOFT LINES NAVIGATION
 
 " Break lines at word gaps
 set linebreak
@@ -116,7 +116,7 @@ nmap <C-S-Left> :execute TabLeft()<cr>
 nmap <C-S-Right> :execute TabRight()<cr>
 
 """"""""""""""""""""""""""""""""""""
-" CONFIG FOR LATEX PLUGIN
+" CONFIG FOR LATEX PLUGIN
 
 " Chargement de plugins selon le type de fichier
 filetype plugin on
