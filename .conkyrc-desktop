@@ -133,9 +133,6 @@ ${alignr}${fs_used /root}/${fs_size /root}
     Data:${alignr}${fs_bar 4,140 /media/DATA}
 ${alignr}${fs_used /media/DATA}/${fs_size /media/DATA}
 
-    Media:${alignr}${fs_bar 4,140 /media/MEDIA}
-${alignr}${fs_used /media/MEDIA}/${fs_size /media/MEDIA}
-
 NETWORK ${hr 2}
 
     Local IP address: ${alignr}${addr eth0}
