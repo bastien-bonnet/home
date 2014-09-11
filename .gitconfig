@@ -15,19 +15,19 @@
 	# oneline log aliases with graph, relative dates date, short hash, short committer id, truncated comment
 
 	# current branch
-	lg = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s'
+	lg = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s'
 
 	# all branches
-	lga = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --all
+	lga = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --all
 
 	# current branch, file stats
-	l = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status
+	l = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status
 
 	# all branches, file stats
-	la = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status --all
+	la = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --name-status --all
 
 	# current branch, absolute date
-	lgd = log --graph --format='%C(yellow)%h%Creset %cd %C(blue)%<(5,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --date=short
+	lgd = log --graph --format='%C(yellow)%h%Creset %ci %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --date=short
 
 	##### END LOGS ############################
 
@@ -42,4 +42,6 @@
 [difftool]
 	prompt = false
 [diff]
+	tool = meld
+[merge]
 	tool = meld
