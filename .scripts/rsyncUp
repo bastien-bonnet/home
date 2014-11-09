@@ -5,40 +5,42 @@ if [[ $# -lt 3 ]]; then
 		exit 1
 fi
 
-B_DIR="B"
-CURR_DIR="current"
-BIB_DIR="music"
 USERNAME="$1"
 REMOTE_IP="$2"
 SSH_OPTS="ssh -p $3"
 ADDITIONAL_RSYNC_OPTS="$4"
-RSYNC_OPTS="-vihurlt --exclude-from=.rsyncExclude $ADDITIONAL_RSYNC_OPTS"
+RSYNC_OPTS="-vihurlt --exclude-from=$HOME/.rsyncExclude $ADDITIONAL_RSYNC_OPTS"
+B_DIR="B"
+CURR_DIR="current"
+BIB_DIR="music"
+REMOTE_CURRENT_DIR="${PWD/$HOME/\/home/$USERNAME}"
+LOCAL_CURRENT_DIR="${PWD}"
 
 echo "Directory to sync :"
 echo "1: $B_DIR"
 echo "2: $CURR_DIR"
 echo "3: $BIB_DIR"
-echo "4: Current - $(pwd)"
+echo "4: Current - $REMOTE_CURRENT_DIR -> $LOCAL_CURRENT_DIR"
 echo "?"
 read dir
 
 function sync() {
 		# dry run first
-		rsync --dry-run $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"/home/$USERNAME/$1"/ "$HOME/$1"/
+		rsync --dry-run $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$2"/
 		echo "Ok for [remote] > [local]? (y/N)"
 		read transfer
 		[[ $transfer =~ y|Y ]] &&
-		rsync $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"/home/$USERNAME/$1"/ "$HOME/$1"/ ||
+		rsync $RSYNC_OPTS --rsh="$SSH_OPTS" $USERNAME@$REMOTE_IP:"$1"/ "$2"/ ||
 		echo "Transfer cancelled"
 }
 
 case $dir in
 		1 )
-				sync "$B_DIR";;
+				sync "/home/$USERNAME/$B_DIR" "$HOME/$B_DIR";;
 		2 )
-				sync "$CURR_DIR";;
+				sync "/home/$USERNAME/$CURR_DIR" "$HOME/$CURR_DIR";;
 		3 )
-				sync "$BIB_DIR";;
+				sync "/home/$USERNAME/$BIB_DIR" "$HOME/$BIB_DIR";;
 		4 )
-			sync "$(pwd)";;
+			sync "$REMOTE_CURRENT_DIR" "$LOCAL_CURRENT_DIR";;
 esac
