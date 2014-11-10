@@ -37,6 +37,7 @@
 	sw = update-index --skip-worktree
 	nsw = update-index --no-skip-worktree
 	assume = !git ls-files -v | grep \"^h\\|^S\"
+	pullr = pull --rebase=preserve
 [core]
 	pager = less -R
 [difftool]
