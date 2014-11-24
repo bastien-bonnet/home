@@ -16,7 +16,13 @@ git clone $CENTRAL_MACHINE/$PROJECT_NAME $USER2_MACHINE/$PROJECT_NAME
 # Initial commit
 SAMPLE_TEXT_FILE=a.txt
 touch $USER1_MACHINE/$PROJECT_NAME/$SAMPLE_TEXT_FILE
-cd $USER1_MACHINE/$PROJECT_NAME && git add $SAMPLE_TEXT_FILE && git commit -am 'Initial commit' && git push
+cd $USER1_MACHINE/$PROJECT_NAME \
+&& git add $SAMPLE_TEXT_FILE \
+&& git commit -am "Initial commit" \
+&& echo 'work' >> $SAMPLE_TEXT_FILE \
+&& git commit -am "Modify $SAMPLE_TEXT_FILE"
+&& git push
+
 
 cd $USER2_MACHINE/$PROJECT_NAME && git pull
 
