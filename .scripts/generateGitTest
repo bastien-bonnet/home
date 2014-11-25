@@ -20,7 +20,7 @@ cd $USER1_MACHINE/$PROJECT_NAME \
 && git add $SAMPLE_TEXT_FILE \
 && git commit -am "Initial commit" \
 && echo 'work' >> $SAMPLE_TEXT_FILE \
-&& git commit -am "Modify $SAMPLE_TEXT_FILE"
+&& git commit -am "Modify $SAMPLE_TEXT_FILE" \
 && git push
 
 
