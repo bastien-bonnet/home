@@ -21,7 +21,7 @@ function gitInfo() {
 				local diverged="?"
 			fi
 		else
-			local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by\([[:digit:]]\+\)commit.*/↓\1/p')"
+			local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p')"
 			local ahead="$(echo $gitStatus | sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p')"
 			local diverged="$(echo $gitStatus | sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p')"
 		fi
