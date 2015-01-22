@@ -51,13 +51,10 @@ alias efst="ee /etc/fstab"
 alias u='[[ "$(pwd)" != "/" ]] && pushd ..'
 alias p="popd"
 
-# rsync alisases
+# rsync aliases
 alias rslocal="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
 alias rslocalc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
 alias rsssh="rslocal -e 'ssh -p 1234'"
-
-# Stop Flash tracking everything
-alias flashStop="rm -rf ~/.adobe ~/.macromedia; ln -s /dev/null ~/.adobe; ln -s /dev/null ~/.macromedia" 
 
 ######################
 # SCRIPTS
