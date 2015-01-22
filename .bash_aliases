@@ -23,6 +23,10 @@ alias jvpc="jv | grep 'PC$'"
 alias freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 
+# Text processing
+alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
+
 # Alienware NumpadEnter mapping to Enter
 alias awe="xmodmap -e 'keycode 104 = Return'"
 
