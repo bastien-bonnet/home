@@ -7,7 +7,7 @@ alias ll="ls -l"
 alias la="ls -A"
 alias lla="ls -Al"
 alias wl="wc -l"
-alias rm="rm -i"
+alias rm="mv -bt /home/bast/.local/share/Trash/files/"
 alias pl="ps -eo pid,user,pcpu,pmem,start,comm,args"
 grepWithFirstLine () {
 	sed -n -e '1p' -e '1d' -e "/$1/Ip"
