@@ -8,7 +8,7 @@ alias la="ls -A"
 alias lla="ls -Al"
 alias wl="wc -l"
 alias rm="rm -i"
-alias pl="ps -eo user,pid,pcpu,pmem,start,etime,comm,args"
+alias pl="ps -eo pid,user,pcpu,pmem,start,comm,args"
 grepWithFirstLine () {
 	sed -n -e '1p' -e '1d' -e "/$1/Ip"
 }
