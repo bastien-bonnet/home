@@ -10,9 +10,11 @@ vlc
 asciidoc
 pandoc
 openjdk-7-jdk
-conky-all
+conky
 synaptic
 tree
 nvidia-current
 source-highlight
 xdotool
+nmon
+ethtool
