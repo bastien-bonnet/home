@@ -14,6 +14,7 @@ grepWithFirstLine () {
 	sed -n -e '1p' -e '1d' -e "/$1/Ip"
 }
 alias pg="pl | grepWithFirstLine"
+alias duh="du -hsc .[!.]* * | sort -h"
 
 alias lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -MR '
 
