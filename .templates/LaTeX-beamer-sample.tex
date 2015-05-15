@@ -5,14 +5,15 @@
 \usepackage[french]{babel}
 \usepackage{lmodern}
 \usepackage{graphicx}
-
+%
 % Textcom allows more symbols
 % \usepackage{textcomp}
 
 % \usepackage{default}
 
-% Theme
-% \usetheme{Warsaw}
+% Theme (Malmoe, Singapore, Warsaw)
+\usetheme{Singapore}
+% \usecolortheme{dove}
 % \usefoottemplate{\vbox{%
 % \tinycolouredline{structure}%
 % {\color{white}\textbf{\insertshorttitle} \hfill \insertframenumber{} / \inserttotalframenumber{}}%
@@ -25,7 +26,32 @@
 \setbeamertemplate{navigation symbols}{}
 
 \begin{document}
-  \begin{frame}
+\title{Title here}
+\author{Author 1, Author 2}
 
-  \end{frame}
+\begin{frame}
+  \titlepage
+\end{frame}
+ 
+\section{First section}
+\begin{frame}
+  \frametitle{\insertsection}
+  \begin{block}{Block description}
+    \begin{itemize}
+     \item item 1
+     \item item 2
+    \end{itemize}   
+  \end{block}
+\end{frame}
+
+\section{Another section}
+\begin{frame}
+  \frametitle{\insertsection}
+\end{frame}
+
+\section{Section 3}
+\begin{frame}
+
+\end{frame}
+
 \end{document}
