@@ -1,16 +1,15 @@
 # Use Xft?
 use_xft yes
-xftfont DejaVu Sans:size=6
+xftfont DejaVu Sans:size=7
 xftalpha 0.8
 text_buffer_size 2048
 
 # Update interval in seconds
-update_interval 1
+update_interval 2
 
 # This is the number of times Conky will update before quitting.
 # Set to zero to run forever.
 total_run_times 0
-
 
 # Use double buffering (reduces flicker, may not work for everyone)
 double_buffer yes
@@ -34,7 +33,7 @@ draw_borders no
 stippled_borders 0
 
 # border margins
-border_inner_margin 20
+border_inner_margin 45
 
 # border width
 border_width 1
@@ -43,12 +42,12 @@ border_width 1
 default_color lightgrey
 own_window_colour white
 
-# Text alignment, other possible values are commented
+# Text alignment
 alignment middle_right
 
 # Gap between borders of screen and text
 # same thing as passing -x at command line
-gap_x 50
+gap_x 80
 gap_y 0
 
 # Subtract file system buffers from used memory?
@@ -95,7 +94,6 @@ lua_load ~/.conky_bg.lua
 lua_draw_hook_pre draw_bg
 
 TEXT
-
 SYSTEM ${hr 2}
 ${font OpenLogos:size=22}u${font} 
 ${voffset -22}${alignr}kernel:  ${kernel}${voffset 10}
@@ -107,38 +105,26 @@ CPU: ${cpu cpu0}% ${alignr}${cpubar 5,130 cpu0}
 # sudo apt-get install lm-sensors
 ${font DejaVu Sans:size=7}${alignr}${exec sensors | grep 0: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 1: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 2: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 3: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}${font}
 
-    1: ${cpu cpu1}% #
-${voffset -7} ${goto 90}${cpugraph cpu1 16,50 000000 ffffff} ${voffset 17} #
-${goto 150}    5: ${cpu cpu5}% #
-${voffset -7}${alignr}${cpugraph cpu5 16,50 000000 ffffff} ${voffset -10}
-#
-    2: ${cpu cpu2}% #
-${voffset -7} ${goto 90}${cpugraph cpu2 16,50 000000 ffffff} ${voffset 17} #
-${goto 150}    6: ${cpu cpu6}% #
-${voffset -7}${alignr}${cpugraph cpu6 16,50 000000 ffffff} ${voffset -10}
-#
-    3: ${cpu cpu3}% #
-${voffset -7} ${goto 90}${cpugraph cpu3 16,50 000000 ffffff} ${voffset 17} #
-${goto 150}    7: ${cpu cpu7}% #
-${voffset -7}${alignr}${cpugraph cpu7 16,50 000000 ffffff} ${voffset -10}
-#
-    4: ${cpu cpu4}% #
-${voffset -7} ${goto 90}${cpugraph cpu4 16,50 000000 ffffff} ${voffset 17} #
-${goto 150}    8: ${cpu cpu8}% #
-${voffset -7}${alignr}${cpugraph cpu8 16,50 000000 ffffff}${voffset 7}
-#
+    1: ${cpu cpu1}% ${goto 130}${cpugraph cpu1 16,50 000000 ffffff} #
+${cpugraph cpu5 16,50 000000 ffffff} ${alignr}5: ${cpu cpu5}%
+    2: ${cpu cpu2}% ${goto 130}${cpugraph cpu2 16,50 000000 ffffff} #
+${cpugraph cpu6 16,50 000000 ffffff} ${alignr}6: ${cpu cpu6}%
+    3: ${cpu cpu3}% ${goto 130}${cpugraph cpu3 16,50 000000 ffffff} #
+${cpugraph cpu7 16,50 000000 ffffff} ${alignr}7: ${cpu cpu7}%
+    4: ${cpu cpu4}% ${goto 130}${cpugraph cpu4 16,50 000000 ffffff} #
+${cpugraph cpu8 16,50 000000 ffffff} ${alignr}8: ${cpu cpu8}%
 
 RAM: $memperc% ${alignr}${membar 10,130}
 ${alignr}${mem}/${memmax}
-GPU: ${nvidia temp}°C
-    GPU freq.: ${alignr}${nvidia gpufreq} MHz
-    Mem freq.: ${alignr}${nvidia memfreq} MHz
-    Driver version: ${alignr}${exec nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //'}
+GPU: ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
+    GPU freq.: ${alignr}${if_match "${exec prime-select query}"=="nvidia"}${nvidia gpufreq} MHz${else}nvidia GPU off${endif}
+    Mem freq.: ${alignr}${if_match "${exec prime-select query}"=="nvidia"}${nvidia memfreq} MHz${else}nvidia GPU off${endif}
+    Driver version: ${alignr}${if_match "${exec prime-select query}"=="nvidia"}${exec nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //'}${else}nvidia GPU off${endif}
 
-Battery: ${alignr}${battery}    ${voffset -5}${alignr}${battery_bar}
+Battery: ${alignr}${battery BAT1}    ${voffset -5}${alignr}${battery_bar BAT1}
 #${battery_percent}
 #${battery_short}
-${voffset -4}${alignr}${battery_time}
+${voffset 10}${alignr}${battery_time BAT1}
 
 HD ${hr 2}
     ${alignr}Trash: ${exec du -ch ~/.local/share/Trash/files/ | grep total | sed 's/\t.*//'}
@@ -147,14 +133,16 @@ ${alignr}${fs_used /root}/${fs_size /root}
 
     Media:${alignr}${fs_bar 4,140 /media/DATA}
 ${alignr}${fs_used /media/DATA}/${fs_size /media/DATA}
-NETWORK ${hr 2}   
-    eth0 : ${alignr}${addr eth0}
-    Up: ${upspeed eth0} ${goto 144}Down: ${downspeed eth0}
-    ${upspeedgraph eth0 15,80 000000 ffffff} ${goto 145}${downspeedgraph eth0 15,80 000000 ffffff}    
-    
+
+NETWORK ${hr 2}
+    eth4 : ${alignr}${addr eth4}
+    Up: ${upspeed eth0} ${alignr}Down: ${downspeed eth4}
+    ${upspeedgraph eth0 15,80 000000 ffffff} ${alignr}${downspeedgraph eth4 15,80 000000 ffffff}
+
     wlan0 (${wireless_essid wlan0} ${wireless_link_bar 4,20 wlan0} ) : ${alignr}${addr wlan0}
-    Up: ${upspeed wlan0} ${goto 144}Down: ${downspeed wlan0}
-    ${upspeedgraph wlan0 15,80 000000 ffffff} ${goto 145}${downspeedgraph wlan0 15,80 000000 ffffff}    
+    Up: ${upspeed wlan0} ${alignr}Down: ${downspeed wlan0}
+    ${upspeedgraph wlan0 15,80 000000 ffffff} ${alignr}${downspeedgraph wlan0 15,80 000000 ffffff}
+
 
 PROCESSES ${hr 2}
     > CPU ${goto 195} mem${alignr}cpu 
@@ -169,8 +157,8 @@ PROCESSES ${hr 2}
     ${top_mem name 3}${goto 150}${top_mem pid 3}${goto 195}${top_mem mem 3} ${alignr}${top_mem cpu 3}
     ${top_mem name 4}${goto 150}${top_mem pid 4}${goto 195}${top_mem mem 4} ${alignr}${top_mem cpu 4}
 
-DATE ${hr 2}
-${font DejaVu Sans:size=26}${alignr}${time %H:%M}${font}
-${font DejaVu Sans:size=12}${alignr}${time %a %b %d %Y}${font}
+#DATE ${hr 2}
+#${font DejaVu Sans:size=20}${alignr}${time %H:%M}${font}
+#${font DejaVu Sans:size=10}${alignr}${time %a %b %d %Y}${font}
 
-${voffset -80}
+#${voffset -80}
