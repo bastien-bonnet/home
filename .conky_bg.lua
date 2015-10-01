@@ -19,7 +19,7 @@
     -- Set the colour and transparency (alpha) of your background.
 
     bg_colour=0x242520
-    bg_alpha=0.7
+    bg_alpha=0.6
 
     require 'cairo'
     function rgb_to_r_g_b(colour,alpha)
