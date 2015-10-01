@@ -77,8 +77,9 @@ use_spacer right
 own_window yes
 
 # If own_window is yes, you may use type normal, desktop or override
-own_window_type override
+#own_window_type override
 #own_window_type desktop
+own_window_type normal
 
 # Use pseudo transparency with own_window?
 own_window_transparent yes
