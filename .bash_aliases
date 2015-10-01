@@ -20,8 +20,6 @@ alias lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" 
 
 alias ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 
-alias jv="wget -qO - http://www.jeuxvideo.com/tests.htm | iconv -f latin1 | grep -iE \"<li>.*[0-9]{2}/[0-9]{2} -\" | sed \"s/<[^>]*>//g\" |tac"
-alias jvpc="jv | grep 'PC$'"
 alias freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 
