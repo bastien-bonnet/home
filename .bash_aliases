@@ -45,8 +45,8 @@ alias eckn="e ~/.conkyrc-netbook"
 alias evrc="e ~/.vimrc"
 alias etodo="e ~/todo.txt"
 alias todo='sort ~/todo.txt | grep -v ^x | grep -E "@waiting|$"'
-alias eday="e ~/doc/activité.asciidoc"
 alias efst="ee /etc/fstab"
+alias eday="vim + ~/doc/activité.asciidoc"
 
 # Navigation aliases
 alias u='[[ "$(pwd)" != "/" ]] && pushd ..'
