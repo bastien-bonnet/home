@@ -15,8 +15,8 @@ total_run_times 0
 double_buffer yes
 
 # Minimum size of text area
-minimum_size 250
-maximum_width 250
+minimum_size 300
+maximum_width 1500
 
 # Draw shades?
 draw_shades no
@@ -33,7 +33,7 @@ draw_borders no
 stippled_borders 0
 
 # border margins
-border_inner_margin 45
+border_inner_margin 35
 
 # border width
 border_width 1
@@ -155,10 +155,9 @@ PROCESSES ${hr 2}
     ${color 88aadd} ${top_mem name 1}${goto 150}${top_mem pid 1}${goto 195}${top_mem mem 1} ${alignr}${top_mem cpu 1}${color lightgrey}
     ${top_mem name 2}${goto 150}${top_mem pid 2}${goto 195}${top_mem mem 2} ${alignr}${top_mem cpu 2}
     ${top_mem name 3}${goto 150}${top_mem pid 3}${goto 195}${top_mem mem 3} ${alignr}${top_mem cpu 3}
-    ${top_mem name 4}${goto 150}${top_mem pid 4}${goto 195}${top_mem mem 4} ${alignr}${top_mem cpu 4}
-
+    ${top_mem name 4}${goto 150}${top_mem pid 4}${goto 195}${top_mem mem 4} ${alignr}${top_mem cpu 4}#
+#
 #DATE ${hr 2}
 #${font DejaVu Sans:size=20}${alignr}${time %H:%M}${font}
 #${font DejaVu Sans:size=10}${alignr}${time %a %b %d %Y}${font}
-
-#${voffset -80}
+#${voffset 20}

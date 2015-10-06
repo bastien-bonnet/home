@@ -9,8 +9,8 @@ terminator
 vlc
 asciidoc
 pandoc
-openjdk-7-jdk
-conky
+openjdk-8-jdk
+conky-all
 synaptic
 tree
 nvidia-current
