@@ -13,7 +13,7 @@ git init --bare $CENTRAL_MACHINE/"$PROJECT_NAME".git
 git clone -c user.name="Bastien" $CENTRAL_MACHINE/$PROJECT_NAME $USER1_MACHINE/$PROJECT_NAME
 git clone -c user.name="Thomas" $CENTRAL_MACHINE/$PROJECT_NAME $USER2_MACHINE/$PROJECT_NAME
 
-# Initial commit
+# Make a few commits on master from USER1
 SAMPLE_TEXT_FILE=a.txt
 touch $USER1_MACHINE/$PROJECT_NAME/$SAMPLE_TEXT_FILE
 cd $USER1_MACHINE/$PROJECT_NAME \
@@ -26,7 +26,7 @@ cd $USER1_MACHINE/$PROJECT_NAME \
 && git commit -m "Add powerful script" \
 && git push
 
-
+# Make a new branch by USER2
 cd $USER2_MACHINE/$PROJECT_NAME \
 && git pull \
 && git checkout -b featureF master^ \
@@ -35,6 +35,3 @@ cd $USER2_MACHINE/$PROJECT_NAME \
 && git add -A \
 && git commit -m "Début de la feature F" \
 && git push --set-upstream origin featureF
-
-
-
