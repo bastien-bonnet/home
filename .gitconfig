@@ -27,7 +27,7 @@
 	la = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s' --name-status --all
 
 	# current branch, absolute date
-	lgd = log --graph --format='%C(yellow)%h%Creset %ci %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %<(80,trunc)%s' --date=short
+	lgd = log --graph --format='%C(yellow)%h%Creset %ci %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s' --date=short
 
 	##### END LOGS ############################
 
