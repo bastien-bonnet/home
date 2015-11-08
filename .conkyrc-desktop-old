@@ -1,99 +1,96 @@
-conky.config = {
--- Use Xft?
-	use_xft = true,
-	font = 'DejaVu Sans:size=8',
-	xftalpha = 0.8,
-	text_buffer_size = 2048,
+# Use Xft?
+use_xft yes
+xftfont DejaVu Sans:size=8
+xftalpha 0.8
+text_buffer_size 2048
 
--- Update interval in seconds
-	update_interval = 1,
+# Update interval in seconds
+update_interval 1
 
--- This is the number of times Conky will update before quitting.
--- Set to zero to run forever.
-	total_run_times = 0,
-
-
--- Use double buffering (reduces flicker, may not work for everyone)
-	double_buffer = true,
-
--- Minimum size of text area
-	minimum_width = 230, minimum_height = 0,
-	maximum_width = 230,
-
--- Draw shades?
-	draw_shades = false,
-
--- Draw outlines?
-	draw_outline = false,
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
 
 
--- BORDERS
--- Draw borders around text
-	draw_borders = false,
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
 
--- Stippled borders?
-	stippled_borders = 0,
+# Minimum size of text area
+minimum_size 230 0
+maximum_width 230
 
--- border margins
-	border_inner_margin = 20,
+# Draw shades?
+draw_shades no
 
--- border width
-	border_width = 1,
-
--- Default colors and also border colors
-	default_color = 'lightgrey',
---own_window_colour white
-
--- Text alignment, other possible values are commented
-	alignment = 'middle_right',
-
--- Gap between borders of screen and text
--- same thing as passing -x at command line
-	gap_x = 50,
-	gap_y = 0,
-
--- Subtract file system buffers from used memory?
-	no_buffers = true,
-
--- number of cpu samples to average
--- set to 1 to disable averaging
-	cpu_avg_samples = 2,
-
--- number of net samples to average
--- set to 1 to disable averaging
-	net_avg_samples = 2,
-
--- Force UTF8? note that UTF8 support required XFT
-	override_utf8_locale = true,
-
--- Add spaces to keep things from moving about?  This only affects certain objects.
-	use_spacer = 'none',
+# Draw outlines?
+draw_outline no
 
 
--- WINDOW
--- Create own window instead of using desktop (required in some file managers like nautilus)
-	own_window = true,
-	own_window_argb_visual = true,
+# BORDERS
+# Draw borders around text
+draw_borders no
 
--- If own_window is yes, you may use type normal, desktop or override
-	own_window_type = 'normal',
+# Stippled borders?
+stippled_borders 0
 
--- Use pseudo transparency with own_window?
-	own_window_transparent = true,
+# border margins
+border_inner_margin 20
 
--- Window color (if own_window_transparent is set to no)
---own_window_colour 242520
+# border width
+border_width 1
 
-	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+# Default colors and also border colors
+default_color lightgrey
+#own_window_colour white
 
-	default_bar_width = 40, default_bar_height = 15,
+# Text alignment, other possible values are commented
+alignment middle_right
 
-	lua_load = '~/.conky_bg.lua',
-	lua_draw_hook_pre = 'draw_bg',
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 50
+gap_y 0
 
-};
+# Subtract file system buffers from used memory?
+no_buffers yes
 
-conky.text = [=[
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer none
+
+
+# WINDOW
+# Create own window instead of using desktop (required in some file managers like nautilus)
+own_window yes
+own_window_argb_visual true
+
+# If own_window is yes, you may use type normal, desktop or override
+own_window_type normal
+
+# Use pseudo transparency with own_window?
+own_window_transparent yes
+
+# Window color (if own_window_transparent is set to no)
+#own_window_colour 242520
+
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+default_bar_size 40 15
+
+lua_load ~/.conky_bg.lua
+lua_draw_hook_pre draw_bg
+
+TEXT
 
 SYSTEM ${hr 2}
 ${font OpenLogos:size=24}u${font} 
@@ -161,4 +158,3 @@ ${font DejaVu Sans:size=26}${alignr}${time %H:%M}${font}
 ${font DejaVu Sans:size=12}${alignr}${time %a %b %d %Y}${font}
 
 ${voffset -50}
-]=];
