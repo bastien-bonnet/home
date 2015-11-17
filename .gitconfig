@@ -8,8 +8,10 @@
 [alias]
 	co = checkout
 	b = branch
-	ci = commit
 	st = status
+	a = add
+	ci = commit
+	p = push
 
 	# minimal word diff
 	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
