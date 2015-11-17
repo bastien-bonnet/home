@@ -11,8 +11,14 @@
 	ci = commit
 	st = status
 
+	# minimal word diff
+	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
+	dh = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' HEAD^!
+
+	pullr = pull --rebase=preserve
+
 	#### LOGS #############################
-	# oneline log aliases with graph, relative dates date, short hash, short committer id, truncated comment
+	# oneline log aliases with graph, relative date, short hash, short committer id, truncated comment
 
 	# current branch
 	lg = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s'
@@ -31,13 +37,6 @@
 
 	##### END LOGS ############################
 
-	# minimal word diff
-	diffm = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
-
-	sw = update-index --skip-worktree
-	nsw = update-index --no-skip-worktree
-	assume = !git ls-files -v | grep \"^h\\|^S\"
-	pullr = pull --rebase=preserve
 [core]
 	pager = less -R
 [difftool]
