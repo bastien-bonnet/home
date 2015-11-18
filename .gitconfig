@@ -15,6 +15,7 @@
 
 	# minimal word diff
 	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
+	dc = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' --cached
 	dh = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' HEAD^!
 
 	pullr = pull --rebase=preserve
