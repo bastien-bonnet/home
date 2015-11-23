@@ -24,6 +24,19 @@ a ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 a freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
 a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 
+# git aliases
+function_exists() {
+	declare -f -F $1 > /dev/null
+	return $?
+}
+
+. /usr/share/bash-completion/completions/git
+
+for git_alias in $(__git_aliases); do
+	alias g$git_alias="git $git_alias"
+	completion_function=_git_$(__git_aliased_command $git_alias)
+	function_exists $completion_function && __git_complete g$git_alias $completion_function
+done
 
 
 # Text processing
