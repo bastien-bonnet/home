@@ -95,5 +95,4 @@ a gg="kdesudo $GEDITOR"
 # Programs
 a o="xdg-open"
 a syn="kdesudo synaptic"
-a gp="kdesudo gparted"
 a m="touch /tmp/meld1.txt /tmp/meld2.txt && meld /tmp/meld1.txt /tmp/meld2.txt"
