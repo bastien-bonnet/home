@@ -8,7 +8,7 @@
 [alias]
 	co = checkout
 	b = branch
-	st = status
+	s = status
 	a = add
 	ci = commit
 	p = push
