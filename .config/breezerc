@@ -1,0 +1,10 @@
+[Common]
+ShadowColor=255,85,255
+ShadowSize=30
+ShadowStrength=153
+
+[Windeco Exception 0]
+BorderSize=BorderLarge
+ExceptionPattern=.*
+HideTitleBar=true
+Mask=16
