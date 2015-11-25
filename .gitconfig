@@ -17,6 +17,7 @@
 	ci = commit
 	
 	f = fetch -p
+	pullr = pull --rebase=preserve
 	p = push
 
 	l = log --graph --pretty=myformat
@@ -30,7 +31,6 @@
 	dc = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' --cached
 	dh = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' HEAD^!
 
-	pullr = pull --rebase=preserve
 [core]
 	pager = less -R
 [difftool]
