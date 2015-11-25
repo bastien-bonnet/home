@@ -5,6 +5,9 @@
 	default = simple
 [color]
 	ui = auto
+[pretty]
+	# oneline log format with short hash, relative date, committer name, branch info, short comment
+	myformat = "tformat:%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
 [alias]
 	co = checkout
 	b = branch
@@ -14,33 +17,18 @@
 	ci = commit
 	p = push
 
+	l = log --graph --pretty=myformat
+	la = log --graph --pretty=myformat --all
+	ls = log --graph --pretty=myformat --name-status
+	las = log --graph --pretty=myformat --all --name-status
+	ld = log --graph --pretty=myformat --date=short
+
 	# minimal word diff
 	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
 	dc = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' --cached
 	dh = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' HEAD^!
 
 	pullr = pull --rebase=preserve
-
-	#### LOGS #############################
-	# oneline log aliases with graph, relative date, short hash, short committer id, truncated comment
-
-	# current branch
-	lg = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s'
-
-	# all branches
-	lga = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s' --all
-
-	# current branch, file stats
-	l = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s' --name-status
-
-	# all branches, file stats
-	la = log --graph --format='%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s' --name-status --all
-
-	# current branch, absolute date
-	lgd = log --graph --format='%C(yellow)%h%Creset %ci %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s' --date=short
-
-	##### END LOGS ############################
-
 [core]
 	pager = less -R
 [difftool]
