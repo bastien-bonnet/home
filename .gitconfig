@@ -39,3 +39,4 @@
 	tool = meld
 [mergetool]
 	keepBackup = false
+	keepTemporaries = false
