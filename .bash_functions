@@ -9,8 +9,8 @@ function gitInfo() {
 		local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo '*')"
 		local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo c)"
 		local unTrackedFiles="$([[ $(echo $gitStatus | grep 'Untracked files:') != '' ]] && echo …)"
-		local dirty="$unCommitedWork$unStagedWork$unTrackedFiles"
-		[[ -n $dirty ]] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
+		local dirtyStatus="$unCommitedWork$unStagedWork$unTrackedFiles"
+		[[ -n $dirtyStatus ]] && dirtyStatusColored="$red$dirtyStatus$default_text" || dirtyStatusColored="✔"
 		
 		if [[ -d .git/svn ]]; then
 			if [[ -f .git/refs/remotes/git-svn && -f .git/refs/heads/master ]]; then
@@ -28,7 +28,7 @@ function gitInfo() {
 		local branchState="$yellow$bgColor$behind$ahead$diverged$default_text"
 		
 		[[ "$gitBranch" != master && "$gitBranch" != next ]] && gitBranch="$yellow$gitBranch$default_text"
-		local gitInfo=" [git: $gitBranch $branchState|$dirtyColored]"
+		local gitInfo=" [git: $gitBranch $branchState|$dirtyStatusColored]"
 		echo -n "$gitInfo"
 	fi
 }
@@ -40,9 +40,9 @@ function svnInfos() {
 		if [ -z "$(echo $svnStatus | grep 'is not a working copy')" ]; then
 			[ -n "$(echo $svnStatus | grep 'item="modified"')" ] && local modifiedFiles="*"
 			[ -n "$(echo $svnStatus | grep 'item="unversioned"')" ] && local newFiles="…"
-			local dirty="$modifiedFiles$newFiles"
-			[ -n "$dirty" ] && dirtyColored="$red$dirty$default_text" || dirtyColored="✔"
-			echo -n " [svn: $dirtyColored]"
+			local dirtyStatus="$modifiedFiles$newFiles"
+			[ -n "$dirtyStatus" ] && dirtyStatusColored="$red$dirtyStatus$default_text" || dirtyStatusColored="✔"
+			echo -n " [svn: $dirtyStatusColored]"
 		fi
 	fi
 }
