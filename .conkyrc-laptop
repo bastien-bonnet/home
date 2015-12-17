@@ -1,101 +1,95 @@
-# Use Xft?
-use_xft yes
-xftfont DejaVu Sans:size=7
-xftalpha 0.8
-text_buffer_size 2048
+conky.config = {
+	use_xft = true,
+	font = 'DejaVu Sans:size=8',
+	xftalpha = 0.8,
+	text_buffer_size = 2048,
+	update_interval = 2,
+	total_run_times = 0,
 
-# Update interval in seconds
-update_interval 2
+-- Use double buffering (reduces flicker, may not work for everyone)
+	double_buffer = true,
 
-# This is the number of times Conky will update before quitting.
-# Set to zero to run forever.
-total_run_times 0
+-- Minimum size of text area
+	minimum_width = 400,
+	minimum_height = 0,
+	maximum_width = 1500,
 
-# Use double buffering (reduces flicker, may not work for everyone)
-double_buffer yes
+-- Draw shades?
+	draw_shades = false,
 
-# Minimum size of text area
-minimum_size 300
-maximum_width 1500
-
-# Draw shades?
-draw_shades no
-
-# Draw outlines?
-draw_outline no
+-- Draw outlines?
+	draw_outline = false,
 
 
-# BORDERS
-# Draw borders around text
-draw_borders no
+-- BORDERS
+-- Draw borders around text
+	draw_borders = false,
 
-# Stippled borders?
-stippled_borders 0
+-- Stippled borders?
+	stippled_borders = 0,
 
-# border margins
-border_inner_margin 35
+-- border margins
+	border_inner_margin = 35,
 
-# border width
-border_width 1
+-- border width
+	border_width = 1,
 
-# Default colors and also border colors
-default_color lightgrey
-own_window_colour white
+-- Default colors and also border colors
+	default_color = 'lightgrey',
+--own_window_colour white
 
-# Text alignment
-alignment middle_right
+-- Text alignment
+	alignment = 'middle_right',
 
-# Gap between borders of screen and text
-# same thing as passing -x at command line
-gap_x 80
-gap_y 0
+-- Gap between borders of screen and text
+-- same thing as passing -x at command line
+	gap_x = 80,
+	gap_y = 0,
 
-# Subtract file system buffers from used memory?
-no_buffers yes
+-- Subtract file system buffers from used memory?
+	no_buffers = true,
 
-# set to yes if you want all text to be in uppercase
-uppercase no
+-- number of cpu samples to average
+-- set to 1 to disable averaging
+	cpu_avg_samples = 2,
 
-# number of cpu samples to average
-# set to 1 to disable averaging
-cpu_avg_samples 2
+-- number of net samples to average
+-- set to 1 to disable averaging
+	net_avg_samples = 2,
 
-# number of net samples to average
-# set to 1 to disable averaging
-net_avg_samples 2
+-- Force UTF8? note that UTF8 support required XFT
+	override_utf8_locale = true,
 
-# Force UTF8? note that UTF8 support required XFT
-override_utf8_locale yes
-
-# Add spaces to keep things from moving about?  This only affects certain objects.
-use_spacer right
+-- Add spaces to keep things from moving about?  This only affects certain objects.
+	use_spacer = 'right',
 
 
-# WINDOW
-# Create own window instead of using desktop (required in nautilus)
-own_window yes
+-- WINDOW
+-- Create own window instead of using desktop (required in some file managers like nautilus)
+	own_window = true,
+	own_window_argb_visual = true,
 
-# If own_window is yes, you may use type normal, desktop or override
-#own_window_type override
-#own_window_type desktop
-own_window_type normal
+-- If own_window is yes, you may use type normal, desktop or override
+	own_window_type = 'normal',
 
-# Use pseudo transparency with own_window?
-own_window_transparent yes
+-- Use pseudo transparency with own_window?
+	own_window_transparent = true,
 
-# Window color (if own_window_transparent is set to no)
-#own_window_colour 242520
+-- Window color (if own_window_transparent is set to no)
+--own_window_colour 242520
 
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 
-default_bar_size 40 15
+	default_bar_width = 40, default_bar_height = 15,
 
-lua_load ~/.conky_bg.lua
-lua_draw_hook_pre draw_bg
+	lua_load = '~/.conky_bg.lua',
+	lua_draw_hook_pre = 'draw_bg',
 
-TEXT
+};
+
+conky.text = [[
 SYSTEM ${hr 2}
-${font OpenLogos:size=22}u${font} 
+${font OpenLogos:size=24}u${font} 
 ${voffset -22}${alignr}kernel:  ${kernel}${voffset 10}
 #
 CPU: ${cpu cpu0}% ${alignr}${cpubar 5,130 cpu0}
@@ -103,7 +97,7 @@ CPU: ${cpu cpu0}% ${alignr}${cpubar 5,130 cpu0}
 # sudo modprobe coretemp
 # edit /etc/modules and add the line 'coretemp'
 # sudo apt-get install lm-sensors
-${font DejaVu Sans:size=7}${alignr}${exec sensors | grep 0: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 1: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 2: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 3: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}${font}
+${alignr}${exec sensors | grep 0: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 1: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 2: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 3: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}
 
     1: ${cpu cpu1}% ${goto 130}${cpugraph cpu1 16,50 000000 ffffff} #
 ${cpugraph cpu5 16,50 000000 ffffff} ${alignr}5: ${cpu cpu5}%
@@ -122,10 +116,7 @@ GPU: ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}n
     Driver version: ${alignr}${if_match "${exec prime-select query}"=="nvidia"}${exec nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //'}${else}nvidia GPU off${endif}
 
 Battery: ${alignr}${battery BAT1}    ${voffset -5}${alignr}${battery_bar BAT1}
-#${battery_percent}
-#${battery_short}
 ${voffset 10}${alignr}${battery_time BAT1}
-
 HD ${hr 2}
     ${alignr}Trash: ${exec du -ch ~/.local/share/Trash/files/ | grep total | sed 's/\t.*//'}
     Root:${alignr}${fs_bar 4,140 /root}
@@ -135,29 +126,22 @@ ${alignr}${fs_used /root}/${fs_size /root}
 ${alignr}${fs_used /media/DATA}/${fs_size /media/DATA}
 
 NETWORK ${hr 2}
-    eth4 : ${alignr}${addr eth4}
-    Up: ${upspeed eth0} ${alignr}Down: ${downspeed eth4}
-    ${upspeedgraph eth0 15,80 000000 ffffff} ${alignr}${downspeedgraph eth4 15,80 000000 ffffff}
+    eth4 : ${addr eth4}${goto 250}↑${upspeed eth4} ${alignr}↓${downspeed eth4}
+    ${goto 250}${upspeedgraph eth4 15,80 000000 ffffff} ${alignr}${downspeedgraph eth4 15,80 000000 ffffff}
 
-    wlan0 (${wireless_essid wlan0} ${wireless_link_bar 4,20 wlan0} ) : ${alignr}${addr wlan0}
-    Up: ${upspeed wlan0} ${alignr}Down: ${downspeed wlan0}
-    ${upspeedgraph wlan0 15,80 000000 ffffff} ${alignr}${downspeedgraph wlan0 15,80 000000 ffffff}
-
+    wlan0 : ${addr wlan0}${goto 250}↑${upspeed wlan0} ${alignr}↓${downspeed wlan0}
+    ${wireless_essid wlan0} ${wireless_link_bar 8,20 wlan0}${goto 250}${upspeedgraph wlan0 15,80 000000 ffffff} ${alignr}${downspeedgraph wlan0 15,80 000000 ffffff}
 
 PROCESSES ${hr 2}
-    > CPU ${goto 195} mem${alignr}cpu 
-    ${color 88aadd} ${top name 1}${goto 150}${top pid 1}${goto 195}${top mem 1}${alignr}${top cpu 1}${color lightgrey}
-    ${top name 2}${goto 150}${top pid 2}${goto 195}${top mem 2} ${alignr}${top cpu 2}
-    ${top name 3}${goto 150}${top pid 3}${goto 195}${top mem 3} ${alignr}${top cpu 3}
-    ${top name 4}${goto 150}${top pid 4}${goto 195}${top mem 4} ${alignr}${top cpu 4}
+    CPU ${goto 290}mem${alignr}cpu
+    ${color 88aadd}${top name 1} ${top pid 1}${goto 290}${top mem 1}${alignr}${top cpu 1}${color lightgrey}
+    ${top name 2} ${top pid 2}${goto 290}${top mem 2} ${alignr}${top cpu 2}
+    ${top name 3} ${top pid 3}${goto 290}${top mem 3} ${alignr}${top cpu 3}
+    ${top name 4} ${top pid 4}${goto 290}${top mem 4} ${alignr}${top cpu 4}
 
-    > MEM
-    ${color 88aadd} ${top_mem name 1}${goto 150}${top_mem pid 1}${goto 195}${top_mem mem 1} ${alignr}${top_mem cpu 1}${color lightgrey}
-    ${top_mem name 2}${goto 150}${top_mem pid 2}${goto 195}${top_mem mem 2} ${alignr}${top_mem cpu 2}
-    ${top_mem name 3}${goto 150}${top_mem pid 3}${goto 195}${top_mem mem 3} ${alignr}${top_mem cpu 3}
-    ${top_mem name 4}${goto 150}${top_mem pid 4}${goto 195}${top_mem mem 4} ${alignr}${top_mem cpu 4}#
-#
-#DATE ${hr 2}
-#${font DejaVu Sans:size=20}${alignr}${time %H:%M}${font}
-#${font DejaVu Sans:size=10}${alignr}${time %a %b %d %Y}${font}
-#${voffset 20}
+    MEM
+    ${color 88aadd}${top_mem name 1} ${top_mem pid 1}${goto 290}${top_mem mem 1} ${alignr}${top_mem cpu 1}${color lightgrey}
+    ${top_mem name 2} ${top_mem pid 2}${goto 290}${top_mem mem 2} ${alignr}${top_mem cpu 2}
+    ${top_mem name 3} ${top_mem pid 3}${goto 290}${top_mem mem 3} ${alignr}${top_mem cpu 3}
+    ${top_mem name 4} ${top_mem pid 4}${goto 290}${top_mem mem 4} ${alignr}${top_mem cpu 4}#
+]];
