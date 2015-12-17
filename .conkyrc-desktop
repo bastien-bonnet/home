@@ -12,7 +12,6 @@ conky.config = {
 -- Set to zero to run forever.
 	total_run_times = 0,
 
-
 -- Use double buffering (reduces flicker, may not work for everyone)
 	double_buffer = true,
 
