@@ -85,28 +85,35 @@ conky.config = {
 	lua_load = '~/.conky_bg.lua',
 	lua_draw_hook_pre = 'draw_bg',
 
+	-- cpu temp
+	-- To make the following work, you need to do :
+	-- sudo modprobe coretemp
+	-- edit /etc/modules and add the line 'coretemp'
+	-- sudo apt-get install lm-sensors
+	template0 = [[${exec sensors | grep -i "core \1:" | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}]],
+
+	-- cpu info for 2 given cores
+	template1 = [[\1: ${cpu cpu\1}% ${goto 150}${cpugraph cpu\1 16,50 000000 ffffff} — ${template0 \3} — ${cpugraph cpu\2 16,50 000000 ffffff} ${alignr}\2: ${cpu cpu\2}%]],
+
+	-- process by cpu
+	template2 = [[${top name \1} ${top pid \1}${goto 290}${top mem \1}${alignr}${top cpu \1}]],
+
+	-- process by mem
+	template3 = [[${top_mem name \1} ${top_mem pid \1}${goto 290}${top_mem mem \1} ${alignr}${top_mem cpu \1}]]
+
 };
 
 conky.text = [[
 SYSTEM ${hr 2}
 ${font OpenLogos:size=24}u${font} 
-${voffset -22}${alignr}kernel:  ${kernel}${voffset 10}
+${voffset -32}${alignr}kernel:  ${kernel}${voffset 20}
 #
-CPU: ${cpu cpu0}% ${alignr}${cpubar 5,130 cpu0}
-# To make the following work, you need to do :
-# sudo modprobe coretemp
-# edit /etc/modules and add the line 'coretemp'
-# sudo apt-get install lm-sensors
-${alignr}${exec sensors | grep 0: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 1: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 2: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'} - ${exec sensors | grep 3: | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}
+CPU: ${cpu cpu0}% ${goto 150}${cpubar 5,195 cpu0}
 
-    1: ${cpu cpu1}% ${goto 130}${cpugraph cpu1 16,50 000000 ffffff} #
-${cpugraph cpu5 16,50 000000 ffffff} ${alignr}5: ${cpu cpu5}%
-    2: ${cpu cpu2}% ${goto 130}${cpugraph cpu2 16,50 000000 ffffff} #
-${cpugraph cpu6 16,50 000000 ffffff} ${alignr}6: ${cpu cpu6}%
-    3: ${cpu cpu3}% ${goto 130}${cpugraph cpu3 16,50 000000 ffffff} #
-${cpugraph cpu7 16,50 000000 ffffff} ${alignr}7: ${cpu cpu7}%
-    4: ${cpu cpu4}% ${goto 130}${cpugraph cpu4 16,50 000000 ffffff} #
-${cpugraph cpu8 16,50 000000 ffffff} ${alignr}8: ${cpu cpu8}%
+    ${template1 1 5 0}
+    ${template1 2 6 1}
+    ${template1 3 7 2}
+    ${template1 4 8 3}
 
 RAM: $memperc% ${alignr}${membar 10,130}
 ${alignr}${mem}/${memmax}
@@ -134,14 +141,14 @@ NETWORK ${hr 2}
 
 PROCESSES ${hr 2}
     CPU ${goto 290}mem${alignr}cpu
-    ${color 88aadd}${top name 1} ${top pid 1}${goto 290}${top mem 1}${alignr}${top cpu 1}${color lightgrey}
-    ${top name 2} ${top pid 2}${goto 290}${top mem 2} ${alignr}${top cpu 2}
-    ${top name 3} ${top pid 3}${goto 290}${top mem 3} ${alignr}${top cpu 3}
-    ${top name 4} ${top pid 4}${goto 290}${top mem 4} ${alignr}${top cpu 4}
+    ${color 88aadd}${template2 1}${color lightgrey}
+    ${template2 2}
+    ${template2 3}
+    ${template2 4}
 
     MEM
-    ${color 88aadd}${top_mem name 1} ${top_mem pid 1}${goto 290}${top_mem mem 1} ${alignr}${top_mem cpu 1}${color lightgrey}
-    ${top_mem name 2} ${top_mem pid 2}${goto 290}${top_mem mem 2} ${alignr}${top_mem cpu 2}
-    ${top_mem name 3} ${top_mem pid 3}${goto 290}${top_mem mem 3} ${alignr}${top_mem cpu 3}
-    ${top_mem name 4} ${top_mem pid 4}${goto 290}${top_mem mem 4} ${alignr}${top_mem cpu 4}#
+    ${color 88aadd}${template3 1}${color lightgrey}
+    ${template3 2}
+    ${template3 3}
+    ${template3 4}
 ]];
