@@ -1,54 +1,36 @@
 conky.config = {
--- Use Xft?
 	use_xft = true,
 	font = 'DejaVu Sans:size=8',
 	xftalpha = 0.8,
 	text_buffer_size = 2048,
-
--- Update interval in seconds
-	update_interval = 1,
-
--- This is the number of times Conky will update before quitting.
--- Set to zero to run forever.
+	update_interval = 2,
 	total_run_times = 0,
 
 -- Use double buffering (reduces flicker, may not work for everyone)
 	double_buffer = true,
 
 -- Minimum size of text area
-	minimum_width = 230, minimum_height = 0,
-	maximum_width = 230,
+	minimum_width = 250,
+	minimum_height = 0,
+	maximum_width = 1500,
 
--- Draw shades?
 	draw_shades = false,
-
--- Draw outlines?
 	draw_outline = false,
-
-
--- BORDERS
--- Draw borders around text
 	draw_borders = false,
-
--- Stippled borders?
 	stippled_borders = 0,
-
--- border margins
-	border_inner_margin = 20,
-
--- border width
+	border_inner_margin = 25,
 	border_width = 1,
 
 -- Default colors and also border colors
 	default_color = 'lightgrey',
 --own_window_colour white
 
--- Text alignment, other possible values are commented
+-- Text alignment
 	alignment = 'middle_right',
 
 -- Gap between borders of screen and text
 -- same thing as passing -x at command line
-	gap_x = 50,
+	gap_x = 80,
 	gap_y = 0,
 
 -- Subtract file system buffers from used memory?
@@ -66,7 +48,7 @@ conky.config = {
 	override_utf8_locale = true,
 
 -- Add spaces to keep things from moving about?  This only affects certain objects.
-	use_spacer = 'none',
+	use_spacer = 'right',
 
 
 -- WINDOW
@@ -90,6 +72,22 @@ conky.config = {
 	lua_load = '~/.conky_bg.lua',
 	lua_draw_hook_pre = 'draw_bg',
 
+	-- cpu temp
+	-- To make the following work, you need to do :
+	-- sudo modprobe coretemp
+	-- edit /etc/modules and add the line 'coretemp'
+	-- sudo apt-get install lm-sensors
+	template0 = [[${exec sensors | grep -i "core \1:" | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}]],
+
+	-- cpu info for 2 given cores
+	template1 = [[\1: ${cpu cpu\1}% ${goto 150}${cpugraph cpu\1 16,50 000000 ffffff} — ${template0 \2}]],
+
+	-- process by cpu
+	template2 = [[${top name \1} ${top pid \1}${goto 290}${top mem \1}${alignr}${top cpu \1}]],
+
+	-- process by mem
+	template3 = [[${top_mem name \1} ${top_mem pid \1}${goto 290}${top_mem mem \1} ${alignr}${top_mem cpu \1}]]
+
 };
 
 conky.text = [=[
@@ -99,19 +97,15 @@ ${font OpenLogos:size=24}u${font}
 ${voffset -22}${alignr}kernel:  ${kernel}${voffset 10}
 #
 CPU: ${cpu cpu0}% ${alignr}${cpubar 5,130 cpu0}
-# To make the following work, you need to do :
-# sudo modprobe coretemp
-# edit /etc/modules and add the line 'coretemp'
-# sudo apt-get install lm-sensors
 ${alignr}${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°C" | head -n 1}
 
-    Core1: ${exec sensors | grep -i "core 0": | grep -Eo "[[:digit:]]+\.[[:digit:]]°C" | head -n 1} - ${cpu cpu1}% #
+    Core1: ${template0 0} - ${cpu cpu1}% #
 ${voffset -7}${alignr}${cpugraph cpu1 20,90 000000 ffffff}${voffset 7}
-    Core2: ${exec sensors | grep -i "core 1": | grep -Eo "[[:digit:]]+\.[[:digit:]]°C" | head -n 1} - ${cpu cpu2}% #
+    Core2: ${template0 1} - ${cpu cpu2}% #
 ${voffset -7}${alignr}${cpugraph cpu2 20,90 000000 ffffff}${voffset 7}
-    Core3: ${exec sensors | grep -i "core 2": | grep -Eo "[[:digit:]]+\.[[:digit:]]°C" | head -n 1} - ${cpu cpu2}% #
+    Core3: ${template0 2} - ${cpu cpu2}% #
 ${voffset -7}${alignr}${cpugraph cpu3 20,90 000000 ffffff}${voffset 7}
-    Core4: ${exec sensors | grep -i "core 3": | grep -Eo "[[:digit:]]+\.[[:digit:]]°C" | head -n 1} - ${cpu cpu3}% #
+    Core4: ${template0 3} - ${cpu cpu3}% #
 ${voffset -7}${alignr}${cpugraph cpu4 20,90 000000 ffffff}${voffset 7}
 
 
@@ -133,6 +127,8 @@ ${alignr}${fs_used /root}/${fs_size /root}
 ${alignr}${fs_used /media/DATA}/${fs_size /media/DATA}
 
 NETWORK ${hr 2}
+    eth0 : ${addr eth0}${goto 250}↑${upspeed eth0} ${alignr}↓${downspeed eth0}
+    ${goto 250}${upspeedgraph eth4 15,80 000000 ffffff} ${alignr}${downspeedgraph eth4 15,80 000000 ffffff}
 
     Local IP address: ${alignr}${addr eth0}
 
@@ -141,18 +137,17 @@ NETWORK ${hr 2}
     Down: ${downspeed eth0} ${voffset -8}${alignr}${downspeedgraph eth0 20,80 000000 ffffff}
 
 PROCESSES ${hr 2}
+    CPU ${goto 290}mem${alignr}cpu
+    ${color 88aadd}${template2 1}${color lightgrey}
+    ${template2 2}
+    ${template2 3}
+	${template2 4}
 
-    > CPU ${goto 165} mem${alignr}cpu 
-    ${color 88aadd}${top name 1}${goto 125}${top pid 1}${goto 165}${top mem 1} ${alignr}${top cpu 1}
-    ${color lightgrey}${top name 2}${goto 125}${top pid 2}${goto 165}${top mem 2} ${alignr}${top cpu 2}
-    ${color lightgrey}${top name 3}${goto 125}${top pid 3}${goto 165}${top mem 3} ${alignr}${top cpu 3}
-    ${color lightgrey}${top name 4}${goto 125}${top pid 4}${goto 165}${top mem 4} ${alignr}${top cpu 4}
-
-    > MEM
-    ${color 88aadd}${top_mem name 1}${goto 125}${top_mem pid 1}${goto 165}${top_mem mem 1} ${alignr}${top_mem cpu 1}
-    ${color lightgrey}${top_mem name 2}${goto 125}${top_mem pid 2}${goto 165}${top_mem mem 2} ${alignr}${top_mem cpu 2}
-    ${color lightgrey}${top_mem name 3}${goto 125}${top_mem pid 3}${goto 165}${top_mem mem 3} ${alignr}${top_mem cpu 3}
-    ${color lightgrey}${top_mem name 4}${goto 125}${top_mem pid 4}${goto 165}${top_mem mem 4} ${alignr}${top_mem cpu 4}
+    MEM
+    ${color 88aadd}${template3 1}${color lightgrey}
+    ${template3 2}
+    ${template3 3}
+    ${template3 4}
 
 
 DATE ${hr 2}
