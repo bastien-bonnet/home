@@ -9,6 +9,60 @@ CENTRAL_MACHINE="$TEST_DIR/central"
 PROJECT_NAME="project"
 
 
+function changeAuthor {
+	git -c user.name="$1" -c user.email="email@address.com" commit --amend --reset-author --no-edit
+}
+
+function addCrappyCommits {
+	touch x.txt \
+	&& git add -A \
+	&& git commit -am "Add crappy file" \
+	&& echo a >> x.txt \
+	&& git commit -am "Add a single line" \
+	&& changeAuthor Thomas \
+	&& echo b >> x.txt \
+	&& git commit -am "Modify things" \
+	&& echo c >> x.txt \
+	&& git commit -am "Create file for some test" \
+	&& echo a >> x.txt \
+	&& git commit -am "Make some tests, because sometimes you have to" \
+	&& changeAuthor Thomas \
+	&& echo b >> x.txt \
+	&& git commit -am "Modify more stuff, and making a beautiful comment" \
+	&& echo c >> x.txt \
+	&& git commit -am "Create another file for testing purposes" \
+	&& echo a >> x.txt \
+	&& git commit -am "Fix error, but don't know why this fix works" \
+	&& changeAuthor Thomas \
+	&& echo b >> x.txt \
+	&& git commit -am "Make some quality improvements" \
+	&& echo c >> x.txt \
+	&& git commit -am "Make more quality" \
+	&& echo a >> x.txt \
+	&& git commit -am "Write unit tests because reviewer said so" \
+	&& changeAuthor Thomas \
+	&& echo b >> x.txt \
+	&& git commit -am "Add magic feature" \
+	&& echo c >> x.txt \
+	&& git commit -am "Add secret feature, with more magic inside" \
+	&& echo a >> x.txt \
+	&& git commit -am "Guess !" \
+	&& changeAuthor Thomas \
+	&& echo b >> x.txt \
+	&& git commit -am "Modify .gitignore to include IDE files" \
+	&& echo c >> x.txt \
+	&& git commit -am "Make more quality for SONAR metrics, my pay rise depends on it" \
+	&& echo a >> x.txt \
+	&& git commit -am "Update JavaDoc" \
+	&& changeAuthor Thomas \
+	&& echo b >> x.txt \
+	&& git commit -am "Remove feature B, nobody uses it" \
+	&& echo c >> x.txt \
+	&& git commit -am "Commit 40 files, all my work before holiday" \
+	&& echo c >> x.txt \
+	&& git commit -am "Add integration test, because I don't like unit tests"
+}
+
 # Testing for already existing test directory
 if [ -d $TEST_DIR ]; then
 	echo "Delete already existing [$TEST_DIR] directory? (Y/n)"
@@ -39,6 +93,7 @@ cd $USER1_MACHINE/$PROJECT_NAME \
 && export GIT_AUTHOR_DATE="2015-10-21T14:10:20" \
 && export GIT_COMMITTER_DATE="2015-10-21T15:12:21" \
 && git commit -m "Add powerful script" \
+&& addCrappyCommits \
 && git push
 
 # Make a new branch by USER2
@@ -52,3 +107,4 @@ cd $USER2_MACHINE/$PROJECT_NAME \
 && export GIT_COMMITTER_DATE="2015-10-22T09:01:35" \
 && git commit -m "Début de la feature F" \
 && git push --set-upstream origin featureF
+
