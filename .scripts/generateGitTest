@@ -93,7 +93,7 @@ cd $USER1_MACHINE/$PROJECT_NAME \
 && export GIT_AUTHOR_DATE="2015-10-21T14:10:20" \
 && export GIT_COMMITTER_DATE="2015-10-21T15:12:21" \
 && git commit -m "Add powerful script" \
-&& addCrappyCommits \
+&& ([[ "$1" == "-l" ]] && addCrappyCommits || echo "Small repo") \
 && git push
 
 # Make a new branch by USER2
