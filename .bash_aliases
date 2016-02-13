@@ -75,8 +75,8 @@ a u='[[ "$(pwd)" != "/" ]] && pushd ..'
 a p="popd"
 
 # rsync aliases
-a rslocal="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
-a rslocalc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
+a rs="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
+a rsc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
 a rsssh="rslocal -e 'ssh -p 1234'"
 
 
