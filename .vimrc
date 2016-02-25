@@ -33,6 +33,7 @@ colorscheme desert
 set relativenumber
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
+set cursorline
 set nuw=6
 
 " Show the cursor position all the time
