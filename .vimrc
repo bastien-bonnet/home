@@ -6,9 +6,6 @@
 " Chargement de plugins selon le type de fichier
 filetype plugin on
 
-
-
-
 set encoding=utf-8
 set fileencodings=utf-8
 
@@ -41,6 +38,7 @@ set ruler
 
 " highlight search
 set hlsearch
+set incsearch
 
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
