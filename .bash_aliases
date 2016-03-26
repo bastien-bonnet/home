@@ -23,6 +23,7 @@ a ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 
 a freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
 a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
+a u='sudo apt-get update && sudo apt-get upgrade'
 
 # git aliases
 function_exists() {
@@ -69,10 +70,6 @@ a etodo="e ~/todo.txt"
 a todo='sort ~/todo.txt | grep -v ^x | grep -E "@waiting|$"'
 a efst="ee /etc/fstab"
 a eday='grep "^== $(date -I)" ~/doc/activité.asciidoc  && vim + ~/doc/activité.asciidoc || (echo -e "\n== $(date -I)" >> ~/doc/activité.asciidoc && vim + ~/doc/activité.asciidoc)'
-
-# Navigation aliases
-a u='[[ "$(pwd)" != "/" ]] && pushd ..'
-a p="popd"
 
 # rsync aliases
 a rs="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
