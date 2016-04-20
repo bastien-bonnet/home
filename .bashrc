@@ -45,7 +45,10 @@ if [ "$color_prompt" = yes ]; then
 			local workingDir="$blue$(echo $PWD | sed 's,'$HOME',~,')$default_text"
 			local gitInfo="$(gitInfo)"
 			local svnInfo="$(svnInfos)"
-			local prompt_1="$bgColor╭─ $userAndHost$workingDir$gitInfo$svnInfo"
+
+			local exitStatusColor="$([[ $exitStatus == 0 ]] && echo -e '' || echo -e $red)"
+
+			local prompt_1="$bgColor$exitStatusColor╭─$off$bgColor $userAndHost$workingDir$gitInfo$svnInfo"
 			local time="$(date +'%F %T')"
 
 			# Need to fill gap between prompt_1 and time with spaces
@@ -53,10 +56,8 @@ if [ "$color_prompt" = yes ]; then
 			local timeSize="$(echo -n $time | wc -m)"
 			local promptFill="$(for ((i=1;i<=$(($COLUMNS-$promptSize-$timeSize));++i)); do echo -n ' '; done)"
 
-			local exitStatusColor="$([[ $exitStatus == 0 ]] && echo -e '' || echo -e $red)"
-
 			PS1="$prompt_1$promptFill$time$off
-╰─$exitStatusColor➤$off "
+$exitStatusColor╰─➤$off "
 		}
 		
 		PROMPT_COMMAND=pCmd
