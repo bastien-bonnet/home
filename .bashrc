@@ -1,15 +1,12 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# See bash(1)
 HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=10000
 HISTFILESIZE=10000
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-#export TERM=xterm-color
 
 # Check if terminal has color support
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
