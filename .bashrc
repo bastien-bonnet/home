@@ -14,7 +14,7 @@ function main {
 				local green="\[\033[32m\]"
 				local yellow="\[\033[33m\]"
 				local bold_blue="\[\033[1;34m\]"
-				local bg_color="\[\033[48;5;238m\]"
+				local bg_color="$([[ $last_command_exit_status == 0 ]] && echo '\[\033[48;5;238m\]' || echo '\[\033[48;5;88m\]')"
 				local off="\[\033[00m\]"
 				local default_text_color_and_intensity="\[\033[39m\]\[\033[22m\]"
 
