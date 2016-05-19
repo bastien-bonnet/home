@@ -1,5 +1,15 @@
 #!/bin/bash
 
+function define_colors {
+	export red="\033[31m"
+	export green="\033[32m"
+	export yellow="\033[33m"
+	export blue="\033[1;34m"
+	export off="\033[00m"
+	export default_text_color_and_intensity="\033[39m\033[22m"
+}
+define_colors
+
 function gitInfo() {
 	# If git is installed && current directory is inside a git repo
 	if [[ $(command -v git) != "" && ("$(git rev-parse --is-inside-work-tree 2>&1)" == "true") ]]; then

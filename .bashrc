@@ -2,17 +2,14 @@
 [ -z "$PS1" ] && return
 
 function main {
-	color_export
-	source ~/.bash_functions
-
-	set_prompt
-
+	source ~/.bash_functions && set_prompt
+	
 	source_bash_config_files
-
-	export PATH=$PATH:~/software:~/software/sbt/bin
-
+	
+	export PATH=$PATH:~/software
+	
+	set_bash_history_preferences
 	set_terminal_visual_preferences
-	set_history_preferences
 	set_application_preferences
 }
 
@@ -38,16 +35,14 @@ function set_terminal_visual_preferences {
 }	
 
 function set_prompt {
-	color_prompt=$(check_color_support)
-	if [ "$color_prompt" = yes ]; then
-			PROMPT_COMMAND=prompt_cmd
+	if $(check_color_support); then
+		PROMPT_COMMAND=define_PS1_with_git_info
 	else
-			PS1='\u@\h:\w\$ '
+		PS1='\u@\h:\w\$ '
 	fi
-	unset color_prompt
 }
 
-function prompt_cmd {
+function define_PS1_with_git_info {
 	local last_command_exit_status="$?"
 	
 	local red="\[\033[31m\]"
@@ -89,7 +84,7 @@ function set_terminal_title {
 	esac
 }
 
-function set_history_preferences {
+function set_bash_history_preferences {
 	HISTCONTROL=ignoredups:ignorespace
 	HISTSIZE=10000
 	HISTFILESIZE=10000
@@ -108,23 +103,9 @@ function color_man_pages {
 	export LESS_TERMCAP_ue=$'\E[0m' # end underline
 }
 
-function color_export {
-	export red="\033[31m"
-	export green="\033[32m"
-	export yellow="\033[33m"
-	export blue="\033[1;34m"
-	export off="\033[00m"
-	#export default_text_color_and_intensity="\[\033[39m\]\[\033[22m\]"
-	export default_text_color_and_intensity="\033[39m\033[22m"
-}
-
 function check_color_support {
-	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-		# We have color support; assume it's compliant with Ecma-48 (ISO/IEC-6429). (Lack of such support is extremely rare, and such a case would tend to support setf rather than setaf.)
-		echo yes
-	else
-		echo no
-	fi
+	# If 0, we have color support; assume it's compliant with Ecma-48 (ISO/IEC-6429). (Lack of such support is extremely rare, and such a case would tend to support setf rather than setaf.)
+	[ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null
 }
 
 main
