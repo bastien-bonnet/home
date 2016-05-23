@@ -2,12 +2,11 @@
 [ -z "$PS1" ] && return
 
 function main {
+	export PATH=$PATH:~/software
+	
 	source ~/.bash_functions && set_prompt
 	
 	source_bash_config_files
-	
-	export PATH=$PATH:~/software
-	
 	set_bash_history_preferences
 	set_terminal_visual_preferences
 	set_application_preferences
