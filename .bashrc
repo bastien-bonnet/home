@@ -29,7 +29,6 @@ function set_terminal_visual_preferences {
 	# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 	shopt -s checkwinsize
 
-	set_terminal_title
 	color_man_pages
 }	
 
@@ -38,6 +37,7 @@ function set_prompt {
 		PROMPT_COMMAND=define_PS1_with_git_info
 	else
 		PS1='\u@\h:\w\$ '
+		set_terminal_title
 	fi
 }
 
@@ -70,6 +70,8 @@ function define_PS1_with_git_info {
 	local prompt_gap_filler="$(for ((i=1;i<=$(($COLUMNS-$prompt_left_size-$date_and_time_size));++i)); do echo -n ' '; done)"
 
 	PS1="$prompt_left$prompt_gap_filler$date_and_time$off\n$exit_status_color╰─➤$off "
+	
+	set_terminal_title
 }
 
 function set_terminal_title {
