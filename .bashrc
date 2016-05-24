@@ -12,26 +12,6 @@ function main {
 	set_application_preferences
 }
 
-function source_bash_config_files {
-	[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
-	[[ -f ~/.bashrc_machine_specific ]] && . ~/.bashrc_machine_specific
-	[[ -f /etc/bash_completion ]] && ! shopt -oq posix && . /etc/bash_completion
-}
-
-function set_application_preferences {
-	export TEXMFHOME="$HOME/.texmf"
-
-	# make less more friendly for non-text input files, see lesspipe(1)
-	[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-}
-
-function set_terminal_visual_preferences {
-	# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
-	shopt -s checkwinsize
-
-	color_man_pages
-}	
-
 function set_prompt {
 	if $(check_color_support); then
 		PROMPT_COMMAND=define_PS1_with_git_info
@@ -84,6 +64,26 @@ function set_terminal_title {
 			;;
 	esac
 }
+
+function source_bash_config_files {
+	[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+	[[ -f ~/.bashrc_machine_specific ]] && . ~/.bashrc_machine_specific
+	[[ -f /etc/bash_completion ]] && ! shopt -oq posix && . /etc/bash_completion
+}
+
+function set_application_preferences {
+	export TEXMFHOME="$HOME/.texmf"
+
+	# make less more friendly for non-text input files, see lesspipe(1)
+	[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+}
+
+function set_terminal_visual_preferences {
+	# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+	shopt -s checkwinsize
+
+	color_man_pages
+}	
 
 function set_bash_history_preferences {
 	HISTCONTROL=ignoredups:ignorespace
