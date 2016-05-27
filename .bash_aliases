@@ -66,8 +66,8 @@ a eckd="e ~/.conkyrc-desktop"
 a eckl="e ~/.conkyrc-laptop"
 a eckn="e ~/.conkyrc-netbook"
 a evrc="e ~/.vimrc"
-a etodo="e ~/todo.txt"
-a todo='sort ~/todo.txt | grep -v ^x | grep -E "@waiting|$"'
+a etodo="e ~/.todo.txt"
+a todo='sort ~/.todo.txt | grep -v ^x | grep -E "@waiting|$"'
 a efst="ee /etc/fstab"
 a eday='grep "^== $(date -I)" ~/doc/activité.asciidoc  && vim + ~/doc/activité.asciidoc || (echo -e "\n== $(date -I)" >> ~/doc/activité.asciidoc && vim + ~/doc/activité.asciidoc)'
 
