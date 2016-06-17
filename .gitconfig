@@ -7,7 +7,8 @@
 	ui = auto
 [pretty]
 	# oneline log format with short hash, relative date, committer name, branch info, short comment
-	myformat = "tformat:%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
+	onelinerelativedate = "tformat:%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
+	onelineabsolutedate = "tformat:%C(yellow)%h%Creset %ci %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
 [alias]
 	co = checkout
 	b = branch
@@ -20,11 +21,11 @@
 	pullr = pull --rebase=preserve
 	p = push
 
-	l = log --graph --pretty=myformat
-	la = log --graph --pretty=myformat --all
-	ls = log --graph --pretty=myformat --name-status
-	las = log --graph --pretty=myformat --all --name-status
-	ld = log --graph --pretty=myformat --date=short
+	l = log --graph --pretty=onelinerelativedate
+	la = log --graph --pretty=onelinerelativedate --all
+	ls = log --graph --pretty=onelinerelativedate --name-status
+	las = log --graph --pretty=onelinerelativedate --all --name-status
+	ld = log --graph --pretty=onelineabsolutedate --date=short
 
 	# minimal word diff
 	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
