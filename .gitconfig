@@ -32,6 +32,11 @@
 	dc = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' --cached
 	dh = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' HEAD^!
 
+	# graphic diff
+	dt = difftool
+	dtc = difftool --cached
+	dth = difftool HEAD^!
+
 [core]
 	pager = less -R
 [difftool]
