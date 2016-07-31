@@ -14,24 +14,11 @@ conky.config = {
 	minimum_height = 0,
 	maximum_width = 1500,
 
--- Draw shades?
 	draw_shades = false,
-
--- Draw outlines?
 	draw_outline = false,
-
-
--- BORDERS
--- Draw borders around text
 	draw_borders = false,
-
--- Stippled borders?
 	stippled_borders = 0,
-
--- border margins
 	border_inner_margin = 35,
-
--- border width
 	border_width = 1,
 
 -- Default colors and also border colors
@@ -110,10 +97,10 @@ ${voffset -32}${alignr}kernel:  ${kernel}${voffset 20}
 #
 CPU: ${cpu cpu0}% ${goto 150}${cpubar 5,195 cpu0}
 
-    ${template1 1 5 0}
-    ${template1 2 6 1}
-    ${template1 3 7 2}
-    ${template1 4 8 3}
+	${template1 1 5 0}
+	${template1 2 6 1}
+	${template1 3 7 2}
+	${template1 4 8 3}
 
 RAM: $memperc% ${alignr}${membar 10,130}
 ${alignr}${mem}/${memmax}
