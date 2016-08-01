@@ -83,14 +83,15 @@ conky.config = {
 	template1 = [[\1: ${cpu cpu\1}% ${goto 150}${cpugraph cpu\1 16,50 000000 ffffff} — ${template0 \3} — ${cpugraph cpu\2 16,50 000000 ffffff} ${alignr}\2: ${cpu cpu\2}%]],
 
 	-- process by cpu
-	template2 = [[${top name \1} ${top pid \1}${goto 290}${top mem \1}${alignr}${top cpu \1}]],
+	template2 = [[${goto 100}${top name \1} ${top pid \1}${goto 320}${top mem \1}${alignr}${top cpu \1}]],
 
 	-- process by mem
-	template3 = [[${top_mem name \1} ${top_mem pid \1}${goto 290}${top_mem mem \1} ${alignr}${top_mem cpu \1}]]
+	template3 = [[${goto 100}${top_mem name \1} ${top_mem pid \1}${goto 320}${top_mem mem \1} ${alignr}${top_mem cpu \1}]]
 
 };
 
-conky.text = [[
+conky.text = [=[
+${voffset -30}
 SYSTEM ${hr 2}
 ${font OpenLogos:size=24}u${font} 
 ${voffset -32}${alignr}kernel:  ${kernel}${voffset 20}
@@ -111,7 +112,7 @@ GPU: ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}n
 
 Battery: ${alignr}${battery BAT1}    ${voffset -5}${alignr}${battery_bar BAT1}
 ${voffset 10}${alignr}${battery_time BAT1}
-HD ${hr 2}
+STORAGE ${hr 2}
     ${alignr}Trash: ${exec du -ch ~/.local/share/Trash/files/ | grep total | sed 's/\t.*//'}
     Root:${alignr}${fs_bar 4,140 /root}
 ${alignr}${fs_used /root}/${fs_size /root}
@@ -127,15 +128,21 @@ NETWORK ${hr 2}
     ${wireless_essid wlan0} ${wireless_link_bar 8,20 wlan0}${goto 250}${upspeedgraph wlan0 15,80 000000 ffffff} ${alignr}${downspeedgraph wlan0 15,80 000000 ffffff}
 
 PROCESSES ${hr 2}
-    CPU ${goto 290}mem${alignr}cpu
+    by CPU${goto 325}mem${alignr}cpu
     ${color 88aadd}${template2 1}${color lightgrey}
     ${template2 2}
     ${template2 3}
     ${template2 4}
 
-    MEM
+    by MEM
     ${color 88aadd}${template3 1}${color lightgrey}
     ${template3 2}
     ${template3 3}
     ${template3 4}
-]];
+
+DATE ${hr 2}
+${font DejaVu Sans:size=26}${alignr}${time %H:%M}${font}
+${font DejaVu Sans:size=12}${alignr}${time %a %d %b %Y}${font}
+
+${voffset -85}
+]=];

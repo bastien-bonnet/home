@@ -113,7 +113,7 @@ GPU: ${nvidia temp}°C
     Driver version: ${alignr}${exec nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //'}
 
 
-HD ${hr 2}
+STORAGE ${hr 2}
     ${alignr}Trash: ${exec du -ch ~/.local/share/Trash/files/ | grep total | sed 's/\t.*//'}
     Root:${alignr}${fs_bar 4,140 /root}
 ${alignr}${fs_used /root}/${fs_size /root}
@@ -141,7 +141,7 @@ PROCESSES ${hr 2}
 
 DATE ${hr 2}
 ${font DejaVu Sans:size=26}${alignr}${time %H:%M}${font}
-${font DejaVu Sans:size=12}${alignr}${time %a %b %d %Y}${font}
+${font DejaVu Sans:size=12}${alignr}${time %a %d %b %Y}${font}
 
 ${voffset -80}
 ]=];
