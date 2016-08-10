@@ -89,9 +89,10 @@ function set_terminal_visual_preferences {
 }	
 
 function set_bash_history_preferences {
-	HISTCONTROL=ignoredups:ignorespace
-	HISTSIZE=10000
-	HISTFILESIZE=10000
+	export HISTCONTROL=ignoredups:ignorespace
+	export HISTSIZE=10000
+	export HISTFILESIZE=10000
+	export HISTTIMEFORMAT="%F %T "
 	# append to the history file, don't overwrite it
 	shopt -s histappend
 }
