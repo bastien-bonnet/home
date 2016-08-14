@@ -85,17 +85,18 @@ conky.config = {
 ]],
 
 	-- process by cpu
-	template2 = [[${top name \1} ${top pid \1}${goto 290}${top mem \1}${alignr}${top cpu \1}]],
+	template2 = [[${goto 100}${top name \1} ${top pid \1}${goto 320}${top mem \1}${alignr}${top cpu \1}]],
 
 	-- process by mem
-	template3 = [[${top_mem name \1} ${top_mem pid \1}${goto 290}${top_mem mem \1} ${alignr}${top_mem cpu \1}]]
+	template3 = [[${goto 100}${top_mem name \1} ${top_mem pid \1}${goto 320}${top_mem mem \1} ${alignr}${top_mem cpu \1}]]
 
 };
 
 conky.text = [=[
+${voffset -30}
 SYSTEM ${hr 2}
 ${font OpenLogos:size=24}u${font} 
-${voffset -22}${alignr}kernel:  ${kernel}${voffset 10}
+${voffset -32}${alignr}kernel:  ${kernel}${voffset 20}
 #
 CPU: ${cpu cpu0}% ${alignr}${cpubar 5,130 cpu0}
 ${alignr}${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°C" | head -n 1}
@@ -126,13 +127,13 @@ NETWORK ${hr 2}
     ${goto 250}${upspeedgraph eth0 15,80 000000 ffffff} ${alignr}${downspeedgraph eth0 15,80 000000 ffffff}
 
 PROCESSES ${hr 2}
-    CPU ${goto 290}mem${alignr}cpu
+    by CPU${goto 325}mem${alignr}cpu
     ${color 88aadd}${template2 1}${color lightgrey}
     ${template2 2}
     ${template2 3}
 	${template2 4}
 
-    MEM
+    by MEM
     ${color 88aadd}${template3 1}${color lightgrey}
     ${template3 2}
     ${template3 3}
@@ -143,5 +144,5 @@ DATE ${hr 2}
 ${font DejaVu Sans:size=26}${alignr}${time %H:%M}${font}
 ${font DejaVu Sans:size=12}${alignr}${time %a %d %b %Y}${font}
 
-${voffset -80}
+${voffset -85}
 ]=];
