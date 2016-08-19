@@ -1,15 +1,18 @@
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
 function main {
+	shell_is_interactive || return
+
 	export PATH=$PATH:~/software
-	
+
 	source ~/.bash_functions && set_prompt
-	
+
 	source_bash_config_files
 	set_bash_history_preferences
 	set_terminal_visual_preferences
 	set_application_preferences
+}
+
+function shell_is_interactive {
+	[ -n "$PS1" ]
 }
 
 function set_prompt {
