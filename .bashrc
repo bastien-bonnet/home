@@ -48,14 +48,14 @@ function define_PS1_with_git_info {
 	local exit_status_color="$([[ $last_command_exit_status == 0 ]] || echo $red)"
 
 	local prompt_left="$bg_color$exit_status_color╭─$off$bg_color $userAndHost$working_dir$git_info$svn_info"
-	local date_and_time="$(date +'%F %T')"
+	local time="$(date +'%T')"
 
 	local prompt_left_size="$(echo -n $prompt_left | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)"
-	local date_and_time_size="$(echo -n $date_and_time | wc -m)"
-	local gap_size="$(($COLUMNS-$prompt_left_size-$date_and_time_size))"
+	local time_size="$(echo -n $time | wc -m)"
+	local gap_size="$(($COLUMNS-$prompt_left_size-$time_size))"
 	local prompt_gap_filler="$(for ((i=1;i<=$gap_size;++i)); do echo -n ' '; done)"
 
-	PS1="$prompt_left$prompt_gap_filler$date_and_time$off\n$exit_status_color╰─➤$off "
+	PS1="$prompt_left$prompt_gap_filler$time$off\n$exit_status_color╰─➤$off "
 	
 	set_terminal_title
 }
