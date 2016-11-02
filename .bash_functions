@@ -13,35 +13,51 @@ define_colors
 function gitInfo() {
 	# If git is installed && current directory is inside a git repo
 	if [[ $(command -v git) != "" && ("$(git rev-parse --is-inside-work-tree 2>&1)" == "true") ]]; then
-		local gitBranch="$(git branch --no-color | sed -n 's/* \(.*\)/\1/p')"
 		local gitStatus="$(git status)"
 
-		local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo '*')"
-		local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo c)"
-		local unTrackedFiles="$([[ $(echo $gitStatus | grep 'Untracked files:') != '' ]] && echo …)"
-		local dirtyStatus="$unCommitedWork$unStagedWork$unTrackedFiles"
-		[[ -n $dirtyStatus ]] && dirtyStatusColored="$red$dirtyStatus$default_text_color_and_intensity" || dirtyStatusColored="✔"
+		local dirtyStatus="$(gitDirtyStatus)"
+		[[ -n $dirtyStatus ]] && dirtyStatusColored="$red$dirtyStatus$default_text_color_and_intensity"
 		
-		if [[ -d .git/svn ]]; then
-			if [[ -f .git/refs/remotes/git-svn && -f .git/refs/heads/master ]]; then
-				local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑(git-svn)')"
-			elif [[ -f .git/refs/remotes/trunk && -f .git/refs/heads/master ]]; then
-				local diverged="$([[ $(git diff master trunk) != '' ]] && echo '↓↑(trunk)')"
-			else
-				local diverged="?"
-			fi
-		else
-			local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p')"
-			local ahead="$(echo $gitStatus | sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p')"
-			local diverged="$(echo $gitStatus | sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p')"
-		fi
-		local branchState="$yellow$bgColor$behind$ahead$diverged$default_text_color_and_intensity"
+		local branchDivergence="$(gitBranchDivergence)"
+		[[ -n $branchDivergence ]] && branchStateColored="$yellow$bgColor$branchDivergence$default_text_color_and_intensity"
 		
-		[[ "$gitBranch" != master && "$gitBranch" != next ]] && gitBranch="$yellow$gitBranch$default_text_color_and_intensity"
-		local gitInfo=" [git: $gitBranch $branchState|$dirtyStatusColored]"
-		echo -n "$gitInfo"
+		local localStatus="$branchStateColored$dirtyStatusColored"
+		[[ -z $localStatus ]] && localStatus="✔"
+		
+		echo -n "[$(gitBranchColored) $localStatus]"
 	fi
 }
+
+function gitBranchColored {
+	local gitBranch="$(git branch --no-color | sed -n 's/* \(.*\)/\1/p')"
+	[[ "$gitBranch" != master && "$gitBranch" != next ]] && gitBranch="$yellow$gitBranch$default_text_color_and_intensity"
+	echo -n "$gitBranch"
+}
+
+function gitDirtyStatus {
+	local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo c)"
+	local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo '*')"
+	local unTrackedFiles="$([[ $(echo $gitStatus | grep 'Untracked files:') != '' ]] && echo …)"
+	echo -n "$unCommitedWork$unStagedWork$unTrackedFiles"
+}
+
+function gitBranchDivergence {
+	if [[ -d .git/svn ]]; then
+		if [[ -f .git/refs/remotes/git-svn && -f .git/refs/heads/master ]]; then
+			local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑(git-svn)')"
+		elif [[ -f .git/refs/remotes/trunk && -f .git/refs/heads/master ]]; then
+			local diverged="$([[ $(git diff master trunk) != '' ]] && echo '↓↑(trunk)')"
+		else
+			local diverged="?"
+		fi
+	else
+		local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p')"
+		local ahead="$(echo $gitStatus | sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p')"
+		local diverged="$(echo $gitStatus | sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p')"
+	fi
+	echo -n "$behind$ahead$diverged"
+}
+
 export gitInfo
 
 function svnInfos() {
