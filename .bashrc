@@ -41,13 +41,16 @@ function define_PS1_with_git_info {
 	if [ -n "$SSH_CLIENT" ]; then
 		local userAndHost="$green$USER@$HOSTNAME$default_text_color_and_intensity:"
 	fi
-	local working_dir="$bold_blue$(echo $PWD | sed 's,'$HOME',~,')$default_text_color_and_intensity"
+	local working_dir="$(echo $PWD | sed 's,'$HOME',~,')"
+	local working_dir_length="${#working_dir}"
+	[[ $working_dir_length -gt 35 ]] && working_dir="…${working_dir:(($working_dir_length - 35))}"
+	working_dir="$bold_blue$working_dir$default_text_color_and_intensity"
 	local git_info="$(gitInfo)"
 	local svn_info="$(svnInfos)"
 
 	local exit_status_color="$([[ $last_command_exit_status == 0 ]] || echo $red)"
 
-	local prompt_left="$bg_color$exit_status_color╭─$off$bg_color $userAndHost$working_dir$git_info$svn_info"
+	local prompt_left="$bg_color$exit_status_color╭─$off$bg_color $userAndHost$working_dir $git_info$svn_info"
 	local time="$(date +'%T')"
 
 	local prompt_left_size="$(echo -n $prompt_left | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)"
