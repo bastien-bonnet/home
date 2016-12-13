@@ -11,10 +11,6 @@ function main {
 	set_application_preferences
 }
 
-function shell_is_interactive {
-	[ -n "$PS1" ]
-}
-
 function set_prompt {
 	if $(check_color_support); then
 		PROMPT_COMMAND=define_PS1_with_git_info
@@ -22,6 +18,7 @@ function set_prompt {
 		PS1='\u@\h:\w\$ '
 		set_terminal_title
 	fi
+	PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 }
 
 function define_PS1_with_git_info {
@@ -117,6 +114,10 @@ function color_man_pages {
 function check_color_support {
 	# If 0, we have color support; assume it's compliant with Ecma-48 (ISO/IEC-6429). (Lack of such support is extremely rare, and such a case would tend to support setf rather than setaf.)
 	[ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null
+}
+
+function shell_is_interactive {
+	[ -n "$PS1" ]
 }
 
 main
