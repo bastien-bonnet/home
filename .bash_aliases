@@ -7,6 +7,8 @@ a l="ls -oh --time-style=long-iso --group-directories-first"
 a ll="ls -l"
 a la="ls -A"
 a lla="ls -Al"
+cdAndLs () { cd $1 && ls; }
+a cl="cdAndLs"
 a wl="wc -l"
 a rm="rm -i"
 a r="mv -bt ~/.local/share/Trash/files/"
