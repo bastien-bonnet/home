@@ -25,8 +25,7 @@ a ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 
 a freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
 a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
-a u='sudo apt-get update && sudo apt-get upgrade'
-a un='u --with-new-pkgs'
+a u='sudo apt update && sudo apt upgrade'
 
 # git aliases
 function_exists() {
