@@ -73,6 +73,12 @@ a todo='sort ~/.todo.txt | grep -v ^x | grep -E "@waiting|$"'
 a efst="ee /etc/fstab"
 a eday='grep "^== $(date -I)" ~/doc/activité.asciidoc  && vim + ~/doc/activité.asciidoc || (echo -e "\n== $(date -I)" >> ~/doc/activité.asciidoc && vim + ~/doc/activité.asciidoc)'
 
+function create_sample_bash_script {
+	[[ ! -e "$1" ]] && (echo -e '#!/bin/bash\n\n' > "$1" && chmod +x "$1")
+	vim + test.bash
+}
+a vt="create_sample_bash_script test.bash"
+
 # rsync aliases
 a rs="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
 a rsc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
