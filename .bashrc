@@ -18,7 +18,7 @@ function set_prompt {
 		PS1='\u@\h:\w\$ '
 		set_terminal_title
 	fi
-	PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+	PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
 }
 
 function define_PS1_with_git_info {
