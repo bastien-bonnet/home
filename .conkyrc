@@ -1,0 +1,163 @@
+conky.config = {
+	use_xft = true,
+	font = 'DejaVu Sans:size=9',
+	xftalpha = 0.8,
+	text_buffer_size = 2048,
+	update_interval = 2,
+	total_run_times = 0,
+
+	-- Use double buffering (reduces flicker, may not work for everyone)
+	double_buffer = true,
+
+	-- minimum_width = 600,
+	minimum_height = 0,
+	maximum_width = 600,
+
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	stippled_borders = 0,
+	border_inner_margin = 35,
+	border_width = 1,
+
+	-- Default colors and also border colors
+	default_color = 'lightgrey',
+	--own_window_colour white
+
+	-- Conky window parameters
+	alignment = 'middle_right',
+	gap_x = 80,
+	gap_y = 0,
+
+	-- Subtract file system buffers from used memory?
+	no_buffers = true,
+
+	-- number of cpu samples to average
+	-- set to 1 to disable averaging
+	cpu_avg_samples = 2,
+
+	-- number of net samples to average
+	-- set to 1 to disable averaging
+	net_avg_samples = 2,
+
+	-- Force UTF8? note that UTF8 support required XFT
+	override_utf8_locale = true,
+
+	-- Adds spaces around certain objects to stop them from moving other things around. Only helps with mono font
+	-- use_spacer = 'right',
+
+	pad_percents = 3,
+	short_units = true,
+
+	-- Create own window instead of using desktop (required in some file managers like nautilus)
+	own_window = true,
+	own_window_argb_visual = true,
+
+	-- If own_window is yes, you may use type normal, desktop or override
+	own_window_type = 'normal',
+
+	-- Use pseudo transparency with own_window?
+	own_window_transparent = true,
+
+	-- Window color (if own_window_transparent is set to no)
+	--own_window_colour 242520
+
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	default_bar_width = 200, default_bar_height = 8,
+
+	lua_load = '~/.conky_bg.lua',
+	lua_draw_hook_pre = 'draw_bg',
+
+	-- cpu temp
+	-- To make the following work, you need to do :
+	-- sudo modprobe coretemp
+	-- edit /etc/modules and add the line 'coretemp'
+	-- sudo apt-get install lm-sensors
+
+	-- cpu core temperature for a given core number
+	template0 = [[${execi 5 sensors | grep -i "core \1:" | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}]],
+
+	-- cpu info for a given core
+	template1 = [[${alignr}Core \1: ${template0 \1} ${cpubar cpu\1}]],
+
+	-- process by cpu
+	template2 = [[${goto 150}${top name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top pid \1}    ${top mem \1}    ${top cpu \1}${font}]],
+
+	-- process by mem
+	template3 = [[${goto 150}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem pid \1}    ${top_mem mem \1}    ${top_mem cpu \1}${font}]],
+
+	-- network connection info
+	template4 = [[\1: ${addr \1}#
+${goto 340}↑${upspeed \1}${goto 420}${upspeedgraph \1 20,40 000000 ffffff}${goto 500}↓${downspeed \1}${alignr}${downspeedgraph \1 20,40 000000 ffffff}]]
+
+};
+
+conky.text = [=[
+${voffset -40}
+RESSOURCES ${hr 2}
+    CPU#
+${alignr}Physical: ${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
+${template1 0}
+${template1 1}
+${template1 2}
+${template1 3}
+${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
+${template1 4}
+${template1 5}
+${template1 6}
+${template1 7}
+${endif}#
+
+    RAM#
+${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
+
+    SSD#
+# Not using fs_bar because not counting superuser reserved space as used
+${alignr}Root ${fs_size /}, free: ${fs_free /root} ${execibar 60 df --output='pcent' / | tail -n 1 | grep -oE '\w+'}
+${alignr}Media ${fs_size /media/DATA}, free: ${fs_free /media/DATA} ${execibar 60 df --output='pcent' /media/DATA | tail -n 1 | grep -oE '\w+'}
+#
+${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
+
+    Battery#
+${alignr}${battery BAT1} ${battery_time BAT1} ${battery_bar BAT1}#
+${endif}
+
+
+SYSTEM ${hr 2}
+    ${font OpenLogos:size=14}u${font} ${kernel}${voffset 20}
+    GPU temp: ${alignr}${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
+    GPU driver version: ${alignr}${execi 60 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}
+
+
+NETWORK ${hr 2}
+${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
+    ${template4 eth4}
+
+    ${template4 wlan0}
+    ${wireless_essid wlan0}${wireless_link_bar 8,20 wlan0}
+${else}
+    eth0 : ${addr eth0}${goto 250}↑${upspeed eth0} ${alignr}↓${downspeed eth0}
+    ${goto 250}${upspeedgraph eth0 15,80 000000 ffffff} ${alignr}${downspeedgraph eth0 15,80 000000 ffffff}
+${endif}
+
+PROCESSES ${hr 2}
+    ${goto 325}${alignr}${font DejaVu Sans Mono:size=9}PID     RAM %     CPU %${font}
+    ${voffset 35}by CPU${voffset -35}#
+    ${color 88aadd}${template2 1}${color lightgrey}
+    ${template2 2}
+    ${template2 3}
+    ${template2 4}
+
+    ${voffset 35}by MEM${voffset -35}#
+    ${color 88aadd}${template3 1}${color lightgrey}
+    ${template3 2}
+    ${template3 3}
+    ${template3 4}
+
+
+DATE ${hr 2}
+${alignr}${voffset 10}${font DejaVu Sans:size=12}${time %a %d %b %Y}${font}${voffset -10} ${font DejaVu Sans:size=26}${time %H:%M}${font}
+
+${voffset -80}
+]=];
