@@ -48,3 +48,5 @@
 [mergetool]
 	keepBackup = false
 	keepTemporaries = false
+[rerere]
+	enabled = true
