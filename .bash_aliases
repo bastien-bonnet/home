@@ -77,7 +77,7 @@ function create_sample_bash_script {
 	[[ ! -e "$1" ]] && (echo -e '#!/bin/bash\n\n' > "$1" && chmod +x "$1")
 	vim + test.bash
 }
-a vt="create_sample_bash_script test.bash"
+a etb="create_sample_bash_script test.bash"
 
 # rsync aliases
 a rs="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
