@@ -82,10 +82,10 @@ conky.config = {
 	template1 = [[${alignr}Core \1: ${template0 \1} ${cpubar cpu\1}]],
 
 	-- process by cpu
-	template2 = [[${goto 150}${top name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top pid \1}    ${top mem \1}    ${top cpu \1}${font}]],
+	template2 = [[${goto 140}${top name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top pid \1}    ${top mem \1}    ${top cpu \1}${font}]],
 
 	-- process by mem
-	template3 = [[${goto 150}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem pid \1}    ${top_mem mem \1}    ${top_mem cpu \1}${font}]],
+	template3 = [[${goto 140}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem pid \1}    ${top_mem mem \1}    ${top_mem cpu \1}${font}]],
 
 	-- network connection info
 	template4 = [[\1: ${addr \1}#
