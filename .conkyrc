@@ -115,12 +115,14 @@ ${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
     SSD#
 # Not using fs_bar because not counting superuser reserved space as used
 ${alignr}Root ${fs_size /}, free: ${fs_free /root} ${execibar 60 df --output='pcent' / | tail -n 1 | grep -oE '\w+'}
-${alignr}Media ${fs_size /media/DATA}, free: ${fs_free /media/DATA} ${execibar 60 df --output='pcent' /media/DATA | tail -n 1 | grep -oE '\w+'}
+${if_mounted /media/DATA}#
+	${alignr}Media ${fs_size /media/DATA}, free: ${fs_free /media/DATA} ${execibar 60 df --output='pcent' /media/DATA | tail -n 1 | grep -oE '\w+'}#
+${endif}#
 #
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
 
     Battery#
-${alignr}${battery BAT1} ${battery_time BAT1} ${battery_bar BAT1}#
+${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
 
 
