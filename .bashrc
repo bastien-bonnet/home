@@ -1,7 +1,7 @@
 function main {
 	shell_is_interactive || return
 
-	export PATH=$PATH:~/software:~/.scripts
+	export PATH=$PATH:~/software:~/.scripts:~/.local/bin
 
 	source ~/.bash_functions && set_prompt
 
