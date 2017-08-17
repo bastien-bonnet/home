@@ -76,7 +76,7 @@ conky.config = {
 	-- sudo apt-get install lm-sensors
 
 	-- cpu core temperature for a given core number
-	template0 = [[${execi 5 sensors | grep -i "core \1:" | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}]],
+	template0 = [[${execi 5 sensors | grep -i "core $(expr \1 % 4):" | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}]],
 
 	-- cpu info for a given core
 	template1 = [[${alignr}Core \1: ${template0 \1} ${cpubar cpu\1}]],
