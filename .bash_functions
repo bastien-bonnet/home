@@ -35,10 +35,11 @@ function gitBranchColored {
 }
 
 function gitDirtyStatus {
-	local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo c)"
+	local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo C)"
+	local unMergedWork="$([[ $(echo $gitStatus | grep 'Unmerged paths:') != '' ]] && echo U)"
 	local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo '*')"
 	local unTrackedFiles="$([[ $(echo $gitStatus | grep 'Untracked files:') != '' ]] && echo …)"
-	echo -n "$unCommitedWork$unStagedWork$unTrackedFiles"
+	echo -n "$unCommitedWork$unMergedWork$unStagedWork$unTrackedFiles"
 }
 
 function gitBranchDivergence {
