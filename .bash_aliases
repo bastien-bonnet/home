@@ -14,7 +14,8 @@ a rm="rm -i"
 a r="mv -bt ~/.local/share/Trash/files/"
 a pl="ps -eo pid,user,pcpu,pmem,start,comm,args"
 grepWithFirstLine () {
-	sed -n -e '1p' -e '1d' -e "/$1/Ip"
+	head -n 1
+	grep -i $1
 }
 a pg="pl | grepWithFirstLine"
 a duh="du -had 1 | sort -h"
