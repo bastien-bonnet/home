@@ -28,9 +28,9 @@ function define_PS1_with_git_info {
 	local green="\[\033[32m\]"
 	local yellow="\[\033[33m\]"
 	local bold_blue="\[\033[1;34m\]"
-	local grey_bg="\[\033[48;5;238m\]"
+	local green_bg="\[\033[48;5;22m\]"
 	local red_bg="\[\033[48;5;88m\]"
-	local bg_color="$([[ $last_command_exit_status == 0 ]] && echo $grey_bg || echo $red_bg)"
+	local bg_color="$([[ $last_command_exit_status == 0 ]] && echo $green_bg || echo $red_bg)"
 	local off="\[\033[00m\]"
 	local default_text_color_and_intensity="\[\033[39m\]\[\033[22m\]"
 
