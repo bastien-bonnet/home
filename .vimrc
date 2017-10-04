@@ -3,8 +3,6 @@
 " Chargement de plugins selon le type de fichier
 filetype plugin on
 
-set foldmethod=indent
-
 set encoding=utf-8
 set fileencodings=utf-8
 
