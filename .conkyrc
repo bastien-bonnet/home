@@ -1,13 +1,18 @@
 conky.config = {
 	use_xft = true,
 	font = 'DejaVu Sans:size=9',
-	xftalpha = 0.8,
+	xftalpha = 0.98,
 	text_buffer_size = 2048,
 	update_interval = 2,
 	total_run_times = 0,
 
 	-- Use double buffering (reduces flicker, may not work for everyone)
 	double_buffer = true,
+
+	-- Conky window parameters
+	alignment = 'top_right',
+	gap_x = 0,
+	gap_y = 0,
 
 	-- minimum_width = 600,
 	minimum_height = 0,
@@ -17,17 +22,12 @@ conky.config = {
 	draw_outline = false,
 	draw_borders = false,
 	stippled_borders = 0,
-	border_inner_margin = 35,
+	border_inner_margin = 20,
 	border_width = 1,
 
 	-- Default colors and also border colors
 	default_color = 'lightgrey',
-	--own_window_colour white
-
-	-- Conky window parameters
-	alignment = 'middle_right',
-	gap_x = 80,
-	gap_y = 0,
+	own_window_colour = 'black',
 
 	-- Subtract file system buffers from used memory?
 	no_buffers = true,
@@ -94,7 +94,6 @@ ${goto 340}↑${upspeed \1}${goto 420}${upspeedgraph \1 20,40 000000 ffffff}${go
 };
 
 conky.text = [=[
-${voffset -40}
 RESSOURCES ${hr 2}
     CPU#
 ${alignr}Physical: ${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
@@ -161,5 +160,4 @@ PROCESSES ${hr 2}
 DATE ${hr 2}
 ${alignr}${voffset 10}${font DejaVu Sans:size=12}${time %a %d %b %Y}${font}${voffset -10} ${font DejaVu Sans:size=26}${time %H:%M}${font}
 
-${voffset -80}
 ]=];

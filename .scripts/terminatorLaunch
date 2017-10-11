@@ -3,4 +3,5 @@
 WIDTH=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f 1)
 HEIGHT=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f 2)
 HALF_HEIGHT=$(($HEIGHT/2))
-terminator --geometry="$WIDTH"x"$HALF_HEIGHT"+0+0
+CUSTOM_WIDTH=$(($WIDTH*2/3))
+terminator --geometry="$CUSTOM_WIDTH"x"$HALF_HEIGHT"+0+0
