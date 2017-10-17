@@ -7,7 +7,7 @@
 	ui = auto
 [pretty]
 	# oneline log format with short hash, relative date, committer name, branch info, short comment
-	onelinerelativedate = "tformat:%C(yellow)%h%Creset %cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
+	onelinerelativedate = "tformat:%C(yellow)%h%Creset %<(8,trunc)%cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
 	onelineabsolutedate = "tformat:%C(yellow)%h%Creset %ci %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
 [alias]
 	co = checkout
