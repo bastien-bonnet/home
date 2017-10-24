@@ -79,6 +79,7 @@ function source_bash_config_files {
 
 function set_application_preferences {
 	export SPARK_HOME="$HOME/software/spark"
+	export PATH="$PATH:$SPARK_HOME/bin"
 	export PYTHONPATH="$SPARK_HOME/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH"
 	export TEXMFHOME="$HOME/.texmf"
 
