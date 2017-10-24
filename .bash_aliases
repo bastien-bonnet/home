@@ -7,6 +7,7 @@ a l="ls -oh --time-style=long-iso --group-directories-first"
 a ll="ls -l"
 a la="ls -A"
 a lla="ls -Al"
+a t="tree -D --du -h"
 cdAndLs () { cd $1 && ls; }
 a cl="cdAndLs"
 a wl="wc -l"
