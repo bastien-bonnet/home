@@ -77,12 +77,18 @@ imap <silent> <End> <C-o>g<End>
 
 " Oneline a file
 command Ol %s/\n//
+
 " Indent a oneline XML file
 map <F5> :set ft=xml<cr>:%s/></>\r</g<cr>gg=G
+
 " Oneline an xml file
 command Olx %s/\n// | s/>\s*</></g
+
 " Replace normal spaces with unbreakable spaces (french rules)
 command Ub %s/\([[:alnum:]]\) \(:\|;\|!\|?\|»\)/\1 \2/gce | %s/\(«\) \([[:alnum:]]\)/\1 \2/gce
+
+" Search visually selected text
+vnoremap // y/\V<C-R>"<CR>
 
 """"""""""""""""""""""""""""""""""""
 " TABS
