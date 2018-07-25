@@ -123,7 +123,7 @@ ${endif}#
 #
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
 
-    Battery#
+    Bat. #
 ${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
 
@@ -160,7 +160,8 @@ PROCESSES ${hr 2}
     ${template3 4}
 
 
-DATE ${hr 2}
-${alignr}${voffset 10}${font DejaVu Sans:size=12}${time %a %d %b %Y}${font}${voffset -10} ${font DejaVu Sans:size=26}${time %H:%M}${font}
 
+${alignr}${font DejaVu Sans:size=12}${time %a %d %b %Y}${font}#
+${voffset -30} ${font DejaVu Sans:size=26}${time %H:%M}${font}#
+${voffset -45}#
 ]=];
