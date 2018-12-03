@@ -10,6 +10,7 @@ a lla="ls -Al"
 a t="tree -D --du -h"
 cdAndLs () { cd $1 && ls; }
 a cl="cdAndLs"
+a rl="readlink -m"
 a wl="wc -l"
 a rm="rm -i"
 a r="mv -bt ~/.local/share/Trash/files/"
