@@ -50,3 +50,5 @@
 	keepTemporaries = false
 [rerere]
 	enabled = true
+[credential]
+	helper = cache --timeout=36000
