@@ -39,12 +39,12 @@ function_exists() {
 
 . /usr/share/bash-completion/completions/git
 
-for git_alias in $(__git_aliases); do
+for git_alias in $(git --list-cmds=alias); do
 	alias g$git_alias="git $git_alias"
 	completion_function=_git_$(__git_aliased_command $git_alias)
 	function_exists $completion_function && __git_complete g$git_alias $completion_function
 done
-for git_command in $(__git_list_all_commands); do
+for git_command in $(git --list-cmds=main,others,nohelpers); do
 	alias g$git_command="git $git_command"
 	completion_function=_git_$git_command
 	function_exists $completion_function && __git_complete g$git_command $completion_function
