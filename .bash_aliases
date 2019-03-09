@@ -26,6 +26,7 @@ a duh="du -had 1 | sort -h"
 a lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -MR '
 
 a ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
+a kl="qdbus org.kde.ksmserver /KSMServer logout 0 3 3"
 
 a freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
 a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
