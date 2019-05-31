@@ -27,6 +27,9 @@
 	las = log --graph --pretty=onelinerelativedate --all --name-status
 	ld = log --graph --pretty=onelineabsolutedate --date=short
 
+	# diff
+	dns = diff --name-status
+
 	# minimal word diff
 	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
 	dc = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' --cached
