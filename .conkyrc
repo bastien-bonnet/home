@@ -137,8 +137,7 @@ ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
     Wifi ${template4 wlp2s0}
         ${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${else}
-    eth0 : ${addr eth0}${goto 250}↑${upspeed eth0} ${alignr}↓${downspeed eth0}
-    ${goto 250}${upspeedgraph eth0 15,80 000000 ffffff} ${alignr}${downspeedgraph eth0 15,80 000000 ffffff}
+    Ethernet ${template4 enp5s0}
 ${endif}
 
 PROCESSES ${hr 2}
