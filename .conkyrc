@@ -88,8 +88,7 @@ conky.config = {
 	template3 = [[${goto 140}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem pid \1}    ${top_mem mem \1}    ${top_mem cpu \1}${font}]],
 
 	-- network connection info
-	template4 = [[\1: ${addr \1}#
-${goto 340}↑${upspeed \1}${goto 420}${upspeedgraph \1 20,40 000000 ffffff}${goto 500}↓${downspeed \1}${alignr}${downspeedgraph \1 20,40 000000 ffffff}]]
+	template4 = [[(\1: ${addr \1})${goto 400}↑ ${upspeed \1}${alignr}↓ ${downspeed \1}]]
 
 };
 
@@ -133,10 +132,10 @@ SYSTEM ${hr 2}
 
 NETWORK ${hr 2}
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
-    ${template4 eth4}
+    Ethernet ${template4 eth4}
 
-    ${template4 wlan0}
-    ${wireless_essid wlan0}${wireless_link_bar 8,20 wlan0}
+    Wifi ${template4 wlp2s0}
+        ${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${else}
     eth0 : ${addr eth0}${goto 250}↑${upspeed eth0} ${alignr}↓${downspeed eth0}
     ${goto 250}${upspeedgraph eth0 15,80 000000 ffffff} ${alignr}${downspeedgraph eth0 15,80 000000 ffffff}
