@@ -94,7 +94,7 @@ conky.config = {
 
 conky.text = [=[
 RESSOURCES ${hr 2}
-    CPU#
+        CPU#
 ${alignr}Physical: ${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
 ${template1 0}
 ${template1 1}
@@ -107,10 +107,10 @@ ${template1 6}
 ${template1 7}
 ${endif}#
 
-    RAM#
+        RAM#
 ${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
 
-    SSD#
+        SSD#
 # Not using fs_bar because not counting superuser reserved space as used
 ${alignr}Root ${fs_size /}, free: ${fs_free /root} ${execibar 60 df --output='pcent' / | tail -n 1 | grep -oE '\w+'}
 ${if_mounted /media/data}#
@@ -119,40 +119,43 @@ ${endif}#
 #
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
 
-    Bat. #
+        Bat. #
 ${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
 
 
+
 SYSTEM ${hr 2}
-    ${font OpenLogos:size=14}u${font} ${exec lsb_release -rs} (${kernel})${alignr}Uptime: ${uptime_short}${voffset 20}
-    GPU temp: ${alignr}${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
-    GPU driver version: ${alignr}${execi 60 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}
+        ${font OpenLogos:size=14}u${font} ${exec lsb_release -rs} (${kernel})${alignr}Uptime: ${uptime_short}${voffset 20}
+        GPU temp: ${alignr}${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
+        GPU driver version: ${alignr}${execi 60 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}
+
 
 
 NETWORK ${hr 2}
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
-    Ethernet ${template4 eth4}
+        Ethernet ${template4 eth4}
 
-    Wifi ${template4 wlp2s0}
-        ${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
+        Wifi ${template4 wlp2s0}
+            ${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${else}
     Ethernet ${template4 enp5s0}
 ${endif}
 
-PROCESSES ${hr 2}
-    ${goto 325}${alignr}${font DejaVu Sans Mono:size=9}PID     RAM %     CPU %${font}
-    ${voffset 35}by CPU${voffset -35}#
-    ${color 88aadd}${template2 1}${color lightgrey}
-    ${template2 2}
-    ${template2 3}
-    ${template2 4}
 
-    ${voffset 35}by MEM${voffset -35}#
-    ${color 88aadd}${template3 1}${color lightgrey}
-    ${template3 2}
-    ${template3 3}
-    ${template3 4}
+PROCESSES ${hr 2}
+        ${goto 325}${alignr}${font DejaVu Sans Mono:size=9}PID     RAM %     CPU %${font}
+        ${voffset 35}by CPU${voffset -35}#
+        ${color 88aadd}${template2 1}${color lightgrey}
+        ${template2 2}
+        ${template2 3}
+        ${template2 4}
+
+        ${voffset 35}by MEM${voffset -35}#
+        ${color 88aadd}${template3 1}${color lightgrey}
+        ${template3 2}
+        ${template3 3}
+        ${template3 4}
 
 
 
