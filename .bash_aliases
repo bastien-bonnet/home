@@ -1,45 +1,71 @@
-# bash aliases
 alias a="alias"
-a f="find . -iname"
-a grep="grep --color=auto"
+
+
+###################################################################################################
+# FILE INFORMATION
+
 a ls="ls --color=auto -F -h"
 a l="ls -oh --time-style=long-iso --group-directories-first"
 a lt="l -t"
 a la="l -A"
-a ll="ls -l"
 a ldo="l ~/Downloads"
-a rdo="r ~/Downloads/*"
+a ll="ls -l"
 a t="tree -D --du -h"
+
 cdAndLs () { cd $1 && ls; }
 a cl="cdAndLs"
+
 a rl="readlink -m"
+
 a wl="wc -l"
-a rm="rm -i"
-a r="mv -bt ~/.local/share/Trash/files/"
+a lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -MR '
+
+a f="find . -iname"
+a grep="grep --color=auto"
+
+a urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+a urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
+
+
+###################################################################################################
+# SYSTEM
+
+a u='sudo apt update && sudo apt upgrade'
 a pl="ps -eo pid,user,pcpu,pmem,start,comm,args"
 grepWithFirstLine () {
 	head -n 1
 	grep -i $1
 }
 a pg="pl | grepWithFirstLine"
+
 a duh="du -had 1 | sort -h"
 
-a lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -MR '
+a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 
 a ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 a kl="qdbus org.kde.ksmserver /KSMServer logout 0 3 3"
 
-a freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
-a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
-a u='sudo apt update && sudo apt upgrade'
 
-# git aliases
+###################################################################################################
+# CLEANING
+a rm="rm -i"
+a r="mv -bt ~/.local/share/Trash/files/"
+a rdo="r ~/Downloads/*"
+a r="~/.scripts/remove"
+a et="~/.scripts/emptyTrash"
+a secure_erase="sudo shred -vzn1"
+a freemem='sudo sync && sudo echo 3 | sudo tee /proc/sys/vm/drop_caches'
+
+
+###################################################################################################
+# GIT
+
+. /usr/share/bash-completion/completions/git
+
 function_exists() {
 	declare -f -F $1 > /dev/null
 	return $?
 }
-
-. /usr/share/bash-completion/completions/git
 
 for git_alias in $(git --list-cmds=alias); do
 	alias g$git_alias="git $git_alias"
@@ -52,15 +78,13 @@ for git_command in $(git --list-cmds=main,others,nohelpers); do
 	function_exists $completion_function && __git_complete g$git_command $completion_function
 done
 
+a gss="~/.scripts/statusGitSvn"
+a gsu="~/.scripts/updateGitSvn"
 
-# Text processing
-a urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-a urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 
-# Alienware NumpadEnter mapping to Enter
-a awe="xmodmap -e 'keycode 104 = Return'"
+###################################################################################################
+# FILE EDITION
 
-# file edition
 export EDITOR=vim
 a v="vim"
 a e="$EDITOR"
@@ -72,10 +96,7 @@ a ebf="e ~/.bash_functions; source ~/.bash_functions && echo 'functions sourced'
 a egc="e ~/.gitconfig"
 a eck="e ~/.conkyrc"
 a evrc="e ~/.vimrc"
-a etodo="e ~/.todo.txt"
-a todo='sort ~/.todo.txt | grep -v ^x | grep -E "@waiting|$"'
 a efst="ee /etc/fstab"
-a eday='grep "^== $(date -I)" ~/doc/activité.asciidoc  && vim + ~/doc/activité.asciidoc || (echo -e "\n== $(date -I)" >> ~/doc/activité.asciidoc && vim + ~/doc/activité.asciidoc)'
 
 function create_sample_bash_script {
 	[[ ! -e "$1" ]] && (echo -e '#!/bin/bash\n\n' > "$1" && chmod +x "$1")
@@ -83,30 +104,14 @@ function create_sample_bash_script {
 }
 a etb="create_sample_bash_script test.bash"
 
-# rsync aliases
+a o="xdg-open"
+a m="touch /tmp/meld1.txt /tmp/meld2.txt && meld /tmp/meld1.txt /tmp/meld2.txt"
+
+
+###################################################################################################
+# RSYNC
+
 a rs="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
 a rsc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
 a rsssh="rslocal -e 'ssh -p 1234'"
 
-
-######################
-# SCRIPTS
-
-a r="~/.scripts/remove"
-a et="~/.scripts/emptyTrash"
-a gss="~/.scripts/statusGitSvn"
-a gsu="~/.scripts/updateGitSvn"
-
-
-######################
-# GUI PROGRAMS
-
-# File editing
-GEDITOR=gvim
-a g="$GEDITOR"
-a gg="kdesudo $GEDITOR"
-
-# Programs
-a o="xdg-open"
-a syn="kdesudo synaptic"
-a m="touch /tmp/meld1.txt /tmp/meld2.txt && meld /tmp/meld1.txt /tmp/meld2.txt"
