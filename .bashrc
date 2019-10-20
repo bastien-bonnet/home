@@ -27,7 +27,7 @@ function define_PS1_with_git_info {
 	local red="\[\033[31m\]"
 	local green="\[\033[32m\]"
 	local yellow="\[\033[33m\]"
-	local bold_blue="\[\033[1;34m\]"
+	local bold="\[\033[1;38m\]"
 	local green_bg="\[\033[48;5;22m\]"
 	local red_bg="\[\033[48;5;88m\]"
 	local bg_color="$([[ $last_command_exit_status == 0 ]] && echo $green_bg || echo $red_bg)"
@@ -41,7 +41,7 @@ function define_PS1_with_git_info {
 	local working_dir="$(echo $PWD | sed 's,'$HOME',~,')"
 	local working_dir_length="${#working_dir}"
 	[[ $working_dir_length -gt 35 ]] && working_dir="…${working_dir:(($working_dir_length - 35))}"
-	working_dir="$bold_blue$working_dir$default_text_color_and_intensity"
+	working_dir="$bold$working_dir$default_text_color_and_intensity"
 	local git_info="$(gitInfo)"
 	local svn_info="$(svnInfos)"
 
