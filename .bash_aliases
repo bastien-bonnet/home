@@ -38,7 +38,9 @@ grepWithFirstLine () {
 }
 a pg="pl | grepWithFirstLine"
 
-a duh="du -had 1 | sort -h"
+duh () {
+	du -had 1 ${1:-.} | sort -h
+}
 
 a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 
