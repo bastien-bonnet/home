@@ -94,7 +94,7 @@ conky.config = {
 
 conky.text = [=[
 RESSOURCES ${hr 2}
-        ${font FontAwesome}${font} CPU#
+        ${font FontAwesome}${font}${goto 100}CPU#
 ${alignr}Physical: ${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
 ${template1 0}
 ${template1 1}
@@ -108,11 +108,11 @@ ${template1 7}
 ${endif}#
 
 
-        ${font FontAwesome} ${font}RAM#
+        ${font FontAwesome} ${font}${goto 100}RAM#
 ${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
 
 
-        ${font FontAwesome}${font} SSD#
+        ${font FontAwesome}${font}${goto 100}SSD#
 # Not using fs_bar because not counting superuser reserved space as used
 ${alignr}Root ${fs_size /}, free: ${fs_free /root} ${execibar 60 df --output='pcent' / | tail -n 1 | grep -oE '\w+'}
 ${alignr}/boot ${fs_size /boot}, free: ${fs_free /boot} ${execibar 60 df --output='pcent' /boot | tail -n 1 | grep -oE '\w+'}
@@ -123,24 +123,24 @@ ${endif}#
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
 
 
-        ${font FontAwesome}${font} Bat. #
+        ${font FontAwesome}${font}${goto 100}Bat. #
 ${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
 
 
 
 SYSTEM ${hr 2}
-        ${font OpenLogos:size=14}u${font} ${exec lsb_release -rs} (${kernel})${alignr}Uptime: ${uptime_short}${voffset 20}
-        ${font FontAwesome}${font} GPU ${alignr}temp: ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
+        ${font OpenLogos:size=15}u${font}${goto 100}${exec lsb_release -rs} (${kernel})${alignr}Uptime: ${uptime_short}${voffset 20}
+        ${font FontAwesome}${font}${goto 100}GPU ${alignr}temp: ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
         ${alignr}driver version: ${execi 60 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}
 
 
 NETWORK ${hr 2}
-        ${font FontAwesome}${font} ${template4 enp5s0}
+        ${font FontAwesome}${font}${goto 100}${template4 enp5s0}
 
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
-        ${font FontAwesome}${font} ${template4 wlp2s0}
-              ${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
+        ${font FontAwesome}${font}${goto 100}${template4 wlp2s0}
+${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${endif}
 
 
