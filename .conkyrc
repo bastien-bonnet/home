@@ -94,6 +94,7 @@ conky.config = {
 
 conky.text = [=[
 RESSOURCES ${hr 2}
+
         ${font FontAwesome}${font}${goto 100}CPU#
 ${alignr}Physical: ${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
 ${template1 0}
@@ -130,12 +131,14 @@ ${endif}
 
 
 SYSTEM ${hr 2}
+
         ${font OpenLogos:size=15}u${font}${goto 100}${exec lsb_release -rs} (${kernel})${alignr}Uptime: ${uptime_short}${voffset 20}
         ${font FontAwesome}${font}${goto 100}GPU ${alignr}temp: ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
         ${alignr}driver version: ${execi 60 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}
 
 
 NETWORK ${hr 2}
+
         ${font FontAwesome}${font}${goto 100}${template4 enp5s0}
 
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
