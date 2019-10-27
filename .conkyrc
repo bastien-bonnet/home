@@ -13,11 +13,10 @@ conky.config = {
 	alignment = 'top_right',
 	gap_x = 0,
 	gap_y = 0,
-
-	-- minimum_width = 600,
 	minimum_height = 0,
 	maximum_width = 600,
 
+	-- Borders
 	draw_shades = false,
 	draw_outline = false,
 	draw_borders = false,
@@ -69,33 +68,42 @@ conky.config = {
 	lua_load = '~/.conky_bg.lua',
 	lua_draw_hook_pre = 'draw_bg',
 
-	-- cpu temp
+
 	-- To make the following work, you need to do :
 	-- sudo modprobe coretemp
 	-- edit /etc/modules and add the line 'coretemp'
 	-- sudo apt-get install lm-sensors
 
-	-- cpu core temperature for a given core number
+	-- Cpu core temperature for a given core number
 	template0 = [[${execi 5 sensors | grep -i "core $(expr \1 % 4):" | sed 's/.*\ \ +//' | sed 's/C\ *(.*$//'}]],
 
-	-- cpu info for a given core
+	-- Cpu info for a given core
 	template1 = [[${alignr}Core \1: ${template0 \1} ${cpubar cpu\1}]],
 
-	-- process by cpu
+	-- Process by cpu
 	template2 = [[${goto 140}${top name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top pid \1}    ${top mem \1}    ${top cpu \1}${font}]],
 
-	-- process by mem
+	-- Process by mem
 	template3 = [[${goto 140}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem pid \1}    ${top_mem mem \1}    ${top_mem cpu \1}${font}]],
 
-	-- network connection info
-	template4 = [[\1: ${addr \1}${goto 400}↑ ${upspeed \1}${alignr}↓ ${downspeed \1}]]
+	-- Network connection info
+	template4 = [[\1: ${addr \1}${goto 370}${font FontAwesome} ${font}${upspeed \1}${alignr}${font FontAwesome} ${font}${downspeed \1}]],
+
+	-- Section header
+	template5 = [[        ${font FontAwesome:size=15}\1${font}${goto 100}\2#]],
+
+	-- Disk space
+	-- Not using fs_bar because not counting superuser reserved space as used
+	template6 = [[${alignr}\1 ${fs_size \1}, free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
+
 
 };
+
 
 conky.text = [=[
 RESSOURCES ${hr 2}
 
-        ${font FontAwesome}${font}${goto 100}CPU#
+${template5  CPU}
 ${alignr}Physical: ${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
 ${template1 0}
 ${template1 1}
@@ -109,16 +117,15 @@ ${template1 7}
 ${endif}#
 
 
-        ${font FontAwesome} ${font}${goto 100}RAM#
+${template5  RAM}
 ${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
 
 
-        ${font FontAwesome}${font}${goto 100}SSD#
-# Not using fs_bar because not counting superuser reserved space as used
-${alignr}Root ${fs_size /}, free: ${fs_free /root} ${execibar 60 df --output='pcent' / | tail -n 1 | grep -oE '\w+'}
-${alignr}/boot ${fs_size /boot}, free: ${fs_free /boot} ${execibar 60 df --output='pcent' /boot | tail -n 1 | grep -oE '\w+'}
+${template5  SSD}
+${template6 /}
+${template6 /boot}
 ${if_mounted /media/data}#
-${alignr}Data ${fs_size /media/data}, free: ${fs_free /media/data} ${execibar 60 df --output='pcent' /media/data | tail -n 1 | grep -oE '\w+'}#
+${template6 /media/data}
 ${endif}#
 #
 ${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
@@ -129,22 +136,25 @@ ${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
 
 
-
 SYSTEM ${hr 2}
 
-        ${font OpenLogos:size=15}u${font}${goto 100}${exec lsb_release -rs} (${kernel})${alignr}Uptime: ${uptime_short}${voffset 20}
-        ${font FontAwesome}${font}${goto 100}GPU ${alignr}temp: ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
+        ${font OpenLogos:size=15}u${font}${goto 100}${exec lsb_release -rs} (${kernel})${alignr}${font FontAwesome}${font} ${uptime_short}${voffset 20}
+${template5   GPU}
+${alignr}${font FontAwesome}${font} ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
         ${alignr}driver version: ${execi 60 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}
+
 
 
 NETWORK ${hr 2}
 
-        ${font FontAwesome}${font}${goto 100}${template4 enp5s0}
-
-${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
-        ${font FontAwesome}${font}${goto 100}${template4 wlp2s0}
+${template5   }
+${template4 enp5s0}
+${if_match "${exec hostname | cut -d- -f2}" == "laptop"}
+${template5   }
+${template4 wlp2s0}
 ${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${endif}
+
 
 
 PROCESSES ${hr 2}
