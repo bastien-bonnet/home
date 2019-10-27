@@ -173,7 +173,7 @@ PROCESSES ${hr 2}
 
 
 
-${alignr}${font DejaVu Sans:size=12}${time %a %d %b %Y}${font}#
-${voffset -30} ${font DejaVu Sans:size=26}${time %H:%M}${font}
-${voffset -45}#
+${alignr}${font DejaVu Sans:size=26}${time %H:%M}${font}
+${alignr}${time %a %d %b %Y}
+${voffset -10}#
 ]=];
