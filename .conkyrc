@@ -14,6 +14,7 @@ conky.config = {
 	gap_x = 0,
 	gap_y = 0,
 	minimum_height = 0,
+	minimum_width = 600,
 	maximum_width = 600,
 
 	-- Borders
@@ -33,7 +34,7 @@ conky.config = {
 
 	-- number of cpu samples to average
 	-- set to 1 to disable averaging
-	cpu_avg_samples = 2,
+	cpu_avg_samples = 4,
 
 	-- number of net samples to average
 	-- set to 1 to disable averaging
@@ -81,16 +82,19 @@ conky.config = {
 	template1 = [[${alignr}Core \1: ${template0 \1} ${cpubar cpu\1}]],
 
 	-- Process by cpu
-	template2 = [[${goto 140}${top name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top pid \1}    ${top mem \1}    ${top cpu \1}${font}]],
+	template7 = [[${goto 420}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
 
 	-- Process by mem
-	template3 = [[${goto 140}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem pid \1}    ${top_mem mem \1}    ${top_mem cpu \1}${font}]],
+	template8 = [[${goto 420}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
 
 	-- Network connection info
 	template4 = [[\1: ${addr \1}${goto 370}${font FontAwesome} ${font}${upspeed \1}${alignr}${font FontAwesome} ${font}${downspeed \1}]],
 
+	-- Font Awesome
+	template2 = [[${font Font Awesome 5 Free Solid:style=Solid:size=17}\1${font}]],
+
 	-- Section header
-	template5 = [[        ${font FontAwesome:size=15}\1${font}${goto 100}\2#]],
+	template5 = [[        ${template2 \1}${goto 100}\2#]],
 
 	-- Disk space
 	-- Not using fs_bar because not counting superuser reserved space as used
@@ -104,21 +108,29 @@ conky.text = [=[
 RESSOURCES ${hr 2}
 
 ${template5  CPU}
-${alignr}Physical: ${exec sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
+${alignr}Physical: ${execi 5 sensors | grep Physical | grep -Eo "[[:digit:]]+\.[[:digit:]]°" | head -n 1} ${cpubar 8 cpu0}
 ${template1 0}
 ${template1 1}
 ${template1 2}
 ${template1 3}
-${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
+${if_match "${execi 5 hostname | cut -d- -f2}" == "laptop"}#
 ${template1 4}
 ${template1 5}
 ${template1 6}
 ${template1 7}
 ${endif}#
+${template7 1}
+${template7 2}
+${template7 3}
+${template7 4}
 
 
-${template5  RAM}
+${template5  RAM}
 ${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
+${template8 1}
+${template8 2}
+${template8 3}
+${template8 4}
 
 
 ${template5  SSD}
@@ -128,50 +140,38 @@ ${if_mounted /media/data}#
 ${template6 /media/data}
 ${endif}#
 #
-${if_match "${exec hostname | cut -d- -f2}" == "laptop"}#
+${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}#
 
 
-        ${font FontAwesome}${font}${goto 100}Bat. #
+${template5  Bat.}
 ${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
 
 
 SYSTEM ${hr 2}
 
-        ${font OpenLogos:size=15}u${font}${goto 100}${exec lsb_release -rs} (${kernel})${alignr}${font FontAwesome}${font} ${uptime_short}${voffset 20}
+        ${font OpenLogos:size=18}u${font}${goto 100}${execi 36000 lsb_release -rs} (${kernel})${alignr}${font FontAwesome}${font} ${uptime_short}${voffset 20}
 ${template5   GPU}
-${alignr}${font FontAwesome}${font} ${if_match "${exec prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
-        ${alignr}driver version: ${execi 60 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}
-
+ driver version: ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}#
+${alignr}${font FontAwesome}${font} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
 
 
 NETWORK ${hr 2}
 
 ${template5   }
 ${template4 enp5s0}
-${if_match "${exec hostname | cut -d- -f2}" == "laptop"}
+${if_match "${execi 30 hostname | cut -d- -f2}" == "laptop"}
 ${template5   }
 ${template4 wlp2s0}
 ${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${endif}
 
 
+WEATHER ${hr 2}
 
-PROCESSES ${hr 2}
-        ${goto 325}${alignr}${font DejaVu Sans Mono:size=9}PID     RAM %     CPU %${font}
-        ${voffset 35}by CPU${voffset -35}#
-        ${color 88aadd}${template2 1}${color lightgrey}
-        ${template2 2}
-        ${template2 3}
-        ${template2 4}
-
-        ${voffset 35}by MEM${voffset -35}#
-        ${color 88aadd}${template3 1}${color lightgrey}
-        ${template3 2}
-        ${template3 3}
-        ${template3 4}
-
-
+${font DejaVu Sans Mono:size=8}#
+${execpi 3600 ~/.scripts/conky_weather.bash}
+${font}
 
 ${alignr}${font DejaVu Sans:size=26}${time %H:%M}${font}
 ${alignr}${time %a %d %b %Y}

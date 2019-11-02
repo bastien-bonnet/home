@@ -5,3 +5,5 @@
 !/.texmf
 !/.conky*
 !/.config/breezerc*
+!/.fonts
+/.fonts/.uuid
