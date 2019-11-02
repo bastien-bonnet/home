@@ -16,7 +16,7 @@ weather_data=$(echo $weather_html_table \
 for row in {1..5}; do
 	transposed_line=$(echo "$weather_data" | cut -d ',' -f $row | paste -sd,)
 	for field_number in {1..9}; do
-		transposed_line=$(echo "$transposed_line" | sed -e "s/,/\${goto $((50 + $field_number * 60))}/1")
+		transposed_line=$(echo "$transposed_line" | sed -e "s/,/\${goto $((50 + $field_number * 50))}/1")
 	done
 	echo $transposed_line
 done \
@@ -27,8 +27,10 @@ done \
 	-e '2s/Mostly Cloudy//g' \
 	-e '2s/Partly Cloudy//g' \
 	-e '2s/Cloudy//g' \
+	-e '2s/Few Showers//g' \
 	-e '2s/Light Rain//g' \
 	-e '2s/Rain//g' \
-	-e '2s/^\(.*\)$/\${font Font Awesome 5 Free Solid:style=Solid:size=20}\1\${font DejaVu Sans Mono:size=8}/' \
+	-e '2s/Showers//g' \
+	-e '2s/^\(.*\)$/\${font Font Awesome 5 Free Solid:style=Solid:size=18}\1\${font DejaVu Sans Mono:size=8}/' \
 	-e 's/^/\${goto 50}/'
 
