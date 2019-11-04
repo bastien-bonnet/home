@@ -14,40 +14,16 @@ conky.config = {
 	gap_x = 0,
 	gap_y = 0,
 	minimum_height = 0,
-	minimum_width = 400,
-	maximum_width = 600,
-
-	-- Borders
+	minimum_width = 530,
+	maximum_width = 530,
 	draw_shades = false,
 	draw_outline = false,
 	draw_borders = false,
 	stippled_borders = 0,
 	border_inner_margin = 20,
 	border_width = 1,
-
-	-- Default colors and also border colors
 	default_color = 'lightgrey',
 	own_window_colour = 'black',
-
-	-- Subtract file system buffers from used memory?
-	no_buffers = true,
-
-	-- number of cpu samples to average
-	-- set to 1 to disable averaging
-	cpu_avg_samples = 4,
-
-	-- number of net samples to average
-	-- set to 1 to disable averaging
-	net_avg_samples = 2,
-
-	-- Force UTF8? note that UTF8 support required XFT
-	override_utf8_locale = true,
-
-	-- Adds spaces around certain objects to stop them from moving other things around. Only helps with mono font
-	-- use_spacer = 'right',
-
-	pad_percents = 3,
-	short_units = true,
 
 	-- Create own window instead of using desktop (required in some file managers like nautilus)
 	own_window = true,
@@ -63,6 +39,19 @@ conky.config = {
 	--own_window_colour 242520
 
 	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	-- Subtract file system buffers from used memory?
+	no_buffers = true,
+
+	-- number of samples to average (1 to disable averaging)
+	cpu_avg_samples = 4,
+	net_avg_samples = 2,
+
+	-- Force UTF8? note that UTF8 support required XFT
+	override_utf8_locale = true,
+
+	pad_percents = 3,
+	short_units = true,
 
 	default_bar_width = 200, default_bar_height = 8,
 
@@ -96,11 +85,8 @@ conky.config = {
 	-- Section header
 	template5 = [[        ${template2 \1}${goto 100}\2#]],
 
-	-- Disk space
-	-- Not using fs_bar because not counting superuser reserved space as used
+	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
 	template6 = [[${alignr}\1 (${fs_size \1}), free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
-
-
 };
 
 
@@ -164,7 +150,7 @@ ${if_match "${execi 30 hostname | cut -d- -f2}" == "laptop"}
 ${template5   }
 ${template4 wlp2s0}
 ${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
-${endif}
+${endif}#
 
 
 WEATHER ${hr 2}
@@ -172,7 +158,6 @@ WEATHER ${hr 2}
 ${font DejaVu Sans Mono:size=8}#
 ${execpi 3600 ~/.scripts/conky_weather.bash}
 ${font}
-
 ${alignr}${font DejaVu Sans:size=26}${time %H:%M}${font}
 ${alignr}${time %a %d %b %Y}
 ${voffset -10}#
