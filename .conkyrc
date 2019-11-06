@@ -59,96 +59,100 @@ conky.config = {
 	lua_draw_hook_pre = 'draw_bg',
 
 
+-- TEMPLATES
+
+	-- Font Awesome
+	template0 = [[${font Font Awesome 5 Free Solid:style=Solid:size=\2}\1${font}]],
+
+	-- Section header
+	template1 = [[        ${template0 \1 17}${goto 100}\2#]],
+
 	-- To make the following work, you need to do :
 	-- sudo modprobe coretemp
 	-- edit /etc/modules and add the line 'coretemp'
 	-- sudo apt-get install lm-sensors
 
 	-- Cpu core temperature for a given core number
-	template0 = [[${execi 5 sensors | grep -i "core $(expr \1 % 4):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
+	template3 = [[${execi 5 sensors | grep -i "core $(expr \1 % 4):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
 
 	-- Cpu info for a given core
-	template1 = [[${alignr}Core \1: ${template0 \1} ${cpubar cpu\1}]],
+	template4 = [[${alignr}Core \1: ${template3 \1} ${cpubar cpu\1}]],
 
 	-- Process by cpu
-	template7 = [[${goto 350}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
+	template5 = [[${goto 350}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
 
 	-- Process by mem
-	template8 = [[${goto 350}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
+	template6 = [[${goto 350}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
 
 	-- Network connection info
-	template4 = [[\1: ${addr \1}${goto 370}${font FontAwesome} ${font}${upspeed \1}${alignr}${font FontAwesome} ${font}${downspeed \1}]],
-
-	-- Font Awesome
-	template2 = [[${font Font Awesome 5 Free Solid:style=Solid:size=17}\1${font}]],
-
-	-- Section header
-	template5 = [[        ${template2 \1}${goto 100}\2#]],
+	template7 = [[\1: ${addr \1}${goto 350}${template0  12} ${upspeed \1}${alignr}${template0  12} ${downspeed \1}]],
 
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
-	template6 = [[${alignr}\1 (${fs_size \1}), free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
+	template9 = [[${alignr}\1 (${fs_size \1}), free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
 };
 
 
 conky.text = [=[
 RESSOURCES ${hr 2}
 
-${template5  CPU}
+${template1  CPU}
 ${alignr}Physical: ${execi 5 sensors | sed -En 's/Package.*([[:digit:]]{2}).*\(.*$/\1/p'}°C ${cpubar 8 cpu0}
-${template1 0}
-${template1 1}
-${template1 2}
-${template1 3}
+${template4 0}
+${template4 1}
+${template4 2}
+${template4 3}
 ${if_match "${execi 5 hostname | cut -d- -f2}" == "laptop"}#
-${template1 4}
-${template1 5}
-${template1 6}
-${template1 7}
+${template4 4}
+${template4 5}
+${template4 6}
+${template4 7}
 ${endif}#
-${template7 1}
-${template7 2}
-${template7 3}
-${template7 4}
+${template5 1}
+${template5 2}
+${template5 3}
+${template5 4}
 
 
-${template5  RAM}
+${template1  RAM}
 ${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
-${template8 1}
-${template8 2}
-${template8 3}
-${template8 4}
+${template6 1}
+${template6 2}
+${template6 3}
+${template6 4}
 
 
-${template5   SSD}
-${template6 /}
-${template6 /boot}
+${template1   SSD}
+${template9 /}
+${template9 /boot}
 ${if_mounted /media/data}#
-${template6 /media/data}
+${template9 /media/data}
 ${endif}#
 #
 ${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}#
 
 
-${template5  Bat.}
+${template1  Bat.}
 ${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
 
 
 SYSTEM ${hr 2}
 
-        ${font OpenLogos:size=20}u${font}${goto 100}${execi 36000 lsb_release -rs} (${kernel})${alignr}${font FontAwesome}${font} ${uptime_short}${voffset 20}
-${template5   GPU}
- driver version: ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}#
-${alignr}${font FontAwesome}${font} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
+        ${font OpenLogos:size=20}u${font}${goto 100}${execi 36000 lsb_release -rs} (${kernel})#
+${goto 350}${template0  12} ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +1 | wc -l} updates#
+${alignr}${template0  12} ${uptime_short}${voffset 20}
+${template1   GPU}
+ (driver v. ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"})#
+${alignr}${template0  12} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
 
 
 NETWORK ${hr 2}
 
-${template5   }
-${template4 enp5s0}
+${template1   }
+${template7 enp5s0}
 ${if_match "${execi 30 hostname | cut -d- -f2}" == "laptop"}
-${template5   }
-${template4 wlp2s0}
+${template1   }
+${template7 wlp2s0}
 ${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${endif}#
 
