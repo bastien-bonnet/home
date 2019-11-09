@@ -7,3 +7,4 @@
 !/.config/breezerc*
 !/.fonts
 /.fonts/.uuid
+*.swp
