@@ -2,12 +2,11 @@ conky.config = {
 
 -- In order to work, this scripts requires:
 -- 1. font Font Awesome 5 Free Solid
--- 2. font OpenLogos
--- 3. modprobe conf:
+-- 2. modprobe conf:
 	-- sudo modprobe coretemp
 	-- edit /etc/modules and add the line 'coretemp'
 	-- sudo apt-get install lm-sensors
--- 4. weather script in ~/.scripts/conky_weather.bash
+-- 3. weather script in ~/.scripts/conky_weather.bash
 
 -------------------------------------------------------------------------------
 -- CONFIG
@@ -82,7 +81,7 @@ conky.config = {
 	template1 = [[        ${template0 \1 17}${goto 100}\2#]],
 
 	-- Cpu core temperature for a given core number
-	template3 = [[${execi 5 sensors | grep -i "core $(expr \1 % 4):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
+	template3 = [[${execi 5 sensors | grep -i "core $(expr $((\1 - 1)) % 4):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
 
 	-- Cpu info for a given core
 	template4 = [[${alignr}Core \1: ${template3 \1} ${cpubar cpu\1}]],
@@ -97,7 +96,7 @@ conky.config = {
 	template7 = [[\1: ${addr \1}${goto 350}${template0  12} ${upspeed \1}${alignr}${template0  12} ${downspeed \1}]],
 
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
-	template9 = [[${alignr}\1 (${fs_size \1}), free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
+	template9 = [[${alignr}\1 ${fs_size \1} — free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
 };
 
 
@@ -109,15 +108,15 @@ ${template1  CPU}
 ${alignr}Physical:#
  ${execi 5 sensors | sed -En 's/Package.*([[:digit:]]{2}).*\(.*$/\1/p'}°C#
  ${cpubar 8 cpu0}
-${template4 0}
 ${template4 1}
 ${template4 2}
 ${template4 3}
-${if_match "${execi 5 hostname | cut -d- -f2}" == "laptop"}#
 ${template4 4}
+${if_match "${execi 5 hostname | cut -d- -f2}" == "laptop"}#
 ${template4 5}
 ${template4 6}
 ${template4 7}
+${template4 8}
 ${endif}#
 ${template5 1}
 ${template5 2}
@@ -126,7 +125,7 @@ ${template5 4}
 
 
 ${template1  RAM}
-${alignr}${memmax}, free: ${memeasyfree} ${membar 8}
+${alignr}${memmax} — free: ${memeasyfree} ${membar 8}
 ${template6 1}
 ${template6 2}
 ${template6 3}
@@ -150,7 +149,7 @@ ${endif}
 
 SYSTEM ${hr 2}
 
-        ${font OpenLogos:size=20}u${font}${goto 100}${execi 36000 lsb_release -rs} (${kernel})#
+        ${font Font Awesome 5 Brands Regular:style=Regular:size=17}${font}${goto 100}${execi 36000 lsb_release -rs} — ${font Font Awesome 5 Brands Regular:style=Regular:size=12}${font} ${kernel}#
 ${goto 350}${template0  12}#
  ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +1 | wc -l} updates#
 ${alignr}${template0  12} ${uptime_short}${voffset 20}
