@@ -54,7 +54,7 @@ set list listchars=tab:\ ❘,trail:·,extends:»,precedes:«,nbsp:×
 " Set color for eol, extends and precedes
 "hi NonText ctermfg=7 guifg=gray
 " Set color for nbsp, tab, and trail
-"hi SpecialKey ctermfg=7 guifg=gray
+hi SpecialKey ctermfg=8 guifg=darkgray
 
 
 
