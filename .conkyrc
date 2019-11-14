@@ -93,10 +93,10 @@ conky.config = {
 	template6 = [[${goto 350}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
 
 	-- Network connection info
-	template7 = [[\1: ${addr \1}${goto 350}${template0  12} ${upspeed \1}${alignr}${template0  12} ${downspeed \1}]],
+	template7 = [[\1: ${addr \1}${goto 350}${template0  10} ${upspeed \1}${alignr}${template0  10} ${downspeed \1}]],
 
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
-	template9 = [[${alignr}\1 ${fs_size \1} — free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
+	template9 = [[${goto 150}\1 (${fs_size \1}) ${alignr} free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
 };
 
 
@@ -150,12 +150,13 @@ ${endif}
 SYSTEM ${hr 2}
 
         ${font Font Awesome 5 Brands Regular:style=Regular:size=17}${font}${goto 100}${execi 36000 lsb_release -rs} — ${font Font Awesome 5 Brands Regular:style=Regular:size=12}${font} ${kernel}#
-${goto 350}${template0  12}#
+${goto 350}${template0  10}#
  ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +1 | wc -l} updates#
-${alignr}${template0  12} ${uptime_short}${voffset 20}
+${alignr}${template0  10} ${uptime_short}${voffset 20}#
+
 ${template1   GPU}
  (driver v. ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"})#
-${alignr}${template0  12} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
+${alignr}${template0  10} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
 
 
 NETWORK ${hr 2}
