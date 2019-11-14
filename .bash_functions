@@ -24,7 +24,7 @@ function gitInfo() {
 		local localStatus="$branchStateColored$dirtyStatusColored"
 		[[ -z $localStatus ]] && localStatus="✔"
 		
-		echo -n "[$(gitBranchColored) $localStatus]"
+		echo -n "[$(gitBranchColored) $localStatus ]"
 	fi
 }
 
