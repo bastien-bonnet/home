@@ -12,6 +12,7 @@ conky.config = {
 -- CONFIG
 
 	use_xft = true,
+	-- Good fonts: Lato, Latin Modern Sans, Ubuntu, DejaVu Sans
 	font = 'DejaVu Sans:size=9',
 	xftalpha = 0.98,
 	text_buffer_size = 2048,
@@ -78,7 +79,7 @@ conky.config = {
 	template0 = [[${font Font Awesome 5 Free Solid:style=Solid:size=\2}\1${font}]],
 
 	-- Section header
-	template1 = [[        ${template0 \1 17}${goto 100}\2#]],
+	template1 = [[        ${template0 \1 17}${goto 100}${font DejaVu Sans:style=Bold:size=9}\2${font}#]],
 
 	-- Cpu core temperature for a given core number
 	template3 = [[${execi 5 sensors | grep -i "core $(expr $((\1 - 1)) % 4):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
@@ -96,7 +97,7 @@ conky.config = {
 	template7 = [[\1: ${addr \1}${goto 350}${template0  10} ${upspeed \1}${alignr}${template0  10} ${downspeed \1}]],
 
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
-	template9 = [[${goto 150}\1 (${fs_size \1}) ${alignr} free: ${fs_free \1} ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
+	template9 = [[${goto 150}\1 (${fs_size \1}) ${alignr} ${fs_free \1} free ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
 };
 
 
@@ -125,7 +126,7 @@ ${template5 4}
 
 
 ${template1  RAM}
-${alignr}${memmax} — free: ${memeasyfree} ${membar 8}
+${goto 150}Total: ${memmax}${alignr}${memeasyfree} free ${membar 8}
 ${template6 1}
 ${template6 2}
 ${template6 3}
@@ -149,13 +150,14 @@ ${endif}
 
 SYSTEM ${hr 2}
 
-        ${font Font Awesome 5 Brands Regular:style=Regular:size=17}${font}${goto 100}${execi 36000 lsb_release -rs} — ${font Font Awesome 5 Brands Regular:style=Regular:size=12}${font} ${kernel}#
+        ${font Font Awesome 5 Brands Regular:style=Regular:size=17}${font}${goto 100}${font DejaVu Sans:style=Bold:size=9}OS ${font}#
+${goto 150}${execi 36000 lsb_release -rs} — ${font Font Awesome 5 Brands Regular:style=Regular:size=12}${font} ${kernel}#
 ${goto 350}${template0  10}#
  ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +1 | wc -l} updates#
 ${alignr}${template0  10} ${uptime_short}${voffset 20}#
 
 ${template1   GPU}
- (driver v. ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"})#
+${goto 150}driver v. ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}#
 ${alignr}${template0  10} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
 
 
