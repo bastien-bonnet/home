@@ -140,12 +140,12 @@ ${if_mounted /media/data}#
 ${template9 /media/data}
 ${endif}#
 #
-${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}#
-
+${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}
 
 ${template1  Bat.}
-${alignr}${battery BAT0} ${battery_time BAT0} ${battery_bar BAT0}#
+${goto 150}${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}
+
 
 
 SYSTEM ${hr 2}
@@ -161,15 +161,20 @@ ${goto 150}driver v. ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidi
 ${alignr}${template0  10} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
 
 
+
 NETWORK ${hr 2}
 
+${if_up enp5s0}#
 ${template1   }
 ${template7 enp5s0}
-${if_match "${execi 30 hostname | cut -d- -f2}" == "laptop"}
+${endif}#
+#
+${if_up wlp2s0}#
 ${template1   }
 ${template7 wlp2s0}
 ${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${endif}#
+
 
 
 WEATHER ${hr 2}
