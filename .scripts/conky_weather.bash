@@ -31,6 +31,7 @@ format() {
 		-e '2s/Sunny//g' \
 		-e '2s/Mostly Clear//g' \
 		-e '2s/Clear//g' \
+		-e '2s/Mostly Cloudy \/ Wind//g' \
 		-e '2s/Mostly Cloudy//g' \
 		-e '2s/Partly Cloudy//g' \
 		-e '2s/Cloudy//g' \
