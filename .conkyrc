@@ -85,7 +85,7 @@ conky.config = {
 	template3 = [[${execi 5 sensors | grep -i "core $(expr $((\1 - 1)) % 4):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
 
 	-- Cpu info for a given core
-	template4 = [[${alignr}Core \1: ${template3 \1} ${cpubar cpu\1}]],
+	template4 = [[${alignr}${template0  10} \1: ${template3 \1} ${cpubar cpu\1}]],
 
 	-- Process by cpu
 	template5 = [[${goto 350}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
@@ -157,7 +157,7 @@ ${goto 350}${template0  10}#
 ${alignr}${template0  10} ${uptime_short}${voffset 20}#
 
 ${template1   GPU}
-${goto 150}driver v. ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}#
+${goto 150}driver: ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}#
 ${alignr}${template0  10} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}nvidia GPU off${endif}
 
 
