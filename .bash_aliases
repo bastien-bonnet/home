@@ -12,7 +12,7 @@ a ldo="l ~/Downloads"
 a ll="ls -l"
 a t="tree -D --du -h"
 
-cdAndLs () { cd $1 && ls; }
+cdAndLs () { cd $1 && l; }
 a cl="cdAndLs"
 
 a rl="readlink -m"
@@ -38,9 +38,9 @@ grepWithFirstLine () {
 }
 a pg="pl | grepWithFirstLine"
 
-duh () {
-	du -had 1 ${1:-.} | sort -h
-}
+duh () { du -had 1 ${1:-.} | sort -h; }
+
+a lsb='lsblk -I8 -o NAME,SIZE,MOUNTPOINT,FSTYPE,TYPE,LABEL,FSUSE%'
 
 a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 
