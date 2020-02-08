@@ -47,6 +47,8 @@ a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 a ks="qdbus org.kde.ksmserver /KSMServer logout 0 2 2"
 a kl="qdbus org.kde.ksmserver /KSMServer logout 0 3 3"
 
+a ez="teensy_loader_cli -vw -mmcu=atmega32u4"
+
 
 ###################################################################################################
 # CLEANING
