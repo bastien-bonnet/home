@@ -41,6 +41,8 @@ a pg="pl | grepWithFirstLine"
 duh () { du -had 1 ${1:-.} | sort -h; }
 
 a lsb='lsblk -I8 -o NAME,SIZE,MOUNTPOINT,FSTYPE,TYPE,LABEL,FSUSE%'
+luksOpen () { (set -ux; sudo cryptsetup luksOpen /dev/"$1" "$1"_crypt && sudo mount /dev/mapper/"$1"_crypt "$2"); }
+luksClose () { (set -ux; sudo umount "$2" && sudo cryptsetup luksClose /dev/mapper/"$1"_crypt); }
 
 a rs='redshift -l 48.9:2.3 -t 5700:4000 -b 1 -m randr -v'
 
