@@ -67,11 +67,11 @@ format() {
 		-e '2s/Mostly Cloudy \/ Wind//g' \
 		-e '2s/Mostly Cloudy//g' \
 		-e '2s/Partly Cloudy//g' \
-		-e '2s/Cloudy//g' \
-		-e '2s/Few Showers//g' \
+		-e '2s/Cloudy\( \/ Wind\)\?//g' \
+		-e '2s/Few Showers\( \/ Wind\)\?//g' \
 		-e '2s/Light Rain//g' \
-		-e '2s/Rain//g' \
-		-e '2s/Showers//g' \
+		-e '2s/Rain\( \/ Wind\)\?//g' \
+		-e '2s/Showers\( \/ Wind\)\?//g' \
 		-e '2s/Foggy//g' \
 		-e "$enclose_weather_icon_line_with_font_tags" \
 		-e "$prepend_conky_indent"
