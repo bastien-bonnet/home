@@ -30,7 +30,7 @@ html_table_to_simple_table() {
 
 select_relevant_columns() {
  local field_separator="$1"
-	awk -F "$field_separator" -v field_separator="$field_separator" 'BEGIN { OFS = field_separator } NR>=2&&NR<=11{ print $3, $4, substr($5,1,length($5)-2)"/"substr($6,1,length($6)-2)"°", $7}; NR==12{ exit }'
+	awk -F "$field_separator" -v field_separator="$field_separator" 'BEGIN { OFS = field_separator } NR>=2&&NR<=10{ print $3, $4, substr($5,1,length($5)-2)"/"substr($6,1,length($6)-2)"°", $7}; NR==12{ exit }'
 }
 
 transpose_table() {
@@ -44,11 +44,11 @@ for row in {1..4}; do
 }
 
 replace_separator_with_conky_offset() {
-	local hours_to_show=9
+	local hours_to_show=8
 	local field_separator="$2"
 	local result="$1"
 	for field_number in $(seq $hours_to_show); do
-		local offset="$((50 + $field_number * 50))"
+		local offset="$((50 + $field_number * 58))"
 		local result=$(echo "$result" | sed -e "s/$field_separator/\${goto $offset}/1")
 	done
 	echo "$result"
@@ -73,6 +73,9 @@ format() {
 		-e '2s/Rain\( \/ Wind\)\?//g' \
 		-e '2s/Showers\( \/ Wind\)\?//g' \
 		-e '2s/Foggy//g' \
+		-e '4s/\([[:digit:]]\{1,2\}%\)/-\1-/g' \
+		-e '4s/-0%-//g' \
+		-e '4s/-\([[:digit:]]\{1,2\}%\)-/\${font Font Awesome 5 Free Solid:style=Solid:size=9}\${font DejaVu Sans Mono:size=8} \1/g' \
 		-e "$enclose_weather_icon_line_with_font_tags" \
 		-e "$prepend_conky_indent"
 }
