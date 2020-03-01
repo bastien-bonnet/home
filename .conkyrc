@@ -162,7 +162,7 @@ SYSTEM ${hr 2}
         ${font Font Awesome 5 Brands Regular:style=Regular:size=17}${font}${goto 100}${font DejaVu Sans:style=Bold:size=9}OS ${font}#
 ${goto 150}${execi 36000 lsb_release -rs} — ${font Font Awesome 5 Brands Regular:style=Regular:size=12}${font} ${kernel}#
 ${goto 350}${template0  10}#
- ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +1 | wc -l} updates#
+ ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l} updates#
 ${alignr}${template0  10} ${uptime_short}${voffset 20}#
 
 ${template1   GPU}
@@ -196,7 +196,7 @@ WEATHER ${hr 2}
 ${font DejaVu Sans Mono:size=8}#
 ${execpi 3600 ~/.scripts/conky_weather.bash}
 ${font}
+
 ${alignr}${font DejaVu Sans:size=26}${time %H:%M}${font}
-${alignr}${time %a %d %b %Y}
-${voffset -10}#
+${alignr}${time %a %d %b %Y}#
 ]=];
