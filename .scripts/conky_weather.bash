@@ -75,7 +75,7 @@ format() {
 		-e '2s/Foggy//g' \
 		-e '4s/\([[:digit:]]\{1,2\}%\)/-\1-/g' \
 		-e '4s/-0%-//g' \
-		-e '4s/-\([[:digit:]]\{1,2\}%\)-/\${font Font Awesome 5 Free Solid:style=Solid:size=9}\${font DejaVu Sans Mono:size=8} \1/g' \
+		-e '4s/-\([[:digit:]]\{1,3\}%\)-/\${font Font Awesome 5 Free Solid:style=Solid:size=9}\${font DejaVu Sans Mono:size=8}\1/g' \
 		-e "$enclose_weather_icon_line_with_font_tags" \
 		-e "$prepend_conky_indent"
 }
