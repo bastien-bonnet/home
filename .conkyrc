@@ -88,13 +88,13 @@ conky.config = {
 	template3 = [[${alignr}${template0  10} ${freq_g \1} GHz - ${template2 \1 \2} ${cpubar cpu\1}]],
 
 	-- Process by cpu
-	template5 = [[${goto 350}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
+	template4 = [[${goto 350}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
 
 	-- Process by mem
-	template6 = [[${goto 350}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
+	template5 = [[${goto 350}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
 
 	-- Network connection info
-	template7 = [[\1: ${addr \1}${goto 350}${template0  10} ${upspeed \1}${alignr}${template0  10} ${downspeed \1}]],
+	template6 = [[\1: ${addr \1}${goto 350}${template0  10} ${upspeed \1}${alignr}${template0  10} ${downspeed \1}]],
 
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
 	template9 = [[${goto 150}\1 - ${fs_size \1} ${alignr}${fs_free \1} free ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}]]
@@ -125,18 +125,18 @@ ${template3 6 8}
 ${template3 7 8}
 ${template3 8 8}
 ${endif}#
-${template5 1}
-${template5 2}
-${template5 3}
-${template5 4}
+${template4 1}
+${template4 2}
+${template4 3}
+${template4 4}
 
 
 ${template1  RAM}
 ${goto 230} ${memmax}${alignr}${memeasyfree} free ${membar 8}
-${template6 1}
-${template6 2}
-${template6 3}
-${template6 4}
+${template5 1}
+${template5 2}
+${template5 3}
+${template5 4}
 
 
 ${template1   SSD}
@@ -175,17 +175,17 @@ NETWORK ${hr 2}
 
 ${if_up enp5s0}#
 ${template1   }
-${template7 enp5s0}
+${template6 enp5s0}
 ${endif}#
 #
 ${if_up eno1}#
 ${template1   }
-${template7 eno1}
+${template6 eno1}
 ${endif}#
 #
 ${if_up wlp2s0}#
 ${template1   }
-${template7 wlp2s0}
+${template6 wlp2s0}
 ${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
 ${endif}#
 
