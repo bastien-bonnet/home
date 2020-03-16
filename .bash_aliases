@@ -40,7 +40,7 @@ a pg="pl | grepWithFirstLine"
 
 duh () { du -had 1 ${1:-.} | sort -h; }
 
-a lsb='lsblk -o NAME,SIZE,MOUNTPOINT,FSTYPE,TYPE,LABEL,FSUSE%'
+a lsb='lsblk -e 7 -o NAME,SIZE,MOUNTPOINT,FSTYPE,TYPE,LABEL,FSUSE%'
 a crypt='cryptsetup -vy luksFormat -i 5000'
 luksOpen () { (set -ux; sudo cryptsetup luksOpen /dev/"$1" "$1"_crypt && sudo mount /dev/mapper/"$1"_crypt "$2"); }
 luksClose () { (set -ux; sudo umount "$2" && sudo cryptsetup luksClose /dev/mapper/"$1"_crypt); }
