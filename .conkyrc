@@ -1,12 +1,14 @@
 conky.config = {
 
--- In order to work, this script requires:
--- 1. font Font Awesome 5 Free Solid
--- 2. modprobe conf:
-	-- sudo modprobe coretemp
-	-- edit /etc/modules and add the line 'coretemp'
-	-- sudo apt-get install lm-sensors
--- 3. weather script in ~/.scripts/conky_weather.bash
+	-- In order to work, this script requires:
+	-- 1. font Font Awesome 5 Free Solid
+	-- 2. modprobe conf:
+		-- sudo modprobe coretemp
+		-- edit /etc/modules and add the line 'coretemp'
+		-- sudo apt-get install lm-sensors
+	-- 3. weather script in ~/.scripts/conky_weather.bash
+	-- 4. prime-select
+
 
 -------------------------------------------------------------------------------
 -- CONFIG
