@@ -168,6 +168,10 @@ ${template1  Bat.}
 ${goto 150}${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}#
 
+${template1   GPU}
+${goto 150}Nvidia driver: ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}#
+${alignr}${template0  10} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}Nvidia GPU off${endif}
+
 
 
 SYSTEM ${hr 2}
