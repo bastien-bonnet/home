@@ -101,7 +101,7 @@ a ercm="e ~/.bashrc_machine_specific; source ~/.bashrc_machine_specific; echo '.
 a eba="e ~/.bash_aliases; source ~/.bash_aliases && echo 'aliases sourced'"
 a ebf="e ~/.bash_functions; source ~/.bash_functions && echo 'functions sourced'"
 a egc="e ~/.gitconfig"
-a eck="e ~/.conkyrc"
+a eck="v -c 'set ft=lua' ~/.conkyrc"
 a evrc="e ~/.vimrc"
 a efst="ee /etc/fstab"
 
