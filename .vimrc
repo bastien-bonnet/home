@@ -36,6 +36,7 @@ set ruler
 " highlight search
 set hlsearch
 set incsearch
+highlight Search cterm=NONE ctermfg=darkgreen ctermbg=brown
 
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
@@ -64,7 +65,7 @@ hi SpecialKey ctermfg=8 guifg=darkgray
 " Break lines at word gaps
 set linebreak
 " Show soft line break mark
-let &showbreak = '↳'
+let &showbreak = '↳ '
 " Navigation between soft lines
 map <silent> <Up> gk
 imap <silent> <Up> <C-o>gk
