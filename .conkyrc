@@ -167,8 +167,14 @@ ${goto 150}${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}#
 ${endif}#
 
 ${template1   GPU}
-${goto 150}Nvidia driver: ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-settings -q  NvidiaDriverVersion | grep Version | sed 's/^.*:\ //' | head -n 1 || echo "nvidia GPU off"}#
-${alignr}${template0  10} ${if_match "${execi 600 prime-select query}"=="nvidia"}${nvidia temp}°C${else}Nvidia GPU off${endif}
+${goto 150}Nvidia driver: ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version || echo "nvidia GPU off"}#
+#
+${if_match "${execi 600 prime-select query}"=="nvidia"}#
+	${alignr}${template0  10} ${nvidia temp}°C
+	${goto 150}GPU use (perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
+	${goto 150}Mem use: ${alignr}${nvidiabar memutil}
+	${goto 150}Fan speed (${nvidia fanspeed} RPM):${alignr}${nvidiabar fanlevel}
+${endif}#
 
 
 
