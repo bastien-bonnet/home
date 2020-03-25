@@ -48,7 +48,7 @@ replace_separator_with_conky_offset() {
 	local field_separator="$2"
 	local result="$1"
 	for field_number in $(seq $hours_to_show); do
-		local offset="$((50 + $field_number * 58))"
+		local offset="$((70 + $field_number * 56))"
 		local result=$(echo "$result" | sed -e "s/$field_separator/\${goto $offset}/1")
 	done
 	echo "$result"
@@ -56,7 +56,7 @@ replace_separator_with_conky_offset() {
 
 format() {
 	extract_hours='1s/\([[:digit:]]\{2\}:[[:digit:]]\{2\}\)[[:alpha:]]*/\1/g'
-	prepend_conky_indent='s/^/\${goto 50}/'
+	prepend_conky_indent='s/^/\${goto 70}/'
 	enclose_weather_icon_line_with_font_tags='2s/^\(.*\)$/\${font Font Awesome 5 Free Solid:style=Solid:size=18}\1\${font DejaVu Sans Mono:size=8}/'
 	sed \
 		-e "$extract_hours" \
