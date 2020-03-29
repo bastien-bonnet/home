@@ -14,6 +14,8 @@ conky.config = {
 -- CONFIG
 
 	use_xft = true,
+	-- Force UTF8? Note that UTF8 support requires XFT
+	override_utf8_locale = true,
 	-- Good fonts: Lato, Latin Modern Sans, Ubuntu, DejaVu Sans
 	font = 'DejaVu Sans:size=9',
 	xftalpha = 0.98,
@@ -56,9 +58,6 @@ conky.config = {
 	cpu_avg_samples = 4,
 	net_avg_samples = 2,
 
-	-- Force UTF8? note that UTF8 support required XFT
-	override_utf8_locale = true,
-
 	pad_percents = 3,
 	short_units = true,
 
@@ -72,8 +71,7 @@ conky.config = {
 -- TEMPLATES
 
 	-- Font Awesome
-	template0 = [[${if_match "\3" == "brands"}${font Font Awesome 5 Brands Regular:style=Regular:size=\2}\1${font}#
-	${else}${font Font Awesome 5 Free Solid:style=Solid:size=\2}\1${font}${endif}]],
+	template0 = [[${if_match "\3" == "brands"}${font Font Awesome 5 Brands Regular:style=Regular:size=\2}\1${font}${else}${font Font Awesome 5 Free Solid:style=Solid:size=\2}\1${font}${endif}]],
 
 	-- Section header
 	template1 = [[${color1}${template0 \1 17 \3}${goto 70}${voffset -6}${font Lato:size=15}\2${font} ${hr 2}${color}${voffset 5}]],
@@ -94,8 +92,8 @@ conky.config = {
 	template5 = [[${goto 350}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
 
 	-- Network connection info
-	template6 = [[${template 7}${template0 \2 10} \1: ${addr \1}#
-	${goto 350}${template0  10} ${upspeed \1}${alignr}${template0  10} ${downspeed \1}]],
+	template6 = [[${template 7}${template0 \2 10}${voffset -1} \1: ${addr \1}#
+	${goto 350}${template0  10}${voffset -1} ${upspeed \1}${alignr}${template0  10}${voffset -1} ${downspeed \1}]],
 
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
 	-- Using this till exec behavior is fixed (exec are executed all the time, even inside conditionals like if_match).
@@ -178,10 +176,10 @@ ${endif}#
 
 
 ${template1  SYSTEM brands}
-${template 7}${execi 36000 lsb_release -rs} - ${font Font Awesome 5 Brands Regular:style=Regular:size=10}${font} ${kernel}#
-${goto 350}${template0  10}#
+${template 7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs} - ${kernel}#
+${goto 350}${template0  10}${voffset -1}#
  ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l} updates#
-${alignr}${template0  10} ${uptime_short}${voffset 20}#
+${alignr}${template0  10}${voffset -1} ${uptime_short}${voffset 20}#
 
 ${if_up enp5s0}#
 ${template6 enp5s0 }
