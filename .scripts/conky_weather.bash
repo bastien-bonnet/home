@@ -60,13 +60,13 @@ format() {
 	enclose_weather_icon_line_with_font_tags='2s/^\(.*\)$/\${font Font Awesome 5 Free Solid:style=Solid:size=18}\1\${font DejaVu Sans Mono:size=8}/'
 	sed \
 		-e "$extract_hours" \
-		-e '2s/Mostly Sunny//g' \
+		-e '2s/Mostly Sunny\( \/ Wind\)\?//g' \
 		-e '2s/Sunny//g' \
 		-e '2s/Mostly Clear//g' \
 		-e '2s/Clear//g' \
 		-e '2s/Mostly Cloudy \/ Wind//g' \
 		-e '2s/Mostly Cloudy//g' \
-		-e '2s/Partly Cloudy//g' \
+		-e '2s/Partly Cloudy\( \/ Wind\)\?//g' \
 		-e '2s/Cloudy\( \/ Wind\)\?//g' \
 		-e '2s/Few Showers\( \/ Wind\)\?//g' \
 		-e '2s/Light Rain\( \/ Wind\)\?//g' \
