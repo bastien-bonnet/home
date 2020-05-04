@@ -98,7 +98,7 @@ conky.config = {
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
 	-- Using this till exec behavior is fixed (exec are executed all the time, even inside conditionals like if_match).
 	template8 = [[${execpi 60 if grep -qs '\1 ' /proc/mounts; then
-		echo '${template 7}\1 ${goto 230} ${fs_size \1} ${alignr}${fs_free \1} free #
+		echo '${template 7}\1 ${goto 220} ${fs_size \1} ${alignr}${fs_free \1} free #
 		${execibar 60 echo '$(df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+')'}
 		${goto 350}Read${goto 390}${diskiograph_read \2 20,50 -t}#
 		${goto 460}Write${alignr}${diskiograph_write \2 20,50 -t}
@@ -159,27 +159,27 @@ ${template8 /boot /dev/nvme0n1p2}#
 ${template8 /media/data /dev/sda1}#
 ${template8 /media/data_ext /dev/sdb1}#
 #
-${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}
-${template1  Bat.}
-${template 7}${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}#
-${endif}#
-
-${template1   GPU}
-${template 7}Nvidia driver: ${execi 600 [ "$(prime-select query)" = "nvidia" ] && nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version || echo "nvidia GPU off"}#
 
 ${if_match "${execi 600 prime-select query}"=="nvidia"}#
+${template1   GPU}
+${template 7}Nvidia driver: ${execi 600 nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version}#
+
 	${template 7}GPU use (perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
 	${template 7}Mem use${alignr}${nvidiabar memutil}
 	${template 7}Fan speed (${nvidia fanspeed} RPM)${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
+
+
+
 ${endif}#
-
-
-
 ${template1  SYSTEM brands}
 ${template 7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs} - ${kernel}#
 ${goto 350}${template0  10}${voffset -1}#
  ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l} updates#
 ${alignr}${template0  10}${voffset -1} ${uptime_short}${voffset 20}#
+
+${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}#
+${template 7}${template0  12} ${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}#
+${endif}
 
 ${if_up enp5s0}#
 ${template6 enp5s0 }
@@ -191,7 +191,7 @@ ${endif}#
 #
 ${if_up wlp2s0}#
 ${template6 wlp2s0 }
-${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,80 wlp2s0}
+${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,50 wlp2s0}
 ${endif}#
 
 
