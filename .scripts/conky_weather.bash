@@ -46,9 +46,11 @@ for row in {1..4}; do
 replace_separator_with_conky_offset() {
 	local hours_to_show=8
 	local field_separator="$2"
+	local left_margin_offset=70
+	local hour_offset=55
 	local result="$1"
 	for field_number in $(seq $hours_to_show); do
-		local offset="$((70 + $field_number * 56))"
+		local offset="$(($left_margin_offset + $field_number * $hour_offset))"
 		local result=$(echo "$result" | sed -e "s/$field_separator/\${goto $offset}/1")
 	done
 	echo "$result"
