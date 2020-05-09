@@ -2,10 +2,11 @@ function main {
 	shell_is_interactive || return
 
 	export PATH=$PATH:~/software:~/.scripts:~/.local/bin
+	export CDPATH="~/dev"
 
 	source ~/.bash_functions && set_prompt
 
-	source_bash_config_files
+	source_other_bash_config_files
 	set_bash_history_preferences
 	set_terminal_visual_preferences
 	set_application_preferences
@@ -71,7 +72,7 @@ function set_terminal_title {
 	esac
 }
 
-function source_bash_config_files {
+function source_other_bash_config_files {
 	[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 	[[ -f ~/.bashrc_machine_specific ]] && . ~/.bashrc_machine_specific
 	[[ -f /etc/bash_completion ]] && ! shopt -oq posix && . /etc/bash_completion
@@ -80,7 +81,6 @@ function source_bash_config_files {
 function set_application_preferences {
 	export SPARK_HOME="$HOME/software/spark"
 	export PATH="$PATH:$SPARK_HOME/bin"
-	export PYTHONPATH="$SPARK_HOME/python/lib/pyspark.zip:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH"
 	export TEXMFHOME="$HOME/.texmf"
 
 	# make less more friendly for non-text input files, see lesspipe(1)
