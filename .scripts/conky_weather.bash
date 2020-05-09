@@ -76,6 +76,7 @@ format() {
 		-e '2s/Rain\( \/ Wind\)\?//g' \
 		-e '2s/Showers\( \/ Wind\)\?//g' \
 		-e '2s/Foggy//g' \
+		-e '2s/\(\w\+ \)\?T-Storms//g' \
 		-e  "$enclose_precipitations" \
 		-e '4s/-0%-//g' \
 		-e "$format_precipitations" \
