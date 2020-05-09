@@ -176,11 +176,11 @@ ${template 7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -
 ${goto 350}${template0  10}${voffset -1}#
  ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l} updates#
 ${alignr}${template0  10}${voffset -1} ${uptime_short}${voffset 20}#
-
 ${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}#
-${template 7}${template0  12} ${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}#
-${endif}
 
+${template 7}${template0  12} ${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}
+
+${endif}
 ${if_up enp5s0}#
 ${template6 enp5s0 }
 ${endif}#
