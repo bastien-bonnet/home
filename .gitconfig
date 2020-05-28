@@ -18,7 +18,7 @@
 	ci = commit
 	
 	f = fetch -p
-	pullr = pull --rebase=preserve
+	pullr = pull --rebase=merges
 	p = push
 
 	l = log --graph --pretty=onelinerelativedate
