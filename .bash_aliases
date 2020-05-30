@@ -14,6 +14,7 @@ a t="tree -D --du -h"
 
 cdAndLs () { cd $1 && l; }
 a cl="cdAndLs"
+a dl="cl ~/Downloads"
 
 a rl="readlink -m"
 
