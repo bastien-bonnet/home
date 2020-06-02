@@ -125,3 +125,8 @@ a rs="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
 a rsc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
 a rsssh="rslocal -e 'ssh -p 1234'"
 
+
+###################################################################################################
+# OTHER
+a c="bc -l <<<"
+
