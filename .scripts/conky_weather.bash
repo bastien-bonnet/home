@@ -3,34 +3,35 @@
 main() {
 	local field_separator=","
 	local weather_data=$(\
-		get_weather_html_table \
-		| html_table_to_simple_table "$field_separator" \
+		get_weather_html_data \
+		| html_data_to_csv "$field_separator" \
 		| select_relevant_columns "$field_separator")
 
 	transpose_table "$weather_data"	"$field_separator" | format
 }
 
-get_weather_html_table() {
+get_weather_html_data() {
 	local WEATHER_URL="https://weather.com/en-GB/weather/hourbyhour/l/b79a975f5ebe516146715560b2cb2e9de56e7b6e90e002c2bcc465c14ef65e22"
 
 	local weather_html_page=$(curl $WEATHER_URL 2>/dev/null)
-	echo $weather_html_page | xmllint --html --xpath "//table[contains(@class, 'twc-table')]" --nowarning --noblanks - 2>/dev/null
+	echo $weather_html_page | xmllint --html --xpath "//details[contains(@data-testid, 'ExpandedDetailsCard')]" --nowarning --noblanks - 2>/dev/null
+
 }
 
-html_table_to_simple_table() {
+html_data_to_csv() {
 	local field_separator="$1"
-	local replace_closing_trs_by_newlines='s/<\/tr>/\n/g'
-	local replace_opening_tds_by_separator="s/<td[^>]\+>/$field_separator/g"
-	local remove_all_html_tags='s/<[^>]\+>//g'
-	sed \
-		-e "$replace_closing_trs_by_newlines" \
-		-e "$replace_opening_tds_by_separator" \
-		-e "$remove_all_html_tags"
+	local replace_html_tags_by_separator="s/<[^>]\+>/$field_separator/g"
+	local deduplicate_separators="s/$field_separator\+/$field_separator/g"
+
+	sed -e "$replace_html_tags_by_separator" -e "$deduplicate_separators"
 }
 
 select_relevant_columns() {
  local field_separator="$1"
-	awk -F "$field_separator" -v field_separator="$field_separator" 'BEGIN { OFS = field_separator } NR>=2&&NR<=10{ print $3, $4, substr($5,1,length($5)-2)"/"substr($6,1,length($6)-2)"°", $7}; NR==12{ exit }'
+	awk -F "$field_separator" -v field_separator="$field_separator" '
+		BEGIN { OFS = field_separator }
+		NR<=9 { print $2, $4, substr($3,1,2)"/"$10, $5};
+		NR==10 { exit }'
 }
 
 transpose_table() {
