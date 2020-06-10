@@ -8,6 +8,17 @@ main() {
 		| select_relevant_columns "$field_separator")
 
 	transpose_table "$weather_data"	"$field_separator" | format
+
+	#debug $field_separator
+}
+
+debug() {
+	local field_separator="$1"
+	local weather_html_data="$(get_weather_html_data)"
+	echo -e "Weather HTML data:\n$weather_html_data"
+	echo "----"
+	local csv_data=$(echo "$weather_html_data" | html_data_to_csv $field_separator)
+	echo -e "CSV data:\n$csv_data"
 }
 
 get_weather_html_data() {
@@ -28,9 +39,10 @@ html_data_to_csv() {
 
 select_relevant_columns() {
  local field_separator="$1"
+ # We want time, weather, temperature/feels like, precipitations
 	awk -F "$field_separator" -v field_separator="$field_separator" '
 		BEGIN { OFS = field_separator }
-		NR<=9 { print $2, $4, substr($3,1,2)"/"$10, $5};
+		NR<=9 { print $2, $5, substr($3,1,2)"/"$7, $4};
 		NR==10 { exit }'
 }
 
