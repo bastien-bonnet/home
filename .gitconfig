@@ -21,6 +21,7 @@
 	pl= pull
 	plr = pull --rebase=merges
 	p = push
+	ps = push --set-upstream origin
 
 	l = log --graph --pretty=onelinerelativedate
 	la = log --graph --pretty=onelinerelativedate --all
