@@ -42,7 +42,7 @@ select_relevant_columns() {
  # We want time, weather, temperature/feels like, precipitations
 	awk -F "$field_separator" -v field_separator="$field_separator" '
 		BEGIN { OFS = field_separator }
-		NR<=9 { print $2, $5, substr($3,1,2)"/"$7, $4};
+		NR<=9 { print $2, $4, substr($3,1,2)"/"$10, $5};
 		NR==10 { exit }'
 }
 
