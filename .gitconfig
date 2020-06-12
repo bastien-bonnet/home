@@ -41,6 +41,8 @@
 	dtc = difftool --cached
 	dth = difftool HEAD^!
 
+	mt = mergetool
+
 [core]
 	pager = less -R
 [difftool]
