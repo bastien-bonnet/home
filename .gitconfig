@@ -17,32 +17,32 @@
 	a = add
 	ci = commit
 	cia = commit --amend
+	r = rebase
+	ri = rebase -i
+	m = merge
 	
+	# Remote interaction
 	f = fetch -p
 	pl= pull
 	plr = pull --rebase=merges
 	p = push
 	ps = push --set-upstream origin
 
+	# Log
 	l = log --graph --pretty=onelinerelativedate
 	la = log --graph --pretty=onelinerelativedate --all
 	ls = log --graph --pretty=onelinerelativedate --name-status
 	las = log --graph --pretty=onelinerelativedate --all --name-status
 	ld = log --graph --pretty=onelineabsolutedate --date=short
 
-	# diff
+	# Diff & merge
 	dns = diff --name-status
-
-	# minimal word diff
 	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
 	dc = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' --cached
 	dh = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' HEAD^!
-
-	# graphic diff
 	dt = difftool
 	dtc = difftool --cached
 	dth = difftool HEAD^!
-
 	mt = mergetool
 
 [core]
