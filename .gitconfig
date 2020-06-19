@@ -16,6 +16,7 @@
 	s = status -s
 	a = add
 	ci = commit
+	cia = commit --amend
 	
 	f = fetch -p
 	pl= pull
