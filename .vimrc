@@ -48,10 +48,13 @@ set visualbell
 
 set autoindent
 " Indentation with hard tabs, allowing each reader to view code with the amount of indentation they like
-set shiftwidth=2
-set tabstop=2
+" Indentation added by >>, =, etc. If not divisible by tabstop, vim will use a mix of spaces & tabs
+set shiftwidth=6
+" How many columns wide is a tab character worth?
+set tabstop=6
+
 " Show indentation marks
-set list listchars=tab:\ ❘,trail:·,extends:»,precedes:«,nbsp:×
+set list listchars=tab:❘\ ,trail:·,extends:»,precedes:«,nbsp:×
 " Set color for eol, extends and precedes
 "hi NonText ctermfg=7 guifg=gray
 " Set color for nbsp, tab, and trail
