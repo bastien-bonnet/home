@@ -7,18 +7,9 @@ main() {
 		| html_data_to_csv "$field_separator" \
 		| select_relevant_columns "$field_separator")
 
-	transpose_table "$weather_data"	"$field_separator" | format
+	transpose_table "$weather_data" "$field_separator" | format
 
 	#debug $field_separator
-}
-
-debug() {
-	local field_separator="$1"
-	local weather_html_data="$(get_weather_html_data)"
-	echo -e "Weather HTML data:\n$weather_html_data"
-	echo "----"
-	local csv_data=$(echo "$weather_html_data" | html_data_to_csv $field_separator)
-	echo -e "CSV data:\n$csv_data"
 }
 
 get_weather_html_data() {
@@ -39,20 +30,29 @@ html_data_to_csv() {
 
 select_relevant_columns() {
  local field_separator="$1"
- # We want time, weather, temperature/feels like, precipitations
-	awk -F "$field_separator" -v field_separator="$field_separator" '
-		BEGIN { OFS = field_separator }
-		NR<=9 { print $2, $4, substr($3,1,2)"/"$10, $5};
+	awk -F "$field_separator" -v output_field_separator="$field_separator" '
+		BEGIN { OFS = output_field_separator }
+		NR<=9 {
+			time=$2;
+			weather=$4;
+			precipitations=$5;
+			real_temp=substr($3,1,2);
+			feels=substr($10,1,2);
+			if (real_temp==feels) temp=" "real_temp;
+			else temp=real_temp"/"feels;
+
+			print time, weather, temp"°", precipitations
+		};
 		NR==10 { exit }'
 }
 
 transpose_table() {
-local weather_data="$1"
-local field_separator="$2"
-for row in {1..4}; do
-		local transposed_line=$(echo "$weather_data" | cut -d "$field_separator" -f $row | paste -sd "$field_separator")
-		local transposed_line_with_conky_offsets=$(replace_separator_with_conky_offset "$transposed_line" $field_separator)
-		echo $transposed_line_with_conky_offsets
+	local weather_data="$1"
+	local field_separator="$2"
+	for field in {1..4}; do
+		local transposed_column_to_line=$(echo "$weather_data" | cut -d "$field_separator" -f $field | paste -sd "$field_separator")
+		local transposed_column_to_line_with_conky_offsets=$(replace_separator_with_conky_offset "$transposed_column_to_line" $field_separator)
+		echo $transposed_column_to_line_with_conky_offsets
 	done
 }
 
@@ -96,6 +96,15 @@ format() {
 		-e "$format_precipitations" \
 		-e "$enclose_weather_icon_line_with_font_tags" \
 		-e "$prepend_conky_indent"
+}
+
+debug() {
+	local field_separator="$1"
+	local weather_html_data="$(get_weather_html_data)"
+	echo -e "Weather HTML data:\n$weather_html_data"
+	echo "----"
+	local csv_data=$(echo "$weather_html_data" | html_data_to_csv $field_separator)
+	echo -e "CSV data:\n$csv_data"
 }
 
 main
