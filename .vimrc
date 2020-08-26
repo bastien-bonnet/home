@@ -1,21 +1,29 @@
-" Indentation automatique selon le type de fichier
 "filetype indent on
-" Chargement de plugins selon le type de fichier
 filetype plugin on
 
 set encoding=utf-8
 set fileencodings=utf-8
-
-" Ignore case when searching…
-set ignorecase
-" … except when using capital letters
-set smartcase
 
 " Use X11 clipboard
 set clipboard=unnamedplus
 
 " Enables mouse (needs vim compiled with certain options)
 set mouse=a
+
+
+
+""""""""""""""""""""""""""""""""""""
+" FIND & REPLACE
+
+" Ignore case when searching…
+set ignorecase
+" … except when using capital letters
+set smartcase
+
+" Local variable rename
+nnoremap gr yiw[{V%::s/<C-R>"//gc<left><left><left>
+" Global variable rename
+nnoremap gR yiw:%s/<C-R>"//gc<left><left><left>
 
 
 
@@ -60,6 +68,14 @@ set list listchars=tab:❘\ ,trail:·,extends:»,precedes:«,nbsp:×
 " Set color for nbsp, tab, and trail
 hi SpecialKey ctermfg=8 guifg=darkgray
 
+" Oneline a file
+command Ol %s/\n//
+
+" Indent a oneline XML file
+map <F5> :set ft=xml<cr>:%s/></>\r</g<cr>gg=G
+
+" Oneline an XML file
+command Olx %s/\n// | s/>\s*</></g
 
 
 """"""""""""""""""""""""""""""""""""
@@ -78,15 +94,6 @@ map <silent> <home> g<home>
 imap <silent> <home> <C-o>g<home>
 map <silent> <End> g<End>
 imap <silent> <End> <C-o>g<End>
-
-" Oneline a file
-command Ol %s/\n//
-
-" Indent a oneline XML file
-map <F5> :set ft=xml<cr>:%s/></>\r</g<cr>gg=G
-
-" Oneline an xml file
-command Olx %s/\n// | s/>\s*</></g
 
 " Replace normal spaces with unbreakable spaces (french rules)
 command Ub %s/\([[:alnum:]]\) \(:\|;\|!\|?\|»\)/\1 \2/gce | %s/\(«\) \([[:alnum:]]\)/\1 \2/gce
