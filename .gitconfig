@@ -23,6 +23,7 @@
 	
 	# Remote interaction
 	f = fetch -p
+	fo = fetch origin
 	pl= pull
 	plr = pull --rebase=merges
 	p = push
