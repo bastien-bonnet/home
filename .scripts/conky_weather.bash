@@ -16,8 +16,9 @@ get_weather_html_data() {
 	local WEATHER_URL="https://weather.com/en-GB/weather/hourbyhour/l/b79a975f5ebe516146715560b2cb2e9de56e7b6e90e002c2bcc465c14ef65e22"
 
 	local weather_html_page=$(curl $WEATHER_URL 2>/dev/null)
-	echo $weather_html_page | xmllint --html --xpath "//details[contains(@data-testid, 'ExpandedDetailsCard')]" --nowarning --noblanks - 2>/dev/null
-
+	echo $weather_html_page \
+	| xmllint --html --xpath "//details[contains(@data-testid, 'ExpandedDetailsCard')]" --nowarning --noblanks - 2>/dev/null \
+	| head -n 9
 }
 
 html_data_to_csv() {
@@ -32,18 +33,19 @@ select_relevant_columns() {
  local field_separator="$1"
 	awk -F "$field_separator" -v output_field_separator="$field_separator" '
 		BEGIN { OFS = output_field_separator }
-		NR<=9 {
+		{
 			time=$2;
 			weather=$4;
 			precipitations=$5;
-			real_temp=substr($3,1,2);
-			feels=substr($10,1,2);
+			real_temp=$3;
+			gsub(/[^0-9]/, "", real_temp);
+			feels=$10;
+			gsub(/[^0-9]/, "", feels);
 			if (real_temp==feels) temp=" "real_temp;
 			else temp=real_temp"/"feels;
 
 			print time, weather, temp"°", precipitations
-		};
-		NR==10 { exit }'
+		}'
 }
 
 transpose_table() {
@@ -105,6 +107,9 @@ debug() {
 	echo "----"
 	local csv_data=$(echo "$weather_html_data" | html_data_to_csv $field_separator)
 	echo -e "CSV data:\n$csv_data"
+	echo "----"
+	local csv_filtered_data=$(echo "$csv_data" | select_relevant_columns "$field_separator")
+	echo -e "CSV filtered data:\n$csv_filtered_data"
 }
 
 main
