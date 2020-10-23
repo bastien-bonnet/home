@@ -2,7 +2,7 @@
 
 VERSION_PATTERN="[[:digit:]][[:digit:].-]*[[:digit:]]"
 
-installed_kernel_pkgs=$(dpkg -l | grep ii | awk '{print $2}' | grep -E "^linux-.*$VERSION_PATTERN-.*")
+installed_kernel_pkgs=$(dpkg -l | awk '/ii/{print $2}' | grep -E "^linux-.*$VERSION_PATTERN-.*")
 
 found_versions=$(grep -o "$VERSION_PATTERN" <<< "$installed_kernel_pkgs" | sort -u)
 
