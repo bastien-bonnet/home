@@ -15,6 +15,7 @@
 	st = status
 	s = status -s
 	a = add
+	ap= add -p
 	ci = commit
 	cia = commit --amend
 	r = rebase
