@@ -49,10 +49,10 @@ function define_PS1_with_git_info {
 	local exit_status_color="$([[ $last_command_exit_status == 0 ]] || echo $red)"
 
 	local prompt_left="$bg_color$exit_status_color╭$off$bg_color $userAndHost$working_dir $git_info$svn_info"
-	local time="$(date +'%T')"
+	local time="🕒 $(date +'%T')"
 
 	local prompt_left_size="$(echo -n $prompt_left | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)"
-	local time_size="$(echo -n $time | wc -m)"
+	local time_size="$(($(echo -n $time | wc -m)+ 1 ))"
 	local gap_size="$(($COLUMNS-$prompt_left_size-$time_size))"
 	local prompt_gap_filler="$(for ((i=1;i<=$gap_size;++i)); do echo -n ' '; done)"
 
