@@ -22,7 +22,7 @@ function gitInfo() {
 		[[ -n $branchDivergence ]] && branchStateColored="$yellow$bgColor$branchDivergence$default_text_color_and_intensity"
 		
 		local localStatus="$branchStateColored $dirtyStatusColored"
-		[[ -z $localStatus ]] && localStatus="✔"
+		[[ "$localStatus" == " " ]] && localStatus="✓ "
 		
 		echo -n "[$(gitBranchColored) $localStatus]"
 	fi
