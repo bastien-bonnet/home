@@ -21,8 +21,8 @@ function gitInfo() {
 		local branchDivergence="$(gitBranchDivergence)"
 		[[ -n $branchDivergence ]] && branchStateColored="$yellow$bgColor$branchDivergence$default_text_color_and_intensity"
 		
-		local localStatus="$branchStateColored $dirtyStatusColored"
-		[[ "$localStatus" == " " ]] && localStatus="✓ "
+		local localStatus="$branchStateColored$dirtyStatusColored"
+		[[ "$localStatus" == "" ]] && localStatus="✓ "
 		
 		echo -n "[$(gitBranchColored) $localStatus]"
 	fi
@@ -37,7 +37,7 @@ function gitBranchColored {
 function gitDirtyStatus {
 	local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo A)"
 	local unMergedWork="$([[ $(echo $gitStatus | grep 'Unmerged paths:') != '' ]] && echo U)"
-	local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo 'M')"
+	local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo M)"
 	local unTrackedFiles="$([[ $(echo $gitStatus | grep 'Untracked files:') != '' ]] && echo ?)"
 	echo -n "$unCommitedWork$unMergedWork$unStagedWork$unTrackedFiles"
 }
