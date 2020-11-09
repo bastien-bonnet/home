@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 VERSION_PATTERN="[[:digit:]][[:digit:].-]*[[:digit:]]"
 
