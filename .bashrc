@@ -49,9 +49,9 @@ function define_PS1_with_git_info {
 
 	local exit_status_color="$([[ $last_command_exit_status == 0 ]] || echo $red)"
 
-	local prompt_left="$bg_color📂 $userAndHost$working_dir $git_info$svn_info"
-	local time="🕒 $(date +'%T')"
-	local number_of_double_size_chars=2
+	local prompt_left="$bg_color  $userAndHost$working_dir     $git_info$svn_info"
+	local time=" $(date +'%T')"
+	local number_of_double_size_chars=0
 
 	local prompt_left_size=$(echo -n "$prompt_left" | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)
 	local time_size=$(($(echo -n "$time" | wc -m) + $number_of_double_size_chars))

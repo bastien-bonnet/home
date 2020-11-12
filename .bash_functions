@@ -21,10 +21,10 @@ function gitInfo() {
 		local branchDivergence="$(gitBranchDivergence)"
 		[[ -n $branchDivergence ]] && branchStateColored="$yellow$bgColor$branchDivergence$default_text_color_and_intensity"
 		
-		local localStatus="$branchStateColored$dirtyStatusColored"
-		[[ "$localStatus" == "" ]] && localStatus="✓ "
+		local localStatus="$branchStateColored $dirtyStatusColored"
+		[[ "$localStatus" == " " ]] && localStatus="✓ "
 		
-		echo -n "[$(gitBranchColored) $localStatus]"
+		echo -n "$(gitBranchColored) $localStatus"
 	fi
 }
 
@@ -52,9 +52,9 @@ function gitBranchDivergence {
 			local diverged="?"
 		fi
 	else
-		local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓ \1/p')"
-		local ahead="$(echo $gitStatus | sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑ \1/p')"
-		local diverged="$(echo $gitStatus | sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓ \2↑ \1/p')"
+		local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p')"
+		local ahead="$(echo $gitStatus | sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p')"
+		local diverged="$(echo $gitStatus | sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p')"
 	fi
 	echo -n "$behind$ahead$diverged"
 }
