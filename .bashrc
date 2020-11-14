@@ -4,7 +4,6 @@ function main {
 	export PATH=$PATH:~/software:~/.scripts:~/.local/bin
 	export CDPATH="~/dev"
 
-	source ~/.bash_functions && \
 	set_prompt
 
 	source_other_bash_config_files
@@ -14,64 +13,138 @@ function main {
 }
 
 function set_prompt {
-	if $(check_color_support); then
+	if $(has_color_support); then
 		PROMPT_COMMAND=define_PS1_with_git_info
 	else
-		PS1='\u@\h:\w\$ '
-		set_terminal_title
+		define_simple_PS1
 	fi
-	PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
+	PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 }
 
 function define_PS1_with_git_info {
 	local last_command_exit_status="$?"
 	
 	local red="\[\033[31m\]"
-	local green="\[\033[32m\]"
+	local green="\[\033[38;5;46m\]"
 	local yellow="\[\033[33m\]"
 	local bold="\[\033[1;38m\]"
-	local green_bg="\[\033[48;5;53m\]"
-	local red_bg="\[\033[48;5;88m\]"
-	local bg_color="$([[ $last_command_exit_status == 0 ]] && echo $green_bg || echo $red_bg)"
-	local off="\[\033[00m\]"
-	local default_text_color_and_intensity="\[\033[39m\]\[\033[22m\]"
-
-	# If I am SSHing on one of my other machines, need to see it clearly
-	if [ -n "$SSH_CLIENT" ]; then
-		local userAndHost="$green$USER@$HOSTNAME$default_text_color_and_intensity:"
-	fi
-	local working_dir="$(echo $PWD | sed 's,'$HOME',~,')"
-	local working_dir_length="${#working_dir}"
-	[[ $working_dir_length -gt 35 ]] && working_dir="…${working_dir:(($working_dir_length - 35))}"
-	working_dir="$bold$working_dir$default_text_color_and_intensity"
-	local git_info="$(gitInfo)"
-	local svn_info="$(svnInfos)"
-
+	local base_bg="\[\033[48;5;53m\]"
+	local error_bg="\[\033[48;5;88m\]"
+	local bg_color="$([[ $last_command_exit_status == 0 ]] && echo $base_bg || echo $error_bg)"
 	local exit_status_color="$([[ $last_command_exit_status == 0 ]] || echo $red)"
+	local default_text_color="\[\033[39m\]"
+	local normal_text_intensity="\[\033[22m\]"
+	local fg_format_off="$default_text_color$normal_text_intensity"
+	local format_off="\[\033[00m\]"
 
-	local prompt_left="$bg_color  $userAndHost$working_dir     $git_info$svn_info"
+	local working_dir="$bold$(short_working_dir)$fg_format_off"
+	local prompt_left="$bg_color  $(ssh_infos)$working_dir     $(gitInfo)$(svnInfos)"
 	local time=" $(date +'%T')"
-	local number_of_double_size_chars=0
+	local filler=$(prompt_gap_filler "$prompt_left" "$time")
 
-	local prompt_left_size=$(echo -n "$prompt_left" | sed 's/\\\[\\033\[[0-9;]*m\\\]//g' | wc -m)
-	local time_size=$(($(echo -n "$time" | wc -m) + $number_of_double_size_chars))
-	local gap_size="$(($COLUMNS-$prompt_left_size-$time_size))"
-	local prompt_gap_filler="$(for ((i=1;i<=$gap_size;++i)); do echo -n ' '; done)"
-
-	PS1="$prompt_left$prompt_gap_filler$time$off\n$exit_status_color➜$off "
-	
-	set_terminal_title
+	local prompt="$prompt_left$filler$time$format_off\n$exit_status_color➜$format_off "
+	PS1=$(prepend_terminal_title "$prompt")
 }
 
-function set_terminal_title {
+function gitInfo() {
+	# If git is installed && current directory is inside a git repo
+	if [[ $(command -v git) != "" && ("$(git rev-parse --is-inside-work-tree 2>&1)" == "true") ]]; then
+		local gitStatus="$(git status)"
+
+		local dirtyStatus="$(gitDirtyStatus)"
+		[[ -n $dirtyStatus ]] && dirtyStatusColored="$red$dirtyStatus$fg_format_off"
+		
+		local branchDivergence="$(gitBranchDivergence)"
+		[[ -n $branchDivergence ]] && branchStateColored="$yellow$bgColor$branchDivergence$fg_format_off"
+		
+		local localStatus="$branchStateColored$dirtyStatusColored"
+		[[ -z "$branchStateColored" && -z "$dirtyStatusColored" ]] && localStatus="✓"
+		[[ -n "$branchStateColored" && -n "$dirtyStatusColored" ]] && localStatus="$branchStateColored $dirtyStatusColored"
+		
+		echo -n "$(gitBranchColored) $localStatus"
+	fi
+}
+
+function gitBranchColored {
+	local gitBranch="$(git branch --no-color | sed -n 's/* \(.*\)/\1/p')"
+	[[ "$gitBranch" != master && "$gitBranch" != next ]] && gitBranch="$yellow$gitBranch$fg_format_off"
+	echo -n "$gitBranch"
+}
+
+function gitDirtyStatus {
+	local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo A)"
+	local unMergedWork="$([[ $(echo $gitStatus | grep 'Unmerged paths:') != '' ]] && echo U)"
+	local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo M)"
+	local unTrackedFiles="$([[ $(echo $gitStatus | grep 'Untracked files:') != '' ]] && echo ?)"
+	echo -n "$unCommitedWork$unMergedWork$unStagedWork$unTrackedFiles"
+}
+
+function gitBranchDivergence {
+	if [[ -d .git/svn ]]; then
+		if [[ -f .git/refs/remotes/git-svn && -f .git/refs/heads/master ]]; then
+			local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑(git-svn)')"
+		elif [[ -f .git/refs/remotes/trunk && -f .git/refs/heads/master ]]; then
+			local diverged="$([[ $(git diff master trunk) != '' ]] && echo '↓↑(trunk)')"
+		else
+			local diverged="?"
+		fi
+	else
+		local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p')"
+		local ahead="$(echo $gitStatus | sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p')"
+		local diverged="$(echo $gitStatus | sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p')"
+	fi
+	echo -n "$behind$ahead$diverged"
+}
+
+function svnInfos() {
+	if [[ $(command -v svn != "") ]]; then
+		local svnStatus="$(svn status --xml 2>&1)"
+		if [ -z "$(echo $svnStatus | grep 'is not a working copy')" ]; then
+			[ -n "$(echo $svnStatus | grep 'item="modified"')" ] && local modifiedFiles="*"
+			[ -n "$(echo $svnStatus | grep 'item="unversioned"')" ] && local newFiles="…"
+			local dirtyStatus="$modifiedFiles$newFiles"
+			[ -n "$dirtyStatus" ] && dirtyStatusColored="$red$dirtyStatus$fg_format_off" || dirtyStatusColored="✔"
+			echo -n " [svn: $dirtyStatusColored]"
+		fi
+	fi
+}
+
+function prompt_gap_filler {
+	local prompt_left="$1"
+	local prompt_right="$2"
+	local color_pattern="\\\[\\033\[[0-9;]*m\\\]"
+	local prompt_left_length=$(echo -n "$prompt_left" | sed "s/$color_pattern//g" | wc -m)
+	local number_of_double_size_chars=0
+	local prompt_right_length=${#prompt_right}
+	local gap_size="$(($COLUMNS - $prompt_left_length - $prompt_right_length + $number_of_double_size_chars))"
+	local prompt_gap_filler="$(for ((i=1;i<=$gap_size;++i)); do echo -n ' '; done)"
+	echo "$prompt_gap_filler"
+}
+
+function short_working_dir {
+	local working_dir="${PWD/$HOME/\~}"
+	local working_dir_length="${#working_dir}"
+	[[ $working_dir_length -gt 35 ]] && working_dir="…${working_dir:(($working_dir_length - 35))}"
+	echo "$working_dir"
+}
+
+function ssh_infos {
+	# If I am SSHing on one of my other machines, need to see it clearly
+	if [ -n "$SSH_CLIENT" ]; then
+		echo "$green$USER@$HOSTNAME$fg_format_off:"
+	fi
+}
+
+function define_simple_PS1 {
+	PS1="$(prepend_terminal_title '\u@\h:\w\$ ')"
+}
+
+function prepend_terminal_title {
 	# If this is an xterm set the title to user@host:dir
-	case "$TERM" in
-	xterm*|rxvt*)
-			PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-			;;
-	*)
-			;;
-	esac
+	if [[ "$TERM" =~ rxvt*|xterm* ]]; then
+		local term_title="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \wTEST\a\]"
+	fi
+	echo "$term_title$1"
 }
 
 function source_other_bash_config_files {
@@ -94,7 +167,7 @@ function set_terminal_visual_preferences {
 	shopt -s checkwinsize
 
 	color_man_pages
-}	
+}
 
 function set_bash_history_preferences {
 	export HISTCONTROL=ignoredups:ignorespace
@@ -116,7 +189,7 @@ function color_man_pages {
 	export LESS_TERMCAP_ue=$'\E[0m' # end underline
 }
 
-function check_color_support {
+function has_color_support {
 	# If 0, we have color support; assume it's compliant with Ecma-48 (ISO/IEC-6429). (Lack of such support is extremely rare, and such a case would tend to support setf rather than setaf.)
 	[ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null
 }
