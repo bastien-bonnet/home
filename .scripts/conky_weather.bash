@@ -73,6 +73,7 @@ replace_separator_with_conky_offset() {
 
 format() {
 	extract_hours='1s/\([[:digit:]]\{2\}:[[:digit:]]\{2\}\)[[:alpha:]]*/\1/g'
+	remove_0_precipitation='4s/-0%-//g'
 	enclose_precipitations='4s/\([[:digit:]]\{1,2\}%\)/-\1-/g'
 	format_precipitations='4s/-\([[:digit:]]\{1,3\}%\)-/\${font Font Awesome 5 Free Solid:style=Solid:size=9}\${font DejaVu Sans Mono:size=8}\1/g'
 	prepend_conky_indent='s/^/\${goto 70}/'
@@ -93,8 +94,8 @@ format() {
 		-e '2s/Foggy//g' \
 		-e '2s/Heavy T-Storms//g' \
 		-e '2s/\(\w\+ \)\?T-Storms//g' \
-		-e  "$enclose_precipitations" \
-		-e '4s/-0%-//g' \
+		-e "$enclose_precipitations" \
+		-e "$remove_0_precipitation" \
 		-e "$format_precipitations" \
 		-e "$enclose_weather_icon_line_with_font_tags" \
 		-e "$prepend_conky_indent"
