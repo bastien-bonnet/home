@@ -1,13 +1,13 @@
 conky.config = {
 
 	--[[ In order to work, this script requires:
-	1. font Font Awesome 5 Free Solid
-	2. modprobe conf:
+	1. [font] Font Awesome 5 Free Solid
+	2. [CPU] adding core temperature management module to kernel through modprobe conf:
 		sudo modprobe coretemp
 		edit /etc/modules and add the line 'coretemp'
 		sudo apt-get install lm-sensors
-	3. weather script in ~/.scripts/conky_weather.bash
-	4. prime-select --]]
+	3. [Nvidia GPU] prime-select
+	4. [Weather] weather script in ~/.scripts/conky_weather.bash --]]
 
 
 -------------------------------------------------------------------------------
@@ -42,6 +42,7 @@ conky.config = {
 	-- Colors from /usr/share/X11/rgb.txt
 	-- Examples: burlywood[1|2|3|4], wheat[1|2|3|4], sandy brown, tan[1|2|3|4], orange [1|2|3], antiquewhite[1|2|3|4]
 	color1 = 'tan3',
+	color2 = 'indian red',
 	default_color = 'antiquewhite3',
 
 	own_window = true,
@@ -76,14 +77,17 @@ conky.config = {
 	-- Section header
 	template1 = [[${color1}${template0 \1 17 \3}${goto 70}${voffset -6}${font Lato:size=15}\2${font} ${hr 2}${color}${voffset 5}]],
 
-	-- Section content indent
+	-- Subsection content indent
 	template7 = [[${goto 70}]],
+
+	-- Subsection title
+	template9 = [[${font DejaVu Sans:bold:size=9}\1${font}]],
 
 	-- Cpu core temperature for a given core number
 	template2 = [[${execi 5 sensors | grep -i "core $(expr $((\1 - 1)) % \2):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
 
 	-- Cpu info for a given core
-	template3 = [[${template 7}${template0  10} \1 ${goto 230}${freq_g \1} GHz ${alignr}${template2 \1 \2} ${cpubar cpu\1}]],
+	template3 = [[${template7}${template0  10} ${template9 \1} ${goto 230}${freq_g \1} GHz ${alignr}${template2 \1 \2} ${cpubar cpu\1}]],
 
 	-- Process by cpu
 	template4 = [[${goto 350}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
@@ -92,35 +96,28 @@ conky.config = {
 	template5 = [[${goto 350}${top_mem name \1} ${font DejaVu Sans Mono:size=9}${alignr}${top_mem mem \1}${font}]],
 
 	-- Network connection info
-	template6 = [[${template 7}${template0 \2 10}${voffset -1} \1: ${addr \1}#
+	template6 = [[${template7}${template0 \2 10}${voffset -1} \1: ${addr \1}#
 	${goto 350}${template0  10}${voffset -1} ${upspeed \1}${alignr}${template0  10}${voffset -1} ${downspeed \1}]],
 
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
 	-- Using this till exec behavior is fixed (exec are executed all the time, even inside conditionals like if_match).
 	template8 = [[${execpi 60 if grep -qs '\1 ' /proc/mounts; then
-		echo '${template 7}${template0  10}  \1 ${goto 220} ${fs_size \1} ${alignr}${fs_free \1} free #
-		${execibar 60 echo '$(df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+')'}
+		echo '${template7}${template0  10}  ${template9 \1} ${goto 220} ${fs_size \1} ${alignr}${fs_free \1} free #
+${if_match ${exec echo '$(df --output=pcent \1 | tr -dc 0-9)'} >= \3}${color2}${else}${endif}#
+		${execibar 60 echo '$(df --output=pcent \1 | tr -dc 0-9)'}${color}
 		${goto 350}Read${goto 390}${diskiograph_read \2 20,50 -t}#
 		${goto 460}Write${alignr}${diskiograph_write \2 20,50 -t}
 		${voffset -20}${goto 350}${diskio_read \2}${goto 460}${diskio_write \2}${voffset 20}
 		'
 	fi}#
-	]],
-
-	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
-	template9 = [[${template 7}\1 ${goto 230} ${fs_size \1} ${alignr}${fs_free \1} free ${execibar 60 df --output='pcent' \1 | tail -n 1 | grep -oE '\\w+'}
-	${goto 350}Read${goto 390}${diskiograph_read \2 20,50 -t}#
-	${goto 460}Write${alignr}${diskiograph_write \2 20,50 -t}
-	${voffset -20}${goto 350}${diskio_read \2}${goto 460}${diskio_write \2}${voffset 20}#
-]]
-
+	]]
 };
 
 
 -------------------------------------------------------------------------------
 conky.text = [=[
 ${template1  CPU}
-${template 7}Physical#
+${template7}${template9 Physical}#
 ${alignr}${execi 5 sensors | sed -En 's/Package.*([[:digit:]]{2}).*\(.*$/\1/p'}°C#
  ${cpubar 8 cpu0}
 ${template3 1 4}
@@ -154,31 +151,32 @@ ${template5 4}
 
 
 ${template1   SSD}
-${template8 / /dev/nvme0n1p3}#
-${template8 /boot /dev/nvme0n1p2}#
-${template8 /media/data /dev/sda1}#
-${template8 /media/data_ext /dev/sdb1}#
+${template8 / /dev/nvme0n1p3 80}#
+${template8 /boot /dev/nvme0n1p2 66}#
+${template8 /media/data /dev/sda1 90}#
+${template8 /media/data_ext /dev/sdb1 90}#
 #
 
 ${if_match "${execi 600 prime-select query}"=="nvidia"}#
 ${template1   GPU}
-${template 7}Nvidia driver: ${execi 600 nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version}#
+${template7}Nvidia driver: ${execi 600 nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version}#
 
-	${template 7}GPU use (perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
-	${template 7}Mem use${alignr}${nvidiabar memutil}
-	${template 7}Fan speed (${nvidia fanspeed} RPM)${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
+	${template7}GPU use (perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
+	${template7}Mem use${alignr}${nvidiabar memutil}
+	${template7}Fan speed (${nvidia fanspeed} RPM = ${nvidia fanlevel}%)${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
+	${template7}Power limit: ${execi 60 nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
 
 
 
 ${endif}#
 ${template1  SYSTEM brands}
-${template 7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs} - ${kernel}#
+${template7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs} - ${kernel}#
 ${goto 350}${template0  10}${voffset -1}#
  ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l} updates#
 ${alignr}${template0  10}${voffset -1} ${uptime_short}${voffset 20}#
 ${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}#
 
-${template 7}${template0  12} ${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}
+${template7}${template0  12} ${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}
 
 ${endif}
 ${if_up enp5s0}#
