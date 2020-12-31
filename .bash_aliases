@@ -55,6 +55,8 @@ a bootErrorLogs="journalctl -b -p err | less"
 
 a ez="teensy_loader_cli -vw -mmcu=atmega32u4"
 
+npl () { sudo nvidia-smi -pl ${1:-95}; }
+
 
 ###################################################################################################
 # CLEANING
