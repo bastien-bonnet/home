@@ -105,8 +105,8 @@ conky.config = {
 		echo '${template7}${template0  10}  ${template9 \1} ${goto 220} ${fs_size \1} ${alignr}${fs_free \1} free #
 ${if_match ${exec echo '$(df --output=pcent \1 | tr -dc 0-9)'} >= \3}${color2}${else}${endif}#
 		${execibar 60 echo '$(df --output=pcent \1 | tr -dc 0-9)'}${color}
-		${goto 350}Read${goto 390}${diskiograph_read \2 20,50 -t}#
-		${goto 460}Write${alignr}${diskiograph_write \2 20,50 -t}
+		${goto 350}R${goto 390}${diskiograph_read \2 20,50 -t}#
+		${goto 460}W${alignr}${diskiograph_write \2 20,50 -t}
 		${voffset -20}${goto 350}${diskio_read \2}${goto 460}${diskio_write \2}${voffset 20}
 		'
 	fi}#
@@ -143,7 +143,7 @@ ${template4 4}
 
 
 ${template1  RAM}
-${goto 230} ${memmax}${alignr}${memeasyfree} free ${membar 8}
+${goto 220} ${memmax} ${alignr}${memeasyfree} free 		${membar 8}
 ${template5 1}
 ${template5 2}
 ${template5 3}
@@ -152,7 +152,7 @@ ${template5 4}
 
 ${template1   SSD}
 ${template8 / /dev/nvme0n1p3 80}#
-${template8 /boot /dev/nvme0n1p2 66}#
+${template8 /boot /dev/nvme0n1p2 50}#
 ${template8 /media/data /dev/sda1 90}#
 ${template8 /media/data_ext /dev/sdb1 90}#
 #
@@ -163,9 +163,8 @@ ${template7}Nvidia driver: ${execi 600 nvidia-smi --format=csv,noheader,nounits 
 
 	${template7}GPU use (perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
 	${template7}Mem use${alignr}${nvidiabar memutil}
-	${template7}Fan speed (${nvidia fanspeed} RPM = ${nvidia fanlevel}%)${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
-	${template7}Power limit: ${execi 60 nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
-
+	${template7}${template0  10} ${nvidia fanspeed} RPM = ${nvidia fanlevel} %${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
+	${template7}${template0  10} ${execi 60 nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
 
 
 ${endif}#
