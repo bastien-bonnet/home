@@ -17,14 +17,19 @@ get_weather_html_data() {
 
 	local weather_html_page=$(curl $WEATHER_URL 2>/dev/null)
 	echo $weather_html_page \
-	| xmllint --html --xpath "//details[contains(@data-testid, 'ExpandedDetailsCard')]" --nowarning --noblanks - 2>/dev/null \
+	| xmllint --html --xpath "
+		  //*[contains(@data-testid, 'daypartName')]
+		| //*[contains(@data-testid, 'TemperatureValue')]
+		| //*[contains(@data-testid, 'wxIcon')]/*/title
+		| //*[contains(@data-testid, 'Precip')]/*[contains(@data-testid, 'PercentageValue')]" --nowarning --noblanks - 2>/dev/null \
+	| xargs -L 5 2>/dev/null \
 	| head -n 9
 }
 
 html_data_to_csv() {
 	local field_separator="$1"
 	local replace_html_tags_by_separator="s/<[^>]\+>/$field_separator/g"
-	local deduplicate_separators="s/$field_separator\+/$field_separator/g"
+	local deduplicate_separators="s/\(\( \)*$field_separator\)\+/$field_separator/g"
 
 	sed -e "$replace_html_tags_by_separator" -e "$deduplicate_separators"
 }
@@ -39,7 +44,7 @@ select_relevant_columns() {
 			precipitations=$5;
 			real_temp=$3;
 			gsub(/[^0-9]/, "", real_temp);
-			feels=$10;
+			feels=$6;
 			gsub(/[^0-9]/, "", feels);
 			if (real_temp==feels) temp=" "real_temp;
 			else temp=real_temp"/"feels;
@@ -86,8 +91,9 @@ format() {
 		-e '2s/Clear//g' \
 		-e '2s/Partly Cloudy\( \/ Wind\)\?//g' \
 		-e '2s/Mostly Cloudy \/ Wind//g' \
-		-e '2s/\(Mostly \)\?Cloudy\( \/ Wind\)\?//g' \
+		-e '2s/\(Mostly \)\?Cloudy\( \/ Wind\| Night\)\?//g' \
 		-e '2s/Few Showers\( \/ Wind\)\?//g' \
+		-e '2s/Scattered Showers\( \/ Wind\)\?//g' \
 		-e '2s/Light Rain\( \/ Wind\)\?//g' \
 		-e '2s/\(Heavy\)\?Rain\( \/ Wind\)\?//g' \
 		-e '2s/Showers\( \/ Wind\)\?//g' \
@@ -102,9 +108,12 @@ format() {
 }
 
 debug() {
+	echo "----------"
+	echo "DEBUG INFO"
+	echo "----------"
 	local field_separator="$1"
 	local weather_html_data="$(get_weather_html_data)"
-	echo -e "Weather HTML data:\n$weather_html_data"
+	echo -e "HTML data:\n$weather_html_data"
 	echo "----"
 	local csv_data=$(echo "$weather_html_data" | html_data_to_csv $field_separator)
 	echo -e "CSV data:\n$csv_data"
