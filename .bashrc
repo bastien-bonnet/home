@@ -38,7 +38,7 @@ function define_PS1_with_git_info {
 	local format_off="\[\033[00m\]"
 
 	local working_dir="$bold$(short_working_dir)$fg_format_off"
-	local prompt_left="$bg_color  $(ssh_infos)$working_dir     $(gitInfo)$(svnInfos)"
+	local prompt_left="$bg_color  $(ssh_infos)$working_dir    $(gitInfo)$(svnInfos)"
 	local time=" $(date +'%T')"
 	local filler=$(prompt_gap_filler "$prompt_left" "$time")
 
@@ -61,7 +61,7 @@ function gitInfo() {
 		[[ -z "$branchStateColored" && -z "$dirtyStatusColored" ]] && localStatus="✓"
 		[[ -n "$branchStateColored" && -n "$dirtyStatusColored" ]] && localStatus="$branchStateColored $dirtyStatusColored"
 		
-		echo -n "$(gitBranchColored) $localStatus"
+		echo -n " $(gitBranchColored) $localStatus"
 	fi
 }
 
