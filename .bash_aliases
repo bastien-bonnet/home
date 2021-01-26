@@ -31,7 +31,7 @@ alias a="alias"
 ###################################################################################################
 # SYSTEM
 
-	a u='sudo apt update && sudo apt upgrade'
+	a u='sudo apt update && sudo apt upgrade -V'
 	a pl="ps -eo pid,user,pcpu,pmem,start,comm,args"
 	grepWithFirstLine () {
 		head -n 1
