@@ -87,8 +87,8 @@ format() {
 		-e "$extract_hours" \
 		-e '2s/Mostly Sunny\( \/ Wind\)\?//g' \
 		-e '2s/Sunny\( \/ Wind\)\?//g' \
-		-e '2s/Mostly Clear//g' \
-		-e '2s/Clear//g' \
+		-e '2s/Partly Cloudy Night//g' \
+		-e '2s/\(Mostly \)\?Clear Night//g' \
 		-e '2s/Partly Cloudy\( \/ Wind\)\?//g' \
 		-e '2s/Mostly Cloudy \/ Wind//g' \
 		-e '2s/\(Mostly \)\?Cloudy\( \/ Wind\| Night\)\?//g' \
