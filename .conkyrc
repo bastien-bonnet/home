@@ -87,7 +87,7 @@ conky.config = {
 	template2 = [[${execi 5 sensors | grep -i "core $(expr $((\1 - 1)) % \2):" | sed -En 's/^.*([0-9]{2}).*high.*$/\\1°C/p'}]],
 
 	-- Cpu info for a given core
-	template3 = [[${template7}${template0  10} ${template9 \1} ${goto 230}${freq_g \1} GHz ${alignr}${template2 \1 \2} ${cpubar cpu\1}]],
+	template3 = [[${template7}${template0  10} ${template9 \1} ${goto 220}${freq_g \1} GHz ${goto 300}${template2 \1 \2} ${alignr}${cpubar cpu\1}]],
 
 	-- Process by cpu
 	template4 = [[${goto 350}${top name \1}${font DejaVu Sans Mono:size=9}${alignr}    ${top cpu \1}${font}]],
@@ -102,7 +102,7 @@ conky.config = {
 	-- Disk space (unlike fs_bar, it does count superuser reserved space as used)
 	-- Using this till exec behavior is fixed (exec are executed all the time, even inside conditionals like if_match).
 	template8 = [[${execpi 60 if grep -qs '\1 ' /proc/mounts; then
-		echo '${template7}${template0  10}  ${template9 \1} ${goto 220} ${fs_size \1} ${alignr}${fs_free \1} free #
+		echo '${template7}${template0  10}  ${template9 \1} ${goto 220} ${fs_size \1} ${goto 270}${fs_free \1} free #
 ${if_match ${exec echo '$(df --output=pcent \1 | tr -dc 0-9)'} >= \3}${color2}${else}${endif}#
 		${execibar 60 echo '$(df --output=pcent \1 | tr -dc 0-9)'}${color}
 		${goto 350}R${goto 390}${diskiograph_read \2 20,50 -t}#
@@ -118,8 +118,8 @@ ${if_match ${exec echo '$(df --output=pcent \1 | tr -dc 0-9)'} >= \3}${color2}${
 conky.text = [=[
 ${template1  CPU}
 ${template7}${template9 Physical}#
-${alignr}${execi 5 sensors | sed -En 's/Package.*([[:digit:]]{2}).*\(.*$/\1/p'}°C#
- ${cpubar 8 cpu0}
+${goto 300}${execi 5 sensors | sed -En 's/Package.*([[:digit:]]{2}).*\(.*$/\1/p'}°C#
+ ${alignr}${cpubar 8 cpu0}
 ${template3 1 4}
 ${template3 2 4}
 ${template3 3 4}
@@ -143,7 +143,7 @@ ${template4 4}
 
 
 ${template1  RAM}
-${goto 220} ${memmax} ${alignr}${memeasyfree} free 		${membar 8}
+${goto 220} ${memmax} ${goto 270}${memeasyfree} free 		${membar 8}
 ${template5 1}
 ${template5 2}
 ${template5 3}
