@@ -159,20 +159,21 @@ ${template8 /media/data_ext /dev/sdb1 90}#
 
 ${if_match "${execi 600 prime-select query}"=="nvidia"}#
 ${template1   GPU}
-${template7}Nvidia driver: ${execi 600 nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version}#
+${template7}${template0  10} ${goto 95}${execi 600 nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version}#
 
-	${template7}GPU use (perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
-	${template7}Mem use${alignr}${nvidiabar memutil}
-	${template7}${template0  10} ${nvidia fanspeed} RPM = ${nvidia fanlevel} %${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
-	${template7}${template0  10} ${execi 60 nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
+	${template7}${template0  10} ${goto 95}(perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
+	${template7}${template0  10} ${goto 95}${alignr}${nvidiabar memutil}
+	${template7}${template0  10} ${goto 95}${nvidia fanspeed} RPM = ${nvidia fanlevel} %${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
+	${template7}${template0  10} ${goto 95}${execi 60 nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
 
 
 ${endif}#
 ${template1  SYSTEM brands}
 ${template7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs} - ${kernel}#
-${goto 350}${template0  10}${voffset -1}#
- ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l} updates#
-${alignr}${template0  10}${voffset -1} ${uptime_short}${voffset 20}#
+${goto 350}${template0  10}${voffset -1} ${uptime_short}#
+${alignr}${template0  10}${voffset -1} ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l} updates#
+${voffset 20}#
+#
 ${if_match "${execi 60 hostname | cut -d- -f2}" == "laptop"}#
 
 ${template7}${template0  12} ${battery BAT0}${alignr}${battery_time BAT0} ${battery_bar BAT0}
