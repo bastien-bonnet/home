@@ -10,10 +10,12 @@
 	onelinerelativedate = "tformat:%C(yellow)%h%Creset %<(8,trunc)%cr %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
 	onelineabsolutedate = "tformat:%C(yellow)%h%Creset %ci %C(blue)%<(7,trunc)%cn%Creset -%C(auto)%d%Creset %s"
 [alias]
-	co = checkout
-	b = branch
 	st = status
 	s = status -s
+
+	# Local branch manipulation
+	co = checkout
+	b = branch
 	a = add
 	ap= add -p
 	ci = commit
@@ -21,10 +23,12 @@
 	r = rebase
 	ri = rebase -i
 	m = merge
+	ms = merge --squash
 	
 	# Remote interaction
 	f = fetch -p
 	fo = fetch origin
+	fom = fetch origin master:master
 	pl= pull
 	plr = pull --rebase=merges
 	p = push
