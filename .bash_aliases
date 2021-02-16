@@ -134,4 +134,5 @@ alias a="alias"
 	a c="bc -l <<<"
 	a prettyJson="python -m json.tool"
 	a ta="todo.bash"
+	a uvc="uvcdynctrl -L ~/.webcam.gpfl"
 
