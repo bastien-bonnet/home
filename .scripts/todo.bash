@@ -17,12 +17,12 @@ main() {
 
 	echo "@${1:-ALL}" | sed "s/\(.*\)/${bold}\1${fg_format_off}/"
 
-	grep "$context_pattern" $TODO_FILE | sed \
-	-e "s/$context_pattern//" \
-	-e "s/(A)/${red}A${default_text_color}/" \
-	-e "s/(B)/${orange}B${default_text_color}/" \
-	-e "s/(C)/${yellow}C${default_text_color}/" \
-	-e "s/(\(.\))/${grey}\1${default_text_color}/"
+	grep "$context_pattern" $TODO_FILE | sort | sed \
+		-e "s/$context_pattern//" \
+		-e "s/(A)/${red}A${default_text_color}/" \
+		-e "s/(B)/${orange}B${default_text_color}/" \
+		-e "s/(C)/${yellow}C${default_text_color}/" \
+		-e "s/(\(.\))/${grey}\1${default_text_color}/"
 }
 
 main "$@"
