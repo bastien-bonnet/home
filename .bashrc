@@ -18,7 +18,7 @@ function set_prompt {
 	else
 		define_simple_PS1
 	fi
-	PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+	PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
 }
 
 function define_PS1_with_git_info {
