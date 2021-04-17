@@ -72,11 +72,11 @@ function gitBranchColored {
 }
 
 function gitDirtyStatus {
-	local unCommitedWork="$([[ $(echo $gitStatus | grep 'Changes to be committed:') != '' ]] && echo A)"
-	local unMergedWork="$([[ $(echo $gitStatus | grep 'Unmerged paths:') != '' ]] && echo U)"
-	local unStagedWork="$([[ $(echo $gitStatus | grep 'Changes not staged for commit:') != '' ]] && echo M)"
-	local unTrackedFiles="$([[ $(echo $gitStatus | grep 'Untracked files:') != '' ]] && echo ?)"
-	echo -n "$unCommitedWork$unMergedWork$unStagedWork$unTrackedFiles"
+	local added="$([ -n "$(grep 'Changes to be committed:' <<< $gitStatus)" ] && echo A)"
+	local unMergedWork="$([ -n "$(grep 'Unmerged paths:' <<< $gitStatus)" ] && echo U)"
+	local modified="$([ -n "$(grep 'Changes not staged for commit:' <<< $gitStatus)" ] && echo M)"
+	local new="$([ -n "$(grep 'Untracked files:' <<< $gitStatus)" ] && echo ?)"
+	echo -n "$added$unMergedWork$modified$new"
 }
 
 function gitBranchDivergence {
@@ -89,9 +89,9 @@ function gitBranchDivergence {
 			local diverged="?"
 		fi
 	else
-		local behind="$(echo $gitStatus | sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p')"
-		local ahead="$(echo $gitStatus | sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p')"
-		local diverged="$(echo $gitStatus | sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p')"
+		local behind="$(sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p' <<< $gitStatus)"
+		local ahead="$(sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p' <<< $gitStatus)"
+		local diverged="$(sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p' <<< $gitStatus)"
 	fi
 	echo -n "$behind$ahead$diverged"
 }
