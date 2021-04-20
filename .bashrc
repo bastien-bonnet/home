@@ -38,7 +38,7 @@ function define_PS1_with_git_info {
 	local format_off="\[\033[00m\]"
 
 	local working_dir="$bold$(short_working_dir)$fg_format_off"
-	local prompt_left="$bg_color  $(ssh_infos)$working_dir    $(gitInfo)$(svnInfos)"
+	local prompt_left="$bg_color  $(ssh_infos)$working_dir    $(gitInfo)"
 	local time=" $(date +'%T')"
 	local filler=$(prompt_gap_filler "$prompt_left" "$time")
 
@@ -80,33 +80,10 @@ function gitDirtyStatus {
 }
 
 function gitBranchDivergence {
-	if [[ -d .git/svn ]]; then
-		if [[ -f .git/refs/remotes/git-svn && -f .git/refs/heads/master ]]; then
-			local diverged="$([[ $(git diff master git-svn) != '' ]] && echo '↓↑(git-svn)')"
-		elif [[ -f .git/refs/remotes/trunk && -f .git/refs/heads/master ]]; then
-			local diverged="$([[ $(git diff master trunk) != '' ]] && echo '↓↑(trunk)')"
-		else
-			local diverged="?"
-		fi
-	else
-		local behind="$(sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p' <<< $gitStatus)"
-		local ahead="$(sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p' <<< $gitStatus)"
-		local diverged="$(sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p' <<< $gitStatus)"
-	fi
+	local behind="$(sed -n 's/.*Your branch is behind.*by \([[:digit:]]\+\) commit.*/↓\1/p' <<< $gitStatus)"
+	local ahead="$(sed -n 's/.*Your branch is ahead.*by \([[:digit:]]\+\) commit.*/↑\1/p' <<< $gitStatus)"
+	local diverged="$(sed -n 's/.*and have \([[:digit:]]\+\) and \([[:digit:]]\+\) different commit.*/↓\2↑\1/p' <<< $gitStatus)"
 	echo -n "$behind$ahead$diverged"
-}
-
-function svnInfos() {
-	if [[ $(command -v svn != "") ]]; then
-		local svnStatus="$(svn status --xml 2>&1)"
-		if [ -z "$(echo $svnStatus | grep 'is not a working copy')" ]; then
-			[ -n "$(echo $svnStatus | grep 'item="modified"')" ] && local modifiedFiles="*"
-			[ -n "$(echo $svnStatus | grep 'item="unversioned"')" ] && local newFiles="…"
-			local dirtyStatus="$modifiedFiles$newFiles"
-			[ -n "$dirtyStatus" ] && dirtyStatusColored="$red$dirtyStatus$fg_format_off" || dirtyStatusColored="✔"
-			echo -n " [svn: $dirtyStatusColored]"
-		fi
-	fi
 }
 
 function prompt_gap_filler {
