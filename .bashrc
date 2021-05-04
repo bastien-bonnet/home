@@ -119,7 +119,7 @@ function define_simple_PS1 {
 function prepend_terminal_title {
 	# If this is an xterm set the title to user@host:dir
 	if [[ "$TERM" =~ rxvt*|xterm* ]]; then
-		local term_title="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \wTEST\a\]"
+		local term_title="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
 	fi
 	echo "$term_title$1"
 }
