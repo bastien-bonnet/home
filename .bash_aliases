@@ -12,7 +12,7 @@ alias a="alias"
 	a ll="ls -l"
 	a t="tree -D --du -h"
 
-	cdAndLs () { cd $1 && l; }
+	cdAndLs () { cd "$1" && l; }
 	a cl="cdAndLs"
 	a dl="cl ~/Downloads"
 
