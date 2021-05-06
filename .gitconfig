@@ -32,6 +32,7 @@
 	pl= pull
 	plr = pull --rebase=merges
 	p = push
+	pf = push --force-with-lease
 	ps = push --set-upstream origin
 
 	# Log
