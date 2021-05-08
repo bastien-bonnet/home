@@ -12,6 +12,7 @@
 [alias]
 	st = status
 	s = status -s
+	lst = ls-tree --name-only HEAD
 
 	# Local branch manipulation
 	co = checkout
