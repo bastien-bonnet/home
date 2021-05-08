@@ -1,0 +1,1670 @@
+include "%L"
+<dead_abovedot> <U0249> : "ɟ" U025F
+<dead_abovedot> <U202F> : "˙" abovedot
+<dead_abovedot> <underscore> : "˙" abovedot
+<dead_abovedot> <nobreakspace> : "˙" abovedot
+<dead_abovedot> <period> : "̇" U0307
+<dead_abovedot> <colon> : "̇" U0307
+<dead_abovedot> <ellipsis> : "̇" U0307
+<dead_abovedot> <periodcentered> : "̇" U0307
+<dead_abovedot> <rightsinglequotemark> : "̇" U0307
+<dead_abovedot> <question> : "̇" U0307
+<dead_abovedot> <questiondown> : "̇" U0307
+<dead_abovedot> <dead_hook> : "̇" U0307
+<dead_acute> <V> : "Ǘ" U01D7
+<dead_acute> <v> : "ǘ" U01D8
+<dead_acute> <space> : "´" acute
+<dead_acute> <U202F> : "´" acute
+<dead_acute> <underscore> : "´" acute
+<dead_acute> <nobreakspace> : "´" acute
+<dead_acute> <period> : "́" U0301
+<dead_acute> <colon> : "́" U0301
+<dead_acute> <ellipsis> : "́" U0301
+<dead_acute> <periodcentered> : "́" U0301
+<dead_acute> <rightsinglequotemark> : "́" U0301
+<dead_acute> <question> : "́" U0301
+<dead_acute> <questiondown> : "́" U0301
+<dead_acute> <dead_hook> : "́" U0301
+<dead_belowdot> <space> : "." period
+<dead_belowdot> <U202F> : "." period
+<dead_belowdot> <underscore> : "." period
+<dead_belowdot> <nobreakspace> : "." period
+<dead_belowdot> <period> : "̣" U0323
+<dead_belowdot> <colon> : "̣" U0323
+<dead_belowdot> <ellipsis> : "̣" U0323
+<dead_belowdot> <periodcentered> : "̣" U0323
+<dead_belowdot> <rightsinglequotemark> : "̣" U0323
+<dead_belowdot> <question> : "̣" U0323
+<dead_belowdot> <questiondown> : "̣" U0323
+<dead_belowdot> <dead_hook> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <A> : "Ạ" Abelowdot
+<dead_abovedot> <dead_abovedot> <Abreve> : "Ặ" Abrevebelowdot
+<dead_abovedot> <dead_abovedot> <Acircumflex> : "Ậ" Acircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <a> : "ạ" abelowdot
+<dead_abovedot> <dead_abovedot> <abreve> : "ặ" abrevebelowdot
+<dead_abovedot> <dead_abovedot> <acircumflex> : "ậ" acircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <B> : "Ḅ" U1E04
+<dead_abovedot> <dead_abovedot> <b> : "ḅ" U1E05
+<dead_abovedot> <dead_abovedot> <D> : "Ḍ" U1E0C
+<dead_abovedot> <dead_abovedot> <d> : "ḍ" U1E0D
+<dead_abovedot> <dead_abovedot> <E> : "Ẹ" Ebelowdot
+<dead_abovedot> <dead_abovedot> <Ecircumflex> : "Ệ" Ecircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <e> : "ẹ" ebelowdot
+<dead_abovedot> <dead_abovedot> <ecircumflex> : "ệ" ecircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <H> : "Ḥ" U1E24
+<dead_abovedot> <dead_abovedot> <h> : "ḥ" U1E25
+<dead_abovedot> <dead_abovedot> <I> : "Ị" Ibelowdot
+<dead_abovedot> <dead_abovedot> <i> : "ị" ibelowdot
+<dead_abovedot> <dead_abovedot> <K> : "Ḳ" U1E32
+<dead_abovedot> <dead_abovedot> <k> : "ḳ" U1E33
+<dead_abovedot> <dead_abovedot> <L> : "Ḷ" Lbelowdot
+<dead_abovedot> <dead_abovedot> <l> : "ḷ" lbelowdot
+<dead_abovedot> <dead_abovedot> <M> : "Ṃ" U1E42
+<dead_abovedot> <dead_abovedot> <m> : "ṃ" U1E43
+<dead_abovedot> <dead_abovedot> <N> : "Ṇ" U1E46
+<dead_abovedot> <dead_abovedot> <n> : "ṇ" U1E47
+<dead_abovedot> <dead_abovedot> <O> : "Ọ" Obelowdot
+<dead_abovedot> <dead_abovedot> <Ocircumflex> : "Ộ" Ocircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <Ohorn> : "Ợ" Ohornbelowdot
+<dead_abovedot> <dead_abovedot> <o> : "ọ" obelowdot
+<dead_abovedot> <dead_abovedot> <ocircumflex> : "ộ" ocircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <ohorn> : "ợ" ohornbelowdot
+<dead_abovedot> <dead_abovedot> <R> : "Ṛ" U1E5A
+<dead_abovedot> <dead_abovedot> <r> : "ṛ" U1E5B
+<dead_abovedot> <dead_abovedot> <Sabovedot> : "Ṩ" U1E68
+<dead_abovedot> <dead_abovedot> <S> : "Ṣ" U1E62
+<dead_abovedot> <dead_abovedot> <sabovedot> : "ṩ" U1E69
+<dead_abovedot> <dead_abovedot> <s> : "ṣ" U1E63
+<dead_abovedot> <dead_abovedot> <T> : "Ṭ" U1E6C
+<dead_abovedot> <dead_abovedot> <t> : "ṭ" U1E6D
+<dead_abovedot> <dead_abovedot> <U> : "Ụ" Ubelowdot
+<dead_abovedot> <dead_abovedot> <Uhorn> : "Ự" Uhornbelowdot
+<dead_abovedot> <dead_abovedot> <u> : "ụ" ubelowdot
+<dead_abovedot> <dead_abovedot> <uhorn> : "ự" uhornbelowdot
+<dead_abovedot> <dead_abovedot> <V> : "Ṿ" U1E7E
+<dead_abovedot> <dead_abovedot> <v> : "ṿ" U1E7F
+<dead_abovedot> <dead_abovedot> <W> : "Ẉ" U1E88
+<dead_abovedot> <dead_abovedot> <w> : "ẉ" U1E89
+<dead_abovedot> <dead_abovedot> <Y> : "Ỵ" Ybelowdot
+<dead_abovedot> <dead_abovedot> <y> : "ỵ" ybelowdot
+<dead_abovedot> <dead_abovedot> <Z> : "Ẓ" U1E92
+<dead_abovedot> <dead_abovedot> <z> : "ẓ" U1E93
+<dead_abovedot> <dead_abovedot> <space> : "." period
+<dead_abovedot> <dead_abovedot> <U202F> : "." period
+<dead_abovedot> <dead_abovedot> <underscore> : "." period
+<dead_abovedot> <dead_abovedot> <nobreakspace> : "." period
+<dead_abovedot> <dead_abovedot> <period> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <colon> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <ellipsis> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <periodcentered> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <rightsinglequotemark> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <question> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <questiondown> : "̣" U0323
+<dead_abovedot> <dead_abovedot> <dead_hook> : "̣" U0323
+<dead_breve> <U202F> : "˘" breve
+<dead_breve> <underscore> : "˘" breve
+<dead_breve> <nobreakspace> : "˘" breve
+<dead_breve> <period> : "̆" U0306
+<dead_breve> <colon> : "̆" U0306
+<dead_breve> <ellipsis> : "̆" U0306
+<dead_breve> <periodcentered> : "̆" U0306
+<dead_breve> <rightsinglequotemark> : "̆" U0306
+<dead_breve> <question> : "̆" U0306
+<dead_breve> <questiondown> : "̆" U0306
+<dead_breve> <dead_hook> : "̆" U0306
+<dead_breve> <dead_breve> <H> : "Ḫ" U1E2A
+<dead_breve> <dead_breve> <h> : "ḫ" U1E2B
+<dead_breve> <dead_breve> <A> : "Ȃ" U0202
+<dead_breve> <dead_breve> <a> : "ȃ" U0203
+<dead_breve> <dead_breve> <E> : "Ȇ" U0206
+<dead_breve> <dead_breve> <e> : "ȇ" U0207
+<dead_breve> <dead_breve> <I> : "Ȋ" U020A
+<dead_breve> <dead_breve> <i> : "ȋ" U020B
+<dead_breve> <dead_breve> <U> : "Ȗ" U0216
+<dead_breve> <dead_breve> <u> : "ȗ" U0217
+<dead_breve> <dead_breve> <O> : "Ȏ" U020E
+<dead_breve> <dead_breve> <o> : "ȏ" U020F
+<dead_breve> <dead_breve> <R> : "Ȓ" U0212
+<dead_breve> <dead_breve> <r> : "ȓ" U0213
+<dead_breve> <dead_breve> <period> : "̑" U0311
+<dead_breve> <dead_breve> <colon> : "̑" U0311
+<dead_breve> <dead_breve> <ellipsis> : "̑" U0311
+<dead_breve> <dead_breve> <periodcentered> : "̑" U0311
+<dead_breve> <dead_breve> <rightsinglequotemark> : "̮" U032E
+<dead_breve> <dead_breve> <question> : "̮" U032E
+<dead_breve> <dead_breve> <questiondown> : "̮" U032E
+<dead_breve> <dead_breve> <dead_hook> : "̮" U032E
+<dead_caron> <V> : "Ǚ" U01D9
+<dead_caron> <v> : "ǚ" U01DA
+<dead_caron> <U202F> : "ˇ" caron
+<dead_caron> <underscore> : "ˇ" caron
+<dead_caron> <nobreakspace> : "ˇ" caron
+<dead_caron> <period> : "̌" U030C
+<dead_caron> <colon> : "̌" U030C
+<dead_caron> <ellipsis> : "̌" U030C
+<dead_caron> <periodcentered> : "̌" U030C
+<dead_caron> <rightsinglequotemark> : "̌" U030C
+<dead_caron> <question> : "̌" U030C
+<dead_caron> <questiondown> : "̌" U030C
+<dead_caron> <dead_hook> : "̌" U030C
+<dead_caron> <dead_caron> <period> : "̬" U032C
+<dead_caron> <dead_caron> <colon> : "̬" U032C
+<dead_caron> <dead_caron> <ellipsis> : "̬" U032C
+<dead_caron> <dead_caron> <periodcentered> : "̬" U032C
+<dead_caron> <dead_caron> <rightsinglequotemark> : "̬" U032C
+<dead_caron> <dead_caron> <question> : "̬" U032C
+<dead_caron> <dead_caron> <questiondown> : "̬" U032C
+<dead_caron> <dead_caron> <dead_hook> : "̬" U032C
+<dead_cedilla> <U202F> : "¸" cedilla
+<dead_cedilla> <underscore> : "¸" cedilla
+<dead_cedilla> <nobreakspace> : "¸" cedilla
+<dead_cedilla> <period> : "̧" U0327
+<dead_cedilla> <colon> : "̧" U0327
+<dead_cedilla> <ellipsis> : "̧" U0327
+<dead_cedilla> <periodcentered> : "̧" U0327
+<dead_cedilla> <rightsinglequotemark> : "̧" U0327
+<dead_cedilla> <question> : "̧" U0327
+<dead_cedilla> <questiondown> : "̧" U0327
+<dead_cedilla> <dead_hook> : "̧" U0327
+<dead_circumflex> <U202F> : "^" asciicircum
+<dead_circumflex> <underscore> : "^" asciicircum
+<dead_circumflex> <nobreakspace> : "^" asciicircum
+<dead_circumflex> <period> : "̂" U0302
+<dead_circumflex> <colon> : "̂" U0302
+<dead_circumflex> <ellipsis> : "̂" U0302
+<dead_circumflex> <periodcentered> : "̂" U0302
+<dead_circumflex> <rightsinglequotemark> : "̂" U0302
+<dead_circumflex> <question> : "̂" U0302
+<dead_circumflex> <questiondown> : "̂" U0302
+<dead_circumflex> <dead_hook> : "̂" U0302
+<dead_circumflex> <dead_circumflex> <D> : "Ḓ" U1E12
+<dead_circumflex> <dead_circumflex> <d> : "ḓ" U1E13
+<dead_circumflex> <dead_circumflex> <E> : "Ḙ" U1E18
+<dead_circumflex> <dead_circumflex> <e> : "ḙ" U1E19
+<dead_circumflex> <dead_circumflex> <L> : "Ḽ" U1E3C
+<dead_circumflex> <dead_circumflex> <l> : "ḽ" U1E3D
+<dead_circumflex> <dead_circumflex> <N> : "Ṋ" U1E4A
+<dead_circumflex> <dead_circumflex> <n> : "ṋ" U1E4B
+<dead_circumflex> <dead_circumflex> <T> : "Ṱ" U1E70
+<dead_circumflex> <dead_circumflex> <t> : "ṱ" U1E71
+<dead_circumflex> <dead_circumflex> <U> : "Ṷ" U1E76
+<dead_circumflex> <dead_circumflex> <u> : "ṷ" U1E77
+<dead_circumflex> <dead_circumflex> <period> : "̭" U032D
+<dead_circumflex> <dead_circumflex> <colon> : "̭" U032D
+<dead_circumflex> <dead_circumflex> <ellipsis> : "̭" U032D
+<dead_circumflex> <dead_circumflex> <periodcentered> : "̭" U032D
+<dead_circumflex> <dead_circumflex> <rightsinglequotemark> : "̭" U032D
+<dead_circumflex> <dead_circumflex> <question> : "̭" U032D
+<dead_circumflex> <dead_circumflex> <questiondown> : "̭" U032D
+<dead_circumflex> <dead_circumflex> <dead_hook> : "̭" U032D
+<dead_belowcomma> <U202F> : "," comma
+<dead_belowcomma> <underscore> : "," comma
+<dead_belowcomma> <nobreakspace> : "," comma
+<dead_belowcomma> <period> : "̦" U0326
+<dead_belowcomma> <colon> : "̦" U0326
+<dead_belowcomma> <ellipsis> : "̦" U0326
+<dead_belowcomma> <periodcentered> : "̦" U0326
+<dead_belowcomma> <rightsinglequotemark> : "̦" U0326
+<dead_belowcomma> <question> : "̦" U0326
+<dead_belowcomma> <questiondown> : "̦" U0326
+<dead_belowcomma> <dead_hook> : "̦" U0326
+<dead_currency> <A> : "₳" U20B3
+<dead_currency> <a> : "؋" U060B
+<dead_currency> <B> : "฿" Thai_baht
+<dead_currency> <b> : "₿" U20BF
+<dead_currency> <C> : "₡" ColonSign
+<dead_currency> <ccedilla> : "₵" U20B5
+<dead_currency> <c> : "¢" cent
+<dead_currency> <dead_cedilla> : "₢" CruzeiroSign
+<dead_currency> <D> : "₯" U20AF
+<dead_currency> <d> : "₫" DongSign
+<dead_currency> <e> : "₠" EcuSign
+<dead_currency> <F> : "₣" FFrancSign
+<dead_currency> <f> : "ƒ" function
+<dead_currency> <g> : "₳" U20B2
+<dead_currency> <h> : "₴" U20B4
+<dead_currency> <I> : "៛" U17DB
+<dead_currency> <i> : "﷼" UFDFC
+<dead_currency> <k> : "₭" U20AD
+<dead_currency> <L> : "₤" LiraSign
+<dead_currency> <l> : "₺" U20BA
+<dead_currency> <sterling> : "₶" U20B6
+<dead_currency> <dead_stroke> : "₾" U20BE
+<dead_currency> <M> : "ℳ" U2133
+<dead_currency> <m> : "₥" MillSign
+<dead_currency> <U26FD> : "₻" U20BB
+<dead_currency> <dead_macron> : "₼" U20BC
+<dead_currency> <n> : "₦" NairaSign
+<dead_currency> <O> : "૱" U0AF1
+<dead_currency> <o> : "௹" U0BF9
+<dead_currency> <P> : "₧" PesetaSign
+<dead_currency> <p> : "₱" U20B1
+<dead_currency> <ampersand> : "₰" U20B0
+<dead_currency> <R> : "₹" U20B9
+<dead_currency> <r> : "₽" U20BD
+<dead_currency> <dead_breve> : "₨" RupeeSign
+<dead_currency> <S> : "₷" U20B7
+<dead_currency> <s> : "₪" NewSheqelSign
+<dead_currency> <T> : "₮" U20AE
+<dead_currency> <t> : "₸" U20B8
+<dead_currency> <trademark> : "৲" U09F2
+<dead_currency> <UFDD5> : "৳" U09F3
+<dead_currency> <U> : "圓" U5713
+<dead_currency> <u> : "元" U5143
+<dead_currency> <w> : "₩" WonSign
+<dead_currency> <Y> : "円" U5186
+<dead_currency> <y> : "¥" yen
+<dead_currency> <dead_currency> : "¤" currency
+<dead_diaeresis> <space> : "¨" diaeresis
+<dead_diaeresis> <U202F> : "¨" diaeresis
+<dead_diaeresis> <underscore> : "¨" diaeresis
+<dead_diaeresis> <nobreakspace> : "¨" diaeresis
+<dead_diaeresis> <period> : "̈" U0308
+<dead_diaeresis> <colon> : "̈" U0308
+<dead_diaeresis> <ellipsis> : "̈" U0308
+<dead_diaeresis> <periodcentered> : "̈" U0308
+<dead_diaeresis> <rightsinglequotemark> : "̈" U0308
+<dead_diaeresis> <question> : "̈" U0308
+<dead_diaeresis> <questiondown> : "̈" U0308
+<dead_diaeresis> <dead_hook> : "̈" U0308
+<dead_diaeresis> <dead_diaeresis> <U> : "Ṳ" U1E72
+<dead_diaeresis> <dead_diaeresis> <u> : "ṳ" U1E73
+<dead_diaeresis> <dead_diaeresis> <period> : "̤" U0324
+<dead_diaeresis> <dead_diaeresis> <colon> : "̤" U0324
+<dead_diaeresis> <dead_diaeresis> <ellipsis> : "̤" U0324
+<dead_diaeresis> <dead_diaeresis> <periodcentered> : "̤" U0324
+<dead_diaeresis> <dead_diaeresis> <rightsinglequotemark> : "̤" U0324
+<dead_diaeresis> <dead_diaeresis> <question> : "̤" U0324
+<dead_diaeresis> <dead_diaeresis> <questiondown> : "̤" U0324
+<dead_diaeresis> <dead_diaeresis> <dead_hook> : "̤" U0324
+<dead_acute> <dead_acute> <O> : "Ő" Odoubleacute
+<dead_acute> <dead_acute> <o> : "ő" odoubleacute
+<dead_acute> <dead_acute> <U> : "Ű" Udoubleacute
+<dead_acute> <dead_acute> <u> : "ű" udoubleacute
+<dead_acute> <dead_acute> <space> : "˝" doubleacute
+<dead_acute> <dead_acute> <U202F> : "˝" doubleacute
+<dead_acute> <dead_acute> <underscore> : "˝" doubleacute
+<dead_acute> <dead_acute> <nobreakspace> : "˝" doubleacute
+<dead_acute> <dead_acute> <period> : "̋" U030B
+<dead_acute> <dead_acute> <colon> : "̋" U030B
+<dead_acute> <dead_acute> <ellipsis> : "̋" U030B
+<dead_acute> <dead_acute> <periodcentered> : "̋" U030B
+<dead_acute> <dead_acute> <rightsinglequotemark> : "̋" U030B
+<dead_acute> <dead_acute> <question> : "̋" U030B
+<dead_acute> <dead_acute> <questiondown> : "̋" U030B
+<dead_acute> <dead_acute> <dead_hook> : "̋" U030B
+<dead_grave> <dead_grave> <A> : "Ȁ" U0200
+<dead_grave> <dead_grave> <a> : "ȁ" U0201
+<dead_grave> <dead_grave> <E> : "Ȅ" U0204
+<dead_grave> <dead_grave> <e> : "ȅ" U0205
+<dead_grave> <dead_grave> <I> : "Ȉ" U0208
+<dead_grave> <dead_grave> <i> : "ȉ" U0209
+<dead_grave> <dead_grave> <O> : "Ȍ" U020C
+<dead_grave> <dead_grave> <o> : "ȍ" U020D
+<dead_grave> <dead_grave> <R> : "Ȑ" U0210
+<dead_grave> <dead_grave> <r> : "ȑ" U0211
+<dead_grave> <dead_grave> <U> : "Ȕ" U0214
+<dead_grave> <dead_grave> <u> : "ȕ" U0215
+<dead_grave> <dead_grave> <period> : "̏" U030F
+<dead_grave> <dead_grave> <colon> : "̏" U030F
+<dead_grave> <dead_grave> <ellipsis> : "̏" U030F
+<dead_grave> <dead_grave> <periodcentered> : "̏" U030F
+<dead_grave> <dead_grave> <rightsinglequotemark> : "̏" U030F
+<dead_grave> <dead_grave> <question> : "̏" U030F
+<dead_grave> <dead_grave> <questiondown> : "̏" U030F
+<dead_grave> <dead_grave> <dead_hook> : "̏" U030F
+<dead_grave> <V> : "Ǜ" U01DB
+<dead_grave> <v> : "ǜ" U01DC
+<dead_grave> <U202F> : "`" grave
+<dead_grave> <underscore> : "`" grave
+<dead_grave> <nobreakspace> : "`" grave
+<dead_grave> <period> : "̀" U0300
+<dead_grave> <colon> : "̀" U0300
+<dead_grave> <ellipsis> : "̀" U0300
+<dead_grave> <periodcentered> : "̀" U0300
+<dead_grave> <rightsinglequotemark> : "̀" U0300
+<dead_grave> <question> : "̀" U0300
+<dead_grave> <questiondown> : "̀" U0300
+<dead_grave> <dead_hook> : "̀" U0300
+<dead_greek> <Amacron> : "Ᾱ" U1FB9
+<dead_greek> <amacron> : "ᾱ" U1FB1
+<dead_greek> <C> : "Ψ" Greek_PSI
+<dead_greek> <c> : "ψ" Greek_psi
+<dead_greek> <Imacron> : "Ῑ" U1FD9
+<dead_greek> <imacron> : "ῑ" U1FD1
+<dead_greek> <J> : "Ξ" Greek_XI
+<dead_greek> <j> : "ξ" Greek_xi
+<dead_greek> <U024D> : "ϼ" U03FC
+<dead_greek> <U> : "Θ" Greek_THETA
+<dead_greek> <Uhook> : "ϒ" U03D2
+<dead_greek> <Umacron> : "Ῡ" U1FE9
+<dead_greek> <u> : "θ" Greek_theta
+<dead_greek> <umacron> : "ῡ" U1FE1
+<dead_greek> <V> : "Ω" Greek_OMEGA
+<dead_greek> <v> : "ω" Greek_omega
+<dead_greek> <w> : "ς" Greek_finalsmallsigma
+<dead_greek> <X> : "Χ" Greek_CHI
+<dead_greek> <x> : "χ" Greek_chi
+<dead_greek> <Y> : "Υ" Greek_UPSILON
+<dead_greek> <y> : "υ" Greek_upsilon
+<dead_hook> <D> : "Ɖ" U0189
+<dead_hook> <d> : "ɖ" U0256
+<dead_hook> <H> : "Ꜧ" UA726
+<dead_hook> <h> : "ꜧ" UA727
+<dead_hook> <Q> : "Ɋ" U024A
+<dead_hook> <q> : "ɋ" U024B
+<dead_hook> <R> : "Ɽ" U2C64
+<dead_hook> <r> : "ɽ" U027D
+<dead_hook> <T> : "Ʈ" U01AE
+<dead_hook> <t> : "ʈ" U0288
+<dead_hook> <Greek_UPSILON> : "ϒ" U03D2
+<dead_hook> <period> : "̉" U0309
+<dead_hook> <colon> : "̉" U0309
+<dead_hook> <ellipsis> : "̉" U0309
+<dead_hook> <periodcentered> : "̉" U0309
+<dead_hook> <rightsinglequotemark> : "̉" U0309
+<dead_hook> <question> : "̉" U0309
+<dead_hook> <questiondown> : "̉" U0309
+<dead_hook> <dead_hook> <B> : "Ɓ" U0181
+<dead_hook> <dead_hook> <b> : "ɓ" U0253
+<dead_hook> <dead_hook> <C> : "Ƈ" U0187
+<dead_hook> <dead_hook> <c> : "ƈ" U0188
+<dead_hook> <dead_hook> <D> : "Ɗ" U018A
+<dead_hook> <dead_hook> <d> : "ɗ" U0257
+<dead_hook> <dead_hook> <G> : "Ɠ" U0193
+<dead_hook> <dead_hook> <g> : "ɠ" U0260
+<dead_hook> <dead_hook> <H> : "Ɦ" UA7AA
+<dead_hook> <dead_hook> <h> : "ɦ" U0266
+<dead_hook> <dead_hook> <K> : "Ƙ" U0198
+<dead_hook> <dead_hook> <k> : "ƙ" U0199
+<dead_hook> <dead_hook> <P> : "Ƥ" U01A4
+<dead_hook> <dead_hook> <p> : "ƥ" U01A5
+<dead_hook> <dead_hook> <q> : "ʠ" U02A0
+<dead_hook> <dead_hook> <T> : "Ƭ" U01AC
+<dead_hook> <dead_hook> <t> : "ƭ" U01AD
+<dead_hook> <dead_hook> <u> : "ꭒ" UAB52
+<dead_hook> <dead_hook> <V> : "Ʋ" U01B2
+<dead_hook> <dead_hook> <v> : "ʋ" U028B
+<dead_hook> <dead_hook> <W> : "Ⱳ" U2C72
+<dead_hook> <dead_hook> <w> : "ⱳ" U2C73
+<dead_hook> <dead_hook> <Y> : "Ƴ" U01B3
+<dead_hook> <dead_hook> <y> : "ƴ" U01B4
+<dead_horn> <dead_horn> : "🤘" U1F918
+<dead_horn> <period> : "̛" U031B
+<dead_horn> <colon> : "̛" U031B
+<dead_horn> <ellipsis> : "̛" U031B
+<dead_horn> <periodcentered> : "̛" U031B
+<dead_horn> <rightsinglequotemark> : "̛" U031B
+<dead_horn> <question> : "̛" U031B
+<dead_horn> <questiondown> : "̛" U031B
+<dead_horn> <dead_hook> : "̛" U031B
+<dead_macron> <dead_macron> <B> : "Ḇ" U1E06
+<dead_macron> <dead_macron> <b> : "ḇ" U1E07
+<dead_macron> <dead_macron> <D> : "Ḏ" U1E0E
+<dead_macron> <dead_macron> <d> : "ḏ" U1E0F
+<dead_macron> <dead_macron> <h> : "ẖ" U1E96
+<dead_macron> <dead_macron> <K> : "Ḵ" U1E34
+<dead_macron> <dead_macron> <k> : "ḵ" U1E35
+<dead_macron> <dead_macron> <L> : "Ḻ" U1E3A
+<dead_macron> <dead_macron> <l> : "ḻ" U1E3B
+<dead_macron> <dead_macron> <N> : "Ṉ" U1E48
+<dead_macron> <dead_macron> <n> : "ṉ" U1E49
+<dead_macron> <dead_macron> <R> : "Ṟ" U1E5E
+<dead_macron> <dead_macron> <r> : "ṟ" U1E5F
+<dead_macron> <dead_macron> <T> : "Ṯ" U1E6E
+<dead_macron> <dead_macron> <t> : "ṯ" U1E6F
+<dead_macron> <dead_macron> <Z> : "Ẕ" U1E94
+<dead_macron> <dead_macron> <z> : "ẕ" U1E95
+<dead_macron> <dead_macron> <space> : "_" underscore
+<dead_macron> <dead_macron> <U202F> : "_" underscore
+<dead_macron> <dead_macron> <underscore> : "_" underscore
+<dead_macron> <dead_macron> <nobreakspace> : "_" underscore
+<dead_macron> <dead_macron> <period> : "̱" U0331
+<dead_macron> <dead_macron> <colon> : "̱" U0331
+<dead_macron> <dead_macron> <ellipsis> : "̱" U0331
+<dead_macron> <dead_macron> <periodcentered> : "̱" U0331
+<dead_macron> <dead_macron> <rightsinglequotemark> : "̱" U0331
+<dead_macron> <dead_macron> <question> : "̱" U0331
+<dead_macron> <dead_macron> <questiondown> : "̱" U0331
+<dead_macron> <dead_macron> <dead_hook> : "̱" U0331
+<dead_macron> <V> : "Ǖ" U01D5
+<dead_macron> <v> : "ǖ" U01D6
+<dead_macron> <U202F> : "¯" macron
+<dead_macron> <underscore> : "¯" macron
+<dead_macron> <nobreakspace> : "¯" macron
+<dead_macron> <period> : "̄" U0304
+<dead_macron> <colon> : "̄" U0304
+<dead_macron> <ellipsis> : "̄" U0304
+<dead_macron> <periodcentered> : "̄" U0304
+<dead_macron> <rightsinglequotemark> : "̄" U0304
+<dead_macron> <question> : "̄" U0304
+<dead_macron> <questiondown> : "̄" U0304
+<dead_macron> <dead_hook> : "̄" U0304
+<dead_ogonek> <U202F> : "˛" ogonek
+<dead_ogonek> <underscore> : "˛" ogonek
+<dead_ogonek> <nobreakspace> : "˛" ogonek
+<dead_ogonek> <period> : "̨" U0328
+<dead_ogonek> <colon> : "̨" U0328
+<dead_ogonek> <ellipsis> : "̨" U0328
+<dead_ogonek> <periodcentered> : "̨" U0328
+<dead_ogonek> <rightsinglequotemark> : "̨" U0328
+<dead_ogonek> <question> : "̨" U0328
+<dead_ogonek> <questiondown> : "̨" U0328
+<dead_ogonek> <dead_hook> : "̨" U0328
+<dead_abovering> <space> : "°" degree
+<dead_abovering> <U202F> : "°" degree
+<dead_abovering> <underscore> : "°" degree
+<dead_abovering> <nobreakspace> : "°" degree
+<dead_abovering> <period> : "̊" U030A
+<dead_abovering> <colon> : "̊" U030A
+<dead_abovering> <ellipsis> : "̊" U030A
+<dead_abovering> <periodcentered> : "̊" U030A
+<dead_abovering> <rightsinglequotemark> : "̊" U030A
+<dead_abovering> <question> : "̊" U030A
+<dead_abovering> <questiondown> : "̊" U030A
+<dead_abovering> <dead_hook> : "̊" U030A
+<dead_abovering> <dead_abovering> <A> : "Ḁ" U1E00
+<dead_abovering> <dead_abovering> <a> : "ḁ" U1E01
+<dead_abovering> <dead_abovering> <period> : "̥" U0325
+<dead_abovering> <dead_abovering> <colon> : "̥" U0325
+<dead_abovering> <dead_abovering> <ellipsis> : "̥" U0325
+<dead_abovering> <dead_abovering> <periodcentered> : "̥" U0325
+<dead_abovering> <dead_abovering> <rightsinglequotemark> : "̥" U0325
+<dead_abovering> <dead_abovering> <question> : "̥" U0325
+<dead_abovering> <dead_abovering> <questiondown> : "̥" U0325
+<dead_abovering> <dead_abovering> <dead_hook> : "̥" U0325
+<UFDD8> <2> : "ƻ" U01BB
+<UFDD8> <B> : "Ƀ" U0243
+<UFDD8> <b> : "ƀ" U0180
+<dead_stroke> <b> : "␢" U2422
+<UFDD8> <C> : "Ꞓ" UA792
+<UFDD8> <c> : "ꞓ" UA793
+<UFDD8> <D> : "Đ" Dstroke
+<UFDD8> <d> : "đ" dstroke
+<UFDD8> <F> : "Ꞙ" UA798
+<UFDD8> <f> : "ꞙ" UA799
+<UFDD8> <G> : "Ǥ" U01E4
+<UFDD8> <g> : "ǥ" U01E5
+<dead_stroke> <G> : "Ꞡ" UA7A0
+<dead_stroke> <g> : "ꞡ" UA7A1
+<UFDD8> <H> : "Ħ" Hstroke
+<UFDD8> <h> : "ħ" hstroke
+<UFDD8> <I> : "Ɨ" U0197
+<UFDD8> <i> : "ɨ" U0268
+<UFDD8> <J> : "Ɉ" U0248
+<UFDD8> <j> : "ɉ" U0249
+<UFDD8> <K> : "Ꝁ" UA740
+<UFDD8> <k> : "ꝁ" UA741
+<dead_stroke> <K> : "Ꞣ" UA7A2
+<dead_stroke> <k> : "ꞣ" UA7A3
+<dead_stroke> <U2011> : "Ꝃ" UA742
+<dead_stroke> <asciitilde> : "ꝃ" UA743
+<UFDD8> <L> : "Ƚ" U023D
+<UFDD8> <l> : "ƚ" U019A
+<UFDD8> <sterling> : "Ꝉ" UA748
+<dead_stroke> <N> : "Ꞥ" UA7A4
+<dead_stroke> <n> : "ꞥ" UA7A5
+<UFDD8> <O> : "Ꝋ" UA74A
+<UFDD8> <o> : "ꝋ" UA74B
+<UFDD8> <OE> : "Ɵ" Obarred
+<UFDD8> <oe> : "ɵ" obarred
+<UFDD8> <P> : "Ᵽ" U2C63
+<UFDD8> <p> : "ᵽ" U1D7D
+<UFDD8> <section> : "Ꝑ" UA750
+<UFDD8> <ampersand> : "ꝑ" UA751
+<UFDD8> <Q> : "Ꝗ" UA756
+<UFDD8> <q> : "ꝗ" UA757
+<dead_stroke> <Q> : "Ꝙ" UA758
+<dead_stroke> <q> : "ꝙ" UA759
+<UFDD8> <R> : "Ɍ" U024C
+<dead_stroke> <Greek_rho> : "ϼ" U03FC
+<UFDD8> <r> : "ɍ" U024D
+<dead_stroke> <R> : "Ꞧ" UA7A6
+<dead_stroke> <r> : "ꞧ" UA7A7
+<dead_stroke> <S> : "Ꞩ" UA7A8
+<dead_stroke> <s> : "ꞩ" UA7A9
+<dead_stroke> <U1D11> : "ᴓ" U1D13
+<dead_stroke> <U017F> : "ẜ" U1E9C
+<UFDD8> <U017F> : "ẝ" U1E9D
+<UFDD8> <T> : "Ŧ" Tslash
+<UFDD8> <t> : "ŧ" tslash
+<dead_stroke> <T> : "Ⱦ" U023E
+<dead_stroke> <t> : "ⱦ" U2C66
+<UFDD8> <U> : "Ʉ" U0244
+<UFDD8> <u> : "ʉ" U0289
+<dead_stroke> <U028A> : "ᵿ" U1D7F
+<dead_stroke> <V> : "Ꝟ" UA75E
+<dead_stroke> <v> : "ꝟ" UA75F
+<UFDD8> <Y> : "Ɏ" U024E
+<UFDD8> <y> : "ɏ" U024F
+<UFDD8> <Z> : "Ƶ" Zstroke
+<UFDD8> <z> : "ƶ" zstroke
+<dead_stroke> <U202F> : "/" slash
+<dead_stroke> <underscore> : "/" slash
+<dead_stroke> <nobreakspace> : "/" slash
+<dead_stroke> <period> : "̸" U0338
+<dead_stroke> <colon> : "̸" U0338
+<dead_stroke> <ellipsis> : "̸" U0338
+<dead_stroke> <periodcentered> : "̸" U0338
+<dead_stroke> <rightsinglequotemark> : "̸" U0338
+<dead_stroke> <question> : "̸" U0338
+<dead_stroke> <questiondown> : "̸" U0338
+<dead_stroke> <dead_hook> : "̸" U0338
+<UFDD8> <space> : "–" endash
+<UFDD8> <U202F> : "–" endash
+<UFDD8> <underscore> : "–" endash
+<UFDD8> <nobreakspace> : "–" endash
+<UFDD8> <period> : "̵" U0335
+<UFDD8> <colon> : "̵" U0335
+<UFDD8> <ellipsis> : "̵" U0335
+<UFDD8> <periodcentered> : "̵" U0335
+<UFDD8> <rightsinglequotemark> : "̶" U0336
+<UFDD8> <question> : "̶" U0336
+<UFDD8> <questiondown> : "̶" U0336
+<UFDD8> <dead_hook> : "̶" U0336
+<UFDD8> <UFDD8> <L> : "Ⱡ" U2C60
+<UFDD8> <UFDD8> <l> : "ⱡ" U2C61
+<dead_stroke> <UFDD5> <UFDD5> <L> : "ᴌ" U1D0C
+<UFDD5> <UFDD5> <dead_stroke> <L> : "ᴌ" U1D0C
+<UFDD8> <UFDD5> <UFDD5> <U> : "ᵾ" U1D7E
+<UFDD5> <UFDD5> <UFDD8> <U> : "ᵾ" U1D7E
+<UFDD8> <UFDD5> <UFDD5> <I> : "ᵻ" U1D7B
+<UFDD5> <UFDD5> <UFDD8> <I> : "ᵻ" U1D7B
+<UFDD8> <UFDD5> <UFDD5> <B> : "ᴃ" U1D03
+<UFDD5> <UFDD5> <UFDD8> <B> : "ᴃ" U1D03
+<dead_tilde> <minus> : "≃" similarequal
+<dead_tilde> <U202F> : "~" asciitilde
+<dead_tilde> <underscore> : "~" asciitilde
+<dead_tilde> <nobreakspace> : "~" asciitilde
+<dead_tilde> <period> : "̃" U0303
+<dead_tilde> <colon> : "̃" U0303
+<dead_tilde> <ellipsis> : "̃" U0303
+<dead_tilde> <periodcentered> : "̃" U0303
+<dead_tilde> <rightsinglequotemark> : "̃" U0303
+<dead_tilde> <question> : "̃" U0303
+<dead_tilde> <questiondown> : "̃" U0303
+<dead_tilde> <dead_hook> : "̃" U0303
+<dead_tilde> <dead_tilde> <b> : "ᵬ" U1D6C
+<dead_tilde> <dead_tilde> <d> : "ᵭ" U1D6D
+<dead_tilde> <dead_tilde> <f> : "ᵮ" U1D6E
+<dead_tilde> <dead_tilde> <L> : "Ɫ" U2C62
+<dead_tilde> <dead_tilde> <l> : "ɫ" U026B
+<dead_tilde> <dead_tilde> <m> : "ᵯ" U1D6F
+<dead_tilde> <dead_tilde> <n> : "ᵰ" U1D70
+<dead_tilde> <dead_tilde> <O> : "Ɵ" Obarred
+<dead_tilde> <dead_tilde> <p> : "ᵱ" U1D71
+<dead_tilde> <dead_tilde> <r> : "ᵲ" U1D72
+<dead_tilde> <dead_tilde> <s> : "ᵴ" U1D74
+<dead_tilde> <dead_tilde> <t> : "ᵵ" U1D75
+<dead_tilde> <dead_tilde> <z> : "ᵶ" U1D76
+<dead_tilde> <dead_tilde> <E> : "Ḛ" U1E1A
+<dead_tilde> <dead_tilde> <e> : "ḛ" U1E1B
+<dead_tilde> <dead_tilde> <I> : "Ḭ" U1E2C
+<dead_tilde> <dead_tilde> <i> : "ḭ" U1E2D
+<dead_tilde> <dead_tilde> <U> : "Ṵ" U1E74
+<dead_tilde> <dead_tilde> <u> : "ṵ" U1E75
+<dead_tilde> <dead_tilde> <plus> : "⨦" U2A26
+<dead_tilde> <dead_tilde> <period> : "̰" U0330
+<dead_tilde> <dead_tilde> <colon> : "̰" U0330
+<dead_tilde> <dead_tilde> <ellipsis> : "̰" U0330
+<dead_tilde> <dead_tilde> <periodcentered> : "̰" U0330
+<dead_tilde> <dead_tilde> <rightsinglequotemark> : "̰" U0330
+<dead_tilde> <dead_tilde> <question> : "̰" U0330
+<dead_tilde> <dead_tilde> <questiondown> : "̰" U0330
+<dead_tilde> <dead_tilde> <dead_hook> : "̰" U0330
+<dead_tilde> <dead_tilde> <dead_tilde> <l> : "ꬸ" UAB38
+<dead_abovedot> <dead_abovedot> <dead_abovedot> <S> : "Ṩ" U1E68
+<dead_abovedot> <dead_abovedot> <dead_abovedot> <s> : "ṩ" U1E69
+<dead_abovedot> <dead_abovedot> <dead_breve> <A> : "Ặ" Abrevebelowdot
+<dead_breve> <dead_abovedot> <dead_abovedot> <A> : "Ặ" Abrevebelowdot
+<dead_abovedot> <dead_abovedot> <dead_breve> <a> : "ặ" abrevebelowdot
+<dead_breve> <dead_abovedot> <dead_abovedot> <a> : "ặ" abrevebelowdot
+<dead_abovedot> <dead_abovedot> <dead_circumflex> <A> : "Ậ" Acircumflexbelowdot
+<dead_circumflex> <dead_abovedot> <dead_abovedot> <A> : "Ậ" Acircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <dead_circumflex> <a> : "ậ" acircumflexbelowdot
+<dead_circumflex> <dead_abovedot> <dead_abovedot> <a> : "ậ" acircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <dead_circumflex> <E> : "Ệ" Ecircumflexbelowdot
+<dead_circumflex> <dead_abovedot> <dead_abovedot> <E> : "Ệ" Ecircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <dead_circumflex> <e> : "ệ" ecircumflexbelowdot
+<dead_circumflex> <dead_abovedot> <dead_abovedot> <e> : "ệ" ecircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <dead_circumflex> <O> : "Ộ" Ocircumflexbelowdot
+<dead_circumflex> <dead_abovedot> <dead_abovedot> <O> : "Ộ" Ocircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <dead_circumflex> <o> : "ộ" ocircumflexbelowdot
+<dead_circumflex> <dead_abovedot> <dead_abovedot> <o> : "ộ" ocircumflexbelowdot
+<dead_abovedot> <dead_abovedot> <dead_horn> <O> : "Ợ" Ohornbelowdot
+<dead_horn> <dead_abovedot> <dead_abovedot> <O> : "Ợ" Ohornbelowdot
+<dead_abovedot> <dead_abovedot> <dead_horn> <o> : "ợ" ohornbelowdot
+<dead_horn> <dead_abovedot> <dead_abovedot> <o> : "ợ" ohornbelowdot
+<dead_abovedot> <dead_abovedot> <dead_horn> <U> : "Ự" Uhornbelowdot
+<dead_horn> <dead_abovedot> <dead_abovedot> <U> : "Ự" Uhornbelowdot
+<dead_abovedot> <dead_abovedot> <dead_horn> <u> : "ự" uhornbelowdot
+<dead_horn> <dead_abovedot> <dead_abovedot> <u> : "ự" uhornbelowdot
+<dead_abovedot> <dead_abovedot> <dead_macron> <L> : "Ḹ" U1E38
+<dead_macron> <dead_abovedot> <dead_abovedot> <L> : "Ḹ" U1E38
+<dead_abovedot> <dead_abovedot> <dead_macron> <l> : "ḹ" U1E39
+<dead_macron> <dead_abovedot> <dead_abovedot> <l> : "ḹ" U1E39
+<dead_abovedot> <dead_abovedot> <dead_macron> <R> : "Ṝ" U1E5C
+<dead_macron> <dead_abovedot> <dead_abovedot> <R> : "Ṝ" U1E5C
+<dead_abovedot> <dead_abovedot> <dead_macron> <r> : "ṝ" U1E5D
+<dead_macron> <dead_abovedot> <dead_abovedot> <r> : "ṝ" U1E5D
+<UFDD8> <dead_stroke> <K> : "Ꝅ" UA744
+<dead_stroke> <UFDD8> <K> : "Ꝅ" UA744
+<UFDD8> <dead_stroke> <k> : "ꝅ" UA745
+<dead_stroke> <UFDD8> <k> : "ꝅ" UA745
+<UFDD4> <dollar> : "♭" musicalflat
+<UFDD4> <numbersign> : "♯" musicalsharp
+<UFDD4> <endash> : "‒" figdash
+<UFDD4> <paragraph> : "♮" U266E
+<UFDD4> <1> : "ↀ" U2180
+<UFDD4> <emdash> : "―" Greek_horizbar
+<UFDD4> <guillemotleft> : "‹" U2039
+<UFDD4> <guillemotright> : "›" U203A
+<UFDD4> <5> : "ↁ" U2181
+<UFDD4> <plus> : "⁜" U205C
+<UFDD4> <notsign> : "☞" rightpointer
+<UFDD4> <minus> : "­" hyphen
+<UFDD4> <U2212> : "‐" U2010
+<UFDD4> <onequarter> : "⅓" onethird
+<UFDD4> <asterisk> : "⁂" U2042
+<UFDD4> <0> : "ↂ" U2182
+<UFDD4> <multiply> : "※" U203B
+<UFDD4> <threequarters> : "⅔" twothirds
+<UFDD4> <minutes> : "‴" U2034
+<UFDD4> <percent> : "‱" U2031
+<UFDD4> <grave> : "◌" U25CC
+<UFDD4> <seconds> : "⁗" U2057
+<UFDD4> <b> : "ꞵ" UA7B5
+<UFDD4> <B> : "Ꞵ" UA7B4
+<UFDD4> <eacute> : "ɛ" U025B
+<UFDD4> <Eacute> : "Ɛ" U0190
+<UFDD4> <ampersand> : "⁊" U204A
+<UFDD4> <section> : "℗" phonographcopyright
+<UFDD4> <o> : "ɔ" U0254
+<UFDD4> <O> : "Ɔ" U0186
+<UFDD4> <oe> : "ꞷ" UA7B7
+<UFDD4> <OE> : "Ꞷ" UA7B6
+<UFDD4> <egrave> : "ǝ" U01DD
+<UFDD4> <Egrave> : "Ǝ" U018E
+<UFDD4> <exclam> : "‽" U203D
+<UFDD4> <v> : "ʌ" U028C
+<UFDD4> <V> : "Ʌ" U0245
+<UFDD4> <d> : "ð" eth
+<UFDD4> <D> : "Ð" ETH
+<UFDD4> <j> : "ĳ" U0133
+<UFDD4> <J> : "Ĳ" U0132
+<UFDD4> <z> : "ʒ" ezh
+<UFDD4> <Z> : "Ʒ" EZH
+<UFDD4> <w> : "ƿ" U01BF
+<UFDD4> <W> : "Ƿ" U01F7
+<UFDD4> <a> : "ɑ" U0251
+<UFDD4> <A> : "Ɑ" U2C6D
+<UFDD4> <ae> : "ꜥ" UA725
+<UFDD4> <AE> : "Ꜥ" UA724
+<UFDD4> <u> : "ʊ" U028A
+<UFDD4> <U> : "Ʊ" U01B1
+<UFDD4> <ugrave> : "ɥ" U0265
+<UFDD4> <Ugrave> : "Ɥ" UA78D
+<UFDD4> <i> : "ɩ" U0269
+<UFDD4> <I> : "Ɩ" U0196
+<UFDD4> <e> : "ə" schwa
+<UFDD4> <E> : "Ə" SCHWA
+<UFDD4> <c> : "θ" Greek_theta
+<UFDD4> <C> : "ϴ" U03F4
+<UFDD4> <t> : "þ" thorn
+<UFDD4> <T> : "Þ" THORN
+<UFDD4> <s> : "ß" ssharp
+<UFDD4> <S> : "ẞ" U1E9E
+<UFDD4> <UFDD4> : "ß" ssharp
+<UFDD4> <U017F> : "ẞ" U1E9E
+<UFDD4> <n> : "ŋ" eng
+<UFDD4> <N> : "Ŋ" ENG
+<UFDD4> <m> : "º" masculine
+<UFDD4> <ccedilla> : "ʃ" U0283
+<UFDD4> <Ccedilla> : "Ʃ" U01A9
+<UFDD4> <ecircumflex> : "ɪ" U026A
+<UFDD4> <Ecircumflex> : "Ɪ" UA7AE
+<UFDD4> <agrave> : "ꜣ" UA723
+<UFDD4> <Agrave> : "Ꜣ" UA722
+<UFDD4> <y> : "ȝ" U021D
+<UFDD4> <Y> : "Ȝ" U021C
+<UFDD4> <braceleft> : "ʿ" U02BF
+<UFDD4> <leftsinglequotemark> : "ʻ" U02BB
+<UFDD4> <x> : "ꞌ" UA78C
+<UFDD4> <X> : "Ꞌ" UA78B
+<UFDD4> <rightsinglequotemark> : "ʼ" U02BC
+<UFDD4> <period> : "•" enfilledcircbullet
+<UFDD4> <colon> : "⁃" U2043
+<UFDD4> <periodcentered> : "▪" enfilledsqbullet
+<UFDD4> <k> : "ĸ" kra
+<UFDD4> <question> : "⸮" U2E2E
+<UFDD4> <dead_hook> : "ʻ" U02BB
+<UFDD4> <q> : "ꭓ" UAB53
+<UFDD4> <Q> : "Ꭓ" UA7B3
+<UFDD4> <g> : "ɣ" U0263
+<UFDD4> <G> : "Ɣ" U0194
+<UFDD4> <h> : "ɂ" U0242
+<UFDD4> <H> : "Ɂ" U0241
+<UFDD4> <f> : "ª" ordfeminine
+<UFDD4> <space> : "␣" signifblank
+<UFDD4> <U202F> : " " emspace
+<UFDD4> <underscore> : "‾" U203E
+<UFDD4> <nobreakspace> : "‿" U203F
+<dead_caron> <UFDD4> <Z> : "Ǯ" U01EE
+<dead_caron> <UFDD4> <z> : "ǯ" U01EF
+<dead_hook> <UFDD4> <e> : "ɚ" U025A
+<UFDD8> <UFDD4> <T> : "Ꝥ" UA764
+<UFDD4> <UFDD8> <T> : "Ꝥ" UA764
+<UFDD8> <UFDD4> <t> : "ꝥ" UA765
+<UFDD4> <UFDD8> <t> : "ꝥ" UA765
+<UFDD8> <UFDD4> <a> : "ꬰ" UAB30
+<UFDD4> <UFDD8> <a> : "ꬰ" UAB30
+<UFDD8> <UFDD4> <i> : "ᵼ" U1D7C
+<UFDD4> <UFDD8> <i> : "ᵼ" U1D7C
+<UFDD4> <UFDD8> <u> : "ᵿ" U1D7F
+<dead_stroke> <UFDD4> <o> : "ꬿ" UAB3F
+<UFDD4> <dead_stroke> <o> : "ꬿ" UAB3F
+<dead_hook> <U025F> : "ʄ" U0284
+<dead_hook> <dead_abovedot> <UFDD8> <j> : "ʄ" U0284
+<dead_hook> <UFDD8> <dead_abovedot> <j> : "ʄ" U0284
+<dead_abovedot> <dead_hook> <UFDD8> <j> : "ʄ" U0284
+<dead_abovedot> <UFDD8> <dead_hook> <j> : "ʄ" U0284
+<UFDD8> <dead_abovedot> <dead_hook> <j> : "ʄ" U0284
+<UFDD8> <dead_hook> <dead_abovedot> <j> : "ʄ" U0284
+<UFDD5> <parenleft> : "⁽" U207D
+<UFDD5> <parenright> : "⁾" U207E
+<UFDD5> <plus> : "⁺" U207A
+<UFDD5> <minus> : "⁻" U207B
+<UFDD5> <0> : "⁰" zerosuperior
+<UFDD5> <1> : "¹" onesuperior
+<UFDD5> <2> : "²" twosuperior
+<UFDD5> <3> : "³" threesuperior
+<UFDD5> <4> : "⁴" foursuperior
+<UFDD5> <5> : "⁵" fivesuperior
+<UFDD5> <6> : "⁶" sixsuperior
+<UFDD5> <7> : "⁷" sevensuperior
+<UFDD5> <8> : "⁸" eightsuperior
+<UFDD5> <9> : "⁹" ninesuperior
+<UFDD5> <equal> : "⁼" U207C
+<UFDD5> <A> : "ᴬ" U1D2C
+<UFDD5> <AE> : "ᴭ" U1D2D
+<UFDD5> <B> : "ᴮ" U1D2E
+<UFDD5> <D> : "ᴰ" U1D30
+<UFDD5> <E> : "ᴱ" U1D31
+<UFDD5> <G> : "ᴳ" U1D33
+<UFDD5> <H> : "ᴴ" U1D34
+<UFDD5> <I> : "ᴵ" U1D35
+<UFDD5> <J> : "ᴶ" U1D36
+<UFDD5> <K> : "ᴷ" U1D37
+<UFDD5> <L> : "ᴸ" U1D38
+<UFDD5> <M> : "ᴹ" U1D39
+<UFDD5> <N> : "ᴺ" U1D3A
+<UFDD5> <O> : "ᴼ" U1D3C
+<UFDD5> <P> : "ᴾ" U1D3E
+<UFDD5> <R> : "ᴿ" U1D3F
+<UFDD5> <T> : "ᵀ" U1D40
+<UFDD5> <U> : "ᵁ" U1D41
+<UFDD5> <V> : "ⱽ" U2C7D
+<UFDD5> <W> : "ᵂ" U1D42
+<UFDD5> <a> : "ᵃ" U1D43
+<UFDD5> <b> : "ᵇ" U1D47
+<UFDD5> <c> : "ᶜ" U1D9C
+<UFDD5> <d> : "ᵈ" U1D48
+<UFDD5> <e> : "ᵉ" U1D49
+<UFDD5> <f> : "ᶠ" U1DA0
+<UFDD5> <g> : "ᵍ" U1D4D
+<UFDD5> <h> : "ʰ" U02B0
+<UFDD5> <i> : "ⁱ" U2071
+<UFDD5> <j> : "ʲ" U02B2
+<UFDD5> <k> : "ᵏ" U1D4F
+<UFDD5> <l> : "ˡ" U02E1
+<UFDD5> <m> : "ᵐ" U1D50
+<UFDD5> <n> : "ⁿ" U207F
+<UFDD5> <o> : "ᵒ" U1D52
+<UFDD5> <p> : "ᵖ" U1D56
+<UFDD5> <r> : "ʳ" U02B3
+<UFDD5> <s> : "ˢ" U02E2
+<UFDD5> <t> : "ᵗ" U1D57
+<UFDD5> <u> : "ᵘ" U1D58
+<UFDD5> <v> : "ᵛ" U1D5B
+<UFDD5> <w> : "ʷ" U02B7
+<UFDD5> <x> : "ˣ" U02E3
+<UFDD5> <y> : "ʸ" U02B8
+<UFDD5> <z> : "ᶻ" U1DBB
+<UFDD5> <oe> : "ꟹ" UA7F9
+<UFDD5> <UFDD5> <parenleft> : "₍" U208D
+<UFDD5> <UFDD5> <parenright> : "₎" U208E
+<UFDD5> <UFDD5> <plus> : "₊" U208A
+<UFDD5> <UFDD5> <minus> : "₋" U208B
+<UFDD5> <UFDD5> <0> : "₀" zerosubscript
+<UFDD5> <UFDD5> <1> : "₁" onesubscript
+<UFDD5> <UFDD5> <2> : "₂" twosubscript
+<UFDD5> <UFDD5> <3> : "₃" threesubscript
+<UFDD5> <UFDD5> <4> : "₄" foursubscript
+<UFDD5> <UFDD5> <5> : "₅" fivesubscript
+<UFDD5> <UFDD5> <6> : "₆" sixsubscript
+<UFDD5> <UFDD5> <7> : "₇" sevensubscript
+<UFDD5> <UFDD5> <8> : "₈" eightsubscript
+<UFDD5> <UFDD5> <9> : "₉" ninesubscript
+<UFDD5> <UFDD5> <equal> : "₌" U208C
+<UFDD5> <UFDD5> <A> : "ᴀ" U1D00
+<UFDD5> <UFDD5> <AE> : "ᴁ" U1D01
+<UFDD5> <UFDD5> <B> : "ʙ" U0299
+<UFDD5> <UFDD5> <C> : "ᴄ" U1D04
+<UFDD5> <UFDD5> <D> : "ᴅ" U1D05
+<UFDD5> <UFDD5> <E> : "ᴇ" U1D07
+<UFDD5> <UFDD5> <F> : "ꜰ" UA730
+<UFDD5> <UFDD5> <G> : "ɢ" U0262
+<UFDD5> <UFDD5> <H> : "ʜ" U029C
+<UFDD5> <UFDD5> <I> : "ɪ" U026A
+<UFDD5> <UFDD5> <J> : "ᴊ" U1D0A
+<UFDD5> <UFDD5> <K> : "ᴋ" U1D0B
+<UFDD5> <UFDD5> <L> : "ʟ" U029F
+<UFDD5> <UFDD5> <N> : "ɴ" U0274
+<UFDD5> <UFDD5> <M> : "ᴍ" U1D0D
+<UFDD5> <UFDD5> <O> : "ᴏ" U1D0F
+<UFDD5> <UFDD5> <OE> : "ɶ" U0276
+<UFDD5> <UFDD5> <P> : "ᴘ" U1D18
+<UFDD5> <UFDD5> <R> : "ʀ" U0280
+<UFDD5> <UFDD5> <S> : "ꜱ" UA731
+<UFDD5> <UFDD5> <T> : "ᴛ" U1D1B
+<UFDD5> <UFDD5> <U> : "ᴜ" U1D1C
+<UFDD5> <UFDD5> <V> : "ᴠ" U1D20
+<UFDD5> <UFDD5> <W> : "ᴡ" U1D21
+<UFDD5> <UFDD5> <Y> : "ʏ" U028F
+<UFDD5> <UFDD5> <Z> : "ᴢ" U1D22
+<UFDD5> <UFDD5> <a> : "ₐ" U2090
+<UFDD5> <UFDD5> <e> : "ₑ" U2091
+<UFDD5> <UFDD5> <h> : "ₕ" U2095
+<UFDD5> <UFDD5> <i> : "ᵢ" U1D62
+<UFDD5> <UFDD5> <j> : "ⱼ" U2C7C
+<UFDD5> <UFDD5> <k> : "ₖ" U2096
+<UFDD5> <UFDD5> <l> : "ₗ" U2097
+<UFDD5> <UFDD5> <m> : "ₘ" U2098
+<UFDD5> <UFDD5> <n> : "ₙ" U2099
+<UFDD5> <UFDD5> <o> : "ₒ" U2092
+<UFDD5> <UFDD5> <p> : "ₚ" U209A
+<UFDD5> <UFDD5> <r> : "ᵣ" U1D63
+<UFDD5> <UFDD5> <s> : "ₛ" U209B
+<UFDD5> <UFDD5> <t> : "ₜ" U209C
+<UFDD5> <UFDD5> <u> : "ᵤ" U1D64
+<UFDD5> <UFDD5> <v> : "ᵥ" U1D65
+<UFDD5> <UFDD5> <x> : "ₓ" U2093
+<UFDD7> <dollar> : "♀" femalesymbol
+<UFDD7> <numbersign> : "☿" U263F
+<UFDD7> <endash> : "♂" malesymbol
+<UFDD7> <paragraph> : "♁" U2641
+<UFDD7> <quotedbl> : "♄" U2644
+<UFDD7> <1> : "♃" U2643
+<UFDD7> <emdash> : "♆" U2646
+<UFDD7> <doublelowquotemark> : "♅" U2645
+<UFDD7> <guillemotleft> : "⟨" leftanglebracket
+<UFDD7> <2> : "≪" U226A
+<UFDD7> <less> : "≺" U227A
+<UFDD7> <guillemotright> : "⟩" rightanglebracket
+<UFDD7> <3> : "≫" U226B
+<UFDD7> <greater> : "≻" U227B
+<UFDD7> <parenleft> : "⌊" downstile
+<UFDD7> <4> : "⌈" upstile
+<UFDD7> <bracketleft> : "⊏" U228F
+<UFDD7> <U2A7D> : "≤" lessthanequal
+<UFDD7> <parenright> : "⌋" U230B
+<UFDD7> <5> : "⌉" U2309
+<UFDD7> <bracketright> : "⊐" U2290
+<UFDD7> <U2A7E> : "≥" greaterthanequal
+<UFDD7> <at> : "⟶" U27F6
+<UFDD7> <6> : "⟼" U27FC
+<UFDD7> <asciicircum> : "‭" U202D
+<UFDD7> <U262D> : "⃕" U20D5
+<UFDD7> <plus> : "⊕" U2295
+<UFDD7> <7> : "⊞" U229E
+<UFDD7> <plusminus> : "⊎" U228E
+<UFDD7> <minus> : "∞" infinity
+<UFDD7> <8> : "∝" variation
+<UFDD7> <asterisk> : "⊗" U2297
+<UFDD7> <0> : "∗" U2217
+<UFDD7> <multiply> : "⋆" U22C6
+<UFDD7> <equal> : "↔" U2194
+<UFDD7> <degree> : "⇔" ifonlyif
+<UFDD7> <notequal> : "≡" identical
+<UFDD7> <minutes> : "⇄" U21C4
+<UFDD7> <B> : "ℶ" U2136
+<UFDD7> <bar> : "∣" U2223
+<UFDD7> <eacute> : "∧" upcaret
+<UFDD7> <Eacute> : "⅋" U214B
+<UFDD7> <dead_acute> : "↺" U21BA
+<UFDD7> <dead_acute> <dead_acute> : "↻" U21BB
+<UFDD7> <p> : "∐" U2210
+<UFDD7> <P> : "∏" U220F
+<UFDD7> <o> : "∘" jot
+<UFDD7> <O> : "∅" emptyset
+<UFDD7> <oe> : "⌀" U2300
+<UFDD7> <egrave> : "←" leftarrow
+<UFDD7> <Egrave> : "⇐" U21D0
+<UFDD7> <dead_circumflex> : "→" rightarrow
+<UFDD7> <exclam> : "⇒" implies
+<UFDD7> <exclamdown> : "↦" U21A6
+<UFDD7> <U2620> : "⇀" U21C0
+<UFDD7> <v> : "∨" downcaret
+<UFDD7> <V> : "√" radical
+<UFDD7> <dead_caron> : "⊻" U22BB
+<UFDD7> <d> : "∂" partialderivative
+<UFDD7> <D> : "∆" U2206
+<UFDD7> <UFDD7> : "∇" nabla
+<UFDD7> <U2623> : "⊲" U22B2
+<UFDD7> <l> : "ℓ" U2113
+<UFDD7> <L> : "℔" U2114
+<UFDD7> <j> : "↑" uparrow
+<UFDD7> <J> : "↓" downarrow
+<UFDD7> <U262E> : "⨡" U2A21
+<UFDD7> <z> : "​" U200B
+<UFDD7> <Z> : "℥" U2125
+<UFDD7> <U2618> : "℈" U2108
+<UFDD7> <w> : "≈" U2248
+<UFDD7> <W> : "∿" U223F
+<UFDD7> <U269C> : "⎓" U2393
+<UFDD7> <A> : "∀" U2200
+<UFDD7> <u> : "∪" downshoe
+<UFDD7> <U> : "∩" intersection
+<UFDD7> <dead_diaeresis> : "℩" U2129
+<UFDD7> <e> : "∈" elementof
+<UFDD7> <E> : "∃" U2203
+<UFDD7> <EuroSign> : "⊂" leftshoe
+<UFDD7> <dead_currency> : "⊆" U2286
+<UFDD7> <comma> : "∋" containsas
+<UFDD7> <apostrophe> : "⊃" rightshoe
+<UFDD7> <dead_belowcomma> : "⊇" U2287
+<UFDD7> <C> : "∁" U2201
+<UFDD7> <dead_cedilla> : "℃" U2103
+<UFDD7> <t> : "⊥" downtack
+<UFDD7> <T> : "⊤" uptack
+<UFDD7> <UFDD5> : "⊢" lefttack
+<UFDD7> <trademark> : "⊧" U22A7
+<UFDD7> <s> : "∫" integral
+<UFDD7> <S> : "∑" U2211
+<UFDD7> <UFDD4> : "∮" U222E
+<UFDD7> <U017F> : "∬" dintegral
+<UFDD7> <n> : "‖" U2016
+<UFDD7> <N> : "ℵ" U2135
+<UFDD7> <backslash> : "∖" U2216
+<UFDD7> <y> : "⋉" U22C9
+<UFDD7> <x> : "⋊" U22CA
+<UFDD7> <period> : "∙" U2219
+<UFDD7> <colon> : "∎" U220E
+<UFDD7> <ellipsis> : "⃛" U20DB
+<UFDD7> <periodcentered> : "⃜" U20DC
+<UFDD7> <k> : "∼" approximate
+<UFDD7> <K> : "⥲" U2972
+<UFDD7> <asciitilde> : "↪" U21AA
+<UFDD7> <U2011> : "↠" U21A0
+<UFDD7> <rightsinglequotemark> : "⋯" U22EF
+<UFDD7> <question> : "⋮" U22EE
+<UFDD7> <questiondown> : "⋱" U22F1
+<UFDD7> <dead_hook> : "⋰" U22F0
+<UFDD7> <q> : "⟂" U27C2
+<UFDD7> <Q> : "∥" U2225
+<UFDD7> <h> : "ℎ" U210E
+<UFDD7> <dead_belowdot> : "ℏ" U210F
+<UFDD7> <dead_abovedot> <dead_abovedot> : "ℏ" U210F
+<UFDD7> <dead_ogonek> : "℉" U2109
+<UFDD7> <dead_stroke> <less> : "⊀" U2280
+<UFDD7> <dead_stroke> <greater> : "⊁" U2281
+<UFDD7> <dead_stroke> <notequal> : "≢" notidentical
+<UFDD7> <dead_stroke> <bar> : "∤" U2224
+<UFDD7> <dead_stroke> <U2623> : "⋪" U22EA
+<UFDD7> <dead_stroke> <e> : "∉" notelementof
+<UFDD7> <dead_stroke> <E> : "∄" U2204
+<UFDD7> <dead_stroke> <comma> : "∌" U220C
+<UFDD7> <dead_stroke> <EuroSign> : "⊄" U2284
+<UFDD7> <dead_stroke> <apostrophe> : "⊅" U2285
+<UFDD7> <dead_stroke> <dead_currency> : "⊊" U228A
+<UFDD7> <dead_stroke> <dead_belowcomma> : "⊋" U228B
+<UFDD7> <dead_stroke> <Q> : "∦" U2226
+<UFDD7> <dead_stroke> <UFDD5> : "⊬" U22AC
+<UFDD7> <dead_stroke> <trademark> : "⊭" U22AD
+<UFDD7> <dead_stroke> <k> : "≁" U2241
+<dead_stroke> <UFDD7> <less> : "⊀" U2280
+<dead_stroke> <UFDD7> <greater> : "⊁" U2281
+<dead_stroke> <UFDD7> <notequal> : "≢" notidentical
+<dead_stroke> <UFDD7> <bar> : "∤" U2224
+<dead_stroke> <UFDD7> <U2623> : "⋪" U22EA
+<dead_stroke> <UFDD7> <e> : "∉" notelementof
+<dead_stroke> <UFDD7> <E> : "∄" U2204
+<dead_stroke> <UFDD7> <comma> : "∌" U220C
+<dead_stroke> <UFDD7> <EuroSign> : "⊄" U2284
+<dead_stroke> <UFDD7> <apostrophe> : "⊅" U2285
+<dead_stroke> <UFDD7> <dead_currency> : "⊊" U228A
+<dead_stroke> <UFDD7> <dead_belowcomma> : "⊋" U228B
+<dead_stroke> <UFDD7> <Q> : "∦" U2226
+<dead_stroke> <UFDD7> <UFDD5> : "⊬" U22AC
+<dead_stroke> <UFDD7> <trademark> : "⊭" U22AD
+<dead_stroke> <UFDD7> <k> : "≁" U2241
+<UFDD7> <dead_macron> <eacute> : "⊼" U22BC
+<UFDD7> <dead_macron> <v> : "⊽" U22BD
+<dead_macron> <UFDD7> <eacute> : "⊼" U22BC
+<dead_macron> <UFDD7> <v> : "⊽" U22BD
+<UFDD7> <dead_stroke> <eacute> : "⊼" U22BC
+<UFDD7> <dead_stroke> <v> : "⊽" U22BD
+<dead_stroke> <UFDD7> <eacute> : "⊼" U22BC
+<dead_stroke> <UFDD7> <v> : "⊽" U22BD
+<UFDD7> <b> <a> : "𝕒" U1D552
+<UFDD7> <b> <b> : "𝕓" U1D553
+<UFDD7> <b> <c> : "𝕔" U1D554
+<UFDD7> <b> <d> : "𝕕" U1D555
+<UFDD7> <b> <e> : "𝕖" U1D556
+<UFDD7> <b> <f> : "𝕗" U1D557
+<UFDD7> <b> <g> : "𝕘" U1D558
+<UFDD7> <b> <h> : "𝕙" U1D559
+<UFDD7> <b> <i> : "𝕚" U1D55A
+<UFDD7> <b> <j> : "𝕛" U1D55B
+<UFDD7> <b> <k> : "𝕜" U1D55C
+<UFDD7> <b> <l> : "𝕝" U1D55D
+<UFDD7> <b> <m> : "𝕞" U1D55E
+<UFDD7> <b> <n> : "𝕟" U1D55F
+<UFDD7> <b> <o> : "𝕠" U1D560
+<UFDD7> <b> <p> : "𝕡" U1D561
+<UFDD7> <b> <q> : "𝕢" U1D562
+<UFDD7> <b> <r> : "𝕣" U1D563
+<UFDD7> <b> <s> : "𝕤" U1D564
+<UFDD7> <b> <t> : "𝕥" U1D565
+<UFDD7> <b> <u> : "𝕦" U1D566
+<UFDD7> <b> <v> : "𝕧" U1D567
+<UFDD7> <b> <w> : "𝕨" U1D568
+<UFDD7> <b> <x> : "𝕩" U1D569
+<UFDD7> <b> <y> : "𝕪" U1D56A
+<UFDD7> <b> <z> : "𝕫" U1D56B
+<UFDD7> <b> <A> : "𝔸" U1D538
+<UFDD7> <b> <B> : "𝔹" U1D539
+<UFDD7> <b> <C> : "ℂ" U2102
+<UFDD7> <b> <D> : "𝔻" U1D53B
+<UFDD7> <b> <E> : "𝔼" U1D53C
+<UFDD7> <b> <F> : "𝔽" U1D53D
+<UFDD7> <b> <G> : "𝔾" U1D53E
+<UFDD7> <b> <H> : "ℍ" U210D
+<UFDD7> <b> <I> : "𝕀" U1D540
+<UFDD7> <b> <J> : "𝕁" U1D541
+<UFDD7> <b> <K> : "𝕂" U1D542
+<UFDD7> <b> <L> : "𝕃" U1D543
+<UFDD7> <b> <M> : "𝕄" U1D544
+<UFDD7> <b> <N> : "ℕ" U2115
+<UFDD7> <b> <O> : "𝕆" U1D546
+<UFDD7> <b> <P> : "ℙ" U2119
+<UFDD7> <b> <Q> : "ℚ" U211A
+<UFDD7> <b> <R> : "ℝ" U211D
+<UFDD7> <b> <S> : "𝕊" U1D54A
+<UFDD7> <b> <T> : "𝕋" U1D54B
+<UFDD7> <b> <U> : "𝕌" U1D54C
+<UFDD7> <b> <V> : "𝕍" U1D54D
+<UFDD7> <b> <W> : "𝕎" U1D54E
+<UFDD7> <b> <X> : "𝕏" U1D54F
+<UFDD7> <b> <Y> : "𝕐" U1D550
+<UFDD7> <b> <Z> : "ℤ" U2124
+<UFDD7> <b> <0> : "𝟘" U1D7D8
+<UFDD7> <b> <1> : "𝟙" U1D7D9
+<UFDD7> <b> <2> : "𝟚" U1D7DA
+<UFDD7> <b> <3> : "𝟛" U1D7DB
+<UFDD7> <b> <4> : "𝟜" U1D7DC
+<UFDD7> <b> <5> : "𝟝" U1D7DD
+<UFDD7> <b> <6> : "𝟞" U1D7DE
+<UFDD7> <b> <7> : "𝟟" U1D7DF
+<UFDD7> <b> <8> : "𝟠" U1D7E0
+<UFDD7> <b> <9> : "𝟡" U1D7E1
+<UFDD7> <b> <bracketleft> : "〚" U301A
+<UFDD7> <b> <bracketright> : "〛" U301B
+<UFDD7> <b> <braceleft> : "⦃" U2983
+<UFDD7> <b> <braceright> : "⦄" U2984
+<UFDD7> <b> <parenleft> : "⟬" U27EC
+<UFDD7> <b> <parenright> : "⟭" U27ED
+<UFDD7> <b> <dead_greek> <p> : "ℼ" U213C
+<UFDD7> <b> <dead_greek> <g> : "ℽ" U213D
+<UFDD7> <b> <dead_greek> <G> : "ℾ" U213E
+<UFDD7> <b> <dead_greek> <P> : "ℿ" U213F
+<UFDD7> <b> <dead_greek> <S> : "⅀" U2140
+<UFDD7> <i> <a> : "𝑎" U1D44E
+<UFDD7> <i> <b> : "𝑏" U1D44F
+<UFDD7> <i> <c> : "𝑐" U1D450
+<UFDD7> <i> <d> : "𝑑" U1D451
+<UFDD7> <i> <e> : "𝑒" U1D452
+<UFDD7> <i> <f> : "𝑓" U1D453
+<UFDD7> <i> <g> : "𝑔" U1D454
+<UFDD7> <i> <h> : "ℎ" U210E
+<UFDD7> <i> <i> : "𝑖" U1D456
+<UFDD7> <i> <j> : "𝑗" U1D457
+<UFDD7> <i> <k> : "𝑘" U1D458
+<UFDD7> <i> <l> : "𝑙" U1D459
+<UFDD7> <i> <m> : "𝑚" U1D45A
+<UFDD7> <i> <n> : "𝑛" U1D45B
+<UFDD7> <i> <o> : "𝑜" U1D45C
+<UFDD7> <i> <p> : "𝑝" U1D45D
+<UFDD7> <i> <q> : "𝑞" U1D45E
+<UFDD7> <i> <r> : "𝑟" U1D45F
+<UFDD7> <i> <s> : "𝑠" U1D460
+<UFDD7> <i> <t> : "𝑡" U1D461
+<UFDD7> <i> <u> : "𝑢" U1D462
+<UFDD7> <i> <v> : "𝑣" U1D463
+<UFDD7> <i> <w> : "𝑤" U1D464
+<UFDD7> <i> <x> : "𝑥" U1D465
+<UFDD7> <i> <y> : "𝑦" U1D466
+<UFDD7> <i> <z> : "𝑧" U1D467
+<UFDD7> <i> <A> : "𝐴" U1D434
+<UFDD7> <i> <B> : "𝐵" U1D435
+<UFDD7> <i> <C> : "𝐶" U1D436
+<UFDD7> <i> <D> : "𝐷" U1D437
+<UFDD7> <i> <E> : "𝐸" U1D438
+<UFDD7> <i> <F> : "𝐹" U1D439
+<UFDD7> <i> <G> : "𝐺" U1D43A
+<UFDD7> <i> <H> : "𝐻" U1D43B
+<UFDD7> <i> <I> : "𝐼" U1D43C
+<UFDD7> <i> <J> : "𝐽" U1D43D
+<UFDD7> <i> <K> : "𝐾" U1D43E
+<UFDD7> <i> <L> : "𝐿" U1D43F
+<UFDD7> <i> <M> : "𝑀" U1D440
+<UFDD7> <i> <N> : "𝑁" U1D441
+<UFDD7> <i> <O> : "𝑂" U1D442
+<UFDD7> <i> <P> : "𝑃" U1D443
+<UFDD7> <i> <Q> : "𝑄" U1D444
+<UFDD7> <i> <R> : "𝑅" U1D445
+<UFDD7> <i> <S> : "𝑆" U1D446
+<UFDD7> <i> <T> : "𝑇" U1D447
+<UFDD7> <i> <U> : "𝑈" U1D448
+<UFDD7> <i> <V> : "𝑉" U1D449
+<UFDD7> <i> <W> : "𝑊" U1D44A
+<UFDD7> <i> <X> : "𝑋" U1D44B
+<UFDD7> <i> <Y> : "𝑌" U1D44C
+<UFDD7> <i> <Z> : "𝑍" U1D44D
+<UFDD7> <i> <dead_greek> <a> : "𝛼" U1D6FC
+<UFDD7> <i> <dead_greek> <b> : "𝛽" U1D6FD
+<UFDD7> <i> <dead_greek> <c> : "𝜓" U1D713
+<UFDD7> <i> <dead_greek> <d> : "𝛿" U1D6FF
+<UFDD7> <i> <dead_greek> <e> : "𝜀" U1D700
+<UFDD7> <i> <dead_greek> <EuroSign> : "𝜖" U1D716
+<UFDD7> <i> <dead_greek> <f> : "𝜑" U1D711
+<UFDD7> <i> <dead_greek> <dead_ogonek> : "𝜙" U1D719
+<UFDD7> <i> <dead_greek> <g> : "𝛾" U1D6FE
+<UFDD7> <i> <dead_greek> <h> : "𝜂" U1D702
+<UFDD7> <i> <dead_greek> <i> : "𝜄" U1D704
+<UFDD7> <i> <dead_greek> <j> : "𝜉" U1D709
+<UFDD7> <i> <dead_greek> <k> : "𝜅" U1D705
+<UFDD7> <i> <dead_greek> <asciitilde> : "𝜘" U1D718
+<UFDD7> <i> <dead_greek> <l> : "𝜆" U1D706
+<UFDD7> <i> <dead_greek> <m> : "𝜇" U1D707
+<UFDD7> <i> <dead_greek> <n> : "𝜈" U1D708
+<UFDD7> <i> <dead_greek> <o> : "𝜊" U1D70A
+<UFDD7> <i> <dead_greek> <p> : "𝜋" U1D70B
+<UFDD7> <i> <dead_greek> <ampersand> : "𝜛" U1D71B
+<UFDD7> <i> <dead_greek> <r> : "𝜌" U1D70C
+<UFDD7> <i> <dead_greek> <dead_breve> : "𝜚" U1D71A
+<UFDD7> <i> <dead_greek> <s> : "𝜎" U1D70E
+<UFDD7> <i> <dead_greek> <t> : "𝜏" U1D70F
+<UFDD7> <i> <dead_greek> <u> : "𝜉" U1D709
+<UFDD7> <i> <dead_greek> <ugrave> : "𝜗" U1D717
+<UFDD7> <i> <dead_greek> <v> : "𝜔" U1D714
+<UFDD7> <i> <dead_greek> <w> : "𝜍" U1D70D
+<UFDD7> <i> <dead_greek> <x> : "𝜒" U1D712
+<UFDD7> <i> <dead_greek> <y> : "𝜐" U1D710
+<UFDD7> <i> <dead_greek> <z> : "𝜁" U1D701
+<UFDD7> <i> <dead_greek> <A> : "𝛢" U1D6E2
+<UFDD7> <i> <dead_greek> <B> : "𝘣" U1D623
+<UFDD7> <i> <dead_greek> <C> : "𝛹" U1D6F9
+<UFDD7> <i> <dead_greek> <D> : "𝛥" U1D6E5
+<UFDD7> <i> <dead_greek> <E> : "𝛦" U1D6E6
+<UFDD7> <i> <dead_greek> <F> : "𝛷" U1D6F7
+<UFDD7> <i> <dead_greek> <G> : "𝛤" U1D6E4
+<UFDD7> <i> <dead_greek> <H> : "𝛨" U1D6E8
+<UFDD7> <i> <dead_greek> <I> : "𝛪" U1D6EA
+<UFDD7> <i> <dead_greek> <J> : "𝛯" U1D6EF
+<UFDD7> <i> <dead_greek> <K> : "𝛫" U1D6EB
+<UFDD7> <i> <dead_greek> <L> : "𝛬" U1D6EC
+<UFDD7> <i> <dead_greek> <M> : "𝛭" U1D6ED
+<UFDD7> <i> <dead_greek> <N> : "𝛮" U1D6EE
+<UFDD7> <i> <dead_greek> <O> : "𝛰" U1D6F0
+<UFDD7> <i> <dead_greek> <P> : "𝛱" U1D6F1
+<UFDD7> <i> <dead_greek> <R> : "𝛲" U1D6F2
+<UFDD7> <i> <dead_greek> <S> : "𝛴" U1D6F4
+<UFDD7> <i> <dead_greek> <T> : "𝛵" U1D6F5
+<UFDD7> <i> <dead_greek> <U> : "𝛳" U1D6F3
+<UFDD7> <i> <dead_greek> <V> : "𝛺" U1D6FA
+<UFDD7> <i> <dead_greek> <X> : "𝛸" U1D6F8
+<UFDD7> <i> <dead_greek> <Y> : "𝛶" U1D6F6
+<UFDD7> <i> <dead_greek> <Z> : "𝛧" U1D6E7
+<UFDD7> <i> <UFDD7> : "𝜕" U1D715
+<UFDD7> <i> <U2623> : "𝛻" U1D6FB
+<UFDD7> <i> <dead_diaeresis> : "𝚤" U1D6A4
+<UFDD7> <i> <U262E> : "𝚥" U1D6A5
+<UFDD7> <I> <A> : "𝑨" U1D468
+<UFDD7> <I> <B> : "𝑩" U1D469
+<UFDD7> <I> <C> : "𝑪" U1D46A
+<UFDD7> <I> <D> : "𝑫" U1D46B
+<UFDD7> <I> <E> : "𝑬" U1D46C
+<UFDD7> <I> <F> : "𝑭" U1D46D
+<UFDD7> <I> <G> : "𝑮" U1D46E
+<UFDD7> <I> <H> : "𝑯" U1D46F
+<UFDD7> <I> <I> : "𝑰" U1D470
+<UFDD7> <I> <J> : "𝑱" U1D471
+<UFDD7> <I> <K> : "𝑲" U1D472
+<UFDD7> <I> <L> : "𝑳" U1D473
+<UFDD7> <I> <M> : "𝑴" U1D474
+<UFDD7> <I> <N> : "𝑵" U1D475
+<UFDD7> <I> <O> : "𝑶" U1D476
+<UFDD7> <I> <P> : "𝑷" U1D477
+<UFDD7> <I> <Q> : "𝑸" U1D478
+<UFDD7> <I> <R> : "𝑹" U1D479
+<UFDD7> <I> <S> : "𝑺" U1D47A
+<UFDD7> <I> <T> : "𝑻" U1D47B
+<UFDD7> <I> <U> : "𝑼" U1D47C
+<UFDD7> <I> <V> : "𝑽" U1D47D
+<UFDD7> <I> <W> : "𝑾" U1D47E
+<UFDD7> <I> <X> : "𝑿" U1D47F
+<UFDD7> <I> <Y> : "𝒀" U1D480
+<UFDD7> <I> <Z> : "𝒁" U1D481
+<UFDD7> <I> <a> : "𝒂" U1D482
+<UFDD7> <I> <b> : "𝒃" U1D483
+<UFDD7> <I> <c> : "𝒄" U1D484
+<UFDD7> <I> <d> : "𝒅" U1D485
+<UFDD7> <I> <e> : "𝒆" U1D486
+<UFDD7> <I> <f> : "𝒇" U1D487
+<UFDD7> <I> <g> : "𝒈" U1D488
+<UFDD7> <I> <h> : "𝒉" U1D489
+<UFDD7> <I> <i> : "𝒊" U1D48A
+<UFDD7> <I> <j> : "𝒋" U1D48B
+<UFDD7> <I> <k> : "𝒌" U1D48C
+<UFDD7> <I> <l> : "𝒍" U1D48D
+<UFDD7> <I> <m> : "𝒎" U1D48E
+<UFDD7> <I> <n> : "𝒏" U1D48F
+<UFDD7> <I> <o> : "𝒐" U1D490
+<UFDD7> <I> <p> : "𝒑" U1D491
+<UFDD7> <I> <q> : "𝒒" U1D492
+<UFDD7> <I> <r> : "𝒓" U1D493
+<UFDD7> <I> <s> : "𝒔" U1D494
+<UFDD7> <I> <t> : "𝒕" U1D495
+<UFDD7> <I> <u> : "𝒖" U1D496
+<UFDD7> <I> <v> : "𝒗" U1D497
+<UFDD7> <I> <w> : "𝒘" U1D498
+<UFDD7> <I> <x> : "𝒙" U1D499
+<UFDD7> <I> <y> : "𝒚" U1D49A
+<UFDD7> <I> <z> : "𝒛" U1D49B
+<UFDD7> <I> <dead_greek> <a> : "𝜶" U1D736
+<UFDD7> <I> <dead_greek> <b> : "𝜷" U1D737
+<UFDD7> <I> <dead_greek> <c> : "𝟔" U1D7D4
+<UFDD7> <I> <dead_greek> <d> : "𝜹" U1D739
+<UFDD7> <I> <dead_greek> <e> : "𝜺" U1D73A
+<UFDD7> <I> <dead_greek> <EuroSign> : "𝝐" U1D750
+<UFDD7> <I> <dead_greek> <f> : "𝝋" U1D74B
+<UFDD7> <I> <dead_greek> <dead_ogonek> : "𝝓" U1D753
+<UFDD7> <I> <dead_greek> <g> : "𝜸" U1D738
+<UFDD7> <I> <dead_greek> <h> : "𝜼" U1D73C
+<UFDD7> <I> <dead_greek> <i> : "𝜾" U1D73E
+<UFDD7> <I> <dead_greek> <j> : "𝝃" U1D743
+<UFDD7> <I> <dead_greek> <k> : "𝜿" U1D73F
+<UFDD7> <I> <dead_greek> <asciitilde> : "𝝒" U1D752
+<UFDD7> <I> <dead_greek> <l> : "𝝀" U1D740
+<UFDD7> <I> <dead_greek> <m> : "𝝁" U1D741
+<UFDD7> <I> <dead_greek> <n> : "𝝂" U1D742
+<UFDD7> <I> <dead_greek> <o> : "𝝄" U1D744
+<UFDD7> <I> <dead_greek> <p> : "𝝅" U1D745
+<UFDD7> <I> <dead_greek> <ampersand> : "𝝕" U1D755
+<UFDD7> <I> <dead_greek> <r> : "𝝆" U1D746
+<UFDD7> <I> <dead_greek> <dead_breve> : "𝝔" U1D754
+<UFDD7> <I> <dead_greek> <s> : "𝝈" U1D748
+<UFDD7> <I> <dead_greek> <t> : "𝝉" U1D749
+<UFDD7> <I> <dead_greek> <u> : "𝜽" U1D73D
+<UFDD7> <I> <dead_greek> <ugrave> : "𝝑" U1D751
+<UFDD7> <I> <dead_greek> <v> : "𝝎" U1D74E
+<UFDD7> <I> <dead_greek> <w> : "𝝇" U1D747
+<UFDD7> <I> <dead_greek> <x> : "𝝌" U1D74C
+<UFDD7> <I> <dead_greek> <y> : "𝝊" U1D74A
+<UFDD7> <I> <dead_greek> <z> : "𝜻" U1D73B
+<UFDD7> <I> <dead_greek> <A> : "𝜜" U1D71C
+<UFDD7> <I> <dead_greek> <B> : "𝜝" U1D71D
+<UFDD7> <I> <dead_greek> <C> : "𝜳" U1D733
+<UFDD7> <I> <dead_greek> <D> : "𝜟" U1D71F
+<UFDD7> <I> <dead_greek> <E> : "𝜠" U1D720
+<UFDD7> <I> <dead_greek> <F> : "𝜱" U1D731
+<UFDD7> <I> <dead_greek> <G> : "𝜞" U1D71E
+<UFDD7> <I> <dead_greek> <H> : "𝜢" U1D722
+<UFDD7> <I> <dead_greek> <I> : "𝜤" U1D724
+<UFDD7> <I> <dead_greek> <J> : "𝜩" U1D729
+<UFDD7> <I> <dead_greek> <K> : "𝜥" U1D725
+<UFDD7> <I> <dead_greek> <L> : "𝜦" U1D726
+<UFDD7> <I> <dead_greek> <M> : "𝜧" U1D727
+<UFDD7> <I> <dead_greek> <N> : "𝜨" U1D728
+<UFDD7> <I> <dead_greek> <O> : "𝜪" U1D72A
+<UFDD7> <I> <dead_greek> <P> : "𝜫" U1D72B
+<UFDD7> <I> <dead_greek> <R> : "𝜬" U1D72C
+<UFDD7> <I> <dead_greek> <S> : "𝜮" U1D72E
+<UFDD7> <I> <dead_greek> <T> : "𝜯" U1D72F
+<UFDD7> <I> <dead_greek> <U> : "𝜭" U1D72D
+<UFDD7> <I> <dead_greek> <V> : "𝜴" U1D734
+<UFDD7> <I> <dead_greek> <X> : "𝜲" U1D732
+<UFDD7> <I> <dead_greek> <Y> : "𝜰" U1D730
+<UFDD7> <I> <dead_greek> <Z> : "𝜡" U1D721
+<UFDD7> <I> <UFDD7> : "𝝏" U1D74F
+<UFDD7> <I> <U2623> : "𝜵" U1D735
+<UFDD7> <c> <A> : "𝓐" U1D4D0
+<UFDD7> <c> <B> : "𝓑" U1D4D1
+<UFDD7> <c> <C> : "𝓒" U1D4D2
+<UFDD7> <c> <D> : "𝓓" U1D4D3
+<UFDD7> <c> <E> : "𝓔" U1D4D4
+<UFDD7> <c> <F> : "𝓕" U1D4D5
+<UFDD7> <c> <G> : "𝓖" U1D4D6
+<UFDD7> <c> <H> : "𝓗" U1D4D7
+<UFDD7> <c> <I> : "𝓘" U1D4D8
+<UFDD7> <c> <J> : "𝓙" U1D4D9
+<UFDD7> <c> <K> : "𝓚" U1D4DA
+<UFDD7> <c> <L> : "𝓛" U1D4DB
+<UFDD7> <c> <M> : "𝓜" U1D4DC
+<UFDD7> <c> <N> : "𝓝" U1D4DD
+<UFDD7> <c> <O> : "𝓞" U1D4DE
+<UFDD7> <c> <P> : "𝓟" U1D4DF
+<UFDD7> <c> <Q> : "𝓠" U1D4E0
+<UFDD7> <c> <R> : "𝓡" U1D4E1
+<UFDD7> <c> <S> : "𝓢" U1D4E2
+<UFDD7> <c> <T> : "𝓣" U1D4E3
+<UFDD7> <c> <U> : "𝓤" U1D4E4
+<UFDD7> <c> <V> : "𝓥" U1D4E5
+<UFDD7> <c> <W> : "𝓦" U1D4E6
+<UFDD7> <c> <X> : "𝓧" U1D4E7
+<UFDD7> <c> <Y> : "𝓨" U1D4E8
+<UFDD7> <c> <Z> : "𝓩" U1D4E9
+<UFDD7> <c> <a> : "𝓪" U1D4EA
+<UFDD7> <c> <b> : "𝓫" U1D4EB
+<UFDD7> <c> <c> : "𝓬" U1D4EC
+<UFDD7> <c> <d> : "𝓭" U1D4ED
+<UFDD7> <c> <e> : "𝓮" U1D4EE
+<UFDD7> <c> <f> : "𝓯" U1D4EF
+<UFDD7> <c> <g> : "𝓰" U1D4F0
+<UFDD7> <c> <h> : "𝓱" U1D4F1
+<UFDD7> <c> <i> : "𝓲" U1D4F2
+<UFDD7> <c> <j> : "𝓳" U1D4F3
+<UFDD7> <c> <k> : "𝓴" U1D4F4
+<UFDD7> <c> <l> : "𝓵" U1D4F5
+<UFDD7> <c> <m> : "𝓶" U1D4F6
+<UFDD7> <c> <n> : "𝓷" U1D4F7
+<UFDD7> <c> <o> : "𝓸" U1D4F8
+<UFDD7> <c> <p> : "𝓹" U1D4F9
+<UFDD7> <c> <q> : "𝓺" U1D4FA
+<UFDD7> <c> <r> : "𝓻" U1D4FB
+<UFDD7> <c> <s> : "𝓼" U1D4FC
+<UFDD7> <c> <t> : "𝓽" U1D4FD
+<UFDD7> <c> <u> : "𝓾" U1D4FE
+<UFDD7> <c> <v> : "𝓿" U1D4FF
+<UFDD7> <c> <w> : "𝔀" U1D500
+<UFDD7> <c> <x> : "𝔁" U1D501
+<UFDD7> <c> <y> : "𝔂" U1D502
+<UFDD7> <c> <z> : "𝔃" U1D503
+<UFDD7> <r> <A> : "𝒜" U1D49C
+<UFDD7> <r> <B> : "ℬ" U212C
+<UFDD7> <r> <C> : "𝒞" U1D49E
+<UFDD7> <r> <D> : "𝒟" U1D49F
+<UFDD7> <r> <E> : "ℰ" U2130
+<UFDD7> <r> <F> : "ℱ" U2131
+<UFDD7> <r> <G> : "𝒢" U1D4A2
+<UFDD7> <r> <H> : "ℋ" U210B
+<UFDD7> <r> <I> : "ℐ" U2110
+<UFDD7> <r> <J> : "𝒥" U1D4A5
+<UFDD7> <r> <K> : "𝒦" U1D4A6
+<UFDD7> <r> <L> : "ℒ" U2112
+<UFDD7> <r> <M> : "ℳ" U2133
+<UFDD7> <r> <N> : "𝒩" U1D4A9
+<UFDD7> <r> <O> : "𝒪" U1D4AA
+<UFDD7> <r> <P> : "𝒫" U1D4AB
+<UFDD7> <r> <Q> : "𝒬" U1D4AC
+<UFDD7> <r> <R> : "ℛ" U211B
+<UFDD7> <r> <S> : "𝒮" U1D4AE
+<UFDD7> <r> <T> : "𝒯" U1D4AF
+<UFDD7> <r> <U> : "𝒰" U1D4B0
+<UFDD7> <r> <V> : "𝒱" U1D4B1
+<UFDD7> <r> <W> : "𝒲" U1D4B2
+<UFDD7> <r> <X> : "𝒳" U1D4B3
+<UFDD7> <r> <Y> : "𝒴" U1D4B4
+<UFDD7> <r> <Z> : "𝒵" U1D4B5
+<UFDD7> <r> <a> : "𝒶" U1D4B6
+<UFDD7> <r> <b> : "𝒷" U1D4B7
+<UFDD7> <r> <c> : "𝒸" U1D4B8
+<UFDD7> <r> <d> : "𝒹" U1D4B9
+<UFDD7> <r> <e> : "ℯ" U212F
+<UFDD7> <r> <f> : "𝒻" U1D4BB
+<UFDD7> <r> <g> : "ℊ" U210A
+<UFDD7> <r> <h> : "𝒽" U1D4BD
+<UFDD7> <r> <i> : "𝒾" U1D4BE
+<UFDD7> <r> <j> : "𝒿" U1D4BF
+<UFDD7> <r> <k> : "𝓀" U1D4C0
+<UFDD7> <r> <l> : "𝓁" U1D4C1
+<UFDD7> <r> <m> : "𝓂" U1D4C2
+<UFDD7> <r> <n> : "𝓃" U1D4C3
+<UFDD7> <r> <o> : "ℴ" U2134
+<UFDD7> <r> <p> : "𝓅" U1D4C5
+<UFDD7> <r> <q> : "𝓆" U1D4C6
+<UFDD7> <r> <r> : "𝓇" U1D4C7
+<UFDD7> <r> <s> : "𝓈" U1D4C8
+<UFDD7> <r> <t> : "𝓉" U1D4C9
+<UFDD7> <r> <u> : "𝓊" U1D4CA
+<UFDD7> <r> <v> : "𝓋" U1D4CB
+<UFDD7> <r> <w> : "𝓌" U1D4CC
+<UFDD7> <r> <x> : "𝓍" U1D4CD
+<UFDD7> <r> <y> : "𝓎" U1D4CE
+<UFDD7> <r> <z> : "𝓏" U1D4CF
+<UFDD7> <g> <A> : "𝐀" U1D400
+<UFDD7> <g> <B> : "𝐁" U1D401
+<UFDD7> <g> <C> : "𝐂" U1D402
+<UFDD7> <g> <D> : "𝐃" U1D403
+<UFDD7> <g> <E> : "𝐄" U1D404
+<UFDD7> <g> <F> : "𝐅" U1D405
+<UFDD7> <g> <G> : "𝐆" U1D406
+<UFDD7> <g> <H> : "𝐇" U1D407
+<UFDD7> <g> <I> : "𝐈" U1D408
+<UFDD7> <g> <J> : "𝐉" U1D409
+<UFDD7> <g> <K> : "𝐊" U1D40A
+<UFDD7> <g> <L> : "𝐋" U1D40B
+<UFDD7> <g> <M> : "𝐌" U1D40C
+<UFDD7> <g> <N> : "𝐍" U1D40D
+<UFDD7> <g> <O> : "𝐎" U1D40E
+<UFDD7> <g> <P> : "𝐏" U1D40F
+<UFDD7> <g> <Q> : "𝐐" U1D410
+<UFDD7> <g> <R> : "𝐑" U1D411
+<UFDD7> <g> <S> : "𝐒" U1D412
+<UFDD7> <g> <T> : "𝐓" U1D413
+<UFDD7> <g> <U> : "𝐔" U1D414
+<UFDD7> <g> <V> : "𝐕" U1D415
+<UFDD7> <g> <W> : "𝐖" U1D416
+<UFDD7> <g> <X> : "𝐗" U1D417
+<UFDD7> <g> <Y> : "𝐘" U1D418
+<UFDD7> <g> <Z> : "𝐙" U1D419
+<UFDD7> <g> <a> : "𝐚" U1D41A
+<UFDD7> <g> <b> : "𝐛" U1D41B
+<UFDD7> <g> <c> : "𝐜" U1D41C
+<UFDD7> <g> <d> : "𝐝" U1D41D
+<UFDD7> <g> <e> : "𝐞" U1D41E
+<UFDD7> <g> <f> : "𝐟" U1D41F
+<UFDD7> <g> <g> : "𝐠" U1D420
+<UFDD7> <g> <h> : "𝐡" U1D421
+<UFDD7> <g> <i> : "𝐢" U1D422
+<UFDD7> <g> <j> : "𝐣" U1D423
+<UFDD7> <g> <k> : "𝐤" U1D424
+<UFDD7> <g> <l> : "𝐥" U1D425
+<UFDD7> <g> <m> : "𝐦" U1D426
+<UFDD7> <g> <n> : "𝐧" U1D427
+<UFDD7> <g> <o> : "𝐨" U1D428
+<UFDD7> <g> <p> : "𝐩" U1D429
+<UFDD7> <g> <q> : "𝐪" U1D42A
+<UFDD7> <g> <r> : "𝐫" U1D42B
+<UFDD7> <g> <s> : "𝐬" U1D42C
+<UFDD7> <g> <t> : "𝐭" U1D42D
+<UFDD7> <g> <u> : "𝐮" U1D42E
+<UFDD7> <g> <v> : "𝐯" U1D42F
+<UFDD7> <g> <w> : "𝐰" U1D430
+<UFDD7> <g> <x> : "𝐱" U1D431
+<UFDD7> <g> <y> : "𝐲" U1D432
+<UFDD7> <g> <z> : "𝐳" U1D433
+<UFDD7> <g> <0> : "𝟎" U1D7CE
+<UFDD7> <g> <1> : "𝟏" U1D7CF
+<UFDD7> <g> <2> : "𝟐" U1D7D0
+<UFDD7> <g> <3> : "𝟑" U1D7D1
+<UFDD7> <g> <4> : "𝟒" U1D7D2
+<UFDD7> <g> <5> : "𝟓" U1D7D3
+<UFDD7> <g> <6> : "𝟔" U1D7D4
+<UFDD7> <g> <7> : "𝟕" U1D7D5
+<UFDD7> <g> <8> : "𝟖" U1D7D6
+<UFDD7> <g> <9> : "𝟗" U1D7D7
+<UFDD7> <g> <bracketleft> : "⦗" U2997
+<UFDD7> <g> <bracketright> : "⦘" U2998
+<UFDD7> <g> <dead_greek> <a> : "𝛂" U1D6C2
+<UFDD7> <g> <dead_greek> <b> : "𝛃" U1D6C3
+<UFDD7> <g> <dead_greek> <c> : "𝛙" U1D6D9
+<UFDD7> <g> <dead_greek> <d> : "𝛅" U1D6C5
+<UFDD7> <g> <dead_greek> <e> : "𝛆" U1D6C6
+<UFDD7> <g> <dead_greek> <EuroSign> : "𝛖" U1D6D6
+<UFDD7> <g> <dead_greek> <f> : "𝛗" U1D6D7
+<UFDD7> <g> <dead_greek> <dead_ogonek> : "𝛟" U1D6DF
+<UFDD7> <g> <dead_greek> <g> : "𝛔" U1D6D4
+<UFDD7> <g> <dead_greek> <h> : "𝛈" U1D6C8
+<UFDD7> <g> <dead_greek> <i> : "𝛊" U1D6CA
+<UFDD7> <g> <dead_greek> <j> : "𝛏" U1D6CF
+<UFDD7> <g> <dead_greek> <k> : "𝛋" U1D6CB
+<UFDD7> <g> <dead_greek> <asciitilde> : "𝛞" U1D6DE
+<UFDD7> <g> <dead_greek> <l> : "𝛌" U1D6CC
+<UFDD7> <g> <dead_greek> <m> : "𝛍" U1D6CD
+<UFDD7> <g> <dead_greek> <n> : "𝛎" U1D6CE
+<UFDD7> <g> <dead_greek> <o> : "𝛐" U1D6D0
+<UFDD7> <g> <dead_greek> <p> : "𝛑" U1D6D1
+<UFDD7> <g> <dead_greek> <ampersand> : "𝛡" U1D6E1
+<UFDD7> <g> <dead_greek> <r> : "𝛒" U1D6D2
+<UFDD7> <g> <dead_greek> <dead_breve> : "𝛠" U1D6E0
+<UFDD7> <g> <dead_greek> <s> : "𝛔" U1D6D4
+<UFDD7> <g> <dead_greek> <t> : "𝛕" U1D6D5
+<UFDD7> <g> <dead_greek> <u> : "𝛉" U1D6C9
+<UFDD7> <g> <dead_greek> <ugrave> : "𝛝" U1D6DD
+<UFDD7> <g> <dead_greek> <v> : "𝛚" U1D6DA
+<UFDD7> <g> <dead_greek> <w> : "𝛓" U1D6D3
+<UFDD7> <g> <dead_greek> <x> : "𝛘" U1D6D8
+<UFDD7> <g> <dead_greek> <y> : "𝛖" U1D6D6
+<UFDD7> <g> <dead_greek> <z> : "𝛇" U1D6C7
+<UFDD7> <g> <dead_greek> <A> : "𝚨" U1D6A8
+<UFDD7> <g> <dead_greek> <B> : "𝚩" U1D6A9
+<UFDD7> <g> <dead_greek> <C> : "𝚿" U1D6BF
+<UFDD7> <g> <dead_greek> <D> : "𝚫" U1D6AB
+<UFDD7> <g> <dead_greek> <E> : "𝚬" U1D6AC
+<UFDD7> <g> <dead_greek> <F> : "𝚽" U1D6BD
+<UFDD7> <g> <dead_greek> <G> : "𝚪" U1D6AA
+<UFDD7> <g> <dead_greek> <H> : "𝚮" U1D6AE
+<UFDD7> <g> <dead_greek> <I> : "𝚰" U1D6B0
+<UFDD7> <g> <dead_greek> <J> : "𝚵" U1D6B5
+<UFDD7> <g> <dead_greek> <K> : "𝚱" U1D6B1
+<UFDD7> <g> <dead_greek> <L> : "𝚲" U1D6B2
+<UFDD7> <g> <dead_greek> <M> : "𝚳" U1D6B3
+<UFDD7> <g> <dead_greek> <N> : "𝚴" U1D6B4
+<UFDD7> <g> <dead_greek> <O> : "𝚶" U1D6B6
+<UFDD7> <g> <dead_greek> <P> : "𝚷" U1D6B7
+<UFDD7> <g> <dead_greek> <R> : "𝚸" U1D6B8
+<UFDD7> <g> <dead_greek> <S> : "𝚺" U1D6BA
+<UFDD7> <g> <dead_greek> <T> : "𝚻" U1D6BB
+<UFDD7> <g> <dead_greek> <U> : "𝚯" U1D6AF
+<UFDD7> <g> <dead_greek> <V> : "𝛀" U1D6C0
+<UFDD7> <g> <dead_greek> <X> : "𝚾" U1D6BE
+<UFDD7> <g> <dead_greek> <Y> : "𝚼" U1D6BC
+<UFDD7> <g> <dead_greek> <Z> : "𝚭" U1D6AD
+<UFDD7> <g> <UFDD7> : "𝛛" U1D6DB
+<UFDD7> <g> <U2623> : "𝛁" U1D6C1
+<UFDD7> <f> <A> : "𝔄" U1D504
+<UFDD7> <f> <B> : "𝔅" U1D505
+<UFDD7> <f> <C> : "ℭ" U212D
+<UFDD7> <f> <D> : "𝔇" U1D507
+<UFDD7> <f> <E> : "𝔈" U1D508
+<UFDD7> <f> <F> : "𝔉" U1D509
+<UFDD7> <f> <G> : "𝔊" U1D50A
+<UFDD7> <f> <H> : "ℌ" U210C
+<UFDD7> <f> <I> : "ℑ" U2111
+<UFDD7> <f> <J> : "𝔍" U1D50D
+<UFDD7> <f> <K> : "𝔎" U1D50E
+<UFDD7> <f> <L> : "𝔏" U1D50F
+<UFDD7> <f> <M> : "𝔐" U1D510
+<UFDD7> <f> <N> : "𝔑" U1D511
+<UFDD7> <f> <O> : "𝔒" U1D512
+<UFDD7> <f> <P> : "𝔓" U1D513
+<UFDD7> <f> <Q> : "𝔔" U1D514
+<UFDD7> <f> <R> : "ℜ" U211C
+<UFDD7> <f> <S> : "𝔖" U1D516
+<UFDD7> <f> <T> : "𝔗" U1D517
+<UFDD7> <f> <U> : "𝔘" U1D518
+<UFDD7> <f> <V> : "𝔙" U1D519
+<UFDD7> <f> <W> : "𝔚" U1D51A
+<UFDD7> <f> <X> : "𝔛" U1D51B
+<UFDD7> <f> <Y> : "𝔜" U1D51C
+<UFDD7> <f> <Z> : "ℨ" U2128
+<UFDD7> <f> <a> : "𝔞" U1D51E
+<UFDD7> <f> <b> : "𝔟" U1D51F
+<UFDD7> <f> <c> : "𝔠" U1D520
+<UFDD7> <f> <d> : "𝔡" U1D521
+<UFDD7> <f> <e> : "𝔢" U1D522
+<UFDD7> <f> <f> : "𝔣" U1D523
+<UFDD7> <f> <g> : "𝔤" U1D524
+<UFDD7> <f> <h> : "𝔥" U1D525
+<UFDD7> <f> <i> : "𝔦" U1D526
+<UFDD7> <f> <j> : "𝔧" U1D527
+<UFDD7> <f> <k> : "𝔨" U1D528
+<UFDD7> <f> <l> : "𝔩" U1D529
+<UFDD7> <f> <m> : "𝔪" U1D52A
+<UFDD7> <f> <n> : "𝔫" U1D52B
+<UFDD7> <f> <o> : "𝔬" U1D52C
+<UFDD7> <f> <p> : "𝔭" U1D52D
+<UFDD7> <f> <q> : "𝔮" U1D52E
+<UFDD7> <f> <r> : "𝔯" U1D52F
+<UFDD7> <f> <s> : "𝔰" U1D530
+<UFDD7> <f> <t> : "𝔱" U1D531
+<UFDD7> <f> <u> : "𝔲" U1D532
+<UFDD7> <f> <v> : "𝔳" U1D533
+<UFDD7> <f> <w> : "𝔴" U1D534
+<UFDD7> <f> <x> : "𝔵" U1D535
+<UFDD7> <f> <y> : "𝔶" U1D536
+<UFDD7> <f> <z> : "𝔷" U1D537
+<UFDD7> <F> <A> : "𝕬" U1D56C
+<UFDD7> <F> <B> : "𝕭" U1D56D
+<UFDD7> <F> <C> : "𝕮" U1D56E
+<UFDD7> <F> <D> : "𝕯" U1D56F
+<UFDD7> <F> <E> : "𝕰" U1D570
+<UFDD7> <F> <F> : "𝕱" U1D571
+<UFDD7> <F> <G> : "𝕲" U1D572
+<UFDD7> <F> <H> : "𝕳" U1D573
+<UFDD7> <F> <I> : "𝕴" U1D574
+<UFDD7> <F> <J> : "𝕵" U1D575
+<UFDD7> <F> <K> : "𝕶" U1D576
+<UFDD7> <F> <L> : "𝕷" U1D577
+<UFDD7> <F> <M> : "𝕸" U1D578
+<UFDD7> <F> <N> : "𝕹" U1D579
+<UFDD7> <F> <O> : "𝕺" U1D57A
+<UFDD7> <F> <P> : "𝕻" U1D57B
+<UFDD7> <F> <Q> : "𝕼" U1D57C
+<UFDD7> <F> <R> : "𝕽" U1D57D
+<UFDD7> <F> <S> : "𝕾" U1D57E
+<UFDD7> <F> <T> : "𝕿" U1D57F
+<UFDD7> <F> <U> : "𝖀" U1D580
+<UFDD7> <F> <V> : "𝖁" U1D581
+<UFDD7> <F> <W> : "𝖂" U1D582
+<UFDD7> <F> <X> : "𝖃" U1D583
+<UFDD7> <F> <Y> : "𝖄" U1D584
+<UFDD7> <F> <Z> : "𝖅" U1D585
+<UFDD7> <F> <a> : "𝖆" U1D586
+<UFDD7> <F> <b> : "𝖇" U1D587
+<UFDD7> <F> <c> : "𝖈" U1D588
+<UFDD7> <F> <d> : "𝖉" U1D589
+<UFDD7> <F> <e> : "𝖊" U1D58A
+<UFDD7> <F> <f> : "𝖋" U1D58B
+<UFDD7> <F> <g> : "𝖌" U1D58C
+<UFDD7> <F> <h> : "𝖍" U1D58D
+<UFDD7> <F> <i> : "𝖎" U1D58E
+<UFDD7> <F> <j> : "𝖏" U1D58F
+<UFDD7> <F> <k> : "𝖐" U1D590
+<UFDD7> <F> <l> : "𝖑" U1D591
+<UFDD7> <F> <m> : "𝖒" U1D592
+<UFDD7> <F> <n> : "𝖓" U1D593
+<UFDD7> <F> <o> : "𝖔" U1D594
+<UFDD7> <F> <p> : "𝖕" U1D595
+<UFDD7> <F> <q> : "𝖖" U1D596
+<UFDD7> <F> <r> : "𝖗" U1D597
+<UFDD7> <F> <s> : "𝖘" U1D598
+<UFDD7> <F> <t> : "𝖙" U1D599
+<UFDD7> <F> <u> : "𝖚" U1D59A
+<UFDD7> <F> <v> : "𝖛" U1D59B
+<UFDD7> <F> <w> : "𝖜" U1D59C
+<UFDD7> <F> <x> : "𝖝" U1D59D
+<UFDD7> <F> <y> : "𝖞" U1D59E
+<UFDD7> <F> <z> : "𝖟" U1D59F
