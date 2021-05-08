@@ -1,11 +1,12 @@
 /*
+
 !/.gitignore
 !/.scripts
 !/.templates
 !/.texmf
-!/.conky*
 !/.config/breezerc*
 !/.fonts
+
 /.fonts/.uuid
 *.swp
 *.dir
