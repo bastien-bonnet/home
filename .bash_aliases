@@ -119,6 +119,7 @@ alias a="alias"
 
 	a o="xdg-open"
 	a m="touch /tmp/meld1.txt /tmp/meld2.txt && meld /tmp/meld1.txt /tmp/meld2.txt"
+	a dirdate="mkdir $(date +%F_%T)"
 
 
 ###################################################################################################
