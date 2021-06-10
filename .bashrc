@@ -6,10 +6,10 @@ function main {
 
 	set_prompt
 
-	source_other_bash_config_files
 	set_bash_history_preferences
 	set_terminal_visual_preferences
 	set_application_preferences
+	source_other_bash_config_files
 }
 
 function set_prompt {
