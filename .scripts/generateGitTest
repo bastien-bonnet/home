@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 TEST_DIR="$(pwd)/gitTest"
 USER1_NAME="Bastien"
 USER2_NAME="Thomas"
@@ -7,104 +9,152 @@ USER1_MACHINE="$TEST_DIR/$USER1_NAME"
 USER2_MACHINE="$TEST_DIR/$USER2_NAME"
 CENTRAL_MACHINE="$TEST_DIR/central"
 PROJECT_NAME="project"
+CENTRAL_LOCAL_REPO="$CENTRAL_MACHINE/$PROJECT_NAME"
+CENTRAL_REPO="$CENTRAL_LOCAL_REPO"
 
+
+function main {
+	checkExistingDirectory
+
+ 	printSection "Creating a central repo and 2 user repo..."
+	mkdir -p $CENTRAL_MACHINE $USER1_MACHINE $USER2_MACHINE
+	git init --bare $CENTRAL_MACHINE/"$PROJECT_NAME".git
+	git clone -c user.name=$USER1_NAME -c user.email=$USER1_NAME@xmail.com   $CENTRAL_REPO $USER1_MACHINE/$PROJECT_NAME
+	git clone -c user.name=$USER2_NAME -c user.email=$USER2_NAME@xmail.com   $CENTRAL_REPO $USER2_MACHINE/$PROJECT_NAME
+
+	addSomeCommitsFromUser1
+	[[ "$1" == "-l" ]] && addManyCommits
+
+	createOneCommitOnMasterFromUser2
+	createBranchByUser2
+}
+
+function createOneCommitOnMasterFromUser2 {
+	printSection "Creating one commit on master by $USER2_NAME"
+
+	cd $USER2_MACHINE/$PROJECT_NAME
+	git fetch
+	git checkout master
+	git pull
+	touch README.adoc
+	git add README.adoc
+	git commit -m "Add Readme"
+
+	git push
+}
+
+function createBranchByUser2 {
+	printSection "Creating a branch by $USER2_NAME"
+
+	cd $USER2_MACHINE/$PROJECT_NAME
+	git pull
+	git checkout -b featureF master^
+	touch featureF_part1.txt
+	echo -e "\nLigne pour la feature F" >> a.txt
+	git add -A
+	export GIT_AUTHOR_DATE="2020-10-22T09:00:02"
+	export GIT_COMMITTER_DATE="2020-10-22T09:01:35"
+	git commit -m "Début de la feature F"
+
+	git push --set-upstream origin featureF
+}
+
+function printSection {
+	echo ""
+	echo "------------------------------------------------"
+	echo "$@"
+	echo "------------------------------------------------"
+}
+
+function addSomeCommitsFromUser1 {
+	printSection "Creating a few commits..."
+
+	SAMPLE_TEXT_FILE=a.txt
+	touch $USER1_MACHINE/$PROJECT_NAME/$SAMPLE_TEXT_FILE
+	cd $USER1_MACHINE/$PROJECT_NAME
+	git add $SAMPLE_TEXT_FILE
+	export GIT_AUTHOR_DATE="2020-09-14T09:00:02"
+	export GIT_COMMITTER_DATE="2020-09-14T09:01:35"
+	git commit -am "Initial commit"
+	echo 'work' >> $SAMPLE_TEXT_FILE
+	export GIT_AUTHOR_DATE="2020-10-18T11:08:22"
+	export GIT_COMMITTER_DATE="2020-10-18T11:11:45"
+	git commit -am "Modify $SAMPLE_TEXT_FILE"
+	echo -e "#!/bin/bash\n\necho hello" > b.txt
+	git add -A
+	export GIT_AUTHOR_DATE="2020-10-21T14:10:20"
+	export GIT_COMMITTER_DATE="2020-10-21T15:12:21"
+	git commit -m "Add launch script"
+
+	git push
+}
+
+function checkExistingDirectory {
+	if [ -d $TEST_DIR ]; then
+		echo "Delete already existing [$TEST_DIR] directory? (Y/n)"
+		read delete
+		[[ "$delete" =~ y|Y || "$delete" == "" ]] && rm -rf "$TEST_DIR" || exit
+	fi
+}
 
 function changeAuthor {
 	git -c user.name="$1" -c user.email="email@address.com" commit --amend --reset-author --no-edit
 }
 
-function addCrappyCommits {
-	touch x.txt \
-	&& git add -A \
-	&& git commit -am "Add crappy file" \
-	&& echo a >> x.txt \
-	&& git commit -am "Add a single line" \
-	&& changeAuthor Thomas \
-	&& echo b >> x.txt \
-	&& git commit -am "Modify things" \
-	&& echo c >> x.txt \
-	&& git commit -am "Create file for some test" \
-	&& echo a >> x.txt \
-	&& git commit -am "Make some tests, because sometimes you have to" \
-	&& changeAuthor Thomas \
-	&& echo b >> x.txt \
-	&& git commit -am "Modify more stuff, and making a beautiful comment" \
-	&& echo c >> x.txt \
-	&& git commit -am "Create another file for testing purposes" \
-	&& echo a >> x.txt \
-	&& git commit -am "Fix error, but don't know why this fix works" \
-	&& changeAuthor Thomas \
-	&& echo b >> x.txt \
-	&& git commit -am "Make some quality improvements" \
-	&& echo c >> x.txt \
-	&& git commit -am "Make more quality" \
-	&& echo a >> x.txt \
-	&& git commit -am "Write unit tests because reviewer said so" \
-	&& changeAuthor Thomas \
-	&& echo b >> x.txt \
-	&& git commit -am "Add magic feature" \
-	&& echo c >> x.txt \
-	&& git commit -am "Add secret feature, with more magic inside" \
-	&& echo a >> x.txt \
-	&& git commit -am "Guess !" \
-	&& changeAuthor Thomas \
-	&& echo b >> x.txt \
-	&& git commit -am "Modify .gitignore to include IDE files" \
-	&& echo c >> x.txt \
-	&& git commit -am "Make more quality for SONAR metrics, my pay rise depends on it" \
-	&& echo a >> x.txt \
-	&& git commit -am "Update JavaDoc" \
-	&& changeAuthor Thomas \
-	&& echo b >> x.txt \
-	&& git commit -am "Remove feature B, nobody uses it" \
-	&& echo c >> x.txt \
-	&& git commit -am "Commit 40 files, all my work before holiday" \
-	&& echo c >> x.txt \
-	&& git commit -am "Add integration test, because I don't like unit tests"
+function addManyCommits {
+	printSection "Adding many commits"
+
+	touch x.txt
+	git add -A
+	git commit -am "Add config file"
+	echo a >> x.txt
+	git commit -am "Document deployment"
+	changeAuthor Thomas
+	echo b >> x.txt
+	git commit -am "Fix login error message not showing"
+	echo c >> x.txt
+	git commit -am "Add test case on login failure"
+	echo a >> x.txt
+	git commit -am "Refactor tests"
+	changeAuthor Thomas
+	echo b >> x.txt
+	git commit -am "Improve documentation on deployment"
+	echo c >> x.txt
+	git commit -am "Add tests for logout"
+	echo a >> x.txt
+	git commit -am "Fix homepage layout"
+	changeAuthor Thomas
+	echo b >> x.txt
+	git commit -am "Format"
+	echo c >> x.txt
+	git commit -am "Remove unused imports"
+	echo a >> x.txt
+	git commit -am "Remove redundant unit tests"
+	changeAuthor Thomas
+	echo b >> x.txt
+	git commit -am "Add user preference page"
+	echo c >> x.txt
+	git commit -am "Add theme change in user preferences"
+	echo a >> x.txt
+	git commit -am "Allow email notifications to be opted out"
+	changeAuthor Thomas
+	echo b >> x.txt
+	git commit -am "Modify .gitignore to include IDE files"
+	echo c >> x.txt
+	git commit -am "Update Readme with new UAT environment"
+	echo a >> x.txt
+	git commit -am "Update JavaDoc"
+	changeAuthor Thomas
+	echo b >> x.txt
+	git commit -am "Remove feature B"
+	echo c >> x.txt
+	git commit -am "Extract functions"
+	echo c >> x.txt
+	git commit -am "Add integration tests on order validation"
+
+	git push
 }
 
-# Testing for already existing test directory
-if [ -d $TEST_DIR ]; then
-	echo "Delete already existing [$TEST_DIR] directory? (Y/n)"
-	read delete
-	[[ "$delete" =~ y|Y || "$delete" == "" ]] && rm -rf "$TEST_DIR" || exit
-fi
 
-# Make all directories to simulate a central repo and 2 user machines
-mkdir -p $CENTRAL_MACHINE $USER1_MACHINE $USER2_MACHINE
-git init --bare $CENTRAL_MACHINE/"$PROJECT_NAME".git
-git clone -c user.name=$USER1_NAME -c user.email=$USER1_NAME@xmail.com $CENTRAL_MACHINE/$PROJECT_NAME $USER1_MACHINE/$PROJECT_NAME
-git clone -c user.name=$USER2_NAME -c user.email=$USER2_NAME@xmail.com $CENTRAL_MACHINE/$PROJECT_NAME $USER2_MACHINE/$PROJECT_NAME
-
-# Make a few commits on master from USER1
-SAMPLE_TEXT_FILE=a.txt
-touch $USER1_MACHINE/$PROJECT_NAME/$SAMPLE_TEXT_FILE
-cd $USER1_MACHINE/$PROJECT_NAME \
-&& git add $SAMPLE_TEXT_FILE \
-&& export GIT_AUTHOR_DATE="2015-09-14T09:00:02" \
-&& export GIT_COMMITTER_DATE="2015-09-14T09:01:35" \
-&& git commit -am "Initial commit" \
-&& echo 'work' >> $SAMPLE_TEXT_FILE \
-&& export GIT_AUTHOR_DATE="2015-10-18T11:08:22" \
-&& export GIT_COMMITTER_DATE="2015-10-18T11:11:45" \
-&& git commit -am "Modify $SAMPLE_TEXT_FILE" \
-&& echo -e "#!/bin/bash\n\necho hello" > b.txt \
-&& git add -A \
-&& export GIT_AUTHOR_DATE="2015-10-21T14:10:20" \
-&& export GIT_COMMITTER_DATE="2015-10-21T15:12:21" \
-&& git commit -m "Add powerful script" \
-&& ([[ "$1" == "-l" ]] && addCrappyCommits || echo "Small repo") \
-&& git push
-
-# Make a new branch by USER2
-cd $USER2_MACHINE/$PROJECT_NAME \
-&& git pull \
-&& git checkout -b featureF master^ \
-&& touch featureF_part1.txt \
-&& echo -e "\nLigne pour la feature F" >> a.txt \
-&& git add -A \
-&& export GIT_AUTHOR_DATE="2015-10-22T09:00:02" \
-&& export GIT_COMMITTER_DATE="2015-10-22T09:01:35" \
-&& git commit -m "Début de la feature F" \
-&& git push --set-upstream origin featureF
+main "$@"
 
