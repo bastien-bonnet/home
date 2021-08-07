@@ -51,8 +51,7 @@ function gitInfo() {
 	if [[ $(command -v git) != "" && ("$(git rev-parse --is-inside-work-tree 2>&1)" == "true") ]]; then
 		local gitStatus="$(git status)"
 
-		local dirtyStatus="$(gitDirtyStatus)"
-		[[ -n $dirtyStatus ]] && dirtyStatusColored="$red$dirtyStatus$fg_format_off"
+		local dirtyStatusColored="$(gitDirtyStatus)"
 		
 		local branchDivergence="$(gitBranchDivergence)"
 		[[ -n $branchDivergence ]] && branchStateColored="$yellow$bgColor$branchDivergence$fg_format_off"
@@ -76,7 +75,7 @@ function gitDirtyStatus {
 	local unMergedWork="$([ -n "$(grep 'Unmerged paths:' <<< $gitStatus)" ] && echo U)"
 	local modified="$([ -n "$(grep 'Changes not staged for commit:' <<< $gitStatus)" ] && echo M)"
 	local new="$([ -n "$(grep 'Untracked files:' <<< $gitStatus)" ] && echo ?)"
-	echo -n "$added$unMergedWork$modified$new"
+	echo -n "$green$added$red$unMergedWork$modified$new$fg_format_off"
 }
 
 function gitBranchDivergence {
