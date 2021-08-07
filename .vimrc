@@ -41,6 +41,24 @@ set nuw=6
 " Show the cursor position all the time
 set ruler
 
+" :help statusline for placeholder description
+" :so $VIMRUNTIME/syntax/hitest.vim
+set statusline=%#ToolbarLine#%t " tail of the filename, i.e. filename
+set statusline+=%m " modified flag, displayed as [+]
+set statusline+=\ [%{strlen(&fenc)?&fenc.',':''} " file encoding
+set statusline+=%{&ff}] " file format, e.g. 'unix'
+set statusline+=\ %y " filetype, e.g. [vim]
+set statusline+=\ %r " read only flag
+set statusline+=%= " left/right separator
+set statusline+=%c " cursor column
+set statusline+=\ %l/%L " cursor line/total lines
+set statusline+=\ %P " percent through file
+
+set rulerformat=%#LineNR#
+set rulerformat+=\ %l\ /\ %L " (cursor line)/(total lines)
+set rulerformat+=%= " left/right separator
+set rulerformat+=\ %P " percent through file
+
 " highlight search
 set hlsearch
 set incsearch
