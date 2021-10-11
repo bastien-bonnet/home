@@ -15,6 +15,7 @@ alias a="alias"
 	cdAndLs () { cd "$1" && l; }
 	a cl="cdAndLs"
 	a dl="cl ~/Downloads"
+	a dev="cl ~/dev"
 
 	a rl="readlink -m"
 
