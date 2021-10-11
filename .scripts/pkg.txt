@@ -12,6 +12,8 @@ source-highlight
 teensy-loader-cli
 terminator
 texlive-lang-french
+texlive-pictures
+texlive-latex-extra
 tree
 vim
 vim-gtk
