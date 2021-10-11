@@ -5,31 +5,30 @@
 \usepackage[french]{babel}
 \usepackage{lmodern}
 \usepackage{graphicx}
-%
 % Textcom allows more symbols
 % \usepackage{textcomp}
 
-% \usepackage{default}
-
 % Theme (Malmoe, Singapore, Warsaw)
 \usetheme{Singapore}
-% \usecolortheme{dove}
+
+% Theme footer
 % \usefoottemplate{\vbox{%
 % \tinycolouredline{structure}%
 % {\color{white}\textbf{\insertshorttitle} \hfill \insertframenumber{} / \inserttotalframenumber{}}%
 % }}
 
-% No theme
-% \setbeamerfont{page number in head/foot}{size=\large}
+% Simple footer
+\setbeamercolor{page number in head/foot}{fg=gray}
 \setbeamertemplate{footline}[frame number]
-
 \setbeamertemplate{navigation symbols}{}
 
-\begin{document}
-\title{Title here}
-\author{Author 1, Author 2}
 
-\begin{frame}
+\title{Title here}
+\subtitle{subtitle}
+\author{Author 1, Author 2}
+\begin{document}
+
+\begin{frame}[plain]
   \titlepage
 \end{frame}
  
