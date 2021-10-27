@@ -74,23 +74,35 @@ alias a="alias"
 ###################################################################################################
 # GIT
 
-	. /usr/share/bash-completion/completions/git
-
 	function_exists() {
 		declare -f -F $1 > /dev/null
 		return $?
 	}
+	
+	declare_git_aliases_for_bash() {
+		for git_alias in $(git --list-cmds=alias); do
+			alias g$git_alias="git $git_alias"
+			completion_function=_git_$(__git_aliased_command $git_alias)
+			function_exists $completion_function && __git_complete g$git_alias $completion_function
+		done
+		for git_command in $(git --list-cmds=main,others,nohelpers); do
+			alias g$git_command="git $git_command"
+			completion_function=_git_$git_command
+			function_exists $completion_function && __git_complete g$git_command $completion_function
+		done
+	}
 
-	for git_alias in $(git --list-cmds=alias); do
-		alias g$git_alias="git $git_alias"
-		completion_function=_git_$(__git_aliased_command $git_alias)
-		function_exists $completion_function && __git_complete g$git_alias $completion_function
-	done
-	for git_command in $(git --list-cmds=main,others,nohelpers); do
-		alias g$git_command="git $git_command"
-		completion_function=_git_$git_command
-		function_exists $completion_function && __git_complete g$git_command $completion_function
-	done
+	linux_git_completion_functions="/usr/share/bash-completion/completions/git"
+	windows_git_completion_functions="/mingw64/share/git/completion/git-completion.bash"
+	if [ -f $linux_git_completion_functions ]; then
+		. $linux_git_completion_functions
+		declare_git_aliases_for_bash $linux_git_completion_functions
+	elif [ -f $windows_git_completion_functions ]; then
+		. $windows_git_completion_functions
+		declare_git_aliases_for_bash $windows_git_completion_functions
+	else
+		echo "Can’t locate Git completion functions"
+	fi
 
 	a gss="~/.scripts/statusGitSvn"
 	a gsu="~/.scripts/updateGitSvn"
