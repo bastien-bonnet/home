@@ -167,6 +167,7 @@ ${template7}${template0  10} ${goto 95}${execi 600 nvidia-smi --format=csv,no
 	${template7}${template0  10} ${goto 95}${execi 60 nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
 
 
+
 ${endif}#
 ${template1  SYSTEM brands}
 ${template7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs} - ${kernel}#
@@ -199,7 +200,9 @@ ${font DejaVu Sans Mono:size=8}#
 ${execpi 3600 ~/.scripts/conky_weather.bash}
 ${font}#
 
+
 ${alignr}${font DejaVu Sans:size=26}${time %H:%M}${font}
 ${alignr}${time %a %d %b %Y}#
-${voffset -5}#
+${voffset -5}
+
 ]=];
