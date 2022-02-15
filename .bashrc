@@ -74,7 +74,7 @@ function gitDirtyStatus {
 	local added="$([ -n "$(grep 'Changes to be committed:' <<< $gitStatus)" ] && echo A)"
 	local unMergedWork="$([ -n "$(grep 'Unmerged paths:' <<< $gitStatus)" ] && echo U)"
 	local modified="$([ -n "$(grep 'Changes not staged for commit:' <<< $gitStatus)" ] && echo M)"
-	local new="$([ -n "$(grep 'Untracked files:' <<< $gitStatus)" ] && echo ?)"
+	local new="$([ -n "$(grep 'Untracked files:' <<< $gitStatus)" ] && echo "?")"
 	echo -n "$green$added$red$unMergedWork$modified$new$fg_format_off"
 }
 
