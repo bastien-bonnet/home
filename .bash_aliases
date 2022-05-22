@@ -134,6 +134,8 @@ alias a="alias"
 	a m="touch /tmp/meld1.txt /tmp/meld2.txt && meld /tmp/meld1.txt /tmp/meld2.txt"
 	a dirdate="mkdir $(date +%F_%T)"
 
+	pandocb() { pandoc -V aspectratio=169 -V theme=Singapore  -H ~/.templates/pandoc_beamer_header.tex --slide-level 2 -st beamer "$1" -o "${1%.md}".pdf; }
+
 
 ###################################################################################################
 # RSYNC
