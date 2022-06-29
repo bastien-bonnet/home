@@ -153,8 +153,8 @@ ${template5 4}
 ${template1   SSD}
 ${template8 / /dev/nvme0n1p3 90}#
 ${template8 /boot /dev/nvme0n1p2 50}#
-${template8 /media/data /dev/data 90}#
-${template8 /media/data2 /media/data2 90}#
+${template8 /media/data /dev/sda1 90}#
+${template8 /media/data2 /dev/nvme1n1p1 90}#
 ${template8 /media/data_ext /dev/sdb1 90}#
 #
 
