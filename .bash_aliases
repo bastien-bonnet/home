@@ -137,6 +137,7 @@ alias a="alias"
 	pandocb() { pandoc -V aspectratio=169 --slide-level 2 --incremental \
 	-V theme=Singapore  \
 	-H ~/.templates/pandoc_beamer_header.tex -st beamer \
+	--pdf-engine=pdflatex \
 	"$1" -o "${1%.md}".pdf; }
 	export -f pandocb
 
