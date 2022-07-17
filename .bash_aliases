@@ -133,6 +133,8 @@ alias a="alias"
 	a o="xdg-open"
 	a m="touch /tmp/meld1.txt /tmp/meld2.txt && meld /tmp/meld1.txt /tmp/meld2.txt"
 	a dirdate="mkdir $(date +%F_%T)"
+	
+	a concatPdf="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf *.pdf"
 
 	pandocb() { pandoc -V aspectratio=169 --slide-level 2 --incremental \
 	-V theme=Singapore  \
