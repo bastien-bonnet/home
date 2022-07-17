@@ -200,7 +200,6 @@ ${template1  WEATHER}
 ${font DejaVu Sans Mono:size=8}#
 ${execpi 3600 ~/.scripts/conky_weather.bash}
 ${font}#
-
 ${alignr}${font DejaVu Sans:size=26}${time %H:%M}${font}
 ${alignr}${time %a %d %b %Y}#
 ${voffset -5}
