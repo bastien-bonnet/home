@@ -99,7 +99,7 @@ format() {
 		-e '2s/Showers\( \/ Wind\)\?//g' \
 		-e '2s/Foggy//g' \
 		-e '2s/Heavy T-Storms//g' \
-		-e '2s/\(\w\+ \)\?Thunderstorms/ /g' \
+		-e '2s/\(\w\+ \)\?Thunderstorms\?/ /g' \
 		-e "$enclose_precipitations" \
 		-e "$remove_0_precipitation" \
 		-e "$format_precipitations" \
@@ -120,6 +120,9 @@ debug() {
 	echo "----"
 	local csv_filtered_data=$(echo "$csv_data" | select_relevant_columns "$field_separator")
 	echo -e "CSV filtered data:\n$csv_filtered_data"
+	echo "----"
+	echo "Transposed:"
+	transpose_table "$csv_filtered_data" "$field_separator"
 }
 
 main
