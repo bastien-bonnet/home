@@ -99,18 +99,8 @@ conky.config = {
 	template6 = [[${template7}${template0 \2 10}${voffset -1} \1: ${addr \1}#
 	${goto 350}${template0  10}${voffset -1} ${upspeed \1}${alignr}${template0  10}${voffset -1} ${downspeed \1}]],
 
-	-- Disk space (unlike fs_bar, df does count superuser reserved space as used)
-	-- Using this till exec behavior is fixed (exec are executed all the time, even inside conditionals like if_match).
-	template8 = [[${execpi 60 if grep -qs '\1 ' /proc/mounts; then
-		echo '${template7}${template0  10}  ${template9 \1} ${goto 220} ${fs_size \1} ${goto 270}${fs_free \1} free #
-${if_match ${exec echo '$(df --output=pcent \1 | tr -dc 0-9)'} >= \3}${color2}${else}${endif}#
-		${alignr}${execibar 60 echo '$(df --output=pcent \1 | tr -dc 0-9)'}${color}
-		${goto 350}R${goto 390}${diskiograph_read \2 20,50 -t}#
-		${goto 460}W${alignr}${diskiograph_write \2 20,50 -t}
-		${voffset -20}${goto 350}${diskio_read \2}${goto 460}${diskio_write \2}${voffset 20}
-		'
-	fi}#
-	]]
+	-- Disk space
+	template8 = [[${execpi 60 ~/.scripts/conky_disk.bash \1 \2 \3}]]
 };
 
 
