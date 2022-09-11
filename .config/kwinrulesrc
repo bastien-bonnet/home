@@ -45,6 +45,13 @@ wmclass=steam
 wmclasscomplete=false
 wmclassmatch=1
 
+[4]
+Description=Dota 2 rule
+desktops=675c2813-3522-476e-9233-d92cb9da3cc9
+desktopsrule=3
+wmclass=dota
+wmclassmatch=2
+
 [42b17c3c-7f3b-4ef5-86c0-6b0f92782f79]
 Description=Steam rule
 desktops=f9232abd-5bd2-4758-9cbb-b17ee5dcd80a
@@ -56,9 +63,16 @@ wmclassmatch=1
 XftAntialias[$d]
 XftHintStyle[$d]
 XftSubPixel[$d]
-count=3
-rules=1,2,3
+count=4
+rules=1,2,3,4
 
 [KDE]
 LookAndFeelPackage[$d]
 SingleClick[$d]
+
+[fcc03308-b92d-4dd1-9915-7883d30ed19b]
+Description=Dota 2 rule
+desktops=675c2813-3522-476e-9233-d92cb9da3cc9
+desktopsrule=3
+wmclass=dota
+wmclassmatch=2
