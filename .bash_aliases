@@ -16,6 +16,7 @@ alias a="alias"
 	a cl="cdAndLs"
 	a dl="cl ~/Downloads"
 	a dev="cl ~/dev"
+	a curr="cl ~/Current"
 
 	a rl="readlink -m"
 
