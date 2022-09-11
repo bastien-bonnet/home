@@ -161,7 +161,8 @@ ${template7}${template0  10} ${goto 95}${execi 600 nvidia-smi --format=csv,no
 
 ${endif}#
 ${template1  SYSTEM brands}
-${template7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs} - ${kernel}#
+${template7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs}#
+    ${template0  12 brands}${voffset -2} ${kernel}#
 ${goto 350}${template0  10}${voffset -1} ${uptime_short}#
 ${alignr}${template0  10}${voffset -1} ${execi 3600 apt list --upgradable 2>/dev/null | tail -n +2 | wc -l}#
 ${voffset 20}#
