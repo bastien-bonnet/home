@@ -135,13 +135,13 @@ alias a="alias"
 	a m="touch /tmp/meld1.txt /tmp/meld2.txt && meld /tmp/meld1.txt /tmp/meld2.txt"
 	a dirdate="mkdir $(date +%F_%T)"
 	
-	a concatPdf="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf *.pdf"
 
-	pandocb() { pandoc -V aspectratio=169 --slide-level 2 --incremental \
-	-V theme=Singapore  \
-	-H ~/.templates/pandoc_beamer_header.tex -st beamer \
-	--pdf-engine=pdflatex \
-	"$1" -o "${1%.md}".pdf; }
+# PDF manipulation
+	a pdf-from-png="mogrify -format pdf *.png"
+	a pdf-quality-lower="ps2pdf -dPDFSETTINGS=/ebook merged.pdf merged_lq.pdf"
+	a pdf-concat="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf"
+	a pdf-concat-all="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf *.pdf"
+
 	export -f pandocb
 
 
