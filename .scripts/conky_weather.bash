@@ -94,6 +94,7 @@ format() {
 		-e '2s/\(Mostly \)\?Cloudy\( \/ Wind\| Night\)\?//g' \
 		-e '2s/Few Showers\( \/ Wind\)\?//g' \
 		-e '2s/Scattered Showers\( \/ Wind\)\?//g' \
+		-e '2s/\(Rain and \)\?Snow//g' \
 		-e '2s/Light Rain\( \/ Wind\)\?//g' \
 		-e '2s/\(Heavy \)\?Rain\( \/ Wind\)\?//g' \
 		-e '2s/Showers\( \/ Wind\)\?//g' \
