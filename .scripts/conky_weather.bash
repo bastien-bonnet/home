@@ -13,7 +13,7 @@ main() {
 }
 
 get_weather_html_data() {
-	local WEATHER_URL="https://weather.com/en-GB/weather/hourbyhour/l/b79a975f5ebe516146715560b2cb2e9de56e7b6e90e002c2bcc465c14ef65e22"
+	local WEATHER_URL="https://weather.com/en-GB/weather/hourbyhour/l/84d8432d389a2d0f4d15c4867d07bfb324dc333512613f3310c844bd31dac333"
 
 	local weather_html_page=$(curl $WEATHER_URL 2>/dev/null)
 	echo $weather_html_page \
