@@ -7,20 +7,25 @@ clientmachine=localhost
 clientmachinematch=0
 desktop=2
 desktoprule=4
+desktops=0cd76d42-4929-4c7d-b65f-49e6b3e0cb1c
+desktopsrule=3
+ignoregeometry=true
+ignoregeometryrule=3
 position=0,0
 positionrule=3
-size=1292,540
+size=1300,540
 sizerule=3
 title=bast@bast-fractal: ~
 titlematch=0
 wmclass=terminator
-wmclasscomplete=false
 wmclassmatch=1
 
 [2]
 Description=Dolphin rule
 clientmachine=localhost
 clientmachinematch=0
+desktops=0cd76d42-4929-4c7d-b65f-49e6b3e0cb1c
+desktopsrule=3
 position=0,540
 positionrule=3
 size=960,540
