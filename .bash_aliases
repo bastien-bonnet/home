@@ -65,8 +65,6 @@ alias a="alias"
 # CLEANING
 
 	a rm="rm -i"
-	a r="mv -bt ~/.local/share/Trash/files/"
-	a rdo="r ~/Downloads/*"
 	a r="~/.scripts/remove"
 	a et="~/.scripts/emptyTrash"
 	a secure_erase="sudo shred -vzn1"
