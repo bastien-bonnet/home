@@ -17,6 +17,7 @@ alias a="alias"
 	a dl="cl ~/Downloads"
 	a dev="cl ~/dev"
 	a curr="cl ~/Current"
+	a trash="cl ~/.local/share/Trash/files"
 
 	a rl="readlink -m"
 
