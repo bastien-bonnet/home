@@ -2,7 +2,7 @@ function main {
 	shell_is_interactive || return
 
 	export PATH=$PATH:~/software:~/.scripts:~/.local/bin
-	export CDPATH="~/dev"
+	export CDPATH=".:~/dev:~/Current"
 
 	set_prompt
 
