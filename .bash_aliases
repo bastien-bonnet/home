@@ -141,17 +141,21 @@ alias a="alias"
 	a pdf-concat="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf"
 	a pdf-concat-all="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf *.pdf"
 
-	pandocb() { pandoc \
+	pandoc_beamer() { pandoc \
 		-V theme=Singapore \
 		-V aspectratio=169 \
 		--slide-level 2 \
 		--highlight-style=breezedark \
-		${@:2} \
 		-H ~/.templates/pandoc_beamer_header.tex \
 		-st beamer \
 		--pdf-engine=pdflatex \
-		"$1" -o "${1%.md}".pdf; }
+		${@}
+	}
+	pandocb() { pandoc_beamer ${@:2} "$1" -o "${1%.md}".pdf; }
+	pandocbh() { pandoc_beamer ${@:2} -V handout "$1" -o "${1%.md}"-handout.pdf; }
 	export -f pandocb
+	export -f pandocbh
+
 
 
 ###################################################################################################
