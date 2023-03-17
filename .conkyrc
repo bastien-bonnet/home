@@ -28,7 +28,7 @@ conky.config = {
 
 	-- Conky window parameters
 	alignment = 'top_right',
-	gap_x = 50,
+	gap_x = 45,
 	gap_y = 35,
 	minimum_height = 0,
 	minimum_width = 530,
@@ -131,14 +131,12 @@ ${template4 2}
 ${template4 3}
 ${template4 4}
 
-
 ${template1  RAM}
 ${goto 220} ${memmax} ${goto 270}${memeasyfree} free 		${membar 8}
 ${template5 1}
 ${template5 2}
 ${template5 3}
 ${template5 4}
-
 
 ${template1   SSD}
 ${template8 / /dev/nvme0n1p3 90}#
