@@ -1,6 +1,74 @@
+\usepackage[french]{babel}
+
+% Clean footer (only slide no / slide total)
+\setbeamertemplate{navigation symbols}{}
 \setbeamercolor{page number in head/foot}{fg=gray}
 \setbeamertemplate{footline}[frame number]
-\setbeamertemplate{navigation symbols}{}
-\addtobeamertemplate{title page}{
-	\thispagestyle{empty}
+
+% Title page: no header
+\addtobeamertemplate{title page}{\thispagestyle{empty}}
+
+% Remove image captions
+\usepackage{caption}
+\DeclareCaptionFormat{empty}{}\captionsetup{format=empty}
+
+% Allow emoji usage in source (requires lualatex)
+\usepackage{fontspec}
+\directlua{luaotfload.add_fallback
+   ("emojifallback",
+    {
+      "NotoColorEmoji:mode=harf;"
+    }
+   )}
+\setmainfont{Latin Modern Sans}[
+  RawFeature={fallback=emojifallback}
+]
+
+% Disable the continuation count for frames that consist only of a single one ⇒ Remove the I after toc-title name
+\setbeamertemplate{frametitle continuation}[from second]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% VISIBLE SECTION NUMBERS
+
+
+% In TOC
+\setbeamertemplate{section in toc}[sections numbered]
+
+% In section page
+\setbeamertemplate{section page}{%
+    \begingroup
+        \begin{beamercolorbox}[sep=10pt,center,rounded=true,shadow=true]{section title}
+        \usebeamerfont{section title}\thesection~~\insertsection\par
+        \end{beamercolorbox}
+    \endgroup
 }
+
+% In Miniframes header
+\makeatletter
+\def\sectionentry#1#2#3#4#5{% section number, section title, page
+  \beamer@xpos=0\relax%
+  \beamer@ypos=1\relax%
+  \beamer@ypos@offset=0\relax%
+  \ifnum#5=\c@part%
+  \beamer@section@set@min@width%
+  \box\beamer@sectionbox\hskip1.875ex plus 1fill%
+  \setbox\beamer@sectionbox=
+  \hbox{\def\insertsectionhead{#1~#2}%
+    \def\insertsectionheadnumber{#1}%
+    \def\insertpartheadnumber{#5}%
+    {%
+      \usebeamerfont{section in head/foot}\usebeamercolor[fg]{section in head/foot}%
+      \ifnum\c@section=#1%
+        \hyperlink{Navigation#3}{{\usebeamertemplate{section in head/foot}}}%
+      \else%
+        \hyperlink{Navigation#3}{{\usebeamertemplate{section in head/foot shaded}}}%
+      \fi}%
+  }%
+  \ht\beamer@sectionbox=1.875ex%
+  \dp\beamer@sectionbox=0.75ex%
+  \fi\ignorespaces}
+\makeatother
+
+% In frame title
+%\setbeamertemplate{frametitle}{\thesection \hspace{0.2cm} \insertframetitle}

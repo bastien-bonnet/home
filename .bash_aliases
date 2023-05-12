@@ -148,11 +148,12 @@ alias a="alias"
 		--highlight-style=breezedark \
 		-H ~/.templates/pandoc_beamer_header.tex \
 		-st beamer \
-		--pdf-engine=pdflatex \
+		--pdf-engine=lualatex \
 		${@}
 	}
 	pandocb() { pandoc_beamer ${@:2} "$1" -o "${1%.md}".pdf; }
 	pandocbh() { pandoc_beamer ${@:2} -V handout "$1" -o "${1%.md}"-handout.pdf; }
+	export -f pandoc_beamer
 	export -f pandocb
 	export -f pandocbh
 
