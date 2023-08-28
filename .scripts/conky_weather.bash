@@ -40,11 +40,11 @@ select_relevant_columns() {
 		BEGIN { OFS = output_field_separator }
 		{
 			time=$2;
-			weather=$4;
-			precipitations=$5;
-			real_temp=$3;
+			weather=$3;
+			precipitations=$6;
+			real_temp=$4;
 			gsub(/[^0-9]/, "", real_temp);
-			feels=$6;
+			feels=$7;
 			gsub(/[^0-9]/, "", feels);
 			if (real_temp==feels) temp=" "real_temp;
 			else temp=real_temp"/"feels;
@@ -117,10 +117,12 @@ debug() {
 	echo -e "HTML data:\n$weather_html_data"
 	echo "----"
 	local csv_data=$(echo "$weather_html_data" | html_data_to_csv $field_separator)
-	echo -e "CSV data:\n$csv_data"
+	echo "CSV data:"
+	echo -e "$csv_data" | column -t -s , -o ","
 	echo "----"
 	local csv_filtered_data=$(echo "$csv_data" | select_relevant_columns "$field_separator")
-	echo -e "CSV filtered data:\n$csv_filtered_data"
+	echo "CSV filtered data:"
+	echo -e "$csv_filtered_data" | column -t -s , -o ","
 	echo "----"
 	echo "Transposed:"
 	transpose_table "$csv_filtered_data" "$field_separator"
