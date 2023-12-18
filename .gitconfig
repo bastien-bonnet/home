@@ -29,25 +29,27 @@
 	# Remote interaction
 	f = fetch -p
 	fo = fetch origin
-	fom = fetch origin master:master
-	pl= pull
-	plr = pull --rebase=merges
+	fom = fetch origin main:main
+	pl= pull -p
+	plr = pull -p --rebase=merges
 	p = push
 	pf = push --force-with-lease
 	ps = push --set-upstream origin
 
 	# Log
 	l = log --graph --pretty=onelinerelativedate
-	la = log --graph --pretty=onelinerelativedate --all
-	ls = log --graph --pretty=onelinerelativedate --name-status
-	las = log --graph --pretty=onelinerelativedate --all --name-status
+	la = l --all
+	lp = l --first-parent
+	lap = la --first-parent
+	ls = l --name-status
+	las = l --all --name-status
 	ld = log --graph --pretty=onelineabsolutedate --date=short
 
 	# Diff & merge
 	dns = diff --name-status
 	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]'
-	dc = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' --cached
-	dh = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' HEAD^!
+	dc = d --cached
+	dh = d HEAD^!
 	dt = difftool
 	dtc = difftool --cached
 	dth = difftool HEAD^!
