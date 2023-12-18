@@ -44,6 +44,7 @@
 	ls = l --name-status
 	las = l --all --name-status
 	ld = log --graph --pretty=onelineabsolutedate --date=short
+	lm = l origin/main HEAD
 
 	# Diff & merge
 	dns = diff --name-status
