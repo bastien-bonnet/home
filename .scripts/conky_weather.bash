@@ -16,13 +16,16 @@ get_weather_html_data() {
 	local WEATHER_URL="https://weather.com/en-GB/weather/hourbyhour/l/84d8432d389a2d0f4d15c4867d07bfb324dc333512613f3310c844bd31dac333"
 
 	local weather_html_page=$(curl $WEATHER_URL 2>/dev/null)
+	local number_of_html_elements=6
 	echo $weather_html_page \
 	| xmllint --html --xpath "
 		  //*[contains(@data-testid, 'daypartName')]
 		| //*[contains(@data-testid, 'TemperatureValue')]
 		| //*[contains(@data-testid, 'wxIcon')]/*/title
-		| //*[contains(@data-testid, 'Precip')]/*[contains(@data-testid, 'PercentageValue')]" --nowarning --noblanks - 2>/dev/null \
-	| xargs -L 5 2>/dev/null \
+		| //*[contains(@data-testid, 'Precip')]/*[contains(@data-testid, 'PercentageValue')]
+		| //*[contains(@data-testid, 'HumiditySection')]/*/*[contains(@data-testid, 'PercentageValue')]
+		" --nowarning --noblanks - 2>/dev/null \
+	| xargs -L $number_of_html_elements 2>/dev/null \
 	| head -n 9
 }
 
@@ -48,15 +51,16 @@ select_relevant_columns() {
 			gsub(/[^0-9]/, "", feels);
 			if (real_temp==feels) temp=" "real_temp;
 			else temp=real_temp"/"feels;
+			humidity=$9;
 
-			print time, weather, temp"°", precipitations
+			print time, weather, temp"°", precipitations, humidity
 		}'
 }
 
 transpose_table() {
 	local weather_data="$1"
 	local field_separator="$2"
-	for field in {1..4}; do
+	for field in {1..5}; do
 		local transposed_column_to_line=$(echo "$weather_data" | cut -d "$field_separator" -f $field | paste -sd "$field_separator")
 		local transposed_column_to_line_with_conky_offsets=$(replace_separator_with_conky_offset "$transposed_column_to_line" $field_separator)
 		echo $transposed_column_to_line_with_conky_offsets
@@ -78,8 +82,8 @@ replace_separator_with_conky_offset() {
 
 format() {
 	extract_hours='1s/\([[:digit:]]\{2\}:[[:digit:]]\{2\}\)[[:alpha:]]*/\1/g'
-	remove_0_precipitation='4s/-0%-//g'
 	enclose_precipitations='4s/\([[:digit:]]\{1,3\}%\)/-\1-/g'
+	remove_0_precipitation='4s/-0%-//g'
 	format_precipitations='4s/-\([[:digit:]]\{1,3\}%\)-/\${font Font Awesome 5 Free Solid:style=Solid:size=9}\${font DejaVu Sans Mono:size=8}\1/g'
 	prepend_conky_indent='s/^/\${goto 70}/'
 	enclose_weather_icon_line_with_font_tags='2s/^\(.*\)$/\${font Font Awesome 5 Free Solid:style=Solid:size=18}\1\${font DejaVu Sans Mono:size=8}/'
