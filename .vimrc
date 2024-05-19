@@ -1,6 +1,6 @@
+syntax on
 "filetype indent on
 filetype plugin on
-
 set encoding=utf-8
 set fileencodings=utf-8
 
