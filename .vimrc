@@ -1,5 +1,6 @@
 syntax on
 "filetype indent on
+" Load plugin according to file type
 filetype plugin on
 set encoding=utf-8
 set fileencodings=utf-8
@@ -113,11 +114,17 @@ imap <silent> <home> <C-o>g<home>
 map <silent> <End> g<End>
 imap <silent> <End> <C-o>g<End>
 
+
+
+""""""""""""""""""""""""""""""""""""
+" SEARCH & REPLACE
+
 " Replace normal spaces with unbreakable spaces (french rules)
 command Ub %s/\([[:alnum:]]\) \(:\|;\|!\|?\|»\)/\1 \2/gce | %s/\(«\) \([[:alnum:]]\)/\1 \2/gce
 
 " Search visually selected text
 vnoremap // y/\V<C-R>"<CR>
+
 
 """"""""""""""""""""""""""""""""""""
 " TABS
@@ -153,8 +160,6 @@ nmap <C-S-Right> :execute TabRight()<cr>
 """"""""""""""""""""""""""""""""""""
 " CONFIG FOR LATEX PLUGIN
 
-" Chargement de plugins selon le type de fichier
-filetype plugin on
 " Permet a vim-latex d'appeler correctement latex (win32 specific ?)
 set shellslash
 " Change la manière d'appeler grep pour toujours avoir le nom de fichier
