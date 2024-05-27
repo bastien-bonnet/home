@@ -138,8 +138,10 @@ alias a="alias"
 # PDF manipulation
 	a pdf-from-png="mogrify -format pdf *.png"
 	a pdf-concat="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf"
-	a pdf-concat-all="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf *.pdf"
+	a pdf-concat-all="pdf-concat *.pdf"
 	a pdf-quality-lower="ps2pdf -dPDFSETTINGS=/ebook merged.pdf merged_lq.pdf"
+	# Despeckle, sharpens and compresses
+	a pdf-from-scan="convert scan.png -despeckle -normalize -sharpen 0x1.5 -compress jpeg scan_compressed.pdf"
 
 	pandoc_beamer() { pandoc \
 		-V theme=Singapore \
