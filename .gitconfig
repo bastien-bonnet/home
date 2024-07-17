@@ -56,6 +56,11 @@
 	dth = difftool HEAD^!
 	mt = mergetool
 
+	deleted-branches = "!git fetch -p && echo \"Gone branches:\" && git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}' #"
+
+	# Converts a bash command into a git alias, cf. https://stackoverflow.com/a/39616600
+	quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
+
 [core]
 	pager = less -R
 [difftool]
