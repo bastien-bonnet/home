@@ -2,7 +2,8 @@
 	name = Bastien
 	email = none
 [push]
-	default = simple
+	default = current
+	autoSetupRemote = true
 [color]
 	ui = auto
 [pretty]
