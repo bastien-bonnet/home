@@ -16,17 +16,19 @@ get_weather_html_data() {
 	local WEATHER_URL="https://weather.com/en-GB/weather/hourbyhour/l/84d8432d389a2d0f4d15c4867d07bfb324dc333512613f3310c844bd31dac333"
 
 	local weather_html_page=$(curl $WEATHER_URL 2>/dev/null)
-	local number_of_html_elements=6
+	local number_of_html_elements_per_hour=6
+	local number_of_hours_to_keep=9
+	# hour, temp value (2 elements: real and feel), weather type, precip %, humidity %
 	echo $weather_html_page \
 	| xmllint --html --xpath "
 		  //*[contains(@data-testid, 'daypartName')]
 		| //*[contains(@data-testid, 'TemperatureValue')]
-		| //*[contains(@data-testid, 'wxIcon')]/*/title
+		| //*[contains(@data-testid, 'wxIcon')]/span[2]
 		| //*[contains(@data-testid, 'Precip')]/*[contains(@data-testid, 'PercentageValue')]
 		| //*[contains(@data-testid, 'HumiditySection')]/*/*[contains(@data-testid, 'PercentageValue')]
 		" --nowarning --noblanks - 2>/dev/null \
-	| xargs -L $number_of_html_elements 2>/dev/null \
-	| head -n 9
+	| xargs -L $number_of_html_elements_per_hour 2>/dev/null \
+	| head -n $number_of_hours_to_keep
 }
 
 html_data_to_csv() {
@@ -105,6 +107,7 @@ format() {
 		-e '2s/Foggy//g' \
 		-e '2s/Heavy T-Storms//g' \
 		-e '2s/\(\w\+ \)\?Thunderstorms\?/ /g' \
+		-e '2s/Clear//g' \
 		-e "$enclose_precipitations" \
 		-e "$remove_0_precipitation" \
 		-e "$format_precipitations" \
