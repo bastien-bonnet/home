@@ -165,9 +165,10 @@ alias a="alias"
 ###################################################################################################
 # RSYNC
 
-	a rs="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
-	a rsc="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
-	a rsssh="rslocal -e 'ssh -p 1234'"
+	a rsn="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
+	a rsy="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
+	a rsn_ssh="rsn -e 'ssh -p 1234'"
+	a rsy_ssh="rsy -e 'ssh -p 1234'"
 
 
 ###################################################################################################
