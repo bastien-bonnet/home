@@ -6,7 +6,7 @@ git
 kile
 lm-sensors
 meld
-nvidia-current
+(nvidia-current)
 pandoc
 source-highlight
 teensy-loader-cli
@@ -17,4 +17,6 @@ texlive-latex-extra
 tree
 vim
 vim-gtk
+virtualbox
+virtualbox-guest-additions-iso
 vlc
