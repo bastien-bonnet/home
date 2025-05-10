@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Backups Firefox session files, then deletes backups older than 1 week.
+
+# To cron it, crontab -e then add this line:
+#30 18 * * * /home/bast/.scripts/firefox_backup.bash upp20yhf.default-release
 
 if [ -z "$1" ]; then
     echo "No profile name supplied"
