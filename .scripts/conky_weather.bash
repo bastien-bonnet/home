@@ -1,6 +1,12 @@
 #!/bin/bash
 
 main() {
+	if ! command -v curl 2>&1 >/dev/null
+	then
+		echo "curl command could not be found"
+		exit 1
+	fi
+
 	local field_separator=","
 	local weather_data=$(\
 		get_weather_html_data \
