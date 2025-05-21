@@ -60,6 +60,7 @@ alias a="alias"
 	a bootErrorLogs="journalctl -b -p err | less"
 
 	a ez="teensy_loader_cli -vw -mmcu=atmega32u4"
+	a amd="sudo modprobe -r kvm_amd kvm"
 
 	npl () { sudo nvidia-smi -pl ${1:-95}; }
 
