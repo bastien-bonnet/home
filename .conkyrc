@@ -64,8 +64,11 @@ conky.config = {
 	own_window_type = 'normal',
 	own_window_class = 'conky-semi',
 	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
-	own_window_transparent = true,
+	--own_window_transparent = true,
+	own_window_transparent = false,
 	own_window_argb_visual = true,
+	own_window_argb_value = 70,
+	own_window_colour = '242520',
 
 	-- Subtract file system buffers from used memory?
 	no_buffers = true,
@@ -79,8 +82,8 @@ conky.config = {
 
 	default_bar_width = 200, default_bar_height = 8,
 
-	lua_load = '~/.conky_bg.lua',
-	lua_draw_hook_pre = 'draw_bg',
+	--lua_load = '~/.conky_bg.lua',
+	--lua_draw_hook_pre = 'draw_bg',
 
 
 -------------------------------------------------------------------------------
