@@ -14,10 +14,13 @@ alias a="alias"
 
 	cdAndLs () { cd "${1:-$HOME}" && l; }
 	a cl="cdAndLs"
+
 	a dl="cl ~/Downloads"
 	a dev="cl ~/dev"
 	a curr="cl ~/Current"
 	a trash="cl ~/.local/share/Trash/files"
+	firefox_profile="$(sed -En 's/Path=(.*)/\1/p' ~/snap/firefox/common/.mozilla/firefox/profiles.ini)"
+	a ff="cl ~/snap/firefox/common/.mozilla/firefox/$firefox_profile"
 
 	a rl="readlink -m"
 
