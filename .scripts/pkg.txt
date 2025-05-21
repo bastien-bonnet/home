@@ -1,22 +1,51 @@
-asciidoc
-conky-all
-curl
+# git clone https://github.com/bastien-bonnet/home
+# shopt -s dotglob
+# rsync -nvihurlt home/* .
+# same command without -n
+
+# Move data SSD to new PC, or rsync SSH its data
+
+# ff install NoScript, uBlock Origin, TST
+# ff restore TST tabs, ie copy recovery.jsonlz4 to $FF_PROFILE/sessionstore.jsonlz4
+# ff conf TST gist (Drive)
+# ff cron script backup
+
+
+# Term: use nerd font
+
+# Virtual desktops
+# KDE Power management balanced icon taskbar
+
+# LUKS other disk(s)
+
+# 1. Probably already installed
 firefox
 git
-kile
-lm-sensors
-meld
-(nvidia-current)
-pandoc
-source-highlight
-teensy-loader-cli
+vim
+vim-gtk (for +clipboard option)
+
+# 2. 
+conky-all
 terminator
+virtualbox
+virtualbox-guest-additions-iso
+guvcview
+uvcdynctrl
+meld
+
+# 3. Still needed?
+source-highlight
+lm-sensors
+tree
+curl
+(nvidia-current)
+
+
+# 4. Document things
+asciidoc
+pandoc
+kile
+teensy-loader-cli
 texlive-lang-french
 texlive-pictures
 texlive-latex-extra
-tree
-vim
-vim-gtk
-virtualbox
-virtualbox-guest-additions-iso
-vlc

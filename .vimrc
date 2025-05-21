@@ -6,6 +6,7 @@ set encoding=utf-8
 set fileencodings=utf-8
 
 " Use X11 clipboard
+" Requires +clipboard option. Help: https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim/96#96
 set clipboard=unnamedplus
 
 " Enables mouse (needs vim compiled with certain options)
