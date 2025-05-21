@@ -3,9 +3,19 @@ conky.config = {
 	--[[ In order to work, this script requires:
 	1. [font] Font Awesome 5 Free Solid
 	2. [CPU] adding core temperature management module to kernel through modprobe conf:
+		-- For all, needed for the sensors command used in script
+		sudo apt install lm-sensors
+
+		-- For Intel CPUs
 		sudo modprobe coretemp
 		edit /etc/modules and add the line 'coretemp'
-		sudo apt-get install lm-sensors
+
+		-- For AMD CPUs
+		1. To get fan RPM (and voltages): 'modprobe modprobe nct6775' (change according to your chip)
+		   More info on chips: https://wiki.archlinux.org/title/Lm_sensors#Asrock_B650M_Pro_RS_/_B850M_Pro_RS_/_X870_Pro_RS
+		2. Check if sensors outputs CPU temps & fans RPm, look for "Tctl"
+		   Note: k10temp is the official driver/temperature that AMD uses for speed/boost calculations. Identical to TSI0_TEMP in sensors output
+		3. Make permanent by editing /etc/modules and add the line 'nct6775'
 	3. [Nvidia GPU] prime-select
 	4. [Weather] weather script in ~/.scripts/conky_weather.bash --]]
 
@@ -39,11 +49,16 @@ conky.config = {
 	stippled_borders = 0,
 	border_inner_margin = 20,
 	border_width = 1,
+
+
+
 	-- Colors from /usr/share/X11/rgb.txt
 	-- Examples: burlywood[1|2|3|4], wheat[1|2|3|4], sandy brown, tan[1|2|3|4], orange [1|2|3], antiquewhite[1|2|3|4]
-	color1 = 'tan3',
-	color2 = 'indian red',
-	default_color = 'antiquewhite3',
+	color1 = 'tan3', -- Header color
+	color2 = 'indian red', -- Warning color (red)
+	color3 = '#00d52a',
+	color4 = '#eee100',
+	default_color = 'antiquewhite3', -- Text default color
 
 	own_window = true,
 	own_window_type = 'normal',
@@ -107,6 +122,8 @@ conky.config = {
 -------------------------------------------------------------------------------
 conky.text = [=[
 ${template1  CPU}
+#
+${if_match "${execi 5 hostname | cut -d- -f2}" == "laptop"}#
 ${template7}${template9 Physical}#
 ${goto 300}${execi 5 sensors | sed -En 's/Package.*([[:digit:]]{2}).*\(.*$/\1/p'}°C#
  ${alignr}${cpubar 8 cpu0}
@@ -114,50 +131,129 @@ ${template3 1 4}
 ${template3 2 4}
 ${template3 3 4}
 ${template3 4 4}
-${if_match "${execi 5 hostname | cut -d- -f2}" == "laptop"}#
 ${template3 5 4}
 ${template3 6 4}
 ${template3 7 4}
 ${template3 8 4}
 ${endif}#
+#
 ${if_match "${execi 5 hostname | cut -d- -f2}" == "fractal"}#
+${template7}${template9 Physical}#
+${goto 300}${execi 5 sensors | sed -En 's/Package.*([[:digit:]]{2}).*\(.*$/\1/p'}°C#
+ ${alignr}${cpubar 8 cpu0}
+${template3 1 4}
+${template3 2 4}
+${template3 3 4}
+${template3 4 4}
 ${template3 5 8}
 ${template3 6 8}
 ${template3 7 8}
 ${template3 8 8}
 ${endif}#
+#
+${if_match "${execi 5 hostname | cut -d- -f2}" == "bq"}#
+${template7}${execi 5 sensors nct6799-isa-0290 | sed -En 's/TSI0_TEMP.*([[:digit:]]{2}).*$/\1/p'}°C #
+(${template0  10} ${execi 5 sensors | sed -En 's/fan[[:digit:]]: *([[:digit:]]{2,}) RPM.*$/\1/p' | xargs})#
+ ${alignr}${cpubar 8 cpu0}
+
+${template3 1 4}
+${template3 2 4}
+${template3 3 4}
+${template3 4 4}
+${template3 5 8}
+${template3 6 8}
+${template3 7 8}
+${template3 8 8}
+
+${template3 9 8}
+${template3 10 8}
+${template3 11 8}
+${template3 12 8}
+${template3 13 8}
+${template3 14 8}
+${template3 15 8}
+${template3 16 8}
+${endif}#
 ${template4 1}
 ${template4 2}
 ${template4 3}
 ${template4 4}
+#
 
+###############################################################
 ${template1  RAM}
 ${goto 220} ${memmax} ${goto 270}${memeasyfree} free 		${membar 8}
 ${template5 1}
 ${template5 2}
 ${template5 3}
 ${template5 4}
+#
 
+###############################################################
 ${template1   SSD}
 ${template8 / /dev/nvme0n1p3 90}#
 ${template8 /boot /dev/nvme0n1p2 50}#
 ${template8 /media/data /dev/sda1 90}#
-${template8 /media/data2 /dev/nvme1n1p1 90}#
 ${template8 /media/data_ext /dev/sdb1 90}#
-#
 
-${if_match "${execi 600 prime-select query}"=="nvidia"}#
+${voffset -35}
+###############################################################
 ${template1   GPU}
-${template7}${template0  10} ${goto 95}${execi 600 nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version}#
+# AMD
+${if_match "${execi 5 hostname | cut -d- -f2}" == "bq"}#
+${template7}${template0  10} ${goto 95}#
+Utiliz. (${exec grep '*' /sys/class/drm/card1/device/pp_dpm_sclk})#
+#
+#Edge (=avg) temp#
+${goto 270}#
+${if_match "${exec sensors amdgpu-pci-0300 | grep "edge" |cut -c16-17}" <="70"}$color3# Green
+${else}$color4# Yellow
+${if_match "${exec sensors amdgpu-pci-0300 | grep "edge" |cut -c16-17}" >="99"}$color2# Red
+${endif} ${endif}#
+${exec sensors amdgpu-pci-0300 | grep "edge" | cut -c16-17 | xargs}°C#
+$color# Normal
+#
+#Junction (=hotspot) temp#
+${if_match "${exec sensors | grep "junction" |cut -c16-17}" <="70"}$color3${else}$color4#
+${if_match "${exec sensors|grep "junction" |cut -c16-17}" >="99"}$color2 ${endif} ${endif} #
+ ${exec sensors|grep "junction"|cut -c16-17}°C#
+$color#
+#
+${alignr}${execbar cat /sys/class/drm/card1/device/gpu_busy_percent}
+#
+${template7}${template0  10} ${goto 95}#
+VRAM (${exec grep '*' /sys/class/drm/card1/device/pp_dpm_mclk})#
+#Mem temp#
+${goto 270}#
+${if_match "${exec sensors | grep "mem" |cut -c16-17}" <="70"}$color3${else}$color4#
+${if_match "${exec sensors|grep "mem" |cut -c16-17}" >="99"}$color2${endif} ${endif}#
+${exec sensors|grep "mem"|cut -c16-17}°C#
+$color#
+#
+${alignr}${execbar echo $((100 - $(glxinfo | grep 'dedicated'| grep -Eo '[[:digit:]]*') * 100 / $(exec glxinfo | grep 'Dedicated'| grep -Eo '[[:digit:]]*')))}
+# Consumption
+${template7}${template0  10} ${goto 95}#
+${exec sensors amdgpu-pci-0300 | grep "PPT"|cut -c10- | xargs}#
+# Fan
+${goto 350}${template0  10} ${alignr}#
+${exec sensors amdgpu-pci-0300 | grep -Eo '[[:digit:]]+ RPM' | head -n 1}
+# Driver
+${template7}${template0  10} ${goto 95}Driver:#
+${execi 6000 glxinfo | grep "OpenGL version" |cut -c52-70}
+
+# NVIDIA
+${else}${if_match "${execi 600 command -v prime-select && prime-select query || echo None}"=="nvidia"}#
+${template7}${template0  10} ${goto 95}${execi 600 command -v nvidia-smi && nvidia-smi --format=csv,noheader,nounits --query-gpu=driver_version}#
 
 	${template7}${template0  10} ${goto 95}(perf. level: ${nvidia perflevelcur}/${nvidia perflevelmax})${alignr}${nvidiabar gpuutil}
 	${template7}${template0  10} ${goto 95}${alignr}${nvidiabar memutil}
 	${template7}${template0  10} ${goto 95}${nvidia fanspeed} RPM = ${nvidia fanlevel} %${alignr}${nvidia temp}°C ${nvidiabar fanlevel}
-	${template7}${template0  10} ${goto 95}${execi 60 nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
-
-
-
+	${template7}${template0  10} ${goto 95}${execi 60 command -v nvidia-smi && nvidia-smi --format=csv,noheader,nounits --query-gpu=power.limit} W
 ${endif}#
+${endif}#
+#
+###############################################################
+# SYSTEM
 ${template1  SYSTEM brands}
 ${template7}${template0  12 brands}${voffset -2} ${execi 36000 lsb_release -rs}#
     ${template0  12 brands}${voffset -2} ${kernel}#
@@ -184,7 +280,7 @@ ${goto 100}${wireless_essid wlp2s0} ${wireless_link_bar 8,50 wlp2s0}
 ${endif}#
 
 
-
+###############################################################
 ${template1  WEATHER}
 ${font DejaVu Sans Mono:size=8}#
 ${execpi 3600 ~/.scripts/conky_weather.bash}
