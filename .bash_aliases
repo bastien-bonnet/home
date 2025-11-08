@@ -147,6 +147,7 @@ alias a="alias"
 	a pdf-quality-lower="ps2pdf -dPDFSETTINGS=/ebook merged.pdf merged_lq.pdf"
 	# Despeckle, sharpens and compresses
 	a pdf-from-scan="convert scan.png -despeckle -normalize -sharpen 0x1.5 -compress jpeg scan_compressed.pdf"
+	a pdf-booklet="pdfbook2 -p a4paper -n merged.pdf"
 
 	pandoc_beamer() { pandoc \
 		-V theme=Singapore \
