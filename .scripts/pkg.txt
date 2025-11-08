@@ -16,7 +16,10 @@
 # Virtual desktops
 # KDE Power management balanced icon taskbar
 
-# LUKS other disk(s)
+# LUKS other disk(s) (cf. bookmark)
+
+# If AMD, blacklist kvm & kvm_amd modules for Virtualbox
+# uvc.bash autostart
 
 # 1. Probably already installed
 firefox
@@ -49,3 +52,5 @@ teensy-loader-cli
 texlive-lang-french
 texlive-pictures
 texlive-latex-extra
+texlive-extra-utils #Contains pdfbook2, for pdf to booklet/brochure
+
