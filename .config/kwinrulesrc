@@ -2,12 +2,12 @@
 update_info=kwinrules.upd:replace-placement-string-to-enum,kwinrules.upd:use-virtual-desktop-ids
 
 [1]
-Description=Terminator rule
+Description=3 - Terminator rule
 clientmachine=localhost
 clientmachinematch=0
 desktop=2
 desktoprule=4
-desktops=0cd76d42-4929-4c7d-b65f-49e6b3e0cb1c
+desktops=2d0ecd7d-8335-4ff6-a62c-98306fea8644
 desktopsrule=3
 ignoregeometry=true
 ignoregeometryrule=3
@@ -21,26 +21,33 @@ wmclass=terminator
 wmclassmatch=1
 
 [2]
-Description=Dolphin rule
+Description=3 - Dolphin rule
 clientmachine=localhost
 clientmachinematch=0
-desktops=0cd76d42-4929-4c7d-b65f-49e6b3e0cb1c
+desktops=2d0ecd7d-8335-4ff6-a62c-98306fea8644
 desktopsrule=3
-position=0,540
+position=30,540
 positionrule=3
-size=960,540
+size=1293,540
 sizerule=3
 title=Downloads — Dolphin
 titlematch=0
-wmclass=dolphin
+wmclass=org.kde.dolphin
 wmclasscomplete=false
 wmclassmatch=1
 
+[2c1d2030-97ae-45e1-8834-198b829d6fa6]
+Description=2 - Virtual Box rule
+desktops=e3240802-62e4-4210-8633-9527396c1672
+desktopsrule=3
+wmclass=VirtualBox Manager
+wmclassmatch=1
+
 [3]
-Description=Steam rule
+Description=2 - Steam rule
 clientmachine=localhost
 clientmachinematch=0
-desktops=f9232abd-5bd2-4758-9cbb-b17ee5dcd80a
+desktops=e3240802-62e4-4210-8633-9527396c1672
 desktopsrule=3
 position=0,540
 size=960,540
@@ -51,8 +58,8 @@ wmclasscomplete=false
 wmclassmatch=1
 
 [4]
-Description=Dota 2 rule
-desktops=675c2813-3522-476e-9233-d92cb9da3cc9
+Description=1 - Dota 2 rule
+desktops=0f7d399c-a1a0-44cd-bb1c-e836b95ceb87
 desktopsrule=3
 wmclass=dota
 wmclassmatch=2
@@ -64,16 +71,42 @@ desktopsrule=3
 wmclass=steam
 wmclassmatch=1
 
+[62a21b76-07fd-4c5e-8ec9-097fe61d2123]
+Description=3 - Konsole rule
+clientmachine=localhost
+desktops=2d0ecd7d-8335-4ff6-a62c-98306fea8644
+desktopsrule=3
+ignoregeometry=true
+ignoregeometryrule=3
+position=30,0
+positionrule=3
+size=1293,540
+sizerule=3
+title=bast@bast-fractal: ~
+wmclass=org.kde.konsole
+wmclassmatch=1
+
 [General]
 XftAntialias[$d]
 XftHintStyle[$d]
 XftSubPixel[$d]
-count=4
-rules=1,2,3,4
+count=7
+rules=e9a38b56-b7cf-4546-86d5-fe3abe848905,4,3,2c1d2030-97ae-45e1-8834-198b829d6fa6,62a21b76-07fd-4c5e-8ec9-097fe61d2123,1,2
 
 [KDE]
 LookAndFeelPackage[$d]
 SingleClick[$d]
+
+[b6159c1b-955d-46d2-90eb-a40656b6067c]
+desktopsrule=4
+
+[e9a38b56-b7cf-4546-86d5-fe3abe848905]
+Description=1 - Firefox rule
+desktops=0f7d399c-a1a0-44cd-bb1c-e836b95ceb87
+desktopsrule=3
+wmclass=firefox
+wmclasscomplete=true
+wmclassmatch=2
 
 [fcc03308-b92d-4dd1-9915-7883d30ed19b]
 Description=Dota 2 rule
