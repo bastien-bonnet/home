@@ -5,12 +5,14 @@
 
 # Move data SSD to new PC, or rsync SSH its data
 
+# FF conf:
 # ff install NoScript, uBlock Origin, TST
+# Bookmark toolbar: right click on bar >  always show. Then right clicke > customize toolbar > merge bookmark with address bar. Then remove bookmark toolbar
 # ff restore TST tabs, ie copy recovery.jsonlz4 to $FF_PROFILE/sessionstore.jsonlz4
+# Sync: connect (bb)
 # ff conf TST gist (Drive)
 # ff cron script backup
-
-
+# ff settings > Open previous… + warn me when closing multiple tab + ctrl+tab cycles + browser layout > uncheck show sidebar
 # Term: use nerd font
 
 # Virtual desktops
