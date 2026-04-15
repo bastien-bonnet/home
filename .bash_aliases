@@ -171,7 +171,7 @@ alias a="alias"
 # RSYNC
 
 	a rsn="rsync -nvihurlt --exclude-from=$HOME/.rsyncExclude"
-	a rsy="rsync -vihurlt --exclude-from=$HOME/.rsyncExclude"
+	a rsy="rsync  -vihurlt --exclude-from=$HOME/.rsyncExclude"
 	a rsn_ssh="rsn -e 'ssh -p 1234'"
 	a rsy_ssh="rsy -e 'ssh -p 1234'"
 
