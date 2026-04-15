@@ -291,5 +291,4 @@ ${font}#
 ${alignr}${font DejaVu Sans:size=26}${time %H:%M}${font}
 ${alignr}${time %a %d %b %Y}#
 ${voffset -5}
-
 ]=];
