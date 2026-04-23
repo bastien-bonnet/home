@@ -22,6 +22,6 @@ BACKUP_FOLDER="$HOME/B/Sauvegarde/Firefox"
 NOW="$(date -Iseconds)"
 BACKUP_FOLDER_FOR_TODAY="$BACKUP_FOLDER/ff-bck-$NOW"
 
-rsync -vihurlt $FIREFOX_SESSION_BACKUP_FOLDER $BACKUP_FOLDER_FOR_TODAY
+rsync -vihurlt "$FIREFOX_SESSION_BACKUP_FOLDER" "$BACKUP_FOLDER_FOR_TODAY"
 find "$BACKUP_FOLDER" -maxdepth 1 -mtime +7 -execdir gio trash {} +
 
