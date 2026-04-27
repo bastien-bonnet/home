@@ -1,3 +1,8 @@
 #!/bin/bash
 
-mv --backup=numbered -t ~/.local/share/Trash/files/ "$@"
+
+gio trash "$@"
+
+# Version without gio, but file won’t show in graphic Trash
+#mv --backup=numbered -t ~/.local/share/Trash/files/ "$@"
+
