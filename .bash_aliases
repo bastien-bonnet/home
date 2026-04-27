@@ -143,7 +143,7 @@ alias a="alias"
 	a pdf-from-png="mogrify -format pdf *.png"
 	a pdf-concat-all="pdfunite *.pdf merged.pdf"
 	a pdf-concat-lossy="\\gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf"
-	a pdf-concat-all-lossy="pdf-concat *.pdf"
+	a pdf-concat-all-lossy="pdf-concat-lossy *.pdf"
 	a pdf-quality-lower="ps2pdf -dPDFSETTINGS=/ebook merged.pdf merged_lq.pdf"
 	# Despeckle, sharpens and compresses
 	a pdf-from-scan="convert scan.png -despeckle -normalize -sharpen 0x1.5 -compress jpeg scan_compressed.pdf"
