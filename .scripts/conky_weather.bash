@@ -100,7 +100,7 @@ format() {
 		-e '2s/Mostly Sunny\( \/ Wind\)\?//g' \
 		-e '2s/Sunny\( \/ Wind\)\?//g' \
 		-e '2s/Partly Cloudy Night//g' \
-		-e '2s/\(Mostly \)\?Clear Night//g' \
+		-e '2s/\(Mostly \)\?Clear\( Night\)\?//g' \
 		-e '2s/Partly Cloudy\( \/ Wind\)\?//g' \
 		-e '2s/\(Mostly Cloudy \/ \)\?Wind//g' \
 		-e '2s/\(Mostly \)\?Cloudy\( \/ Wind\| Night\)\?//g' \
